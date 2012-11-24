@@ -1,7 +1,7 @@
 package tp.pr2;
 
 
-	// Lugar: Consta de un nombre, una descripci�n y un booleano que indica si hay nave en �l.
+	// Lugar: Consta de un nombre, una descripci�n y un booleano que indica si hay nave en el.
 
 public class Place {
 
