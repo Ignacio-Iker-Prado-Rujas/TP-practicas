@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class RobotEngine {
 
-	public RobotEngine(Place initialPlace, Direction direction, Street[] cityMap) {
+	public RobotEngine(Place initialPlace, Direction direction, City cityMap) {
 		this.initialPlace = initialPlace;
 		this.direction = direction;
 		this.cityMap = cityMap;
@@ -71,13 +71,9 @@ public class RobotEngine {
 	devuelve true. Si no ha encontrado calle devuelve false. */
 	
 	private boolean moveWalle(){
-		int pos = -1;
-		for (int i = 0; i < cityMap.length; i++){
-			if (cityMap[i].comeOutFrom(initialPlace, direction))
-				pos = i;
-		}
-		if (pos >= 0) {
-			initialPlace = cityMap[pos].nextPlace(initialPlace);
+		Street newStreet = cityMap.lookForStreet(this.initialPlace, this.direction);
+		if(newStreet != null){
+		initialPlace = newStreet.nextPlace(initialPlace);
 			return true;
 		}
 		else return false;
@@ -99,5 +95,5 @@ public class RobotEngine {
 
 	private Place initialPlace;
 	private Direction direction;
-	private Street[] cityMap;
+	private City cityMap;
 }
