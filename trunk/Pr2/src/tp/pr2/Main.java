@@ -7,7 +7,8 @@ public class Main {
 	public static void main(String args[]) {
 		Place[] places = createPlaces();	// Crea los lugares.
 		Street[] streets = createStreets(places);	// Crea las calles a partir de los lugares.
-		RobotEngine robotEngine = new RobotEngine(places[0], Direction.NORTH, streets);	// Inicializa la información del robot. Siempre hacia el norte.
+		City cityMap = new City(streets);
+		RobotEngine robotEngine = new RobotEngine(places[0], Direction.NORTH, cityMap);	// Inicializa la información del robot. Siempre hacia el norte.
 		robotEngine.startEngine();	// Arranca el robot. Pasa el control a la función startEngine.
 	}
 
