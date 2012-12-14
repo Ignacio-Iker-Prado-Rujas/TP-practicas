@@ -2,10 +2,8 @@ package tp.pr2;
 
 public enum Direction {
 	EAST, NORTH, SOUTH, UNKNOWN, WEST;
-
 	
-	// Devuelve la direcci�n opuesta de la recibida.
-
+	// Devuelve la dirección opuesta de la recibida
 	public Direction oppositeDirection() {
 		switch (this) {
 			case NORTH: return Direction.SOUTH; 
@@ -20,8 +18,7 @@ public enum Direction {
 		}
 	}
 
-	// Devuelve le direcci�n a la derecha de la que est� mirando.
-
+	// Devuelve la dirección a la derecha de la que esté mirando
 	public Direction turnRight() {
 		switch (this) {
 			case NORTH: return Direction.EAST; 
@@ -36,8 +33,7 @@ public enum Direction {
 		}
 	}
 	
-	// Devuelve la de la izquierda.
-
+	// Devuelve la dirección a la izquierda de la que esté mirando
 	public Direction turnLeft() {
 		switch (this) {
 			case NORTH: return Direction.WEST; 

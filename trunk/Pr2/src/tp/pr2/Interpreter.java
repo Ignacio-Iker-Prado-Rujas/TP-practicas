@@ -3,7 +3,6 @@
 public class Interpreter {
 
 	// Genera una instrucción a partir del string recibido.
-
 	public Instruction generateInstruction(String line) {
 		String[] arrayInstruction = line.split(" ");
 		Instruction instruction;
