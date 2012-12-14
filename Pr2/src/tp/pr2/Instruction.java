@@ -1,26 +1,26 @@
 package tp.pr2;
 
 public class Instruction {
+	
+	// Este constructor crea una accion desconocida
 	public Instruction() {
-		// Este constructor crea una accion desconocida
-		action = Action.UNKNOWN;
-		rotation = Rotation.UNKNOWN;
+		this.action = Action.UNKNOWN;
+		this.rotation = Rotation.UNKNOWN;
 	}
 
+	// Este constructor crea una accion de la que no se conoce el enumerado rotation
 	public Instruction(Action action) {
-		// Este constructor crea una accion de la que no se conoce el enum rotation
 		this.action = action;
 		this.rotation = Rotation.UNKNOWN;
 	}
 
+	// Este constructor crea una accion e inicializa ambos atributos (!=UNKNOWN)
 	public Instruction(Action action, Rotation rotation) {
-		// Este constructor crea una accion e inicializa ambos atributos
 		this.action = action;
 		this.rotation = rotation;
 	}
-
-	// Devuelve si la accion recibida es correcta true. False si es desconocida.
-
+	
+	// Devuelve true si la accion recibida es valida, y false si es desconocida
 	public boolean isValid() {
 		if (this.action.equals(Action.UNKNOWN))
 			return false;
