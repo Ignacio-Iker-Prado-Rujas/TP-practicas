@@ -14,7 +14,9 @@ public class City {
 	
 	//Busca una calle que parta del lugar dado y en la direccion dada
 	public Street lookForStreet(Place currentPlace, Direction currentHeading) {
-		
+		for (int i = 0; i < cityMap.length; i++) {
+			
+		}
 		return null;
 	}
 	
