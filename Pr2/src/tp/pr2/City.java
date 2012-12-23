@@ -2,20 +2,22 @@ package tp.pr2;
 
 public class City {
 	
-	//Constructor por defecto, necesario para el test
+	//Constructor por defecto, necesario para el validador
 	public City() {
 		
 	}
 	
-	//Constructor de una ciudad a partir de un array de Streets
+	//Construye una ciudad como un array de calles de la clase Street
 	public City(Street[] cityMap) {
 		this.cityMap = cityMap;
 	}
 	
-	//Busca una calle que parta del lugar dado y en la direccion dada
 	public Street lookForStreet(Place currentPlace, Direction currentHeading) {
-		for (int i = 0; i < cityMap.length; i++) {
-			
+		int i = 0;
+		while(i < n) {
+			if(cityMap[i].equals())
+				return cityMap[i];
+			i++;
 		}
 		return null;
 	}
