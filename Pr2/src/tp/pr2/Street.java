@@ -1,7 +1,6 @@
 package tp.pr2;
 
-	// Calle: Consta de un lugar de origen, un lugar destino, y la direcci�n que une source con target.
-
+	
 public class Street {
 	public Street(Place source, Direction direction, Place target) {
 		this.source = source;
@@ -9,8 +8,7 @@ public class Street {
 		this.target = target;
 	}
 
-	// Devuelve true si la calle, dado un lugar y una direcci�n, conecta con otro lugar. False en caso contrario.
-
+	// Devuelve true si la calle, dado un lugar y una direccion, conecta con otro lugar. False en caso contrario.
 	public boolean comeOutFrom(Place place, Direction whichDirection) {
 		if (this.source.equals(place) && this.direction.equals(whichDirection))
 			return true;
@@ -20,12 +18,10 @@ public class Street {
 			return false;
 	}
 	
-	/* Dado un lugar, devuelve el que est� al otro lado de la calle.
-	 Si no coincde el lugar con source ni target, devuelve 
-	null( Se aconseja combinar con el uso de comeOutFrom para que esto no pase).*/
-
+	/* Dado un lugar, devuelve el que esta al otro lado de la calle.
+	 Si el lugar no coincide con source ni target, devuelve 
+	null (Se aconseja combinar con el uso de comeOutFrom para que esto no pase).*/
 	public Place nextPlace(Place whereAmI) {
-
 		if (this.source.equals(whereAmI))
 			return this.target;
 		else if (this.target.equals(whereAmI))
@@ -34,6 +30,17 @@ public class Street {
 			return null;
 	}
 
+	//Método para obtener el lugar de origen de una calle 
+	public Place getSource() {
+		return this.source;
+	}
+	
+	//Método para obtener la direccion que une source y target en una calle 
+	public Direction getDirection() {
+			return this.direction;
+	}
+	
+	// Calle: Consta de un lugar de origen, un lugar destino, y la direccion que une source con target.
 	private Place source;
 	private Place target;
 	private Direction direction;
