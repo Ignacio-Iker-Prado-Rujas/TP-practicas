@@ -1,10 +1,8 @@
 package tp.pr2;
 
 
-	// Lugar: Consta de un nombre, una descripci�n y un booleano que indica si hay nave en el.
-
 public class Place {
-
+	
 	public Place(String name, boolean isSpaceShip, String description) {
 		this.name = name;
 		this.isSpaceShip = isSpaceShip;
@@ -15,15 +13,16 @@ public class Place {
 		return this.isSpaceShip;
 	}
 
-	// Une el t�tulo con la descripci�n para mostrar un lugar por pantalla.
-
+	//Une el titulo con la descripcion para mostrar un lugar por pantalla.
 	public String toString() {
 		return this.name + LINE_SEPARATOR + this.description;
 	}
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+	//Consta de un nombre, una descripcion y un booleano que indica si hay una nave en el
 	private String name;
 	private boolean isSpaceShip;
 	private String description;
+	private ItemContainer itemContainer;	//TODO: No estoy seguro 100% pero creo que si hay que poner este atributo
 }
