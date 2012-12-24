@@ -7,22 +7,21 @@ public abstract class Item {
 		this.description = description;
 	}
 	
-	//
-	public abstract boolean canBeUsed() {
-		
-	}
+	//Metodo abstracto que indica si el item se puede usar
+	//Al ser abstracto, la clase hija lo implementara
+	public abstract boolean canBeUsed();
 	
-	//
-	public abstract boolean use(RobotEngine r, Place p) {
-		
-	}
+	//Metodo abstracto que intenta utilizar un item con un robot en un lugar dado
+	//Devuelve true si se completo la accion y false en caso contrario
+	//Al ser abstracto el metodo, estara implementado en la clase hija
+	public abstract boolean use(RobotEngine r, Place p);
 	
 	//Metodo accedente para obtener el identificador del item
 	public String getId() {
 		return this.id;
 	}
 	
-	
-	private String id;
-	private String description;
+	//Atributos protected para que las clases hijas puedan acceder a ellos
+	protected String id;
+	protected String description;
 }
