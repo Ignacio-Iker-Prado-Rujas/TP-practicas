@@ -30,7 +30,7 @@ public class ItemContainer {
 	}
 	
 	//Devuelve un item del contenedor si esta, borrandolo de este
-	public Item pickItem(String id) {
+	/*public Item pickItem(String id) {
 		int i = 0;
 		boolean encontrado = false;
 		while(i != this.arrayItem.length && !encontrado) {
@@ -49,7 +49,7 @@ public class ItemContainer {
 			}
 			//return item;	
 		}
-	}
+	}*/
 	
 	//
 	public String toString() {
