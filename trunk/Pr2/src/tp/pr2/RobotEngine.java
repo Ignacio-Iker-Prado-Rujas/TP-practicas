@@ -5,7 +5,7 @@ import java.util.Scanner;
 	// RobotEngine: Consta del lugar actual del robot, la dirección en la que mira, y el mapa por el que se mueve (array de calles).
 public class RobotEngine {
 
-	public RobotEngine(Place initialPlace, Direction direction, City cityMap) {
+	public RobotEngine( City cityMap, Place initialPlace, Direction direction) {
 		this.initialPlace = initialPlace;
 		this.direction = direction;
 		this.cityMap = cityMap;
