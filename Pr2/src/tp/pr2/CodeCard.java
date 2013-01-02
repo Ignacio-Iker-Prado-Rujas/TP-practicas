@@ -19,6 +19,9 @@ public class CodeCard extends Item {
 		return true;
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
-	
+	//Devuelve el código de la tarjeta.
+	public String getCode(){
+		return this.code;
+	}
 	public String code; 	//Code := Codigo secreto guardado en la tarjeta para abrir las puertas	
 }
