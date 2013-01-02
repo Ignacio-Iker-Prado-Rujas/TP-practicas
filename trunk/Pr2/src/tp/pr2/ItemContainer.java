@@ -16,16 +16,24 @@ public class ItemContainer {
 	private boolean itemContainerLleno(){
 		return this.arrayItem.length == this.numItems;
 	}
+	//Crea un nuevo container copiando el anterior pero con el doble de tamaño.
+	private Item[] newItemContainer(){
+		Item newContainer[] = new Item[2*this.numItems];	//Se crea el nuevo container con el doble de capacidad.
+		//Se copian todos los elementos al nuevo.
+		for (int i = 0; i < this.numItems; i++ )
+			newContainer[i] = this.arrayItem[i];
+		return newContainer;
+	}
 	
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
-		if ( itemContainerLleno()) this.arrayItem = new Item[2*this.numItems];
-	for(int i = 0; i < this.numItems; i++)
-		if(this.arrayItem[i].id.equals(item.id))
-			return false;
-	this.arrayItem[this.arrayItem.length] = item;
-	return true;
+		if ( itemContainerLleno()) this.arrayItem = newItemContainer();//Si está lleno, crea uno nuevo más grande.
+		for(int i = 0; i < this.numItems; i++)
+			if(this.arrayItem[i].id.equals(item.id))
+				return false;
+		this.arrayItem[this.arrayItem.length] = item;
+		return true;
 	}
 	
 	//Metodo accedente: devuelve un item concreto dado su id, si esta en el contenedor
