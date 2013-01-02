@@ -1,5 +1,7 @@
 package tp.pr2;
 
+
+
 public class ItemContainer {
 	//Constructor del contenedor de items
 	public ItemContainer() {
@@ -24,9 +26,21 @@ public class ItemContainer {
 			newContainer[i] = this.arrayItem[i];
 		return newContainer;
 	}
+	
+	//Devuelve true si está el id buscado, y la posción en la que está.
+	//Si el id no está, devuelve false y la posición donde habría que insertarlo.
 	private boolean estaElItem(String id, int pos){
-		
+		int ini = 0, fin = this.numItems - 1, mitad = 0;
+		while ((ini <= fin)) {
+		    mitad = (ini + fin) / 2; // División entera
+		    if (id.compareTo(this.arrayItem[mitad].id)<0) fin = mitad - 1;
+		    else ini = mitad + 1;
+		}
+		pos = mitad;
+		if (this.arrayItem[pos].id.equals(id))return true;
+		else	return false;
 	}
+		
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
@@ -40,45 +54,30 @@ public class ItemContainer {
 			this.numItems++;
 			return true;		//Desplaza, inserta y actualiza el número de items.
 		}
-		
-		for(int i = 0; i < this.numItems; i++)
-			if(this.arrayItem[i].id.equals(item.id))
-				return false;
-		this.arrayItem[this.arrayItem.length] = item;
-		return true;
 	}
 	
 	//Metodo accedente: devuelve un item concreto dado su id, si esta en el contenedor
 	public Item getItem(String id) {
-	for(int i = 0; i < this.arrayItem.length; i++)
-		if(this.arrayItem[i].id.equals(id))
-			return arrayItem[i];	
-	return null;
+		int pos = 0;
+		if (!estaElItem(id, pos)) return null;
+		else	return this.arrayItem[pos];
 	}
 	
 	//Devuelve un item del contenedor si esta, borrandolo de este
-	/*public Item pickItem(String id) {
-		int i = 0;
-		boolean encontrado = false;
-		while(i != this.arrayItem.length && !encontrado) {
-			if(this.arrayItem[i].id.equals(id))
-				encontrado = true;
-			i++;
-		}
-		
-		if (!encontrado)
-			return null;
-		else {
-			//Item item = arrayItem[i].clone();
-			while(i != this.arrayItem.length) {
-				arrayItem[i] = arrayItem[i + 1];
-				i++;
+	public Item pickItem(String id){
+		int pos = 0;
+		if (!estaElItem(id, pos)) return null;
+		else{
+			Item eliminado = this.arrayItem[pos];
+			for ( int i = pos; i < this.numItems-1; i++){
+				this.arrayItem[i] = this.arrayItem[i+1];
 			}
-			//return item;	
+			this.numItems--;
+			return eliminado;
 		}
-	}*/
+	}
 	
-	//
+
 	public String toString() {
 		String items = null;
 		for (int i = 0; i < numItems; i++){
