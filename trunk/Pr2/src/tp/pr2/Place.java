@@ -14,15 +14,17 @@ public class Place {
 		return this.isSpaceShip;
 	}
 
-	//Une el titulo con la descripcion para mostrar un lugar por pantalla.
+	//Une el titulo con la descripcion y con la lista de objetos del container del lugar para mostrar un lugar por pantalla.
 	public String toString() {
 		return this.name + LINE_SEPARATOR + this.description + this.itemContainer.toString(); // TODO falta añadir los objetos del lugar
 	}
 	
+	//Elimina un objeto de un lugar.
 	public Item pickItem(String id){
 		return this.itemContainer.pickItem(id);
 	}
 	
+	//Añade un objeto a un lugar.
 	public boolean addItem(Item item){
 		if (this.itemContainer.addItem(item)) return true;
 		else return false;
