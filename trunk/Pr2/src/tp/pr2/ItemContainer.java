@@ -24,11 +24,23 @@ public class ItemContainer {
 			newContainer[i] = this.arrayItem[i];
 		return newContainer;
 	}
-	
+	private boolean estaElItem(String id, int pos){
+		
+	}
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
 		if ( itemContainerLleno()) this.arrayItem = newItemContainer();//Si está lleno, crea uno nuevo más grande.
+		int pos = 0;
+		if( estaElItem(item.id, pos)) return false;	//Si ya existe ese item en el container no se inserta
+		else{
+			for (int i = this.numItems; i > pos+1 ; i--)
+				this.arrayItem[i]=this.arrayItem[i-1];
+			this.arrayItem[pos] = item;
+			this.numItems++;
+			return true;		//Desplaza, inserta y actualiza el número de items.
+		}
+		
 		for(int i = 0; i < this.numItems; i++)
 			if(this.arrayItem[i].id.equals(item.id))
 				return false;
