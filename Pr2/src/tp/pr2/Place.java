@@ -7,6 +7,7 @@ public class Place {
 		this.name = name;
 		this.isSpaceShip = isSpaceShip;
 		this.description = description;
+		this.itemContainer = new ItemContainer();
 	}
 
 	public boolean isSpaceship() {
@@ -15,7 +16,16 @@ public class Place {
 
 	//Une el titulo con la descripcion para mostrar un lugar por pantalla.
 	public String toString() {
-		return this.name + LINE_SEPARATOR + this.description; // TODO falta añadir los objetos del lugar
+		return this.name + LINE_SEPARATOR + this.description + this.itemContainer.toString(); // TODO falta añadir los objetos del lugar
+	}
+	
+	public Item pickItem(String id){
+		return this.itemContainer.pickItem(id);
+	}
+	
+	public boolean addItem(Item item){
+		if (this.itemContainer.addItem(item)) return true;
+		else return false;
 	}
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
