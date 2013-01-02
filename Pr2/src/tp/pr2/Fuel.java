@@ -23,6 +23,6 @@ public class Fuel extends Item {
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
 
-	private int power; 	//Power := cantidad de energia que aporta ¿cada vez o en total?
+	private int power; 	//Power := cantidad de energía que aporta cada vez.
 	private int times;	//Times := Numero de veces que el robot lo puede usar
 }

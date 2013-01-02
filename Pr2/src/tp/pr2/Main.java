@@ -145,3 +145,4 @@ public class Main {
 	}
 	
 	static String LINE_SEPARATOR = System.getProperty("line.separator");
+}
