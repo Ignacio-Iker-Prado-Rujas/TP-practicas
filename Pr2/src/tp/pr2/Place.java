@@ -15,7 +15,7 @@ public class Place {
 
 	//Une el titulo con la descripcion para mostrar un lugar por pantalla.
 	public String toString() {
-		return this.name + LINE_SEPARATOR + this.description;
+		return this.name + LINE_SEPARATOR + this.description; // TODO falta añadir los objetos del lugar
 	}
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
