@@ -6,6 +6,16 @@ public class Street {
 		this.source = source;
 		this.direction = direction;
 		this.target = target;
+		this.isOpen = true;
+		this.code = null;
+		
+	}
+	public Street(Place source, Direction direction, Place target, boolean isOpen, String code){
+		this.source = source;
+		this.direction = direction;
+		this.target = target;
+		this.isOpen = isOpen;
+		this.code = code;
 	}
 
 	// Devuelve true si la calle, dado un lugar y una direccion, conecta con otro lugar. False en caso contrario.
@@ -40,9 +50,17 @@ public class Street {
 			return this.direction;
 	}
 	
+	//Compara el código de la tarjeta con el de la calle.
+	public boolean close(CodeCard card){
+		if (this.code.equals(card.getCode())) return true;
+		else return false;
+	}
+	
 	// Calle: Consta de un lugar de origen, un lugar destino, y la direccion que une source con target.
 	private Place source;
 	private Place target;
 	private Direction direction;
+	private boolean isOpen;
+	private String code;
 
 }
