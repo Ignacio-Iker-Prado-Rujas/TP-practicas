@@ -12,10 +12,15 @@ public class ItemContainer {
 		return this.numItems;
 	}
 	
+	//Devuelve true si el container está lleno.
+	private boolean itemContainerLleno(){
+		return this.arrayItem.length == this.numItems;
+	}
+	
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
-		
+		if ( itemContainerLleno()) this.arrayItem = new Item[2*this.numItems];
 	for(int i = 0; i < this.numItems; i++)
 		if(this.arrayItem[i].id.equals(item.id))
 			return false;
