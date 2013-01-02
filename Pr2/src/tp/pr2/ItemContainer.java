@@ -3,18 +3,20 @@ package tp.pr2;
 public class ItemContainer {
 	//Constructor del contenedor de items
 	public ItemContainer() {
-		
+		this.arrayItem = new Item[10];
+		this.numItems = 0;
 	}
 	
 	//Devuelve el numero de items de este contenedor de items
 	public int numberOfItems() {
-		return this.arrayItem.length;
+		return this.numItems;
 	}
 	
-	//Permite añadir un item al contenedor
+	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
-	for(int i = 0; i < this.arrayItem.length; i++)
+		
+	for(int i = 0; i < this.numItems; i++)
 		if(this.arrayItem[i].id.equals(item.id))
 			return false;
 	this.arrayItem[this.arrayItem.length] = item;
@@ -54,9 +56,14 @@ public class ItemContainer {
 	//
 	public String toString() {
 		String items = null;
+		for (int i = 0; i < numItems; i++){
+			items += this.arrayItem[i].id + LINE_SEPARATOR;
+		}
 		//TODO: generar una cadena en Strings items ORDENADA por id alfabeticamente y una en cada linea (ver ejemplos)
 		return items;
 	}
-	
+	private int numItems;
 	private Item[] arrayItem;
+	
+	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
