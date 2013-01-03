@@ -29,17 +29,30 @@ public class ItemContainer {
 	
 	//Devuelve true si está el id buscado, y la posción en la que está.
 	//Si el id no está, devuelve false y la posición donde habría que insertarlo.
+	
 	private boolean estaElItem(String id, int pos){
+		boolean encontrado = false;
+		int i = 0;
+		while ((i < this.numItems)&&!encontrado) {
+		    if (this.arrayItem[i].id.compareToIgnoreCase(id)<0) encontrado = true;
+		    else i++;
+		}
+		pos = i;
+		if ((pos < this.numItems) && this.arrayItem[pos].id.equalsIgnoreCase(id))return true; //Comprueba que pos esté dentro del array, y si está el  id
+		else	return false;
+	}
+	
+	/*private boolean estaElItem(String id, int pos){
 		int ini = 0, fin = this.numItems - 1, mitad = 0;
 		while ((ini <= fin)) {
 		    mitad = (ini + fin) / 2; // División entera
-		    if (id.compareTo(this.arrayItem[mitad].id)<0) fin = mitad - 1;
+		    if ((mitad < this.numItems)&&(id.compareTo(this.arrayItem[mitad].id)<0)) fin = mitad - 1;
 		    else ini = mitad + 1;
 		}
 		pos = mitad;
-		if (this.arrayItem[pos].id.equals(id))return true;
+		if ((pos < this.numItems) && this.arrayItem[pos].id.equals(id))return true; //Comprueba que pos esté dentro del array, y si está el  id
 		else	return false;
-	}
+	}*/
 		
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
 	//Se devuelve true sii se pudo añadir
