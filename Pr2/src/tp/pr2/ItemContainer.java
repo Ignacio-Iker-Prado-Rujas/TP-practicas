@@ -20,7 +20,7 @@ public class ItemContainer {
 	}
 	//Crea un nuevo container copiando el anterior pero con el doble de tamaño.
 	private Item[] newItemContainer(){
-		Item newContainer[] = new Item[2*this.numItems];	//Se crea el nuevo container con el doble de capacidad.
+		Item newContainer[] = new Item[2*this.numItems+1];	//Se crea el nuevo container con el doble de capacidad.
 		//Se copian todos los elementos al nuevo.
 		for (int i = 0; i < this.numItems; i++ ){
 			newContainer[i] = this.arrayItem[i];
@@ -34,11 +34,11 @@ public class ItemContainer {
 		boolean encontrado = false;
 		int i = 0;
 		while ((i < this.numItems)&&!encontrado) {
-		    if (id!=null && this.arrayItem[i].id != null && id.compareTo(this.arrayItem[i].id)<0) encontrado = true;
+		    if (id.compareToIgnoreCase(this.arrayItem[i].id) <= 0) encontrado = true;
 		    else i++;
 		}
 		pos = i;
-		if ((pos < this.numItems) && this.arrayItem[pos].id.equalsIgnoreCase(id))return true; //Comprueba que pos esté dentro del array, y si está el  id
+		if ((pos < this.numItems) && id.equalsIgnoreCase(this.arrayItem[pos].id))return true; //Comprueba que pos esté dentro del array, y si está el  id
 		else	return false;
 	}
 	
@@ -61,7 +61,7 @@ public class ItemContainer {
 		int pos = 0;
 		if( estaElItem(item.id, pos)) return false;	//Si ya existe ese item en el container no se inserta
 		else{
-			for (int i = this.numItems; i > pos+1 ; i--)
+			for (int i = this.numItems; i > pos ; i--)
 				this.arrayItem[i]=this.arrayItem[i-1];
 			this.arrayItem[pos] = item;
 			this.numItems++;

@@ -13,7 +13,7 @@ public class Main {
      * Creates the places and configure the initial current place.
      * @return The place where the robot starts the game
      */
-    private static Place[] createPlaces(){
+	private static Place[] createPlaces(){
         Place [] _places = new Place[10];
         // 0: Puerta del Sol
         _places[0] = new Place("PUERTA DEL SOL" , false,
@@ -78,7 +78,7 @@ public class Main {
     * @param _places
     * @return An array of streets
     */
-    private static Street[] createStreets(Place[] _places){
+	private static Street[] createStreets(Place[] _places){
          Street[] _streets = new Street[11];
        
          _streets[0]= new Street(_places[0],Direction.NORTH,_places[3],false, "red_pill");

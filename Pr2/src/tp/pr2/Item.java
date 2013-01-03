@@ -16,6 +16,10 @@ public abstract class Item {
 	//Al ser abstracto el metodo, estara implementado en la clase hija
 	public abstract boolean use(RobotEngine r, Place p);
 	
+	public String toString(){
+		return this.description;
+	}
+	
 	//Metodo accedente para obtener el identificador del item
 	public String getId() {
 		return this.id;

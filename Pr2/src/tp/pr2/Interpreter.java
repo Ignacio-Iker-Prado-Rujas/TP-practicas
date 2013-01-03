@@ -2,7 +2,7 @@
 
 public class Interpreter {
 	//Genera una instrucción a partir del input del usuario
-	public Instruction generateInstruction(String line) {
+	public static Instruction generateInstruction(String line) {
 		String[] arrayInstruction = line.split(" ");
 		Instruction instruction;
 		
@@ -48,7 +48,7 @@ public class Interpreter {
 	}
 
 	//Devuelve un string con las instrucciones válidas del robot
-	public String interpreterHelp() {
+	public static String interpreterHelp() {
 		String help = ("The valid instructions for WALL·E are:"
 				+ LINE_SEPARATOR + "  MOVE" + LINE_SEPARATOR
 				+ "  TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "  PICK <id>"
