@@ -9,8 +9,36 @@ public class RobotEngine {
 		this.initialPlace = initialPlace;
 		this.direction = direction;
 		this.cityMap = cityMap;
+		this.fuel = 50;
+		this.itemContainer = new ItemContainer();
+		this.recycledMaterial = 0;
+	}
+	
+	//Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
+	public void addFuel(int fuel){
+		this.fuel += fuel;
 	}
 
+	//Incrementa la cantidad de material reciclado;
+	public void addRecycledMaterial(int weight){
+		this.recycledMaterial += weight;
+	}
+	
+	//para los tests.
+	public int getFuel(){
+		return this.fuel;
+	}
+	//para los tests.
+	public int getRecycledMaterial(){
+		return this.recycledMaterial;
+	}
+	
+	//Duevuelve la calle hacia la que está mirando wall·e, null si no hay calle.
+	public Street getHeadingStreet(){
+		return this.cityMap.lookForStreet(this.initialPlace, this.direction);
+	}
+	
+	//Inicia el movimiento de wall-e.
 	public void startEngine() {
 		System.out.println(initialPlace.toString());
 		lookingDirection(this.direction);
@@ -18,7 +46,7 @@ public class RobotEngine {
 		Instruction instruction = new Instruction();
 		Interpreter interpreter = new Interpreter();
 		boolean quit = false;
-		while (!initialPlace.isSpaceship() && !quit) {
+		while (!initialPlace.isSpaceship() && !quit && (this.fuel > 0)) {
 			prompt();	// muestra WALL·E>
 
 			// Lee una instrucción, y se la pasa al interprete que genera la corespondiente instruccón.
@@ -28,6 +56,8 @@ public class RobotEngine {
 				say("I do not understand. Please repeat");
 			else {
 				switch(instruction.getAction()){
+				
+					
 
 					case HELP: System.out.println(interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
 					
@@ -95,5 +125,7 @@ public class RobotEngine {
 	private Place initialPlace;
 	private Direction direction;
 	private City cityMap;
-	private 
+	private int fuel;
+	private ItemContainer itemContainer;
+	private int recycledMaterial;
 }
