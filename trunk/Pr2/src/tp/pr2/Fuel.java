@@ -27,6 +27,9 @@ public class Fuel extends Item {
 		else return false;
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
+	public String toString(){
+		return "// power = " + this.power + " , times = " + this.times;
+	}
 
 	private int power; 	//Power := cantidad de energía que aporta cada vez.
 	private int times;	//Times := Numero de veces que el robot lo puede usar

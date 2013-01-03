@@ -77,6 +77,11 @@ public class RobotEngine {
 							else say(item.toString());
 						}
 					}
+					
+					case OPERATE:
+					{
+						
+					}
 
 					case HELP: System.out.println(interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
 					

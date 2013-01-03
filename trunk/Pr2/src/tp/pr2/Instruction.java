@@ -36,7 +36,7 @@ public class Instruction {
 			return false;
 		else if (this.action.equals(Action.TURN) && this.rotation.equals(Rotation.UNKNOWN))
 			return false;
-		else if ((this.action.equals(Action.OPERATE) || this.action.equals(Action.PICK)) && this.id.equals(null))
+		else if ((this.action.equals(Action.OPERATE) || this.action.equals(Action.PICK)) && (id == null))
 			//No pongo SCAN porque puede aparecer sin item, para ver los items que lleva el robot en un momento dado
 			return false;
 		else 
