@@ -2,7 +2,7 @@ package tp.pr2;
 
 public class CodeCard extends Item {
 	//Constructor de la tarjeta, que llama a la clase padre para completarse
-	CodeCard(String id, String description, String code) {
+	public CodeCard(String id, String description, String code) {
 		super(id, description);
 		this.code = code;
 	}

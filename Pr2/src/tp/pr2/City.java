@@ -14,9 +14,11 @@ public class City {
 	
 	//Busca una calle en la ciudad que empiece por el lugar dado y que tenga la direccion dada
 	public Street lookForStreet(Place currentPlace, Direction currentHeading) {
-		for(int i = 0; i < this.cityMap.length; i++)
-			if(this.cityMap[i].getSource().equals(currentPlace) && this.cityMap[i].getDirection().equals(currentHeading))
+		for(int i = 0; i < this.cityMap.length; i++){
+			if(this.cityMap[i].comeOutFrom(currentPlace, currentHeading)){
 				return cityMap[i];
+			}
+		}
 		return null;
 	}
 	

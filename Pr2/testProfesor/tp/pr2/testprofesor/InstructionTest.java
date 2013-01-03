@@ -14,11 +14,32 @@ public class InstructionTest {
 	@Test
 	public void testIsValid() {
 		Instruction c = new Instruction();
-	
+		assertFalse("ERROR: An instruction created with default constructor is not a valid instruction",
+				c.isValid());
 		
+		c = new Instruction(Action.TURN);
+		assertFalse("ERROR: A TURN instruction without rotation is not a valid instruction",
+				c.isValid());
 		
+		c = new Instruction(Action.MOVE);
+		assertTrue("ERROR: A instruction created with a action (MOVE) is a valid instruction",
+				c.isValid());
 		
+		c = new Instruction(Action.HELP);
+		assertTrue("ERROR: A instruction created with a action (QUIT) is a valid instruction",
+				c.isValid());
 		
+		c = new Instruction(Action.QUIT);
+		assertTrue("ERROR: A instruction created with a action (QUIT) is a valid instruction",
+				c.isValid());
+		
+		c = new Instruction(Action.PICK);
+		assertFalse("ERROR: A instruction created with a action (PICK) without an itemName is not a valid instruction",
+				c.isValid());
+		
+		c = new Instruction(Action.OPERATE);
+		assertFalse("ERROR: A instruction created with a action (OPERATE) without an itemName is not a valid instruction",
+				c.isValid());
 		c = new Instruction(Action.SCAN);
 		assertTrue("ERROR: A instruction created with a action (SCAN) is a valid instruction without an itemname",
 				c.isValid());
