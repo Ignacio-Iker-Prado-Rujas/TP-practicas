@@ -57,7 +57,26 @@ public class RobotEngine {
 			else {
 				switch(instruction.getAction()){
 				
+					case PICK: 
+					{
+						String id = instruction.getId();
+						Item item = this.initialPlace.pickItem(id);
+						if(item == null) say("Ooops, this place has not the object <id>".replace("<id>", id));
+						else if(!this.itemContainer.addItem(item)) say("I am stupid! I already have the object <id>".replace("<id>", id));
+						else say("I am happy! Now I have <id>".replace("<id>", id));
+					}
 					
+					case SCAN:
+					{
+						String id = instruction.getId();
+						if(this.itemContainer.numberOfItems()==0) say("My inventory is empty");
+						else if (id == null) say("WALL·E says: I am carrying the following items" + this.itemContainer.toString());
+						else{
+							Item item = this.itemContainer.getItem(id);
+							if (item == null)say("I have not such object");
+							else say(item.toString());
+						}
+					}
 
 					case HELP: System.out.println(interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
 					

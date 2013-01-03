@@ -25,6 +25,7 @@ public class CodeCard extends Item {
 		}
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
+	
 	//Devuelve el código de la tarjeta.
 	public String getCode(){
 		return this.code;
