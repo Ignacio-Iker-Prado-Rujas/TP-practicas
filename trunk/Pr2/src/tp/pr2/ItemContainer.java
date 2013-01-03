@@ -16,25 +16,25 @@ public class ItemContainer {
 	
 	//Devuelve true si el container está lleno.
 	private boolean itemContainerLleno(){
-		return this.arrayItem.length == this.numItems;
+		return (this.arrayItem.length == this.numItems);
 	}
 	//Crea un nuevo container copiando el anterior pero con el doble de tamaño.
 	private Item[] newItemContainer(){
 		Item newContainer[] = new Item[2*this.numItems];	//Se crea el nuevo container con el doble de capacidad.
 		//Se copian todos los elementos al nuevo.
-		for (int i = 0; i < this.numItems; i++ )
+		for (int i = 0; i < this.numItems; i++ ){
 			newContainer[i] = this.arrayItem[i];
+		}
 		return newContainer;
 	}
 	
 	//Devuelve true si está el id buscado, y la posción en la que está.
 	//Si el id no está, devuelve false y la posición donde habría que insertarlo.
-	
 	private boolean estaElItem(String id, int pos){
 		boolean encontrado = false;
 		int i = 0;
 		while ((i < this.numItems)&&!encontrado) {
-		    if (this.arrayItem[i].id.compareToIgnoreCase(id)<0) encontrado = true;
+		    if (id!=null && this.arrayItem[i].id != null && id.compareTo(this.arrayItem[i].id)<0) encontrado = true;
 		    else i++;
 		}
 		pos = i;

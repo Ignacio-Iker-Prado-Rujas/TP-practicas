@@ -2,7 +2,7 @@ package tp.pr2;
 
 public class Garbage extends Item {
 	//Constructor de la basura, que llama a la clase padre para completarse
-	Garbage(String id, String description, int recycledMaterial) {
+	public Garbage(String id, String description, int recycledMaterial) {
 		super(id, description);
 		this.recycledMaterial = recycledMaterial;
 		this.used = false; //Indica si ha sido usada o no la basura. Al principio no ha sido usada.
