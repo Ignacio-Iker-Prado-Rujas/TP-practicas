@@ -64,6 +64,7 @@ public class RobotEngine {
 						if(item == null) say("Ooops, this place has not the object <id>".replace("<id>", id));
 						else if(!this.itemContainer.addItem(item)) say("I am stupid! I already have the object <id>".replace("<id>", id));
 						else say("I am happy! Now I have <id>".replace("<id>", id));
+						break;
 					}
 					
 					case SCAN:
@@ -76,11 +77,22 @@ public class RobotEngine {
 							if (item == null)say("I have not such object");
 							else say(item.toString());
 						}
+						break;
 					}
 					
 					case OPERATE:
 					{
-						
+						String id = instruction.getId();
+						Item item = this.itemContainer.getItem(id);
+						if (!item.use(this, this.initialPlace)) say("I have problems using the object <id>".replace("<id>", id));
+						else{
+							if (!item.canBeUsed()){
+								say("What a pity! I have no more <id> in my inventory".replace("<id>", id));
+								this.itemContainer.pickItem(id);
+							}
+							
+						}
+						break;
 					}
 
 					case HELP: System.out.println(interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
