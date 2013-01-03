@@ -25,6 +25,10 @@ public class Garbage extends Item {
 		else return false;
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
+	
+	public String toString(){
+		return "// recycled material = " + this.recycledMaterial;
+	}
 	public boolean used;
 	public int recycledMaterial; 	//RecycledMaterial := Cantidad de material reciclado que el item genera
 }
