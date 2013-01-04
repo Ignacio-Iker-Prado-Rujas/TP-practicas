@@ -1,6 +1,6 @@
 package tp.pr2;
 
-import java.util.Scanner;	//TODO Falta terminar esta clase, y hacer los use de cada objeto.
+import java.util.Scanner;	//TODO: Falta terminar esta clase, y hacer los use de cada objeto.
 
 	// RobotEngine: Consta del lugar actual del robot, la dirección en la que mira, y el mapa por el que se mueve (array de calles).
 public class RobotEngine {
