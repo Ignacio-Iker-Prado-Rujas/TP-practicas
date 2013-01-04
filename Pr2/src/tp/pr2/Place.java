@@ -16,7 +16,8 @@ public class Place {
 
 	//Une el titulo con la descripcion y con la lista de objetos del container del lugar para mostrar un lugar por pantalla.
 	public String toString() {
-		return this.name + LINE_SEPARATOR + this.description + this.itemContainer.toString(); // TODO falta añadir los objetos del lugar
+		return this.name + LINE_SEPARATOR + this.description + LINE_SEPARATOR
+				+ "The place contains these objects:" + this.itemContainer.toString(); // TODO falta añadir los objetos del lugar
 	}
 	
 	//Elimina un objeto de un lugar.
