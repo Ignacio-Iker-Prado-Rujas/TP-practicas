@@ -145,13 +145,13 @@ public class RobotEngine {
 	// Métodos que muestran por consola.
 
 	private void say(String message) {
-		System.out.println("WALL�E says: " + message);
+		System.out.println("WALL·E says: " + message);
 	}
 	private void prompt() {
-		System.out.print(LINE_SEPARATOR + "WALL�E > ");
+		System.out.print(LINE_SEPARATOR + "WALL·E > ");
 	}
 	private void lookingDirection(Direction direction) {
-		System.out.println("WALL�E is looking at direction " + direction.toString());
+		System.out.println("WALL·E is looking at direction " + direction.toString());
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
