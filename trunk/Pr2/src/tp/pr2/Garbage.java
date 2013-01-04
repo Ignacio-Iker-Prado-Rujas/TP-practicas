@@ -5,13 +5,13 @@ public class Garbage extends Item {
 	public Garbage(String id, String description, int recycledMaterial) {
 		super(id, description);
 		this.recycledMaterial = recycledMaterial;
-		this.used = false; //Indica si ha sido usada o no la basura. Al principio no ha sido usada.
+		this.canBeUsed = true; //Indica si ha sido usada o no la basura. Al principio no ha sido usada.
 	}
 	
 	//True si aun puede usarse, false en caso contrario
 	//La basura solo puede usarse una vez
 	public boolean canBeUsed() {
-		return !this.used;
+		return this.canBeUsed;
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
 	
@@ -20,6 +20,7 @@ public class Garbage extends Item {
 	public boolean use(RobotEngine r, Place p) {
 		if(this.canBeUsed()){
 			r.addRecycledMaterial(this.recycledMaterial);
+			this.canBeUsed = false;
 			return true;
 		}
 		else return false;
@@ -29,6 +30,6 @@ public class Garbage extends Item {
 	public String toString(){
 		return super.toString() + "// recycled material = " + this.recycledMaterial;
 	}
-	public boolean used;
+	public boolean canBeUsed;
 	public int recycledMaterial; 	//RecycledMaterial := Cantidad de material reciclado que el item genera
 }
