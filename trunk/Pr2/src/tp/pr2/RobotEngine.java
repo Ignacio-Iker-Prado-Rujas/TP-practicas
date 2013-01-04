@@ -41,6 +41,7 @@ public class RobotEngine {
 	//Inicia el movimiento de wall-e.
 	public void startEngine() {
 		System.out.println(initialPlace.toString());
+		myFuelIs();myRecicledIs();
 		lookingDirection(this.direction);
 		Scanner sc = new Scanner(System.in);
 		Instruction instruction = new Instruction();
@@ -103,15 +104,16 @@ public class RobotEngine {
 						if (moveWalle()) {
 							say("Moving in direction " + direction.toString());
 							System.out.println(initialPlace.toString());
+							myFuelIs();myRecicledIs();
 							lookingDirection(this.direction);
-						} else
-							System.out.println(" There is no street in direction "
-									+ direction.toString());
+						}
 						break;
 					}
 					
 					default:  //case TURN: Como la instrucción es correcta, o gira a la derecha o a la izquierda.
 					{	
+						this.fuel--;
+						myFuelIs();myRecicledIs();
 						if (instruction.getRotation().equals(Rotation.RIGHT))
 							direction = direction.turnRight();
 						else
@@ -124,7 +126,7 @@ public class RobotEngine {
 		sc.close();	// Cierra el escáner
 
 		if (!quit)	// Si no se ha elegido la opción quit, es que se ha llegado a la nave. Se muestra el mensaje correspondiente.
-			say("I am at my spaceship. Shutting down... Bye bye");
+			say("I am at my spaceship. Bye bye");
 		else
 			say("I have communication problems. Bye bye");	// Se ha elegido la opción quit, luego se m
 	}
@@ -136,10 +138,19 @@ public class RobotEngine {
 	private boolean moveWalle(){
 		Street newStreet = cityMap.lookForStreet(this.initialPlace, this.direction);
 		if(newStreet != null){
-		initialPlace = newStreet.nextPlace(initialPlace);
-			return true;
+			if(newStreet.isOpen()){
+				initialPlace = newStreet.nextPlace(initialPlace);
+				return true;
+			}
+			else{
+				say("Arrggg, there is a street but it is closed!");
+				return false;
+			}
 		}
-		else return false;
+		else{
+			System.out.println(" There is no street in direction " + direction.toString());
+			return false;
+		} 
 	}
 	
 	// Métodos que muestran por consola.
@@ -152,6 +163,12 @@ public class RobotEngine {
 	}
 	private void lookingDirection(Direction direction) {
 		System.out.println("WALL·E is looking at direction " + direction.toString());
+	}
+	private void myFuelIs(){
+		System.out.println(LINE_SEPARATOR + "   * My power is " + this.fuel );
+	}
+	private void myRecicledIs(){
+		System.out.println(LINE_SEPARATOR + "   * My recycled material is: " + this.recycledMaterial );
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
