@@ -1,4 +1,4 @@
-﻿package tp.pr2;
+package tp.pr2;
 
 /**
  * Aplicación que utiliza las clases de la práctica sobre el mapa

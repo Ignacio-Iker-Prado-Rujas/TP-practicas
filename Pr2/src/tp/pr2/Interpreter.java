@@ -1,4 +1,4 @@
-﻿package tp.pr2;
+package tp.pr2;
 
 public class Interpreter {
 	//Genera una instrucción a partir del input del usuario

@@ -89,8 +89,7 @@ public class RobotEngine {
 							if (!item.canBeUsed()){
 								say("What a pity! I have no more <id> in my inventory".replace("<id>", id));
 								this.itemContainer.pickItem(id);
-							}
-							
+							}	
 						}
 						break;
 					}
