@@ -44,13 +44,12 @@ public class RobotEngine {
 		lookingDirection(this.direction);
 		Scanner sc = new Scanner(System.in);
 		Instruction instruction = new Instruction();
-		Interpreter interpreter = new Interpreter();
 		boolean quit = false;
 		while (!initialPlace.isSpaceship() && !quit && (this.fuel > 0)) {
 			prompt();	// muestra WALLÂ·E>
 
 			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion.
-			instruction = interpreter.generateInstruction(sc.nextLine());	
+			instruction = Interpreter.generateInstruction(sc.nextLine());
 
 			if (!instruction.isValid())	// Comprueba si la instrucciÃ³n introducida la reconoc walle. Si no, muestra el mensaje corespondiente.
 				say("I do not understand. Please repeat");
@@ -94,7 +93,7 @@ public class RobotEngine {
 						break;
 					}
 
-					case HELP: System.out.println(interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
+					case HELP: System.out.println(Interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce walle.
 					
 					case QUIT: quit = true; break;	// Booleano de terminar
 					
@@ -146,13 +145,13 @@ public class RobotEngine {
 	// MÃ©todos que muestran por consola.
 
 	private void say(String message) {
-		System.out.println("WALL·E says: " + message);
+		System.out.println("WALLï¿½E says: " + message);
 	}
 	private void prompt() {
-		System.out.print(LINE_SEPARATOR + "WALL·E > ");
+		System.out.print(LINE_SEPARATOR + "WALLï¿½E > ");
 	}
 	private void lookingDirection(Direction direction) {
-		System.out.println("WALL·E is looking at direction " + direction.toString());
+		System.out.println("WALLï¿½E is looking at direction " + direction.toString());
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");

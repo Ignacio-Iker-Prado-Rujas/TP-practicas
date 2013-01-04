@@ -28,7 +28,7 @@ public class Fuel extends Item {
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
 	public String toString(){
-		return "// power = " + this.power + " , times = " + this.times;
+		return super.toString() + "// power = " + this.power + " , times = " + this.times;
 	}
 
 	private int power; 	//Power := cantidad de energía que aporta cada vez.
