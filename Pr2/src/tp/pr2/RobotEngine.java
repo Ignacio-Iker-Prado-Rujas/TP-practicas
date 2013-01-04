@@ -162,10 +162,10 @@ public class RobotEngine {
 		System.out.print(LINE_SEPARATOR + "WALL·E > ");
 	}
 	private void lookingDirection(Direction direction) {
-		System.out.println("WALL·E is looking at direction " + direction.toString());
+		System.out.print("WALL·E is looking at direction " + direction.toString());
 	}
 	private void myFuelIs(){
-		System.out.println(LINE_SEPARATOR + "   * My power is " + this.fuel );
+		System.out.println("   * My power is " + this.fuel );
 	}
 	private void myRecicledIs(){
 		System.out.println("   * My recycled material is: " + this.recycledMaterial );

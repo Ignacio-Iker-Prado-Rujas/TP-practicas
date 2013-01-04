@@ -21,7 +21,7 @@ public class Fuel extends Item {
 	public boolean use(RobotEngine r, Place p) {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
-			System.out.println(LINE_SEPARATOR + "   * My power is " + r.getFuel() );
+			System.out.println("   * My power is " + r.getFuel() );
 			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.times--;
 			return true;
@@ -32,8 +32,6 @@ public class Fuel extends Item {
 	public String toString(){
 		return super.toString() + "// power = " + this.power + " , times = " + this.times;
 	}
-
-	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
 	private int power; 	//Power := cantidad de energía que aporta cada vez.
 	private int times;	//Times := Numero de veces que el robot lo puede usar
