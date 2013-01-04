@@ -20,6 +20,8 @@ public class Garbage extends Item {
 	public boolean use(RobotEngine r, Place p) {
 		if(this.canBeUsed()){
 			r.addRecycledMaterial(this.recycledMaterial);
+			System.out.println(LINE_SEPARATOR + "   * My power is " + r.getFuel() );
+			System.out.println(LINE_SEPARATOR + "   * My recycled material is: " + r.getRecycledMaterial() );
 			this.canBeUsed = false;
 			return true;
 		}
@@ -30,6 +32,11 @@ public class Garbage extends Item {
 	public String toString(){
 		return super.toString() + "// recycled material = " + this.recycledMaterial;
 	}
-	public boolean canBeUsed;
-	public int recycledMaterial; 	//RecycledMaterial := Cantidad de material reciclado que el item genera
+	
+	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
+	private boolean canBeUsed;
+	private int recycledMaterial; 	//RecycledMaterial := Cantidad de material reciclado que el item genera
+	
+	
 }
