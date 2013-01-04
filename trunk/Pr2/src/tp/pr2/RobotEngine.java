@@ -156,7 +156,7 @@ public class RobotEngine {
 	// Métodos que muestran por consola.
 
 	private void say(String message) {
-		System.out.println("WALL·E says: " + message);
+		System.out.print("WALL·E says: " + message);
 	}
 	private void prompt() {
 		System.out.print(LINE_SEPARATOR + "WALL·E > ");
@@ -168,7 +168,7 @@ public class RobotEngine {
 		System.out.println(LINE_SEPARATOR + "   * My power is " + this.fuel );
 	}
 	private void myRecicledIs(){
-		System.out.println(LINE_SEPARATOR + "   * My recycled material is: " + this.recycledMaterial );
+		System.out.println("   * My recycled material is: " + this.recycledMaterial );
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");

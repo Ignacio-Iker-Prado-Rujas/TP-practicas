@@ -21,7 +21,7 @@ public class Garbage extends Item {
 		if(this.canBeUsed()){
 			r.addRecycledMaterial(this.recycledMaterial);
 			System.out.println(LINE_SEPARATOR + "   * My power is " + r.getFuel() );
-			System.out.println(LINE_SEPARATOR + "   * My recycled material is: " + r.getRecycledMaterial() );
+			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.canBeUsed = false;
 			return true;
 		}
