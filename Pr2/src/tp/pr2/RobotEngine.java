@@ -1,4 +1,4 @@
-锘縫ackage tp.pr2;
+package tp.pr2;
 
 import java.util.Scanner;	//TODO Falta terminar esta clase, y hacer los use de cada objeto.
 
@@ -49,7 +49,7 @@ public class RobotEngine {
 		while (!initialPlace.isSpaceship() && !quit && (this.fuel > 0)) {
 			prompt();	// muestra WALL路E>
 
-			// Lee una instrucci贸n, y se la pasa al interprete que genera la corespondiente instrucc贸n.
+			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion.
 			instruction = interpreter.generateInstruction(sc.nextLine());	
 
 			if (!instruction.isValid())	// Comprueba si la instrucci贸n introducida la reconoc walle. Si no, muestra el mensaje corespondiente.
@@ -71,7 +71,7 @@ public class RobotEngine {
 					{
 						String id = instruction.getId();
 						if(this.itemContainer.numberOfItems()==0) say("My inventory is empty");
-						else if (id == null) say("WALL路E says: I am carrying the following items" + this.itemContainer.toString());
+						else if (id == null) say(" I am carrying the following items" + this.itemContainer.toString());
 						else{
 							Item item = this.itemContainer.getItem(id);
 							if (item == null)say("I have not such object");
@@ -99,7 +99,7 @@ public class RobotEngine {
 					case QUIT: quit = true; break;	// Booleano de terminar
 					
 					case MOVE: 
-					{	//	Si se mueve, actualiza la informaci贸n. Si no, muestra el mensaje de que no hay calle.
+					{	//	Si se mueve, actualiza la informacion. Si no, muestra el mensaje de que no hay calle.
 
 						if (moveWalle()) {
 							say("Moving in direction " + direction.toString());
@@ -146,13 +146,13 @@ public class RobotEngine {
 	// M茅todos que muestran por consola.
 
 	private void say(String message) {
-		System.out.println("WALL路E says: " + message);
+		System.out.println("WALL稥 says: " + message);
 	}
 	private void prompt() {
-		System.out.print(LINE_SEPARATOR + "WALL路E > ");
+		System.out.print(LINE_SEPARATOR + "WALL稥 > ");
 	}
 	private void lookingDirection(Direction direction) {
-		System.out.println("WALL路E is looking at direction " + direction.toString());
+		System.out.println("WALL稥 is looking at direction " + direction.toString());
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");

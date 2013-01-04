@@ -92,9 +92,9 @@ public class ItemContainer {
 	
 
 	public String toString() {
-		String items = null;
+		String items = "";
 		for (int i = 0; i < numItems; i++){
-			items += this.arrayItem[i].id + LINE_SEPARATOR;
+			items += LINE_SEPARATOR + this.arrayItem[i].id;
 		}
 		//TODO: generar una cadena en Strings items ORDENADA por id alfabeticamente y una en cada linea (ver ejemplos)
 		return items;

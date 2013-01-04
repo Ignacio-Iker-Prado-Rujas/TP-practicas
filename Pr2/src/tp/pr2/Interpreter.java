@@ -49,7 +49,7 @@ public class Interpreter {
 
 	//Devuelve un string con las instrucciones válidas del robot
 	public static String interpreterHelp() {
-		String help = ("The valid instructions for WALL·E are:"
+		String help = ("The valid instructions for WALL�E are:"
 				+ LINE_SEPARATOR + "  MOVE" + LINE_SEPARATOR
 				+ "  TURN <LEFT | RIGHT>" + LINE_SEPARATOR + "  PICK <id>"
 				+ LINE_SEPARATOR + "  SCAN [ <id> ]" + LINE_SEPARATOR
