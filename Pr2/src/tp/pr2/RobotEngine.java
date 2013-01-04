@@ -63,7 +63,7 @@ public class RobotEngine {
 						Item item = this.initialPlace.pickItem(id);
 						if(item == null) say("Ooops, this place has not the object <id>".replace("<id>", id));
 						else if(!this.itemContainer.addItem(item)) say("I am stupid! I already have the object <id>".replace("<id>", id));
-						else say("I am happy! Now I have <id>".replace("<id>", id));
+						else say("I am happy! Now I have  <id>".replace("<id>", id));
 						break;
 					}
 					
@@ -71,7 +71,7 @@ public class RobotEngine {
 					{
 						String id = instruction.getId();
 						if(this.itemContainer.numberOfItems()==0) say("My inventory is empty");
-						else if (id == null) say(" I am carrying the following items" + this.itemContainer.toString());
+						else if (id == null) say("I am carrying the following items" + this.itemContainer.toString());
 						else{
 							Item item = this.itemContainer.getItem(id);
 							if (item == null)say("I have not such object");
