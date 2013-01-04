@@ -22,7 +22,7 @@ public class Fuel extends Item {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
 			System.out.println(LINE_SEPARATOR + "   * My power is " + r.getFuel() );
-			System.out.println(LINE_SEPARATOR + "   * My recycled material is: " + r.getRecycledMaterial() );
+			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.times--;
 			return true;
 		}
