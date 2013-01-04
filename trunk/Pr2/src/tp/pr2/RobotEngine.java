@@ -62,7 +62,7 @@ public class RobotEngine {
 						String id = instruction.getId();
 						Item item = this.initialPlace.pickItem(id);
 						if(item == null) say("Ooops, this place has not the object <id>".replace("<id>", id));
-						else if(!this.itemContainer.addItem(item)) say("I am stupid! I already have the object <id>".replace("<id>", id));
+						else if(!this.itemContainer.addItem(item)) say("I am stupid! I had already the object <id>".replace("<id>", id));
 						else say("I am happy! Now I have  <id>".replace("<id>", id));
 						break;
 					}
@@ -102,7 +102,7 @@ public class RobotEngine {
 					{	//	Si se mueve, actualiza la informacion. Si no, muestra el mensaje de que no hay calle.
 
 						if (moveWalle()) {
-							say("Moving in direction " + direction.toString());
+							say("Moving in direction " + direction.toString() + LINE_SEPARATOR);
 							System.out.println(initialPlace.toString());
 							myFuelIs();myRecicledIs();
 							lookingDirection(this.direction);

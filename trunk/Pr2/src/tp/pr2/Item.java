@@ -17,7 +17,7 @@ public abstract class Item {
 	public abstract boolean use(RobotEngine r, Place p);
 	
 	public String toString(){
-		return this.description;
+		return this.id + ": " + this.description;
 	}
 	
 	//Metodo accedente para obtener el identificador del item
