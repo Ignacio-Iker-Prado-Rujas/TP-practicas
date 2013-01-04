@@ -30,16 +30,15 @@ public class ItemContainer {
 	
 	//Devuelve true si está el id buscado, y la posción en la que está.
 	//Si el id no está, devuelve false y la posición donde habría que insertarlo.
-	private boolean estaElItem(String id, int pos){
+	private int estaElItem(String id){
 		boolean encontrado = false;
 		int i = 0;
 		while ((i < this.numItems)&&!encontrado) {
 		    if (id.compareToIgnoreCase(this.arrayItem[i].id) <= 0) encontrado = true;
 		    else i++;
 		}
-		pos = i;
-		if ((pos < this.numItems) && id.equalsIgnoreCase(this.arrayItem[pos].id))return true; //Comprueba que pos esté dentro del array, y si está el  id
-		else	return false;
+		if ((i < this.numItems) && id.equalsIgnoreCase(this.arrayItem[i].id))return i; //Comprueba que pos esté dentro del array, y si está el  id
+		else	return -i-1;
 	}
 	
 	/*private boolean estaElItem(String id, int pos){
@@ -58,9 +57,10 @@ public class ItemContainer {
 	//Se devuelve true sii se pudo añadir
 	public boolean addItem(Item item) {
 		if ( itemContainerLleno()) this.arrayItem = newItemContainer();//Si está lleno, crea uno nuevo más grande.
-		int pos = 0;
-		if( estaElItem(item.id, pos)) return false;	//Si ya existe ese item en el container no se inserta
+		int pos = estaElItem(item.id); 
+		if (pos>=0)	return false;//Si ya existe ese item en el container no se inserta
 		else{
+			pos = -pos-1;
 			for (int i = this.numItems; i > pos ; i--)
 				this.arrayItem[i]=this.arrayItem[i-1];
 			this.arrayItem[pos] = item;
@@ -71,15 +71,15 @@ public class ItemContainer {
 	
 	//Metodo accedente: devuelve un item concreto dado su id, si esta en el contenedor
 	public Item getItem(String id) {
-		int pos = 0;
-		if (!estaElItem(id, pos)) return null;
+		int pos = estaElItem(id);
+		if (pos<0) return null;
 		else	return this.arrayItem[pos];
 	}
 	
 	//Devuelve un item del contenedor si esta, borrandolo de este
 	public Item pickItem(String id){
-		int pos = 0;
-		if (!estaElItem(id, pos)) return null;
+		int pos = estaElItem(id);
+		if (pos<0) return null;
 		else{
 			Item eliminado = this.arrayItem[pos];
 			for ( int i = pos; i < this.numItems-1; i++){
