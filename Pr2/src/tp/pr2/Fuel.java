@@ -21,7 +21,8 @@ public class Fuel extends Item {
 	public boolean use(RobotEngine r, Place p) {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
-			System.out.println("   * My power is " + r.getFuel() );
+			if (r.getFuel()<=0) System.out.println("   * My power is 0");
+			else System.out.println("   * My power is " + r.getFuel() );
 			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.times--;
 			return true;
@@ -30,7 +31,7 @@ public class Fuel extends Item {
 		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
 	public String toString(){
-		return super.toString() + "// power = " + this.power + " , times = " + this.times;
+		return super.toString() + "// power = " + this.power + ", times = " + this.times;
 	}
 	
 	private int power; 	//Power := cantidad de energía que aporta cada vez.
