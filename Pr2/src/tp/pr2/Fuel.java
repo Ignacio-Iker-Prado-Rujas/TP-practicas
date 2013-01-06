@@ -21,19 +21,23 @@ public class Fuel extends Item {
 	public boolean use(RobotEngine r, Place p) {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
-			if (r.getFuel()<=0) System.out.println("   * My power is 0");
-			else System.out.println("   * My power is " + r.getFuel() );
+			if (r.getFuel() <= 0) 
+				System.out.println("   * My power is 0");
+			else 
+				System.out.println("   * My power is " + r.getFuel() );
 			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.times--;
 			return true;
 		}
-		else return false;
-		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
+		else 
+			return false;
 	}
-	public String toString(){
+	
+	//Devuelve una cadena con la energia y el numero de veces que se puede usar un item en concreto
+	public String toString() {
 		return super.toString() + "// power = " + this.power + ", times = " + this.times;
 	}
 	
-	private int power; 	//Power := cantidad de energía que aporta cada vez.
+	private int power; 	//Power := cantidad de energía que aporta cada vez
 	private int times;	//Times := Numero de veces que el robot lo puede usar
 }
