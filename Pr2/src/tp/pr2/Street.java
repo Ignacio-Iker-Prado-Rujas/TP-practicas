@@ -2,14 +2,16 @@ package tp.pr2;
 
 	
 public class Street {
+	//Constructor de la calle, punto de partida, lugar opuesto, direccion que los une, si la calle esta abierta, codigo (null porque no hay puerta) 
 	public Street(Place source, Direction direction, Place target) {
 		this.source = source;
 		this.direction = direction;
 		this.target = target;
 		this.isOpen = true;
-		this.code = null;
-		
+		this.code = null;	
 	}
+	
+	//Constructor de la calle, punto de partida, lugar opuesto, direccion que los une, si la calle esta abierta, codigo de la puerta
 	public Street(Place source, Direction direction, Place target, boolean isOpen, String code){
 		this.source = source;
 		this.direction = direction;
@@ -28,9 +30,9 @@ public class Street {
 			return false;
 	}
 	
-	/* Dado un lugar, devuelve el que esta al otro lado de la calle.
-	 Si el lugar no coincide con source ni target, devuelve 
-	null (Se aconseja combinar con el uso de comeOutFrom para que esto no pase).*/
+	//Dado un lugar, devuelve el que esta al otro lado de la calle
+	//Si el lugar no coincide con source ni target, devuelve null
+	//Se aconseja combinar con el uso de comeOutFrom para que esto no pase
 	public Place nextPlace(Place whereAmI) {
 		if (this.source.equals(whereAmI))
 			return this.target;
@@ -40,32 +42,34 @@ public class Street {
 			return null;
 	}
 
-	//Método para obtener el lugar de origen de una calle 
+	//Método accedente para obtener el lugar de origen de una calle 
 	public Place getSource() {
 		return this.source;
 	}
 	
-	//Método para obtener la direccion que une source y target en una calle 
+	//Método accedente para obtener la direccion que une source y target en una calle 
 	public Direction getDirection() {
 			return this.direction;
 	}
 	
-	//Compara el codigo de la tarjeta con el de la calle para abrirla si coinciden.
+	//Compara el codigo de la tarjeta con el de la calle para abrirla si coinciden
 	public boolean open(CodeCard card){
 		if (this.code.equals(card.getCode())){
 			this.isOpen = true;
 			return true;
 		}
-		else return false;
+		else 
+			return false;
 	}
 	
-	//Compara el codigo de la tarjeta con el de la calle para cerrarla si coinciden.
+	//Compara el codigo de la tarjeta con el de la calle para cerrarla si coinciden
 	public boolean close(CodeCard card){
 		if (this.code.equals(card.getCode())){
 			this.isOpen = false;
 			return true;
 		}
-		else return false;
+		else 
+			return false;
 	}
 	
 	//Comprueba si la calle está abierta o cerrada
@@ -73,7 +77,7 @@ public class Street {
 		return this.isOpen;
 	}
 	
-	// Calle: Consta de un lugar de origen, un lugar destino, y la direccion que une source con target.
+	// Calle: Consta de un lugar de origen, un lugar destino, y la direccion que une source con target, ademas de si esta abierta, y un codigo de la puerta, si la hay
 	private Place source;
 	private Place target;
 	private Direction direction;
