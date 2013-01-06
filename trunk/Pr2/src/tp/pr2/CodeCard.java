@@ -16,14 +16,17 @@ public class CodeCard extends Item {
 	//Devuelve true si se pudo abrir o cerrar la calle con la tarjeta
 	//La puerta se abre si el codigo de la tarjeta coincide con el de la calle
 	public boolean use(RobotEngine r, Place p) {
-		Street c = r.getHeadingStreet();
-		if ( c == null ) return false;
-		else{
-			if(c.isOpen() && c.close(this))return true;
-			else if( !c.isOpen() && c.open(this)) return true;
-			else return false;
+		Street calle = r.getHeadingStreet();
+		if (calle == null)
+			return false;
+		else {
+			if (calle.isOpen() && calle.close(this))
+				return true;
+			else if (!calle.isOpen() && calle.open(this))
+				return true;
+			else
+				return false;
 		}
-		//TODO: Ni idea de como se implementa, por ahora (eso esta mal)
 	}
 	
 	//Devuelve el código de la tarjeta.
