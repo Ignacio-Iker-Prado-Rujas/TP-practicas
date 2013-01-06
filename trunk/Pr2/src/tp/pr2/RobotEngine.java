@@ -102,8 +102,9 @@ public class RobotEngine {
 					{	//	Si se mueve, actualiza la informacion. Si no, muestra el mensaje de que no hay calle.
 
 						if (moveWalle()) {
-							say("Moving in direction " + direction.toString() + LINE_SEPARATOR);
+							say("Moving in direction " + direction.toString());
 							System.out.println(initialPlace.toString());
+							this.fuel -= 5;//Actualiza el fuel al moverse.
 							myFuelIs();myRecicledIs();
 							lookingDirection(this.direction);
 						}
@@ -125,10 +126,12 @@ public class RobotEngine {
 		}
 		sc.close();	// Cierra el escáner
 
-		if (!quit)	// Si no se ha elegido la opción quit, es que se ha llegado a la nave. Se muestra el mensaje correspondiente.
-			say("I am at my spaceship. Bye bye");
+		if(fuel<=0)
+			say("I run out of fuel. I cannot move. Shutting down...");
+		else if (!quit)	// Si no se ha elegido la opción quit, es que se ha llegado a la nave. Se muestra el mensaje correspondiente.
+			say("I am at my space ship. Bye Bye");
 		else
-			say("I have communication problems. Bye bye");	// Se ha elegido la opción quit, luego se m
+			say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se m
 	}
 	/* comprueba si desde el lugar en el que está wall·e, hacia donde está mirando hay una calle. 
 	Para ello, recorre el array de calles, comprobando con el método comeOutFrom.
@@ -156,22 +159,23 @@ public class RobotEngine {
 	// Métodos que muestran por consola.
 
 	private void say(String message) {
-		System.out.print("WALL·E says: " + message);
+		System.out.println("WALL·E says: " + message);
 	}
 	private void prompt() {
-		System.out.print(LINE_SEPARATOR + "WALL·E > ");
+		System.out.print("WALL·E > ");
 	}
 	private void lookingDirection(Direction direction) {
-		System.out.print("WALL·E is looking at direction " + direction.toString());
+		System.out.println("WALL·E is looking at direction " + direction.toString());
 	}
 	private void myFuelIs(){
-		System.out.println("   * My power is " + this.fuel );
+		if (this.fuel<=0) System.out.println("   * My power is 0");
+		else System.out.println("   * My power is " + this.fuel );
 	}
 	private void myRecicledIs(){
 		System.out.println("   * My recycled material is: " + this.recycledMaterial );
 	}
 	
-	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	//private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	private Place initialPlace;
 	private Direction direction;
