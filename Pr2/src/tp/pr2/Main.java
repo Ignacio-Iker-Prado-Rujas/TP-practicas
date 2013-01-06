@@ -138,7 +138,7 @@ public class Main {
 		Street[] streets =  createStreets(places);
 		// crate the engine of the game
 		RobotEngine engine = 
-				new RobotEngine(new City(streets), places[0],Direction.NORTH);
+				new RobotEngine(new City(streets), places[0], Direction.NORTH);
 		// plays
 		engine.startEngine();
 		
