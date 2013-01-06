@@ -1,7 +1,6 @@
 package tp.pr2;
 
 public class City {
-	
 	//Constructor por defecto, necesario para el validador
 	public City() {
 		this.cityMap = new Street[0];
