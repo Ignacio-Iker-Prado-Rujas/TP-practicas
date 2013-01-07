@@ -34,5 +34,5 @@ public class CodeCard extends Item {
 		return this.code;
 	}
 	
-	public String code; 	//Code := Codigo secreto guardado en la tarjeta para abrir las puertas	
+	private String code; 	//Code := Codigo secreto guardado en la tarjeta para abrir las puertas	
 }

@@ -12,7 +12,7 @@ public class Street {
 	}
 	
 	//Constructor de la calle, punto de partida, lugar opuesto, direccion que los une, si la calle esta abierta, codigo de la puerta
-	public Street(Place source, Direction direction, Place target, boolean isOpen, String code){
+	public Street(Place source, Direction direction, Place target, boolean isOpen, String code) {
 		this.source = source;
 		this.direction = direction;
 		this.target = target;
@@ -53,8 +53,8 @@ public class Street {
 	}
 	
 	//Compara el codigo de la tarjeta con el de la calle para abrirla si coinciden
-	public boolean open(CodeCard card){
-		if (this.code.equals(card.getCode())){
+	public boolean open(CodeCard card) {
+		if (this.code.equals(card.getCode())) {
 			this.isOpen = true;
 			return true;
 		}
@@ -63,8 +63,8 @@ public class Street {
 	}
 	
 	//Compara el codigo de la tarjeta con el de la calle para cerrarla si coinciden
-	public boolean close(CodeCard card){
-		if (this.code.equals(card.getCode())){
+	public boolean close(CodeCard card) {
+		if (this.code.equals(card.getCode())) {
 			this.isOpen = false;
 			return true;
 		}
@@ -73,7 +73,7 @@ public class Street {
 	}
 	
 	//Comprueba si la calle está abierta o cerrada
-	public boolean isOpen(){
+	public boolean isOpen() {
 		return this.isOpen;
 	}
 	
@@ -83,5 +83,4 @@ public class Street {
 	private Direction direction;
 	private boolean isOpen;
 	private String code;
-
 }
