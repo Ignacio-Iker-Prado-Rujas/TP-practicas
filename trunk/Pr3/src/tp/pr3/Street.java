@@ -1,5 +1,7 @@
 package tp.pr3;
 
+import tp.pr3.items.CodeCard;
+
 	
 public class Street {
 	//Constructor de la calle, punto de partida, lugar opuesto, direccion que los une, si la calle esta abierta, codigo (null porque no hay puerta) 

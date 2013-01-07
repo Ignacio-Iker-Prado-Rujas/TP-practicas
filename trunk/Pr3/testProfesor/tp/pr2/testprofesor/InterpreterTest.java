@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tp.pr3.Action;
-import tp.pr3.Instruction;
 import tp.pr3.Interpreter;
 import tp.pr3.Rotation;
+import tp.pr3.instructions.Instruction;
 
 public class InterpreterTest {
 	

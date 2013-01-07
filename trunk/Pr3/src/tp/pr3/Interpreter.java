@@ -1,5 +1,7 @@
 package tp.pr3;
 
+import tp.pr3.instructions.Instruction;
+
 public class Interpreter {
 	//Genera una instrucción a partir del input del usuario
 	public static Instruction generateInstruction(String line) {

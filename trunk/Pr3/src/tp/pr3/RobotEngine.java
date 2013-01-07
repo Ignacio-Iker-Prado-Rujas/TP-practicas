@@ -2,6 +2,10 @@ package tp.pr3;
 
 import java.util.Scanner;
 
+import tp.pr3.instructions.Instruction;
+import tp.pr3.items.Item;
+import tp.pr3.items.ItemContainer;
+
 public class RobotEngine {
 	//Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {

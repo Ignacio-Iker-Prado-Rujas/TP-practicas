@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import tp.pr3.Item;
+import tp.pr3.items.Item;
 
 public class ItemTest {
 	Item iTest;

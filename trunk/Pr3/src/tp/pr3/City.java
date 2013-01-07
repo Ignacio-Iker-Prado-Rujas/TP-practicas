@@ -21,5 +21,9 @@ public class City {
 		return null;
 	}
 	
+	public void addStreet(Street street){
+		//TODO
+	}
+	
 	private Street[] cityMap;
 }

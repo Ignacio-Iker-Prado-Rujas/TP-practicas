@@ -1,8 +1,8 @@
 package tp.pr2.testprofesor;
 
-import tp.pr3.Item;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
+import tp.pr3.items.Item;
 
 public class MockItem extends Item {
 	public static final String DEF_NAME = "MockItem";
