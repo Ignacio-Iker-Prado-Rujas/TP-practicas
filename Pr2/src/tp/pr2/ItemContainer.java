@@ -46,9 +46,8 @@ public class ItemContainer {
 		    if ((mitad < this.numItems)&&(id.compareTo(this.arrayItem[mitad].id)<0)) fin = mitad - 1;
 		    else ini = mitad + 1;
 		}
-		pos = mitad;
-		if ((pos < this.numItems) && this.arrayItem[pos].id.equals(id))return true; //Comprueba que pos esté dentro del array, y si está el  id
-		else	return false;
+		if ((mitad < this.numItems) && id.equalsIgnoreCase(this.arrayItem[mitad].id))return mitad; //Comprueba que pos esté dentro del array, y si está el  id
+		else	return -mitad-1;
 	}*/
 		
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre.
