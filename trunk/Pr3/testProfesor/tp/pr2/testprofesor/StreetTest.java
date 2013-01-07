@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import tp.pr2.CodeCard;
-import tp.pr2.Direction;
-import tp.pr2.Place;
-import tp.pr2.Street;
+import tp.pr3.CodeCard;
+import tp.pr3.Direction;
+import tp.pr3.Place;
+import tp.pr3.Street;
 
 
 public class StreetTest {

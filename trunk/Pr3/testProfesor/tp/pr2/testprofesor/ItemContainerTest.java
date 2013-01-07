@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import tp.pr2.Item;
-import tp.pr2.ItemContainer;
+import tp.pr3.Item;
+import tp.pr3.ItemContainer;
 
 public class ItemContainerTest {
 

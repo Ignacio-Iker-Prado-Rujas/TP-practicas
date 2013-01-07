@@ -7,10 +7,10 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import tp.pr2.City;
-import tp.pr2.Direction;
-import tp.pr2.Place;
-import tp.pr2.Street;
+import tp.pr3.City;
+import tp.pr3.Direction;
+import tp.pr3.Place;
+import tp.pr3.Street;
 
 public class CityTest {
 

@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import tp.pr2.Action;
-import tp.pr2.Instruction;
-import tp.pr2.Rotation;
+import tp.pr3.Action;
+import tp.pr3.Instruction;
+import tp.pr3.Rotation;
 
 
 public class InstructionTest {
