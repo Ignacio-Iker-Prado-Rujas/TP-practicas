@@ -30,14 +30,14 @@ public class ItemContainer {
 	private int estaElItem(String id) {
 		boolean encontrado = false;
 		int i = 0;
-		while ((i < this.numItems) && !encontrado) {
+		while ((i < this.numItems) && !encontrado) { //Aqui buscamos la posicion que le corresponderia al item
 		    if (id.compareToIgnoreCase(this.arrayItem[i].id) <= 0) 
 		    	encontrado = true;
 		    else 
 		    	i++;
 		}
 		if ((i < this.numItems) && id.equalsIgnoreCase(this.arrayItem[i].id))
-			return i; //Comprueba que la posicion esté dentro del array, y si esta el id
+			return i; 								//Aqui comprueba que la posicion esté dentro del array, y si el item no esta ya en el container
 		else 
 			return -i - 1;
 	}
@@ -62,7 +62,7 @@ public class ItemContainer {
 		if (pos >= 0)				//Si ya existe ese item en el container no se inserta
 			return false;
 		else {
-			pos = -pos - 1;
+			pos = -pos - 1;			//Si el item no esta en el container, pos es negativo y vale -i-1 (ver el metodo estaElItem())
 			for (int i = this.numItems; i > pos ; i--)
 				this.arrayItem[i]=this.arrayItem[i - 1];
 			this.arrayItem[pos] = item;
