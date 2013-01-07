@@ -1,5 +1,8 @@
 package tp.pr3;
 
+import tp.pr3.items.Item;
+import tp.pr3.items.ItemContainer;
+
 
 public class Place {
 	//Constructor que inicializa nobre, si esta nave, descripcion y el contenedor de items

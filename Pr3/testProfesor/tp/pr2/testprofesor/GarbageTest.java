@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tp.pr3.Direction;
-import tp.pr3.Garbage;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
+import tp.pr3.items.Garbage;
 
 public class GarbageTest {
 	private RobotEngine testPlayer;

@@ -1,6 +1,6 @@
 package tp.pr2.testprofesor;
 
-import tp.pr3.CodeCard;
+import tp.pr3.items.CodeCard;
 
 public class MockCodeCard extends CodeCard {
 	public static final String DEF_CODE = "1234";

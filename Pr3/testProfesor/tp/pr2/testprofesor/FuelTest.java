@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tp.pr3.Direction;
-import tp.pr3.Fuel;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
+import tp.pr3.items.Fuel;
 
 public class FuelTest {
 	private Fuel testItem;

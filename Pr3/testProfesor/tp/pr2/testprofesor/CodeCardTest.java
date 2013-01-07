@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import tp.pr3.CodeCard;
 import tp.pr3.Direction;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.Street;
+import tp.pr3.items.CodeCard;
 
 public class CodeCardTest {
 	private CodeCard testItem;
