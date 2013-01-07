@@ -1,7 +1,5 @@
 package tp.pr2;
 
-
-
 public class ItemContainer {
 	//Constructor del contenedor de items
 	public ItemContainer() {
@@ -100,8 +98,10 @@ public class ItemContainer {
 		//TODO: generar una cadena en Strings items ORDENADA por id alfabeticamente y una en cada linea (ver ejemplos)
 		return items;
 	}
-	private int numItems;
-	private Item[] arrayItem;
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
+	//El itemContainer lleva un array de items y un entero que indica cuantos hay
+	private int numItems;
+	private Item[] arrayItem;
 }
