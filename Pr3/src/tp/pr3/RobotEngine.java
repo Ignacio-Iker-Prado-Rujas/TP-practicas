@@ -9,13 +9,18 @@ import tp.pr3.items.ItemContainer;
 public class RobotEngine {
 	//Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
-		this.initialPlace = initialPlace;
-		this.direction = direction;
-		this.cityMap = cityMap;
+		this.navigation = new NavigationModule(cityMap, initialPlace);
+		this.navigation.initHeading(direction);
 		this.fuel = 50;
 		this.itemContainer = new ItemContainer();
 		this.recycledMaterial = 0;
 	}
+	
+	public void communicateRobot(Instruction c){
+		c.configureContext(this, this.navigation, this.itemContainer);
+		c.execute();
+	}
+	public void requestQuit(){}
 	
 	//Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
@@ -37,12 +42,14 @@ public class RobotEngine {
 		return this.recycledMaterial;
 	}
 	
-	//Duevuelve la calle hacia la que está mirando WALL·E, null si no hay calle
-	public Street getHeadingStreet(){
-		return this.cityMap.lookForStreet(this.initialPlace, this.direction);
-	}
+	public void requestHelp(){}
 	
+	public void printRobotState(){
+		myFuelIs();myRecicledIs();
+		// escribe.actualizarEstado
+	}
 	//Inicia el movimiento de WALL·E
+	
 	public void startEngine() {
 		System.out.println(initialPlace.toString());
 		myFuelIs();
@@ -201,9 +208,7 @@ public class RobotEngine {
 
 	//RobotEngine: Consta del lugar actual del robot, la dirección en la que mira, y el mapa por el que se mueve (array de calles)
 	//Tambien tiene un array con los items que lleva el robot, la cantidad de combustible y el material reciclado hasta el momento
-	private Place initialPlace;
-	private Direction direction;
-	private City cityMap;
+	private NavigationModule navigation;
 	private int fuel;
 	private ItemContainer itemContainer;
 	private int recycledMaterial;
