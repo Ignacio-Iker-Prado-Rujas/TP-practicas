@@ -42,16 +42,25 @@ public class ItemContainer {
 			return -i - 1;
 	}
 	
-	/*private boolean estaElItem(String id, int pos){
+	/*	
+	 	VERSION CON LA BUSQUEDA BINARIA:
+	 	
+	 	private boolean estaElItem(String id, int pos) {
 		int ini = 0, fin = this.numItems - 1, mitad = 0;
-		while ((ini <= fin)) {
+		while (ini <= fin) {
 		    mitad = (ini + fin) / 2; // División entera
-		    if ((mitad < this.numItems)&&(id.compareTo(this.arrayItem[mitad].id)<0)) fin = mitad - 1;
-		    else ini = mitad + 1;
+		    if ((mitad < this.numItems) && (id.compareTo(this.arrayItem[mitad].id) < 0)) 
+		    	fin = mitad - 1;
+		    else 
+		    	ini = mitad + 1;
 		}
-		if ((mitad < this.numItems) && id.equalsIgnoreCase(this.arrayItem[mitad].id))return mitad; //Comprueba que pos esté dentro del array, y si está el  id
-		else	return -mitad-1;
-	}*/
+		if ((mitad < this.numItems) && id.equalsIgnoreCase(this.arrayItem[mitad].id))
+			return mitad;
+		else	
+			return -mitad - 1;
+	}
+	
+	*/
 		
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre
 	//Se devuelve true sii se pudo añadir
