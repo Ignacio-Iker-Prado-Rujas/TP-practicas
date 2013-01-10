@@ -18,7 +18,7 @@ public class ScanInstruction implements Instruction{
 
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
+		this.robotContainer = robotContainer;
 		
 	}
 
@@ -26,5 +26,5 @@ public class ScanInstruction implements Instruction{
 		// TODO Auto-generated method stub
 		
 	}
-
+	private ItemContainer robotContainer;
 }

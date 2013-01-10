@@ -8,7 +8,7 @@ public class Interpreter {
 		String[] arrayInstruction = line.split(" ");
 		Instruction instruction;
 		
-		if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("TURN")) {
+		if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("TURN"/*TODO Girar??*/)) {
 			instruction = TurnInstruction.parse(arrayInstruction[1]);
 			
 			switch (arrayInstruction[1].toUpperCase()) {
