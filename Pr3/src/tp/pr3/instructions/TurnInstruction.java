@@ -17,23 +17,22 @@ public class TurnInstruction implements Instruction{
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return " TURN | GIRAR < LEFT|RIGHT >";
 	}
 
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
-		
+		navigation = this.navigation;
 	}
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		this.navigation.rotate(rotation);
 	}
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";
+	private NavigationModule navigation;
 	private Rotation rotation;
 
 }
