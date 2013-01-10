@@ -21,22 +21,22 @@ public class Escribe {
 	public static final String IN_SPACESHIP = "I am at my space ship. Bye Bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	
-	public void lookingDirection(Direction direction) {
+	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
-	public void currentPlace(Place place){
+	public static void currentPlace(Place place){
 		System.out.println(place.toString());
 	}
 	
-	public void prompt() {
+	public static void prompt() {
 		System.out.print(PROMPT);
 	}
 	
-	public void say(String message) {
+	public static void say(String message) {
 		System.out.println(SAY + message);
 	}
 	
-	public void actualizarEstado(int fuelActual, int recycledActual ){
+	public static void actualizarEstado(int fuelActual, int recycledActual ){
 		if (fuelActual <= 0) System.out.println(POWER + "0");
 		else System.out.println(POWER + fuelActual );
 		System.out.println(RECYCLED + recycledActual);
