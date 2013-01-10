@@ -9,6 +9,8 @@ public class Interpreter {
 		Instruction instruction;
 		
 		if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("TURN")) {
+			instruction = TurnInstruction.parse(arrayInstruction[1]);
+			
 			switch (arrayInstruction[1].toUpperCase()) {
 				case "RIGHT": instruction = new Instruction(Action.TURN, Rotation.RIGHT); break;
 				

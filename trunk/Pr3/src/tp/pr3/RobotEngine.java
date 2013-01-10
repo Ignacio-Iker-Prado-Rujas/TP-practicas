@@ -143,6 +143,8 @@ public class RobotEngine {
 							direction = direction.turnLeft();
 						lookingDirection(this.direction);	//Después de haber girado, actualiza la dirección en la que está mirando
 					}
+					instruction.configureContext(this, this.navigation, this.itemContainer);
+					instruction.execute();
 				}
 			}
 		}
