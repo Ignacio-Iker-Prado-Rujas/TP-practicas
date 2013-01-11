@@ -16,11 +16,16 @@ public class RobotEngine {
 	//Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
+		if (this.fuel < 0) this.fuel = 0;
+		myFuelIs();
+		myRecicledIs();
 	}
 
 	//Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight){
 		this.recycledMaterial += weight;
+		myFuelIs();
+		myRecicledIs();
 	}
 	
 	//Para los tests
