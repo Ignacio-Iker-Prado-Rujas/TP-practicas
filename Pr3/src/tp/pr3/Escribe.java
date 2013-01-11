@@ -1,6 +1,6 @@
 package tp.pr3;
 
-public class Escribe {
+public class Escribe {//Interpreter, robotEngine, turnInstruction.
 
 	public static final String LOOK_DIRECTION = "WALL·E is looking at direction <DIR>";
 	public static final String PROMPT = "WALL·E > ";
