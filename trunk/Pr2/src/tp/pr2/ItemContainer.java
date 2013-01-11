@@ -3,7 +3,7 @@ package tp.pr2;
 public class ItemContainer {
 	//Constructor del contenedor de items (vacio, sin items)
 	public ItemContainer() {
-		this.arrayItem = new Item[10];
+		this.arrayItem = new Item[NUM_ITEM_INIC];
 		this.numItems = 0;
 	}
 	
@@ -114,7 +114,7 @@ public class ItemContainer {
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-	
+	private static final int NUM_ITEM_INIC = 10;
 	//El itemContainer lleva un array de items y un entero que indica cuantos hay
 	private int numItems;
 	private Item[] arrayItem;
