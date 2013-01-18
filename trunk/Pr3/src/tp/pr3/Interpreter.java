@@ -29,6 +29,7 @@ public class Interpreter {
 				return i.parse(line);
 			} catch( WrongInstructionFormatException w){}
 		}
+		
 		if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("TURN"/*TODO Girar??*/)) {
 			instruction = TurnInstruction.parse(arrayInstruction[1]);
 			
