@@ -7,15 +7,22 @@ import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
 public class TurnInstruction implements Instruction{
-
+	public TurnInstruction(){
+		this.rotation = Rotation.UNKNOWN;
+		this.navigation = null;
+	}
+	public TurnInstruction(Rotation rotation){
+		this.rotation = rotation;
+		this.navigation = null;
+	}
 	@Override
 	public Instruction parse(String cadena)  throws WrongInstructionFormatException{
 		String[] arrayInstruction = cadena.split(" ");
 		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(TURN)||arrayInstruction[0].equalsIgnoreCase(GIRAR))) {
 			switch (arrayInstruction[1].toUpperCase()) {
-				case RIGHT: this.rotation = Rotation.RIGHT; return this;
+				case RIGHT: return new TurnInstruction(Rotation.RIGHT);
 				
-				case LEFT: this.rotation = Rotation.LEFT; return this;
+				case LEFT: return new TurnInstruction(Rotation.LEFT);
 				
 				default: throw new WrongInstructionFormatException();
 			}
@@ -31,7 +38,7 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		navigation = this.navigation;
+		this.navigation = navigation;
 	}
 
 	@Override

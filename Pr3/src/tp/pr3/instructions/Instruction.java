@@ -12,7 +12,7 @@ public interface Instruction {
 	
 	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer);
 	
-	public void execute(); //throws InstructionExecutionException;
+	public void execute();// throws InstructionExecutionException;
             
 	/*//Este constructor crea una instruccion desconocida
 	public Instruction() {
