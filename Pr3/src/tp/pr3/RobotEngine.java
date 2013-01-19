@@ -20,6 +20,9 @@ public class RobotEngine {
 		c.configureContext(this, this.navigation, this.itemContainer);
 		c.execute();
 	}
+	public Street getHeadingStreet(){
+		return this.navigation.getHeadingStreet();
+	}
 	public void requestQuit(){}
 	
 	//Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
