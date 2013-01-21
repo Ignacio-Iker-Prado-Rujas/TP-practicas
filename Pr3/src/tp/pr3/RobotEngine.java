@@ -3,6 +3,7 @@ package tp.pr3;
 import java.util.Scanner;
 
 import tp.pr3.instructions.Instruction;
+import tp.pr3.instructions.exceptions.InstructionExecutionException;
 import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
@@ -18,7 +19,9 @@ public class RobotEngine {
 	
 	public void communicateRobot(Instruction c){
 		c.configureContext(this, this.navigation, this.itemContainer);
-		c.execute();
+		try{
+			c.execute();
+		}catch (InstructionExecutionException i ){}
 	}
 	public Street getHeadingStreet(){
 		return this.navigation.getHeadingStreet();
