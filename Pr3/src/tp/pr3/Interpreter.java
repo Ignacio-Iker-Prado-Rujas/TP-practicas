@@ -43,7 +43,6 @@ public class Interpreter {
 		
 		else if (arrayInstruction.length == 1) {
 			switch (arrayInstruction[0].toUpperCase()) {
-				case "TURN": instruction = new Instruction(Action.TURN); break;
 				
 				case "SCAN": instruction = new Instruction(Action.SCAN); break;
 				
@@ -61,7 +60,7 @@ public class Interpreter {
 
 	//Devuelve un string con las instrucciones válidas del robot
 	public static String interpreterHelp() {
-		String help = ("The valid instructions for WALL-E are:"	+ LINE_SEPARATOR );
+		String help = "";
 		ArrayList<Instruction> instructions = createInstructions();
 		for( Instruction  i : instructions ){
 			help += (i.getHelp() + LINE_SEPARATOR);
