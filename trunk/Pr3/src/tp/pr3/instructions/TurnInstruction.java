@@ -1,5 +1,6 @@
 package tp.pr3.instructions;
 
+import tp.pr3.Escribe;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.Rotation;
@@ -39,16 +40,20 @@ public class TurnInstruction implements Instruction{
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
+		this.robot = engine;
 	}
 
 	@Override
 	public void execute() {
 		this.navigation.rotate(rotation);
+		this.robot.addFuel(-1);
+		Escribe.lookingDirection(this.navigation.getCurrentHeading());
 	}
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";
 	private static final String TURN = "TURN";
 	private static final String GIRAR = "GIRAR";
+	private RobotEngine robot;
 	private NavigationModule navigation;
 	private Rotation rotation;
 

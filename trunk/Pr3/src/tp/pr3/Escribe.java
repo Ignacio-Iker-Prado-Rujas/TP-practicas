@@ -20,6 +20,7 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String OUT_OF_FUEL = "I run out of fuel. I cannot move. Shutting down...";
 	public static final String IN_SPACESHIP = "I am at my space ship. Bye Bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
+	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
 	
 	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
@@ -31,9 +32,13 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static void prompt() {
 		System.out.print(PROMPT);
 	}
-	
-	public static void say(String message) {
+	public static void validInstructions(String validInstructions){
+		System.out.println(VALID_INSTRUCTIONS);
+		System.out.println(validInstructions);
+	}
+	public static String say(String message) {
 		System.out.println(SAY + message);
+		return SAY + message;	// Para utilizarlo en las excepciones.
 	}
 	
 	public static void actualizarEstado(int fuelActual, int recycledActual ){

@@ -15,6 +15,7 @@ public class RobotEngine {
 		this.fuel = 50;
 		this.itemContainer = new ItemContainer();
 		this.recycledMaterial = 0;
+		this.quit = false;
 	}
 	
 	public void communicateRobot(Instruction c){
@@ -26,16 +27,20 @@ public class RobotEngine {
 	public Street getHeadingStreet(){
 		return this.navigation.getHeadingStreet();
 	}
-	public void requestQuit(){}
+	public void requestQuit(){
+		this.quit = true;
+	}
 	
 	//Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
+		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	//Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight){
 		this.recycledMaterial += weight;
+		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 	
 	//Para los tests
@@ -48,12 +53,14 @@ public class RobotEngine {
 		return this.recycledMaterial;
 	}
 	
-	public void requestHelp(){}
+	public void requestHelp(){
+		Escribe.validInstructions(Interpreter.interpreterHelp());	// Muestra las instrucciones que reconoce WALL·E
+	}
 	
 	public void printRobotState(){
-		myFuelIs();myRecicledIs();
-		// escribe.actualizarEstado
+		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);	// Escribe el estado de walle.
 	}
+	
 	//Inicia el movimiento de WALL·E
 	
 	public void startEngine() {
@@ -119,49 +126,21 @@ public class RobotEngine {
 						}
 						break;
 					}
-
-					case HELP: System.out.println(Interpreter.interpreterHelp());break;	// Muestra las instrucciones que reconoce WALL·E
 					
-					case QUIT: quit = true; break;	// Booleano de terminar
-					
-					case MOVE: 
-					{	//Si se mueve, actualiza la informacion. Si no, muestra el mensaje de que no hay calle
-
-						if (moveWalle()) {
-							say("Moving in direction " + direction.toString());
-							System.out.println(initialPlace.toString());
-							this.fuel -= 5; //Actualiza el fuel al moverse.
-							myFuelIs();
-							myRecicledIs();
-							lookingDirection(this.direction);
-						}
-						break;
-					}
-					
-					default:  //case TURN: Como la instrucción es correcta, o gira a la derecha o a la izquierda
-					{	
-						this.fuel--;
-						myFuelIs();
-						myRecicledIs();
-						if (instruction.getRotation().equals(Rotation.RIGHT))
-							direction = direction.turnRight();
-						else
-							direction = direction.turnLeft();
-						lookingDirection(this.direction);	//Después de haber girado, actualiza la dirección en la que está mirando
-					}
 					instruction.configureContext(this, this.navigation, this.itemContainer);
-					instruction.execute();
+					try {instruction.execute();}
+					catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
 				}
 			}
 		}
 		sc.close();	//Cierra el escaner
 
 		if(fuel <= 0)
-			say("I run out of fuel. I cannot move. Shutting down...");
+			Escribe.say("I run out of fuel. I cannot move. Shutting down...");
 		else if (!quit)	//Si no se ha elegido la opción quit, es que se ha llegado a la nave. Se muestra el mensaje correspondiente
-			say("I am at my space ship. Bye Bye");
+			Escribe.say("I am at my space ship. Bye Bye");
 		else
-			say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
+			Escribe.say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
 	
 	/*
@@ -170,7 +149,7 @@ public class RobotEngine {
 	  con el método comeOutFrom. En caso de que WALL·E esté mirando hacia una
 	  calle, le avanza hasta el lugar que hay al otro lado de la calle con el
 	  nextPlace y devuelve true. Si no ha encontrado calle devuelve false.
-	 */
+	 
 	private boolean moveWalle() {
 		Street newStreet = cityMap.lookForStreet(this.initialPlace, this.direction);
 		if (newStreet != null) {
@@ -186,7 +165,6 @@ public class RobotEngine {
 			return false;
 		}
 	}
-	
 	//METODOS PARA MOSTRAR POR CONSOLA:
 
 	private void say(String message) {
@@ -211,7 +189,7 @@ public class RobotEngine {
 	private void myRecicledIs() {
 		System.out.println("   * My recycled material is: " + this.recycledMaterial );
 	}
-	
+	*/
 	//private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	//RobotEngine: Consta del lugar actual del robot, la dirección en la que mira, y el mapa por el que se mueve (array de calles)
@@ -220,4 +198,5 @@ public class RobotEngine {
 	private int fuel;
 	private ItemContainer itemContainer;
 	private int recycledMaterial;
+	private boolean quit;
 }
