@@ -56,7 +56,7 @@ public class Street {
 	
 	//Compara el codigo de la tarjeta con el de la calle para abrirla si coinciden
 	public boolean open(CodeCard card) {
-		if (card.getCode().equals(this.code)) {
+		if (card.getCode().equals(this.code)) { //Todas las tarjetas tienen código.
 			this.isOpen = true;
 			return true;
 		}
