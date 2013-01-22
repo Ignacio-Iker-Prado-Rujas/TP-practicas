@@ -1,34 +1,60 @@
 package tp.pr3.instructions;
 
+import tp.pr3.Escribe;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
+import tp.pr3.instructions.exceptions.InstructionExecutionException;
+import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr3.items.Item;
 import tp.pr3.items.ItemContainer;
 
 public class OperateInstruction implements Instruction{
-
+	public OperateInstruction(){
+		this.id = "";
+		this.container = null;
+	}
+	public OperateInstruction(String id){
+		this.id = id;
+		this.container = null;
+	}
+	
 	@Override
-	public Instruction parse(String cad) {
-		// TODO Auto-generated method stub
-		return null;
+	public Instruction parse(String cadena) throws WrongInstructionFormatException {
+		String[] arrayInstruction = cadena.split(" ");
+		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(OPERATE) || arrayInstruction[0].equalsIgnoreCase(OPERAR))){
+			return new OperateInstruction(arrayInstruction[1]);
+		}else throw new WrongInstructionFormatException();
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return " OPERATE|OPERAR <ID>";
 	}
 
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// TODO Auto-generated method stub
-		
+		this.robot = engine;
+		this.container = robotContainer;	
 	}
 
 	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
-		
+	public void execute() throws InstructionExecutionException {
+		Item item = this.container.getItem(id);
+		if (item.use(this.robot, this.navigation.getCurrentPlace())){
+			if (!item.canBeUsed()){
+				Escribe.say(Escribe.NO_MORE_OBJECT.replace("<id>", this.id));
+				this.container.pickItem(this.id);
+			}
+		}
+		else throw new InstructionExecutionException(Escribe.say(Escribe.PROBLEMS_USING_OBJECT.replace("<id>", this.id)));		
 	}
-
+	
+	private RobotEngine robot;
+	private NavigationModule navigation;
+	private ItemContainer container;
+	private String id;
+	
+	private static final String OPERATE = "OPERATE";
+	private static final String OPERAR = "OPERAR";
 }

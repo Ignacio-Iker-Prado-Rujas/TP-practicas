@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import tp.pr3.instructions.Instruction;
 import tp.pr3.instructions.exceptions.InstructionExecutionException;
-import tp.pr3.items.Item;
+import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr3.items.ItemContainer;
 
 public class RobotEngine {
@@ -61,139 +61,44 @@ public class RobotEngine {
 		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);	// Escribe el estado de walle.
 	}
 	
+	private void mostrarInicio(){//Muestra los mendajes al iniciar el movimiento.
+		Escribe.currentPlace(this.navigation.getCurrentPlace());
+		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
+		Escribe.lookingDirection(this.navigation.getCurrentHeading());
+	}
 	//Inicia el movimiento de WALL·E
-	
+	private boolean haveFuel(){
+		return (this.fuel > 0);//Devuelve true si walle aun tiene combustible.
+	}
+	private boolean isSpaceship(){
+		return this.navigation.atSpaceship();
+	}
+
 	public void startEngine() {
-		System.out.println(initialPlace.toString());
-		myFuelIs();
-		myRecicledIs();
-		lookingDirection(this.direction);
+		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
-		Instruction instruction = new Instruction();
-		boolean quit = false;
-		while (!initialPlace.isSpaceship() && !quit && (this.fuel > 0)) {
-			prompt();	//Muestra por consola: WALL·E>
-
+		Instruction instruction = null;
+		while (!isSpaceship() && !this.quit && haveFuel()) {
+			Escribe.prompt();	//Muestra por consola: WALL·E>
 			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion
-			instruction = Interpreter.generateInstruction(sc.nextLine());
-
-			if (!instruction.isValid())	// Comprueba si WALL·E reconoce la instrucción introducida, y si no, muestra el mensaje corespondiente
-				say("I do not understand. Please repeat");
-			else {
-				switch(instruction.getAction()) {
-				
-					case PICK: 
-					{
-						String id = instruction.getId();
-						Item item = this.initialPlace.pickItem(id);
-						if(item == null) 
-							say("Ooops, this place has not the object <id>".replace("<id>", id));
-						else if(!this.itemContainer.addItem(item)) 
-							say("I am stupid! I had already the object <id>".replace("<id>", id));
-						else 
-							say("I am happy! Now I have  <id>".replace("<id>", id));
-						break;
-					}
-					
-					case SCAN:
-					{
-						String id = instruction.getId();
-						if(this.itemContainer.numberOfItems() == 0) 
-							say("My inventory is empty");
-						else if (id == null) 
-							say("I am carrying the following items" + this.itemContainer.toString());
-						else{
-							Item item = this.itemContainer.getItem(id);
-							if (item == null)
-								say("I have not such object");
-							else 
-								say(item.toString());
-						}
-						break;
-					}
-					
-					case OPERATE:
-					{
-						String id = instruction.getId();
-						Item item = this.itemContainer.getItem(id);
-						if (!item.use(this, this.initialPlace)) 
-							say("I have problems using the object <id>".replace("<id>", id));
-						else {
-							if (!item.canBeUsed()){
-								say("What a pity! I have no more <id> in my inventory".replace("<id>", id));
-								this.itemContainer.pickItem(id);
-							}	
-						}
-						break;
-					}
-					
-					instruction.configureContext(this, this.navigation, this.itemContainer);
-					try {instruction.execute();}
-					catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
-				}
-			}
+			try{
+				instruction = Interpreter.generateInstruction(sc.nextLine());
+			}catch (WrongInstructionFormatException e) {}//TODO Escribe.say("I do not understand. Please repeat");		
+			instruction.configureContext(this, this.navigation, this.itemContainer);
+			try {instruction.execute();}
+			catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
 		}
 		sc.close();	//Cierra el escaner
-
-		if(fuel <= 0)
+		mostrarFinal();
+	}
+	private void mostrarFinal(){
+		if(!haveFuel())
 			Escribe.say("I run out of fuel. I cannot move. Shutting down...");
-		else if (!quit)	//Si no se ha elegido la opción quit, es que se ha llegado a la nave. Se muestra el mensaje correspondiente
+		else if (isSpaceship())	//Si se ha llegado a la nave, se muestra el mensaje correspondiente
 			Escribe.say("I am at my space ship. Bye Bye");
 		else
 			Escribe.say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
-	
-	/*
-	  Comprueba si desde el lugar en el que está WALL·E, hacia donde está
-	  mirando hay una calle. Para ello, recorre el array de calles, comprobando
-	  con el método comeOutFrom. En caso de que WALL·E esté mirando hacia una
-	  calle, le avanza hasta el lugar que hay al otro lado de la calle con el
-	  nextPlace y devuelve true. Si no ha encontrado calle devuelve false.
-	 
-	private boolean moveWalle() {
-		Street newStreet = cityMap.lookForStreet(this.initialPlace, this.direction);
-		if (newStreet != null) {
-			if (newStreet.isOpen()) {
-				initialPlace = newStreet.nextPlace(initialPlace);
-				return true;
-			} else {
-				say("Arrggg, there is a street but it is closed!");
-				return false;
-			}
-		} else {
-			System.out.println(" There is no street in direction " + direction.toString());
-			return false;
-		}
-	}
-	//METODOS PARA MOSTRAR POR CONSOLA:
-
-	private void say(String message) {
-		System.out.println("WALL·E says: " + message);
-	}
-	
-	private void prompt() {
-		System.out.print("WALL·E > ");
-	}
-	
-	private void lookingDirection(Direction direction) {
-		System.out.println("WALL·E is looking at direction " + direction.toString());
-	}
-	
-	private void myFuelIs() {
-		if (this.fuel <= 0) 
-			System.out.println("   * My power is 0");
-		else 
-			System.out.println("   * My power is " + this.fuel );
-	}
-	
-	private void myRecicledIs() {
-		System.out.println("   * My recycled material is: " + this.recycledMaterial );
-	}
-	*/
-	//private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
-	//RobotEngine: Consta del lugar actual del robot, la dirección en la que mira, y el mapa por el que se mueve (array de calles)
-	//Tambien tiene un array con los items que lleva el robot, la cantidad de combustible y el material reciclado hasta el momento
 	private NavigationModule navigation;
 	private int fuel;
 	private ItemContainer itemContainer;

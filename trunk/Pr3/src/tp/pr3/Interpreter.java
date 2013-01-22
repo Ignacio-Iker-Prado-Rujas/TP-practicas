@@ -29,33 +29,7 @@ public class Interpreter {
 				return i.parse(line);
 			} catch( WrongInstructionFormatException w){}
 		}
-		throw new WrongInstructionFormatException();
-		
-		
-		if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("PICK"))
-				instruction = new Instruction(Action.PICK, arrayInstruction[1]);
-		
-		else if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("OPERATE"))
-			instruction = new Instruction(Action.OPERATE, arrayInstruction[1]);
-		
-		else if (arrayInstruction.length == 2 && arrayInstruction[0].equalsIgnoreCase("SCAN"))
-			instruction = new Instruction(Action.SCAN, arrayInstruction[1]);
-		
-		else if (arrayInstruction.length == 1) {
-			switch (arrayInstruction[0].toUpperCase()) {
-				
-				case "SCAN": instruction = new Instruction(Action.SCAN); break;
-				
-				case "QUIT": instruction = new Instruction(Action.QUIT); break;
-				
-				default: instruction = new Instruction();
-			}
-		}
-		
-		else
-			instruction = new Instruction();
-		
-		return instruction;	
+		throw new WrongInstructionFormatException();//Si no ha devuelto ninguna instrucción es que no era válida.
 	}
 
 	//Devuelve un string con las instrucciones válidas del robot
