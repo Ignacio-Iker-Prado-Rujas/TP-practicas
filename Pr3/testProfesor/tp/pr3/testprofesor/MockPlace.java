@@ -1,4 +1,4 @@
-package tp.pr2.testprofesor;
+package tp.pr3.testprofesor;
 
 import tp.pr3.Place;
 
@@ -12,6 +12,10 @@ public class MockPlace extends Place {
 
 	public MockPlace() {
 		this(MockPlace.DEF_NAME, false, MockPlace.DEF_DESC);
+	}
+	
+	public MockPlace(boolean isSpaceship) {
+		this(MockPlace.DEF_NAME, isSpaceship, MockPlace.DEF_DESC);
 	}
 
 }

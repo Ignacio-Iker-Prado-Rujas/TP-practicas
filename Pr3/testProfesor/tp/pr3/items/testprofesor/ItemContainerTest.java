@@ -1,6 +1,11 @@
-package tp.pr2.testprofesor;
+package tp.pr3.items.testprofesor;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,13 +18,11 @@ public class ItemContainerTest {
 	private ItemContainer testContainer;
 	private Item testItem;
 	private String testName;
-	private String testDesc;
 
 	@Before
 	public void setUp() {
 		testContainer = new ItemContainer();
 		testName = MockItem.DEF_NAME;
-		testDesc = MockItem.DEF_DESC;
 		testItem = new MockItem();
 	}
 
@@ -58,6 +61,18 @@ public class ItemContainerTest {
 			assertNotNull("ERROR: Container stores the item but getItem method returns null",testContainer.getItem(testName));
 			assertEquals("ERROR: Container stores the item but getItem method returns an object that is different to the one previously stored",testItem, testContainer.getItem(testName));
 			
+		}
+		else fail("ERROR: Add method is not correct. Try first to pass the testAddItem test");
+	}
+	
+	@Test
+	public void testContainsItem() {
+		assertFalse("ERROR: An item is not stored in an empty container but containsItem method returns true",testContainer.containsItem(testName));
+		
+		// Store an item
+		if (testContainer.addItem(testItem)){
+			assertFalse("ERROR: Container does not contain an item with name \""+MockItem.WRONG_NAME+"\" but containsItem method returns true",testContainer.containsItem(MockItem.WRONG_NAME));
+			assertTrue("ERROR: Container stores the item but containsItem method returns false",testContainer.containsItem(testName));
 		}
 		else fail("ERROR: Add method is not correct. Try first to pass the testAddItem test");
 	}
