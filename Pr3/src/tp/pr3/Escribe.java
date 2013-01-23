@@ -21,6 +21,8 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String IN_SPACESHIP = "I am at my space ship. Bye Bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
+	public static final String OBJECT_DROPPED = "Object dropped in <place>";
+	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
 	
 	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
