@@ -1,4 +1,4 @@
-package tp.pr2.testprofesor;
+package tp.pr3.testprofesor;
 
 import tp.pr3.City;
 import tp.pr3.Street;

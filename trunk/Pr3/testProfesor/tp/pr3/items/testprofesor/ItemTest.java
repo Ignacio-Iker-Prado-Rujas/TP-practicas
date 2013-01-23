@@ -1,4 +1,4 @@
-package tp.pr2.testprofesor;
+package tp.pr3.items.testprofesor;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

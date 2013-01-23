@@ -1,12 +1,13 @@
-package tp.pr2.testprofesor;
+package tp.pr3.testprofesor;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import tp.pr3.Place;
 import tp.pr3.items.Item;
+import tp.pr3.items.testprofesor.MockItem;
+import tp.pr3.Place;
 
 public class PlaceTest {
 
@@ -55,5 +56,25 @@ public class PlaceTest {
 		else {
 			fail("ERROR: addItem is not working properly. Try first addItem tests");
 		}
+	}
+	
+	@Test
+	public void testExistItem() {
+		assertFalse("ERROR: The place is empty but existItem returns true", placeTest.existItem(MockItem.DEF_NAME));
+		Item testItem = new MockItem();
+		if (placeTest.addItem(testItem)) {
+			assertFalse("ERROR: The place does not contain an item with this id but existItem returns true", placeTest.existItem(MockItem.WRONG_NAME));
+			assertTrue("ERROR: The place contains an item with this id but existItem returns false", placeTest.existItem(MockItem.DEF_NAME));		
+		}
+		else {
+			fail("ERROR: addItem is not working properly. Try first addItem tests");
+		}
+	}
+	
+	@Test
+	public void testDropItem() {
+		assertTrue("ERROR: The place is empty but dropItem returns false", placeTest.dropItem(new MockItem()));
+		assertFalse("ERROR: The place contains an item with the same id but dropItem returns true", placeTest.dropItem(new MockItem()));
+		assertTrue("ERROR: The place does not contain an item with the same id but dropItem returns false", placeTest.dropItem(new MockItem(MockItem.WRONG_NAME)));
 	}
 }
