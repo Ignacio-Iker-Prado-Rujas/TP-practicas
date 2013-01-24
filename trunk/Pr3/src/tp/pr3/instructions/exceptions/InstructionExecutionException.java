@@ -7,6 +7,10 @@ public class InstructionExecutionException extends Exception {
 	}
 
 	public InstructionExecutionException(String message) {
-		System.err.println(message);
+		this.message = message;
 	}
+	public String getMessage(){
+		return this.message;
+	}
+	private String message;
 }
