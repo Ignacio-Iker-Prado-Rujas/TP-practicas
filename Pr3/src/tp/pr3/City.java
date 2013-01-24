@@ -3,7 +3,7 @@ package tp.pr3;
 public class City {
 	//Constructor por defecto, necesario para el validador
 	public City() {
-		this.cityMap = new Street[0];
+		this.cityMap = null;
 	}
 	
 	//Construye una ciudad como un array de calles de la clase Street
