@@ -1,7 +1,6 @@
 package tp.pr3;
 
 import java.util.Scanner;
-
 import tp.pr3.instructions.Instruction;
 import tp.pr3.instructions.exceptions.InstructionExecutionException;
 import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
@@ -22,7 +21,9 @@ public class RobotEngine {
 		c.configureContext(this, this.navigation, this.itemContainer);
 		try{
 			c.execute();
-		}catch (InstructionExecutionException i ){}
+		}catch (InstructionExecutionException i ){
+			System.err.println(i.getMessage());
+		}
 	}
 	public Street getHeadingStreet(){
 		return this.navigation.getHeadingStreet();
@@ -83,7 +84,9 @@ public class RobotEngine {
 			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion
 			try{
 				instruction = Interpreter.generateInstruction(sc.nextLine());
-			}catch (WrongInstructionFormatException e) {}//TODO Escribe.say("I do not understand. Please repeat");		
+			}catch (WrongInstructionFormatException e) {
+				System.err.println(e.getMessage());
+			}//TODO Escribe.say("I do not understand. Please repeat");		
 			instruction.configureContext(this, this.navigation, this.itemContainer);
 			try {instruction.execute();}
 			catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
