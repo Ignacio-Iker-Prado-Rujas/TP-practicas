@@ -1,6 +1,6 @@
 package tp.pr3.items;
 
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.Street;
 
@@ -19,7 +19,7 @@ public class CodeCard extends Item {
 	//Si el robot esta en un lugar mirando en una direccion donde hay una puerta en una calle, usa la tarjeta
 	//Devuelve true si se pudo abrir o cerrar la calle con la tarjeta
 	//La puerta se abre si el codigo de la tarjeta coincide con el de la calle
-	public boolean use(RobotEngine r, Place p) {
+	public boolean use(RobotEngine r, NavigationModule n) {
 		Street calle = r.getHeadingStreet();
 		if (calle == null)
 			return false;

@@ -13,6 +13,10 @@ public class Place {
 		this.itemContainer = new ItemContainer();
 	}
 
+	public boolean dropItem(Item item){
+		if (null==this.itemContainer.pickItem(item.getId())) return false;
+		else return true;
+	}
 	public boolean isSpaceship() {
 		return this.isSpaceShip;
 	}
@@ -31,6 +35,9 @@ public class Place {
 		}
 	}
 	
+	public boolean existItem(String id){
+		return this.itemContainer.containsItem(id);
+	}
 	//Elimina un objeto de un lugar.
 	public Item pickItem(String id){
 		return this.itemContainer.pickItem(id);

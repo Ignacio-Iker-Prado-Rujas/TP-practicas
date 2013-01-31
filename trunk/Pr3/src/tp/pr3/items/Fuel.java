@@ -1,6 +1,6 @@
 package tp.pr3.items;
 
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 
 public class Fuel extends Item {
@@ -21,7 +21,7 @@ public class Fuel extends Item {
 	
 	//Usa el combustible aportando energia al robot
 	//Devuelve true si se pudo usar
-	public boolean use(RobotEngine r, Place p) {
+	public boolean use(RobotEngine r, NavigationModule n) {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
 			if (r.getFuel() <= 0) 
