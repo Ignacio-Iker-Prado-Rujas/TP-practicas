@@ -1,6 +1,6 @@
 package tp.pr3.items;
 
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 
 public abstract class Item {
@@ -17,7 +17,7 @@ public abstract class Item {
 	//Metodo abstracto que intenta utilizar un item con un robot en un lugar dado
 	//Devuelve true si se completo la accion y false en caso contrario
 	//Al ser abstracto el metodo, estara implementado en la clase hija
-	public abstract boolean use(RobotEngine r, Place p);
+	public abstract boolean use(RobotEngine r, NavigationModule n);
 	
 	public String toString(){
 		return this.id + ": " + this.description;

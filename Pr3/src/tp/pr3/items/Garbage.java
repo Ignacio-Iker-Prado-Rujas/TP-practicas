@@ -1,6 +1,6 @@
 package tp.pr3.items;
 
-import tp.pr3.Place;
+import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 
 public class Garbage extends Item {
@@ -19,7 +19,7 @@ public class Garbage extends Item {
 	
 	//Recicla la basura, obteniendo material reciclado
 	//Devuelve true si se pudo reciclar
-	public boolean use(RobotEngine r, Place p) {
+	public boolean use(RobotEngine r, NavigationModule n) {
 		if(this.canBeUsed()){
 			r.addRecycledMaterial(this.recycledMaterial);
 			System.out.println("   * My power is " + r.getFuel() );

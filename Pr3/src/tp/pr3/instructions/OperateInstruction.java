@@ -41,7 +41,7 @@ public class OperateInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.getItem(id);
-		if (item.use(this.robot, this.navigation.getCurrentPlace())){
+		if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
 				Escribe.say(Escribe.NO_MORE_OBJECT.replace("<id>", this.id));
 				this.container.pickItem(this.id);

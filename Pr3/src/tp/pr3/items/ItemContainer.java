@@ -25,7 +25,10 @@ public class ItemContainer {
 			newContainer[i] = this.arrayItem[i];
 		return newContainer;
 	}
-	
+	//True si está el item pedido
+	public boolean containsItem(String id){
+		return (estaElItem(id)>=0);
+	}
 	//Devuelve true si está el id buscado, y la posición en la que está
 	//Si el id no está, devuelve false y la posición donde habría que insertarlo
 	private int estaElItem(String id) {
