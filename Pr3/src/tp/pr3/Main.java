@@ -25,11 +25,16 @@ public class Main {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) {
+		if (args.length == 0){
+			Escribe.llamadaIncorrecta();
+			System.exit(1);
+		}
 		FileInputStream input = null;
 		try {
 			input = new FileInputStream(args[0]);
 		} catch (FileNotFoundException e) {
-			e.getMessage();
+			Escribe.noExisteFichero(args[0]);
+			System.exit(2);
 		}
 		CityLoaderFromTxtFile cityLoader = new CityLoaderFromTxtFile();
 		City city = null;
@@ -44,6 +49,4 @@ public class Main {
 		engine.startEngine();
 		
 	}
-	
-	static String LINE_SEPARATOR = System.getProperty("line.separator");
 }
