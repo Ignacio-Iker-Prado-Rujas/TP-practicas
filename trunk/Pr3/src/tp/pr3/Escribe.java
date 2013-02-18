@@ -48,4 +48,19 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 		else System.out.println(POWER + fuelActual );
 		System.out.println(RECYCLED + recycledActual);
 	}
+	public static void llamadaIncorrecta() {
+		System.err.println("Bad params.");
+		System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
+		System.err.println("<mapfile> : file with the description of the city.");
+	}
+
+	private static final String NO_EXISTE_FICHERO = "Error reading the map file:" + 
+													" <fichero> (No existe el fichero o el directorio)";
+	
+	public static void noExisteFichero(String fichero){
+		System.err.println(NO_EXISTE_FICHERO.replace("<fichero>", fichero));
+	}
+
+	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
 }
