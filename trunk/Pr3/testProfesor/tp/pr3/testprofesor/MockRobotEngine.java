@@ -2,7 +2,6 @@ package tp.pr3.testprofesor;
 
 import tp.pr3.City;
 import tp.pr3.Direction;
-import tp.pr3.Interpreter;
 import tp.pr3.Place;
 import tp.pr3.RobotEngine;
 import tp.pr3.Street;
