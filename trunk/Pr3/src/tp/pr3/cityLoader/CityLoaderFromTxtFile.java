@@ -110,20 +110,26 @@ public class CityLoaderFromTxtFile {
         parseStreets();
         parseItems();
         forceString(END_CITY);
-        Street[] s = new Street[0];
-		return new City(streets.toArray(s));
+		return new City(streets.toArray(new Street[this.streets.size()]));
 	}
 	
 	public Place getInitialPlace(){
 		return this.places.get(0);
 	}
-	
-	private Direction forceDirection() throws IOException, IOException{
+	private Direction correctDirection(String direction) throws WrongCityFormatException{
+		if(Direction.EAST.toString().equalsIgnoreCase(direction))return Direction.EAST;
+		else if(Direction.WEST.toString().equalsIgnoreCase(direction))return Direction.WEST;
+		else if(Direction.NORTH.toString().equalsIgnoreCase(direction))return Direction.NORTH;
+		else if(Direction.SOUTH.toString().equalsIgnoreCase(direction))return Direction.SOUTH;
+		else throw new WrongCityFormatException("Error, se esperaba una direccion valida y se " +
+				"encontro "+ stk.sval + " en la linea "+ stk.lineno());
+	}
+	private Direction forceDirection() throws IOException{
 		if(this.stk.nextToken()!=StreamTokenizer.TT_WORD){
 			throw new WrongCityFormatException("Error, se esperaba un string y se " +
 					"encontro "+ stk.sval + " en la linea "+ stk.lineno());
 		}
-		return Direction.valueOf(stk.sval);//TODO error si no es una direccion valida
+		return correctDirection(stk.sval);//TODO error si no es una direccion valida
 	}
 	private void forceNumber (int i) throws IOException{
 		if(this.stk.nextToken()!=StreamTokenizer.TT_NUMBER||(stk.nval!=i)){
@@ -153,7 +159,7 @@ public class CityLoaderFromTxtFile {
 	}
 	private String forceString(String expected1, String expected2) throws IOException{
 		if(this.stk.nextToken()!=StreamTokenizer.TT_WORD||
-				(!stk.sval.equals(expected1)&&!stk.sval.equals(expected1))){
+				(!stk.sval.equals(expected1)&&!stk.sval.equals(expected2))){
 			throw new WrongCityFormatException("Error, se esperaba "+ expected1
 					+ " o " + expected2 + " y se " +
 					"encontro "+ stk.sval + " en la linea "+ stk.lineno());

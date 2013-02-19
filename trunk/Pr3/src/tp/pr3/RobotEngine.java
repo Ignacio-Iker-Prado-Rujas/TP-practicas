@@ -83,13 +83,13 @@ public class RobotEngine {
 			Escribe.prompt();	//Muestra por consola: WALL·E>
 			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion
 			try{
-				instruction = Interpreter.generateInstruction(sc.nextLine());
-			}catch (WrongInstructionFormatException e) {
+				instruction = Interpreter.generateInstruction(sc.nextLine());		
+				instruction.configureContext(this, this.navigation, this.itemContainer);
+				try {instruction.execute();}
+				catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
+				}catch (WrongInstructionFormatException e) {
 				System.err.println(e.getMessage());
-			}//TODO Escribe.say("I do not understand. Please repeat");		
-			instruction.configureContext(this, this.navigation, this.itemContainer);
-			try {instruction.execute();}
-			catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
+				}//TODO Escribe.say("I do not understand. Please repeat");
 		}
 		sc.close();	//Cierra el escaner
 		mostrarFinal();
