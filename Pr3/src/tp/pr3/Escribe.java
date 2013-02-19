@@ -5,8 +5,8 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String LOOK_DIRECTION = "WALL·E is looking at direction <DIR>";
 	public static final String PROMPT = "WALL·E > ";
 	public static final String SAY = "WALL·E says: ";
-	public static final String POWER = "   * My power is ";
-	public static final String RECYCLED = "   * My recycled material is: ";
+	public static final String POWER = "      * My power is ";
+	public static final String RECYCLED = "      * My recycled material is: ";
 	public static final String NOT_UNDERSTAND = "I do not understand. Please repeat";
 	public static final String PLACE_NOT_OBJECT = "Ooops, this place has not the object <id>";
 	public static final String HAD_OBJECT = "I am stupid! I had already the object <id>";
@@ -52,6 +52,9 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 		System.err.println("Bad params.");
 		System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
 		System.err.println("<mapfile> : file with the description of the city.");
+	}
+	public static void mapaIncorrecto(){
+		System.err.println("Mapa incorrecto, escriba bien");
 	}
 
 	private static final String NO_EXISTE_FICHERO = "Error reading the map file:" + 

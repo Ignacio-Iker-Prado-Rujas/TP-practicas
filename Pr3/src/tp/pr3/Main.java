@@ -3,12 +3,7 @@ package tp.pr3;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-
 import tp.pr3.cityLoader.CityLoaderFromTxtFile;
-import tp.pr3.items.CodeCard;
-import tp.pr3.items.Fuel;
-import tp.pr3.items.Garbage;
 
 /**
  * Aplicación que utiliza las clases de la práctica sobre el mapa
@@ -41,7 +36,8 @@ public class Main {
 		try {
 			city = cityLoader.loadCity(input);
 		} catch (IOException e) {
-			System.out.println("la concha de la lora");//TODO
+			Escribe.mapaIncorrecto();
+			System.exit(3);
 		}
 		RobotEngine engine = 
 				new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
