@@ -64,8 +64,8 @@ public class RobotEngine {
 	
 	private void mostrarInicio(){//Muestra los mendajes al iniciar el movimiento.
 		Escribe.currentPlace(this.navigation.getCurrentPlace());
-		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 		Escribe.lookingDirection(this.navigation.getCurrentHeading());
+		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 	//Inicia el movimiento de WALL·E
 	private boolean haveFuel(){

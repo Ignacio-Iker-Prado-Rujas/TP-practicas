@@ -46,8 +46,9 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public void execute() {
 		this.navigation.rotate(rotation);
-		this.robot.addFuel(-1);
 		Escribe.lookingDirection(this.navigation.getCurrentHeading());
+		this.robot.addFuel(-1);
+	
 	}
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";
