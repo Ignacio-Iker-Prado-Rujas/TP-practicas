@@ -25,13 +25,13 @@ public class Main {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) {
-		/*if (args.length == 0){
+		if (args.length == 0){
 			Escribe.llamadaIncorrecta();
 			System.exit(1);
-		}*/
+		}
 		FileInputStream input = null;
 		try {
-			input = new FileInputStream("madrid.txt");/*args[0]*/
+			input = new FileInputStream(args[0]);
 		} catch (FileNotFoundException e) {
 			Escribe.noExisteFichero(args[0]);
 			System.exit(2);
