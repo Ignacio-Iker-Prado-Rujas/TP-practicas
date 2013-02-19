@@ -42,10 +42,11 @@ public class CityLoaderFromTxtFile {
 		forceString(PLACE);
 		Place source = this.places.get(forceNumber());
 		Direction direction = forceDirection();
+		forceString(PLACE);
 		Place tarjet = this.places.get(forceNumber());
-		Boolean isOpen = OPEN.equals(forceString(OPEN, CLOSE));
+		Boolean isOpen = OPEN.equals(forceString(OPEN, CLOSED));
 		String code;
-		if(isOpen) code = forceString();
+		if(!isOpen) code = forceString();
 		else code = null;
 		return new Street(source, direction, tarjet, isOpen, code);
 	}
@@ -64,11 +65,10 @@ public class CityLoaderFromTxtFile {
 	private void parseItems() throws IOException{
 		forceString(BEGIN_ITEMS);
 		int i = 0;
-		while(this.stk.nextToken()==StreamTokenizer.TT_WORD && stk.sval.equals(ITEM)){
-			String tipoItem = forceString();
-			if(FUEL.equals(tipoItem)) parseFuel(i);
-			else if(GARBAGE.equals(tipoItem)) parseGarbage(i);
-			else if(CODE_CARD.equals(tipoItem)) parseCodecard(i);
+		while(this.stk.nextToken()==StreamTokenizer.TT_WORD && (stk.sval.equals(GARBAGE) || stk.sval.equals(FUEL) || stk.sval.equals(CODE_CARD))){
+			if(FUEL.equals(stk.sval)) parseFuel(i);
+			else if(GARBAGE.equals(stk.sval)) parseGarbage(i);
+			else if(CODE_CARD.equals(stk.sval)) parseCodecard(i);
 			else throw new WrongCityFormatException("Error, se esperaba un item y se " +
 						"encontro "+ stk.sval + " en la linea "+ stk.lineno());
 			i++;
@@ -168,7 +168,7 @@ public class CityLoaderFromTxtFile {
 	}
 	
 	private final String OPEN = "open";
-	private final String CLOSE = "close";
+	private final String CLOSED = "closed";
 	private final String BEGIN_CITY = "BeginCity";
 	private final String END_CITY = "EndCity";
 	private final String BEGIN_PLACES = "BeginPlaces";
@@ -184,7 +184,7 @@ public class CityLoaderFromTxtFile {
 	private final String FUEL = "fuel";
 	private final String GARBAGE = "garbage";
 	private final String CODE_CARD = "codecard";
-	private final String ITEM = "item";
+
 	
 	private StreamTokenizer stk;
 	private ArrayList<Place> places;

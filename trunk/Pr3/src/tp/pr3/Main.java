@@ -31,7 +31,7 @@ public class Main {
 		}
 		FileInputStream input = null;
 		try {
-			input = new FileInputStream(args[0]);
+			input = new FileInputStream(args[0]/*"madrid.txt"*/);
 		} catch (FileNotFoundException e) {
 			Escribe.noExisteFichero(args[0]);
 			System.exit(2);
@@ -41,7 +41,7 @@ public class Main {
 		try {
 			city = cityLoader.loadCity(input);
 		} catch (IOException e) {
-			//TODO
+			System.out.println("la concha de la lora");//TODO
 		}
 		RobotEngine engine = 
 				new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
