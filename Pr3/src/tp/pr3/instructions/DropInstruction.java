@@ -42,13 +42,11 @@ public DropInstruction(){
 		Item item = this.container.pickItem(id);
 		if(item == null) throw new InstructionExecutionException(Escribe.say(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id)));
 		
-		else if(this.navigation.getCurrentPlace().addItem(item)){
+		else if(this.navigation.getCurrentPlace().dropItem(item)){
 			Escribe.say(Escribe.OBJECT_DROPPED.replace("<place>", this.navigation.getCurrentPlace().toString()));
 		}
-			
-		else{
-			throw new InstructionExecutionException(Escribe.say(Escribe.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id)));		
-		}
+		
+		else throw new InstructionExecutionException(Escribe.say(Escribe.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id)));
 		
 	}
 	
