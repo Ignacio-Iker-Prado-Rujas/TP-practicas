@@ -37,7 +37,7 @@ public class Main {
 			city = cityLoader.loadCity(input);
 		} catch (IOException e) {
 			Escribe.mapaIncorrecto();
-			System.exit(3);
+			System.exit(2);
 		}
 		RobotEngine engine = 
 				new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
