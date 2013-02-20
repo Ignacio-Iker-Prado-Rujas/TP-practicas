@@ -14,8 +14,7 @@ public class Place {
 	}
 
 	public boolean dropItem(Item item){
-		if (null==this.itemContainer.pickItem(item.getId())) return false;
-		else return true;
+		return this.itemContainer.addItem(item);
 	}
 	public boolean isSpaceship() {
 		return this.isSpaceShip;
@@ -45,10 +44,7 @@ public class Place {
 	
 	// Añade un objeto a un lugar.
 	public boolean addItem(Item item) {
-		if (this.itemContainer.addItem(item))
-			return true;
-		else
-			return false;
+		return this.itemContainer.addItem(item);
 	}
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
