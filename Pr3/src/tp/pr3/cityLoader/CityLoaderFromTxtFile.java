@@ -105,6 +105,7 @@ public class CityLoaderFromTxtFile {
 	public City loadCity(InputStream file)throws IOException{
 		stk = new StreamTokenizer(new InputStreamReader(file));
 		stk.wordChars('\u0021','\u007E');
+		stk.quoteChar('"');
 		forceString(BEGIN_CITY);
         parsePlaces();
         parseStreets();
