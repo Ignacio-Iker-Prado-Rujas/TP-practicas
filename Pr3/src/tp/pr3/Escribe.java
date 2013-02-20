@@ -10,7 +10,7 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String NOT_UNDERSTAND = "I do not understand. Please repeat";
 	public static final String PLACE_NOT_OBJECT = "Ooops, this place has not the object <id>";
 	public static final String HAD_OBJECT = "I am stupid! I had already the object <id>";
-	public static final String NOW_HAVE = "I am happy! Now I have  <id>";
+	public static final String NOW_HAVE = "I am happy! Now I have <id>";
 	public static final String INV_EMPTY = "My inventory is empty";
 	public static final String CARRYING_ITEMS = "I am carrying the following items";
 	public static final String NOT_HAVE_THE_OBJECT = "I have not such object";

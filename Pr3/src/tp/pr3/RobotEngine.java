@@ -86,10 +86,12 @@ public class RobotEngine {
 				instruction = Interpreter.generateInstruction(sc.nextLine());		
 				instruction.configureContext(this, this.navigation, this.itemContainer);
 				try {instruction.execute();}
-				catch (InstructionExecutionException e){}//TODO Que imprima el mensaje correspondiente .err
-				}catch (WrongInstructionFormatException e) {
-				System.err.println(e.getMessage());
-				}//TODO Escribe.say("I do not understand. Please repeat");
+				catch (InstructionExecutionException e){
+					System.out.println(e.getMessage());
+				}
+			}catch (WrongInstructionFormatException e) {
+				Escribe.say(Escribe.NOT_UNDERSTAND);
+			} 
 		}
 		sc.close();	//Cierra el escaner
 		mostrarFinal();

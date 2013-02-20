@@ -10,7 +10,7 @@ import tp.pr3.items.ItemContainer;
 
 public class ScanInstruction implements Instruction{
 	public ScanInstruction(){
-		this.id = "";
+		this.id = null;
 		this.robotContainer = null;
 	}
 	public ScanInstruction(String id){
