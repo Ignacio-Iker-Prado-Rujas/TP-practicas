@@ -41,11 +41,11 @@ public class PickInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException{
 		Item item = this.navigation.getCurrentPlace().pickItem(id);
-		if(item == null) throw new InstructionExecutionException(Escribe.say(Escribe.PLACE_NOT_OBJECT.replace("<id>", id)));
+		if(item == null) throw new InstructionExecutionException(Escribe.PLACE_NOT_OBJECT.replace("<id>", id));
 		
 		else if(this.container.addItem(item)) Escribe.say(Escribe.NOW_HAVE.replace("<id>", id));
 			
-		else	throw new InstructionExecutionException(Escribe.say(Escribe.HAD_OBJECT.replace("<id>", id)));		
+		else	throw new InstructionExecutionException(Escribe.HAD_OBJECT.replace("<id>", id));		
 	}
 	
 	private String id;

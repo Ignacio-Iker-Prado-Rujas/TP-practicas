@@ -45,7 +45,7 @@ public class ScanInstruction implements Instruction{
 		else{
 			Item item = this.robotContainer.getItem(id);
 			if (item == null)
-				throw new InstructionExecutionException(Escribe.say(Escribe.NOT_HAVE_THE_OBJECT));//TODO preguntar. //say("I have not such object");
+				throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT);//TODO preguntar. //say("I have not such object");
 			else 
 				Escribe.say(item.toString()); //say(item.toString());
 		}

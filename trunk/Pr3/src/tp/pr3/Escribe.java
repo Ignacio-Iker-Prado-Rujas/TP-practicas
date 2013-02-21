@@ -13,7 +13,7 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String NOW_HAVE = "I am happy! Now I have <id>";
 	public static final String INV_EMPTY = "My inventory is empty";
 	public static final String CARRYING_ITEMS = "I am carrying the following items";
-	public static final String NOT_HAVE_THE_OBJECT = "You do not have any <object>.";
+	public static final String NOT_HAVE_THE_OBJECT = "You do not have any <id>.";
 	public static final String PROBLEMS_USING_OBJECT = "I have problems using the object <id>";
 	public static final String NO_MORE_OBJECT = "What a pity! I have no more <id> in my inventory";
 	public static final String MOVING_DIRECTION = "Moving in direction ";
@@ -21,7 +21,7 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String IN_SPACESHIP = "I am at my space ship. Bye Bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
-	public static final String OBJECT_DROPPED = "Great! I have dropped <object>";
+	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
 	
 	public static void lookingDirection(Direction direction) {
@@ -53,8 +53,8 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 		System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
 		System.err.println("<mapfile> : file with the description of the city.");
 	}
-	public static void mapaIncorrecto(){
-		System.err.println("Mapa incorrecto, escriba bien");
+	public static void mapaIncorrecto(String message){
+		System.err.println(message);
 	}
 
 	private static final String NO_EXISTE_FICHERO = "Error reading the map file:" + 
