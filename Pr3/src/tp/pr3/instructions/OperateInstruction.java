@@ -28,7 +28,7 @@ public class OperateInstruction implements Instruction{
 
 	@Override
 	public String getHelp() {
-		return " OPERATE|OPERAR <ID>";
+		return " OPERATE|OPERAR <id>";
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class OperateInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.getItem(id);
-		if (item == null) throw new InstructionExecutionException(Escribe.say(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", this.id)));
+		if (item == null) throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
 		else if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
 				Escribe.say(Escribe.NO_MORE_OBJECT.replace("<id>", this.id));

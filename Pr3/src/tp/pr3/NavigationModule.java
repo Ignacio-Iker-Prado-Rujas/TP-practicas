@@ -23,7 +23,7 @@ public class NavigationModule {
 	public void move() throws InstructionExecutionException{
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null) throw new InstructionExecutionException(" There is no street in direction " + this.currentHeading.toString());
-		else if (!newStreet.isOpen()) throw new InstructionExecutionException(Escribe.say("Arrggg, there is a street but it is closed!"));
+		else if (!newStreet.isOpen()) throw new InstructionExecutionException("Arrggg, there is a street but it is closed!");
 		else this.currentPlace = newStreet.nextPlace(this.currentPlace);		
 	}
 	

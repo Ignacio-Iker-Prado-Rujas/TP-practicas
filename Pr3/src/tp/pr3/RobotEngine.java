@@ -81,7 +81,6 @@ public class RobotEngine {
 		Instruction instruction = null;
 		while (!isSpaceship() && !this.quit && haveFuel()) {
 			Escribe.prompt();	//Muestra por consola: WALL·E>
-			// Lee una instruccion, y se la pasa al interprete que genera la corespondiente instruccion
 			try{
 				instruction = Interpreter.generateInstruction(sc.nextLine());		
 				instruction.configureContext(this, this.navigation, this.itemContainer);
