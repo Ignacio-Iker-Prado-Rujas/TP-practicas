@@ -152,7 +152,7 @@ public class CityLoaderFromTxtFile {
 		}
 	}
 	private String forceString() throws IOException{
-		if(this.stk.nextToken()!=StreamTokenizer.TT_WORD){
+		if(this.stk.nextToken()!=StreamTokenizer.TT_WORD&&stk.ttype!=34/*34Cuando se lee un token entre comillas(Chapuza)*/){
 			throw new WrongCityFormatException("Error, se esperaba un string y se " +
 					"encontro "+ stk.sval + " en la linea "+ stk.lineno());
 		}

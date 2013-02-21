@@ -48,7 +48,7 @@ public class OperateInstruction implements Instruction{
 				this.container.pickItem(this.id);
 			}
 		}
-		else throw new InstructionExecutionException(Escribe.say(Escribe.PROBLEMS_USING_OBJECT.replace("<id>", this.id)));		
+		else throw new InstructionExecutionException(Escribe.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}
 	
 	private RobotEngine robot;

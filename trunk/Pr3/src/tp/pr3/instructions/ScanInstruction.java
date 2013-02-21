@@ -22,6 +22,9 @@ public class ScanInstruction implements Instruction{
 		String[] arrayInstruction = cadena.split(" ");
 		if (arrayInstruction.length == 1 && (arrayInstruction[0].equalsIgnoreCase(SCAN) || arrayInstruction[0].equalsIgnoreCase(ESCANEAR))){
 			return new ScanInstruction();
+		}
+		else if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(SCAN) || arrayInstruction[0].equalsIgnoreCase(ESCANEAR))){
+			return new ScanInstruction(arrayInstruction[1]);
 		}else throw new WrongInstructionFormatException();
 	}
 
