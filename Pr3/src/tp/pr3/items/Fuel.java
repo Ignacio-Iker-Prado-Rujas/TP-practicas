@@ -24,11 +24,6 @@ public class Fuel extends Item {
 	public boolean use(RobotEngine r, NavigationModule n) {
 		if (this.canBeUsed()){
 			r.addFuel(this.power);
-			if (r.getFuel() <= 0) 
-				System.out.println("   * My power is 0");
-			else 
-				System.out.println("   * My power is " + r.getFuel() );
-			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.times--;
 			return true;
 		}

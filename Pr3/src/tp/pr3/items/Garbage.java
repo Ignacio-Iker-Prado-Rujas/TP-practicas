@@ -22,8 +22,6 @@ public class Garbage extends Item {
 	public boolean use(RobotEngine r, NavigationModule n) {
 		if(this.canBeUsed()){
 			r.addRecycledMaterial(this.recycledMaterial);
-			System.out.println("   * My power is " + r.getFuel() );
-			System.out.println("   * My recycled material is: " + r.getRecycledMaterial() );
 			this.canBeUsed = false;
 			return true;
 		}
