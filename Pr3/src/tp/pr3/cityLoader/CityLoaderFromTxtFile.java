@@ -23,7 +23,7 @@ public class CityLoaderFromTxtFile {
 	}
 	private Place parsePlace() throws IOException{
 		String name = forceString();
-		String description = forceString();
+		String description = forceString().replace("_", " ");
 		Boolean isSpaceShip = IS_SPACESHIP.equals(forceString(IS_SPACESHIP, NO_SPACESHIP));
 		return new Place(name, isSpaceShip, description);
 	}
