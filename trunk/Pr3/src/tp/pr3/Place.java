@@ -29,7 +29,7 @@ public class Place {
 					+ LINE_SEPARATOR;
 		} else {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR + "The place contains these objects: "
+					+ LINE_SEPARATOR + "The place contains these objects:"
 					+ this.itemContainer.toString();
 		}
 	}
