@@ -100,7 +100,7 @@ public class RobotEngine {
 		if(!haveFuel())
 			Escribe.say("I run out of fuel. I cannot move. Shutting down...");
 		else if (isSpaceship())	//Si se ha llegado a la nave, se muestra el mensaje correspondiente
-			Escribe.say("I am at my space ship. Bye Bye");
+			Escribe.say("I am at my spaceship. Bye Bye");
 		else
 			Escribe.say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
