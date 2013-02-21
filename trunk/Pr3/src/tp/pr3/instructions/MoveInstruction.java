@@ -34,9 +34,8 @@ public class MoveInstruction implements Instruction{
 		this.navigation.move();
 		Escribe.say(Escribe.MOVING_DIRECTION + this.navigation.getCurrentHeading().toString());
 		Escribe.currentPlace(this.navigation.getCurrentPlace());
-		this.robot.addFuel(-5); //Actualiza el fuel al moverse.
-		Escribe.lookingDirection(this.navigation.getCurrentHeading());
-		
+		System.out.println();
+		this.robot.addFuel(-5); //Actualiza el fuel al moverse.		
 	}
 	private RobotEngine robot;
 	private NavigationModule navigation;
