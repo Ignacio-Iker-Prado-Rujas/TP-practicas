@@ -25,8 +25,7 @@ public class Place {
 		if (this.itemContainer.numberOfItems() == 0) {
 			return this.name + LINE_SEPARATOR + this.description
 					+ LINE_SEPARATOR
-					+ "The place is empty. There are no objects to pick"
-					+ LINE_SEPARATOR;
+					+ "The place is empty. There are no objects to pick";
 		} else {
 			return this.name + LINE_SEPARATOR + this.description
 					+ LINE_SEPARATOR + "The place contains these objects:"
