@@ -20,14 +20,14 @@ public DropInstruction(){
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
-		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(DROP)||arrayInstruction[0].equalsIgnoreCase(TIRAR))){
+		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(DROP)||arrayInstruction[0].equalsIgnoreCase(SOLTAR))){
 			return new DropInstruction(arrayInstruction[1]);
 		}else throw new WrongInstructionFormatException();
 	}
 
 	@Override
 	public String getHelp() {
-		return " DROP|TIRAR <id>";
+		return " DROP|SOLTAR <id>";
 	}
 
 	@Override
@@ -55,5 +55,5 @@ public DropInstruction(){
 	private NavigationModule navigation;
 	
 	private static final String DROP = "DROP";
-	private static final String TIRAR = "TIRAR";
+	private static final String SOLTAR = "SOLTAR";
 }

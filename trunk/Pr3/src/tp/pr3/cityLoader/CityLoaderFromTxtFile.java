@@ -40,10 +40,10 @@ public class CityLoaderFromTxtFile {
 	}
 	private Street parseStreet() throws IOException{
 		forceString(PLACE);
-		Place source = this.places.get(forceNumber());
+		Place source = this.places.get(forceCorrectPlace(forceNumber()));
 		Direction direction = forceDirection();
 		forceString(PLACE);
-		Place tarjet = this.places.get(forceNumber());
+		Place tarjet = this.places.get(forceCorrectPlace(forceNumber()));
 		Boolean isOpen = OPEN.equals(forceString(OPEN, CLOSED));
 		String code;
 		if(!isOpen) code = forceString();
@@ -83,7 +83,7 @@ public class CityLoaderFromTxtFile {
 		int power = forceNumber();
 		int times = forceNumber();
 		forceString(PLACE);
-		this.places.get(forceNumber()).addItem(new Fuel(name, description, power, times));
+		this.places.get(forceCorrectPlace(forceNumber())).addItem(new Fuel(name, description, power, times));
 	}
 	private void parseGarbage(int i) throws IOException {
 		forceNumber(i);
@@ -91,7 +91,7 @@ public class CityLoaderFromTxtFile {
 		String description = forceString();
 		int recycledMaterial = forceNumber();
 		forceString(PLACE);
-		this.places.get(forceNumber()).addItem(new Garbage(name, description, recycledMaterial));
+		this.places.get(forceCorrectPlace(forceNumber())).addItem(new Garbage(name, description, recycledMaterial));
 	}
 	private void parseCodecard(int i) throws IOException {
 		forceNumber(i);
@@ -99,7 +99,12 @@ public class CityLoaderFromTxtFile {
 		String description = forceString();
 		String code = forceString();
 		forceString(PLACE);
-		this.places.get(forceNumber()).addItem(new CodeCard(name, description, code));
+		this.places.get(forceCorrectPlace(forceNumber())).addItem(new CodeCard(name, description, code));
+	}
+	public int forceCorrectPlace(int i)throws WrongCityFormatException{
+		//Si en la posición "i" del array de places está fuera de rango, se lanza una excepción
+		if(i >= this.places.size()||i<0)throw new WrongCityFormatException("Referecia a un place que no existe");
+		return i;
 	}
 	
 	public City loadCity(InputStream file)throws IOException{
