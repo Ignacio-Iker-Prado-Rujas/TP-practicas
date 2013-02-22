@@ -17,12 +17,12 @@ public class RobotEngine {
 		this.quit = false;
 	}
 	
-	public void communicateRobot(Instruction c){
-		c.configureContext(this, this.navigation, this.itemContainer);
+	public void communicateRobot(Instruction instruction){
+		instruction.configureContext(this, this.navigation, this.itemContainer);
 		try{
-			c.execute();
-		}catch (InstructionExecutionException i ){
-			System.err.println(i.getMessage());
+			instruction.execute();
+		}catch (InstructionExecutionException exception ){
+			Escribe.mostrar(exception.getMessage());
 		}
 	}
 	public Street getHeadingStreet(){
@@ -78,16 +78,11 @@ public class RobotEngine {
 	public void startEngine() {
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
-		Instruction instruction = null;
-		while (!isSpaceship() && !this.quit && haveFuel()) {
+		while (haveFuel() && !isSpaceship() && !quit) {
 			Escribe.prompt();	//Muestra por consola: WALL·E>
-			try{
-				instruction = Interpreter.generateInstruction(sc.nextLine());		
-				instruction.configureContext(this, this.navigation, this.itemContainer);
-				try {instruction.execute();}
-				catch (InstructionExecutionException e){
-					System.out.println(e.getMessage());
-				}
+			try{		
+				communicateRobot(Interpreter.generateInstruction(sc.nextLine()));	/*genera una instrucion a partir de la cadena leída y 
+																					 * se la envía al robot para que la ejecute*/
 			}catch (WrongInstructionFormatException e) {
 				Escribe.say(Escribe.NOT_UNDERSTAND);
 			} 

@@ -63,6 +63,9 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static void noExisteFichero(String fichero){
 		System.err.println(NO_EXISTE_FICHERO.replace("<fichero>", fichero));
 	}
+	public static void mostrar(String message){
+		System.out.println(message);
+	}
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 

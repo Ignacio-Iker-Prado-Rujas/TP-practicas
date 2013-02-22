@@ -39,13 +39,13 @@ public class ScanInstruction implements Instruction{
 
 	public void execute() throws InstructionExecutionException{
 		if(this.robotContainer.numberOfItems() == 0) 
-			Escribe.say(Escribe.INV_EMPTY); //say("My inventory is empty");
+			throw new InstructionExecutionException(Escribe.INV_EMPTY); //say("My inventory is empty");(necesaria excepcion para tests)
 		else if (this.id == null) 
-			Escribe.say(Escribe.CARRYING_ITEMS + this.robotContainer.toString());// say("I am carrying the following items" + this.robotContainer.toString());
+			Escribe.say(Escribe.CARRYING_ITEMS + this.robotContainer.toString());
 		else{
 			Item item = this.robotContainer.getItem(id);
 			if (item == null)
-				throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT);//TODO preguntar. //say("I have not such object");
+				throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 			else 
 				Escribe.say(item.toString()); //say(item.toString());
 		}

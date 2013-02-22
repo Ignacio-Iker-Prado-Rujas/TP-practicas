@@ -1,6 +1,5 @@
 package tp.pr3.instructions;
 
-import tp.pr3.Interpreter;
 import tp.pr3.NavigationModule;
 import tp.pr3.RobotEngine;
 import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
@@ -24,14 +23,16 @@ public class HelpInstruction implements Instruction{
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
-		// No necesita configurar nada;
-		
+		this.robot = engine;
 	}
 
 	@Override
 	public void execute() {
-		System.out.println(Interpreter.interpreterHelp());	
+		robot.requestHelp();
 	}
+	
+	private RobotEngine robot;
+	
 	private static final String HELP = "HELP";
 	private static final String AYUDA = "AYUDA";
 }
