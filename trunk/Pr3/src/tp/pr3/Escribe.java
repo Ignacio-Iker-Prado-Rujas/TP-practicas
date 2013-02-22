@@ -27,6 +27,10 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String THERE_IS_NO_STREET = " There is no street in direction <direction>";
 	public static final String STREET_CLOSED = "Arrggg, there is a street but it is closed!";
 	/*********/
+	/*Place*/
+	public static final String PLACE_EMPTY = "The place is empty. There are no objects to pick";
+	public static final String PLACE_CONTAINS = "The place contains these objects:";
+	/*********/
 	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
