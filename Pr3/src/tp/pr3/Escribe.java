@@ -60,9 +60,6 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String PROBLEMS_USING_OBJECT = "I have problems using the object <id>";
 	public static final String NO_MORE_OBJECT = "What a pity! I have no more <id> in my inventory";
 	public static final String MOVING_DIRECTION = "Moving in direction ";
-	public static final String OUT_OF_FUEL = "I run out of fuel. I cannot move. Shutting down...";
-	public static final String IN_SPACESHIP = "I am at my space ship. Bye Bye";
-	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
 	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
@@ -74,6 +71,10 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String PLACE_EMPTY = "The place is empty. There are no objects to pick";
 	public static final String PLACE_CONTAINS = "The place contains these objects:";
 	/*********/
+	/*Final*/
+	public static final String OUT_OF_FUEL = "I run out of fuel. I cannot move. Shutting down...";
+	public static final String IN_SPACESHIP = "I am at my spaceship. Bye bye";
+	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
+	/*********/
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
 }
