@@ -92,11 +92,11 @@ public class RobotEngine {
 	}
 	private void mostrarFinal(){
 		if(!haveFuel())
-			Escribe.say("I run out of fuel. I cannot move. Shutting down...");
+			Escribe.say(Escribe.OUT_OF_FUEL);
 		else if (isSpaceship())	//Si se ha llegado a la nave, se muestra el mensaje correspondiente
-			Escribe.say("I am at my spaceship. Bye bye");
+			Escribe.say(Escribe.IN_SPACESHIP);
 		else
-			Escribe.say("I have communication problems. Bye Bye");	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
+			Escribe.say(Escribe.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
 	private NavigationModule navigation;
 	private int fuel;
