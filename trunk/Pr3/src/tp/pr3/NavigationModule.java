@@ -27,8 +27,15 @@ public class NavigationModule {
 		else this.currentPlace = newStreet.nextPlace(this.currentPlace);		
 	}
 	
-	public Item pickItemFromCurrentPlace(String id){return null;}//TODO implementar y usar
-	public void dropItemAtCurrentPlace(Item it){}
+	public Item pickItemFromCurrentPlace(String id){
+		
+		
+		
+		return null;}//TODO implementar y usar
+	public void dropItemAtCurrentPlace(Item it){
+		
+		
+	}
 	public boolean findItemAtCurrentPlace(String id){return false;}
 	public void initHeading(Direction heading){
 		this.currentHeading = heading;

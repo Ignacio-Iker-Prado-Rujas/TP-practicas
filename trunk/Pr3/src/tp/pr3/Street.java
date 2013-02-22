@@ -60,8 +60,7 @@ public class Street {
 			this.isOpen = true;
 			return true;
 		}
-		else 
-			return false;
+		else return false;
 	}
 	
 	//Compara el codigo de la tarjeta con el de la calle para cerrarla si coinciden
@@ -70,8 +69,7 @@ public class Street {
 			this.isOpen = false;
 			return true;
 		}
-		else 
-			return false;
+		else return false;
 	}
 	
 	//Comprueba si la calle está abierta o cerrada

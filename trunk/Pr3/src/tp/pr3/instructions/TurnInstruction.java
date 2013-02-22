@@ -23,7 +23,7 @@ public class TurnInstruction implements Instruction{
 			if(arrayInstruction[1].equalsIgnoreCase(RIGHT))return new TurnInstruction(Rotation.RIGHT);
 			else if(arrayInstruction[1].equalsIgnoreCase(LEFT))return new TurnInstruction(Rotation.LEFT);
 			else throw new WrongInstructionFormatException();
-			/*Los switch de string no funcionan en infor, asik con is else*/
+			/*Los switch de string no funcionan en infor, asik con if else*/
 		} 
 		else /* cadena que no tenía dos palabras */ throw new WrongInstructionFormatException();
 	}
