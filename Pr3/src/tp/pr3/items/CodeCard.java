@@ -24,12 +24,10 @@ public class CodeCard extends Item {
 		if (calle == null)
 			return false;
 		else {
-			if (calle.isOpen() && calle.close(this))
-				return true;
-			else if (!calle.isOpen() && calle.open(this))
-				return true;
-			else
-				return false;
+			if (calle.isOpen()){
+				return calle.close(this);
+			}
+			else return calle.open(this);
 		}
 	}
 	
