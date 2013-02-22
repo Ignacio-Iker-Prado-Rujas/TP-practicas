@@ -67,7 +67,7 @@ public class RobotEngine {
 		Escribe.lookingDirection(this.navigation.getCurrentHeading());
 		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
-	//Inicia el movimiento de WALL·E
+
 	private boolean haveFuel(){
 		return (this.fuel > 0);//Devuelve true si walle aun tiene combustible.
 	}

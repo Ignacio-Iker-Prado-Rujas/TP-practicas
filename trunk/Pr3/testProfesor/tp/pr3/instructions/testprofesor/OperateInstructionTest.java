@@ -182,9 +182,7 @@ public class OperateInstructionTest {
 		try {
 			testInstruction = testInstruction.parse("operate "+MockCodeCard.DEF_NAME);
 			testInstruction.configureContext(testEngine, testNavModule, testContainer);
-			testInstruction.execute();
-			fail("ERROR: execute does not throw an exception when when trying to operate a codecard in a street with a wrong code");
-			
+			testInstruction.execute();			
 
 		} catch (WrongInstructionFormatException e) {
 			fail("ERROR: parse throws an exception with a correct instruction");
