@@ -24,11 +24,10 @@ public class Place {
 	public String toString() {
 		if (this.itemContainer.numberOfItems() == 0) {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR
-					+ "The place is empty. There are no objects to pick";
+					+ LINE_SEPARATOR + Escribe.PLACE_EMPTY;
 		} else {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR + "The place contains these objects:"
+					+ LINE_SEPARATOR + Escribe.PLACE_CONTAINS
 					+ this.itemContainer.toString();
 		}
 	}
