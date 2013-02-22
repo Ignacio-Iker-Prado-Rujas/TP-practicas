@@ -21,12 +21,9 @@ public class CodeCard extends Item {
 	//La puerta se abre si el codigo de la tarjeta coincide con el de la calle
 	public boolean use(RobotEngine r, NavigationModule n) {
 		Street calle = r.getHeadingStreet();
-		if (calle == null)
-			return false;
+		if (calle == null) return false;
 		else {
-			if (calle.isOpen()){
-				return calle.close(this);
-			}
+			if (calle.isOpen()) return calle.close(this);
 			else return calle.open(this);
 		}
 	}
