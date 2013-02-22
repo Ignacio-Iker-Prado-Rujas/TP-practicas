@@ -173,25 +173,24 @@ public class CityLoaderFromTxtFile {
 		return stk.sval;
 	}
 	
-	private final String OPEN = "open";
-	private final String CLOSED = "closed";
-	private final String BEGIN_CITY = "BeginCity";
-	private final String END_CITY = "EndCity";
-	private final String BEGIN_PLACES = "BeginPlaces";
-	private final String END_PLACES = "EndPlaces";
-	private final String BEGIN_ITEMS = "BeginItems";
-	private final String END_ITEMS = "EndItems";
-	private final String STREET = "street";
-	private final String PLACE = "place";
-	private final String IS_SPACESHIP = "spaceShip";
-	private final String NO_SPACESHIP = "noSpaceShip";
-	private final String BEGIN_STREETS = "BeginStreets";
-	private final String END_STREETS = "EndStreets";
-	private final String FUEL = "fuel";
-	private final String GARBAGE = "garbage";
-	private final String CODE_CARD = "codecard";
+	private static final String OPEN = "open";
+	private static final String CLOSED = "closed";
+	private static final String BEGIN_CITY = "BeginCity";
+	private static final String END_CITY = "EndCity";
+	private static final String BEGIN_PLACES = "BeginPlaces";
+	private static final String END_PLACES = "EndPlaces";
+	private static final String BEGIN_ITEMS = "BeginItems";
+	private static final String END_ITEMS = "EndItems";
+	private static final String STREET = "street";
+	private static final String PLACE = "place";
+	private static final String IS_SPACESHIP = "spaceShip";
+	private static final String NO_SPACESHIP = "noSpaceShip";
+	private static final String BEGIN_STREETS = "BeginStreets";
+	private static final String END_STREETS = "EndStreets";
+	private static final String FUEL = "fuel";
+	private static final String GARBAGE = "garbage";
+	private static final String CODE_CARD = "codecard";
 
-	
 	private StreamTokenizer stk;
 	private ArrayList<Place> places;
     private ArrayList<Street> streets;
