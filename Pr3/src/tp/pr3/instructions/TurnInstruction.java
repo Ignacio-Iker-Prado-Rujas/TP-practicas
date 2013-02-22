@@ -20,13 +20,10 @@ public class TurnInstruction implements Instruction{
 	public Instruction parse(String cadena)  throws WrongInstructionFormatException{
 		String[] arrayInstruction = cadena.split(" ");
 		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(TURN)||arrayInstruction[0].equalsIgnoreCase(GIRAR))) {
-			switch (arrayInstruction[1].toUpperCase()) {
-				case RIGHT: return new TurnInstruction(Rotation.RIGHT);
-				
-				case LEFT: return new TurnInstruction(Rotation.LEFT);
-				
-				default: throw new WrongInstructionFormatException();
-			}
+			if(arrayInstruction[1].equalsIgnoreCase(RIGHT))return new TurnInstruction(Rotation.RIGHT);
+			else if(arrayInstruction[1].equalsIgnoreCase(LEFT))return new TurnInstruction(Rotation.LEFT);
+			else throw new WrongInstructionFormatException();
+			/*Los switch de string no funcionan en infor, asik con is else*/
 		} 
 		else /* cadena que no tenía dos palabras */ throw new WrongInstructionFormatException();
 	}
