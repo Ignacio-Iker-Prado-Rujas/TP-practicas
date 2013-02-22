@@ -28,10 +28,8 @@ public class NavigationModule {
 	}
 	
 	public Item pickItemFromCurrentPlace(String id){
-		
-		
-		
-		return null;}//TODO implementar y usar
+		return this.currentPlace.pickItem(id);
+	}
 	public void dropItemAtCurrentPlace(Item it){
 		
 		

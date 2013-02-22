@@ -40,7 +40,7 @@ public class PickInstruction implements Instruction{
 
 	@Override
 	public void execute() throws InstructionExecutionException{
-		Item item = this.navigation.getCurrentPlace().pickItem(id);
+		Item item = this.navigation.pickItemFromCurrentPlace(id);
 		if(item == null) throw new InstructionExecutionException(Escribe.PLACE_NOT_OBJECT.replace("<id>", id));
 		
 		else if(this.container.addItem(item)) Escribe.say(Escribe.NOW_HAVE.replace("<id>", id));
