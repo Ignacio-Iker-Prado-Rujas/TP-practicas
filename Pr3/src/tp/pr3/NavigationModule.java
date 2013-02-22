@@ -30,11 +30,15 @@ public class NavigationModule {
 	public Item pickItemFromCurrentPlace(String id){
 		return this.currentPlace.pickItem(id);
 	}
-	public void dropItemAtCurrentPlace(Item it){
-		
-		
+	/*En contra de la docu, si ya esta el objeto
+	 *  en el lugar, devuelve false. */ 	
+	public boolean dropItemAtCurrentPlace(Item it){
+		return this.currentPlace.dropItem(it);
 	}
-	public boolean findItemAtCurrentPlace(String id){return false;}
+	/* True si el item buscado esta en el lugar*/
+	public boolean findItemAtCurrentPlace(String id){
+		return this.currentPlace.existItem(id);
+	}
 	public void initHeading(Direction heading){
 		this.currentHeading = heading;
 	}
