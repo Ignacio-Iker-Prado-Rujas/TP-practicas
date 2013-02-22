@@ -42,13 +42,16 @@ public class NavigationModule {
 	public void initHeading(Direction heading){
 		this.currentHeading = heading;
 	}
-	public void scanCurrentPlace(){}
+	public void scanCurrentPlace(){
+		Escribe.mostrar(this.currentPlace.toString());
+	}
 	public Street getHeadingStreet(){
 		return this.city.lookForStreet(this.currentPlace, this.currentHeading);
 	}
 	public Direction getCurrentHeading(){
 		return this.currentHeading;
 	}
+	/*Para los tests, no usar*/
 	public Place getCurrentPlace(){
 		return this.currentPlace;
 	}
