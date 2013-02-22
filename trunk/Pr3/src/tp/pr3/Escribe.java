@@ -23,7 +23,10 @@ public class Escribe {//Interpreter, robotEngine, turnInstruction.
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
 	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
-	
+	/*Streets*/
+	public static final String THERE_IS_NO_STREET = " There is no street in direction <direction>";
+	public static final String STREET_CLOSED = "Arrggg, there is a street but it is closed!";
+	/*********/
 	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
