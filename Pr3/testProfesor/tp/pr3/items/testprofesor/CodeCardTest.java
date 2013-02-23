@@ -53,6 +53,7 @@ public class CodeCardTest {
 		
 		// Now try with a street with the same code
 		Street [] streets = {openClosetreet};
+		testRobot = new MockRobotEngine(openClosetreet); //TODO no estaba
 		testNavModule = new NavigationModule(new City(streets), testPlace);
 		testNavModule.initHeading(Direction.NORTH);
 		assertTrue("ERROR: Heading street has the same code that the code card has but use returns false", testItem.use(testRobot, testNavModule));
@@ -61,6 +62,7 @@ public class CodeCardTest {
 		
 		// There is no heading street
 		testNavModule.rotate(Rotation.LEFT);
+		testRobot = new MockRobotEngine(null); //TODO no estaba
 		assertFalse("ERROR: There is no Heading street but use returns true", testItem.use(testRobot, testNavModule));
 	}
 	
