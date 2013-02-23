@@ -33,8 +33,8 @@ public class NavigationModule {
 	}
 	/*En contra de la docu, si ya esta el objeto
 	 *  en el lugar, devuelve false. */ 	
-	public boolean dropItemAtCurrentPlace(Item it){
-		return this.currentPlace.dropItem(it);
+	public void dropItemAtCurrentPlace(Item it){
+		this.currentPlace.dropItem(it);
 	}
 	/* True si el item buscado esta en el lugar*/
 	public boolean findItemAtCurrentPlace(String id){
