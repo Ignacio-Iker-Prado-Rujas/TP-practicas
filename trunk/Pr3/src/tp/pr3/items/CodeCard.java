@@ -20,7 +20,7 @@ public class CodeCard extends Item {
 	//Devuelve true si se pudo abrir o cerrar la calle con la tarjeta
 	//La puerta se abre si el codigo de la tarjeta coincide con el de la calle
 	public boolean use(RobotEngine r, NavigationModule n) {
-		Street calle = r.getHeadingStreet();
+		Street calle = n.getHeadingStreet();
 		if (calle == null) return false;
 		else {
 			if (calle.isOpen()) return calle.close(this);
