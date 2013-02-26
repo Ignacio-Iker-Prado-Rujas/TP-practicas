@@ -36,6 +36,7 @@ public class OperateInstruction implements Instruction{
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.robot = engine;
 		this.container = robotContainer;	
+		this.navigation = navigation;
 	}
 
 	@Override
