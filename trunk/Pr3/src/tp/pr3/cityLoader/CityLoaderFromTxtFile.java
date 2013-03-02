@@ -16,17 +16,24 @@ import tp.pr3.items.Fuel;
 import tp.pr3.items.Garbage;
 
 public class CityLoaderFromTxtFile {
+	
 	public CityLoaderFromTxtFile() {
 		this.stk = null;
 		this.streets = new ArrayList<Street>();
 		this.places = new ArrayList<Place>();
 	}
+	
+	/* Gestiona el parseo de un place individual */
+	
 	private Place parsePlace() throws IOException{
 		String name = forceString();
 		String description = forceString().replace("_", " ");
 		Boolean isSpaceShip = IS_SPACESHIP.equals(forceString(IS_SPACESHIP, NO_SPACESHIP));
 		return new Place(name, isSpaceShip, description);
 	}
+	
+	/* Gestiona el parseo de los places */
+	
 	private void parsePlaces()throws IOException{
 		forceString(BEGIN_PLACES);
 		int i = 0;

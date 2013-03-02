@@ -1,7 +1,8 @@
 package tp.pr3;
 
-public class Escribe {//Interpreter, robotEngine, turnInstruction.
-
+public class Escribe {
+	
+	/*Clase que acumula el mostrar la información al usuario*/
 	
 	public static void lookingDirection(Direction direction) {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
