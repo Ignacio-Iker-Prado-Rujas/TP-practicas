@@ -7,7 +7,7 @@ import tp.pr3.instructions.Instruction;
 import tp.pr3.instructions.exceptions.WrongInstructionFormatException;
 
 public class Interpreter {
-	//Genera una instrucción a partir del input del usuario 
+	/*Crea un array con las instrucciones que entiende el robot*/
 	private static ArrayList<Instruction> createInstructions() {
         ArrayList<Instruction> instructions = new ArrayList<Instruction>();
         instructions.add(new DropInstruction());
@@ -22,6 +22,13 @@ public class Interpreter {
         return instructions;
 }
 
+	/*Genera uan instrucción a partir de un string:
+	 * Se recorre el array de instrucciones llamando 
+	 * al parse de cada una. Si el parse de una devuelve una
+	 * excepción es que no es de ese tipo, o no es válida.
+	 * Si no lanza una excepción es que es una instrucción
+	 * correcta de ese tipo y se devuelve correctamente inicializada
+	 */
 	public static Instruction generateInstruction(String line) throws WrongInstructionFormatException{
 		ArrayList<Instruction> instructions = createInstructions();
 		for( Instruction  i : instructions ){
