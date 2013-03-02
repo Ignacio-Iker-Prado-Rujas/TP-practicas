@@ -74,7 +74,9 @@ public class NavigationModule {
 	public Direction getCurrentHeading(){
 		return this.currentHeading;
 	}
+	
 	/*Para los tests, no usar*/
+	
 	public Place getCurrentPlace(){
 		return this.currentPlace;
 	}
