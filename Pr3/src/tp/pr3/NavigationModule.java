@@ -7,11 +7,12 @@ public class NavigationModule {
 	public NavigationModule(City city, Place initialPlace) {
 		this.city = city;
 		this.currentPlace = initialPlace;
-		this.currentHeading = Direction.NORTH;
+		this.currentHeading = Direction.NORTH;	// De forma predeterminada mira al norte.
 	}
 	public boolean atSpaceship(){
 		return this.currentPlace.isSpaceship();
 	}
+	/*Recibe una rotation correcta: right o left */
 	public void rotate(Rotation rotation){
 		if(rotation == Rotation.LEFT) this.currentHeading = this.currentHeading.turnLeft();
 		else if(rotation == Rotation.RIGHT) this.currentHeading = this.currentHeading.turnRight();
@@ -28,27 +29,48 @@ public class NavigationModule {
 		else this.currentPlace = newStreet.nextPlace(this.currentPlace);		
 	}
 	
+	/* Coge el objeto indicado con la id del lugar en
+	 * el que está el robot. Devuelve null si no
+	 * hay un objeto con esa id	 */
+	
 	public Item pickItemFromCurrentPlace(String id){
 		return this.currentPlace.pickItem(id);
 	}
-	/*En contra de la docu, si ya esta el objeto
-	 *  en el lugar, devuelve false. */ 	
+	
+	/* Tira el item en el lugar en que está.
+	 * Supone que ya se ha comprobado que en el 
+	 * lugar no hay otro objeto con el midmo id */
+	
 	public void dropItemAtCurrentPlace(Item it){
 		this.currentPlace.dropItem(it);
 	}
-	/* True si el item buscado esta en el lugar*/
+	
+	/* True si el item buscado esta en el lugar. False si no*/
+	
 	public boolean findItemAtCurrentPlace(String id){
 		return this.currentPlace.existItem(id);
 	}
+	
+	/*Inicializa la dirección del robot*/
+	
 	public void initHeading(Direction heading){
 		this.currentHeading = heading;
 	}
+	
+	/* Muestra la información del lugar donde está el robot */
+	
 	public void scanCurrentPlace(){
 		Escribe.mostrar(this.currentPlace.toString());
 	}
+	
+	/* Duevuelve la calle hacia la que está mirando el robot. Null si no hay calle */
+	
 	public Street getHeadingStreet(){
 		return this.city.lookForStreet(this.currentPlace, this.currentHeading);
 	}
+	
+	/*Devuelve el lugar donde está el robot*/
+	
 	public Direction getCurrentHeading(){
 		return this.currentHeading;
 	}
