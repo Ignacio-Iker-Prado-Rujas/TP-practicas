@@ -17,6 +17,9 @@ public DropInstruction(){
 		this.container = null;
 		this.navigation = null;
 	}
+	/* Comprueba que la cadena tenga dos palabras, y que la primera sea drop o soltar 
+	 * Si no cumple las condiciones devuelve una excepción. Si cumple las condiciones
+	 * devuelve una nueva instrucción con la id del objeto que se quiere soltar */
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
@@ -24,19 +27,20 @@ public DropInstruction(){
 			return new DropInstruction(arrayInstruction[1]);
 		}else throw new WrongInstructionFormatException();
 	}
-
+	
 	@Override
 	public String getHelp() {
 		return " DROP|SOLTAR <id>";
 	}
-
+	/* Guarda como atributos lo que vaya a necesitar la instrucción para ejecutarse */
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
 		this.container = robotContainer;
 		this.navigation = navigation;	
 	}
-
+	/* Ejecuta la instrucción. Previamente debe haberse llamado al configure context. Si algo falla devuelve
+	 * una excepción. Utiliza los atributos previamente configurados.  */
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.pickItem(id);
