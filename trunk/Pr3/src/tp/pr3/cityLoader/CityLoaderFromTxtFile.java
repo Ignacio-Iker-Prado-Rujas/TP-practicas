@@ -28,7 +28,7 @@ public class CityLoaderFromTxtFile {
 	private Place parsePlace() throws IOException{
 		String name = forceString();
 		String description = forceString().replace("_", " ");
-		Boolean isSpaceShip = IS_SPACESHIP.equals(forceString(IS_SPACESHIP, NO_SPACESHIP));
+		Boolean isSpaceShip = forceString(IS_SPACESHIP, NO_SPACESHIP);
 		return new Place(name, isSpaceShip, description);
 	}
 	
@@ -54,7 +54,7 @@ public class CityLoaderFromTxtFile {
 		Direction direction = forceDirection();
 		forceString(PLACE);
 		Place tarjet = this.places.get(forceCorrectPlace(forceNumber()));
-		Boolean isOpen = OPEN.equals(forceString(OPEN, CLOSED));
+		Boolean isOpen = forceString(OPEN, CLOSED);	// Si lee open, devuelve true, si es closed devuelve false. Exception cc.
 		String code;
 		if(!isOpen) code = forceString();
 		else code = null;
