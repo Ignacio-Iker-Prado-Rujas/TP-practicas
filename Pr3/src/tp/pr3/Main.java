@@ -5,20 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import tp.pr3.cityLoader.CityLoaderFromTxtFile;
 
-/**
- * Aplicación que utiliza las clases de la práctica sobre el mapa
- * que aparece como ejemplo en el enunciado.
- * 
- * @author PuriArenas
- * @y.exclude
- */
+
 public class Main {
-	/**
-	 * Creates the city, the engine and finally
-	 * starts the simulation
-	 * @param args
-	 * @throws IOException 
-	 */
 	public static void main(String[] args) {
 		/* Comprueba que se le haya pasado un argumento al main (si hay varios se carga el primero)*/
 		if (args.length == 0){
