@@ -56,7 +56,7 @@ public class CityLoaderFromTxtFile {
 		Place tarjet = this.places.get(forceCorrectPlace(forceNumber()));
 		Boolean isOpen = forceString(OPEN, CLOSED);	// Si lee open, devuelve true, si es closed devuelve false. Exception cc.
 		String code;
-		if(!isOpen) code = forceString();
+		if(!isOpen) code = forceString(); // Si la calle está cerrrada se le asocia un código. Si no, no
 		else code = null;
 		return new Street(source, direction, tarjet, isOpen, code);
 	}
