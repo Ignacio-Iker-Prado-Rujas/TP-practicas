@@ -1,5 +1,7 @@
 package tp.pr4.gui;
 
-public class PlaceCell {
+import javax.swing.JButton;
+
+public class PlaceCell extends JButton{
 
 }
