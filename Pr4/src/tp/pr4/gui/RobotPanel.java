@@ -1,5 +1,7 @@
 package tp.pr4.gui;
 
-public class RobotPanel {
+import javax.swing.JPanel;
+
+public class RobotPanel extends JPanel{
 
 }
