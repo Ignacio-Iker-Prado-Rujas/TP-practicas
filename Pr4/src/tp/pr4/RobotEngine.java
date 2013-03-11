@@ -2,6 +2,7 @@ package tp.pr4;
 
 import java.util.Scanner;
 
+import tp.pr4.gui.MainWindow;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
@@ -77,6 +78,7 @@ public class RobotEngine {
 	}
 
 	public void startEngine() {
+		MainWindow ventana = new MainWindow(this);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {

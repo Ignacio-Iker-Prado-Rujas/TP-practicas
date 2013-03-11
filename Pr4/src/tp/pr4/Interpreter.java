@@ -1,25 +1,10 @@
 package tp.pr4;
 
-import java.util.ArrayList;
 
 import tp.pr4.instructions.*;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 
 public class Interpreter {
-	/*Crea un array con las instrucciones que entiende el robot*/
-	private static ArrayList<Instruction> createInstructions() {
-        ArrayList<Instruction> instructions = new ArrayList<Instruction>();
-        instructions.add(new DropInstruction());
-        instructions.add(new HelpInstruction());
-        instructions.add(new MoveInstruction());
-        instructions.add(new OperateInstruction());
-        instructions.add(new PickInstruction());
-        instructions.add(new QuitInstruction());
-        instructions.add(new RadarInstruction());
-        instructions.add(new ScanInstruction());
-        instructions.add(new TurnInstruction());
-        return instructions;
-}
 
 	/*Genera uan instrucción a partir de un string:
 	 * Se recorre el array de instrucciones llamando 
@@ -29,8 +14,7 @@ public class Interpreter {
 	 * correcta de ese tipo y se devuelve correctamente inicializada
 	 */
 	public static Instruction generateInstruction(String line) throws WrongInstructionFormatException{
-		ArrayList<Instruction> instructions = createInstructions();
-		for( Instruction  i : instructions ){
+		for( Instruction  i : arrayInstructions ){
 			try{ 
 				return i.parse(line);
 			} catch( WrongInstructionFormatException w){}
@@ -41,12 +25,17 @@ public class Interpreter {
 	//Devuelve un string con las instrucciones válidas del robot
 	public static String interpreterHelp() {
 		String help = "";
-		ArrayList<Instruction> instructions = createInstructions();
-		for( Instruction  i : instructions ){
+		for( Instruction  i : arrayInstructions ){
 			help += (i.getHelp() + LINE_SEPARATOR);
 		}
 		return help;
 	}
+	
+	private static Instruction[] arrayInstructions = { new DropInstruction(),
+			new HelpInstruction(), new MoveInstruction(),
+			new OperateInstruction(), new PickInstruction(),
+			new QuitInstruction(), new RadarInstruction(),
+			new ScanInstruction(), new TurnInstruction() };
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
