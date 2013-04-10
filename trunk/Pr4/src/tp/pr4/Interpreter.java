@@ -17,9 +17,9 @@ public class Interpreter {
 		for( Instruction  i : arrayInstructions ){
 			try{ 
 				return i.parse(line);
-			} catch(WrongInstructionFormatException w){}
+			} catch (WrongInstructionFormatException w) {}
 		}
-		throw new WrongInstructionFormatException();//Si no ha devuelto ninguna instrucción es que no era válida.
+		throw new WrongInstructionFormatException(); //Si no ha devuelto ninguna instrucción es que no era válida.
 	}
 
 	//Devuelve un string con las instrucciones válidas del robot
