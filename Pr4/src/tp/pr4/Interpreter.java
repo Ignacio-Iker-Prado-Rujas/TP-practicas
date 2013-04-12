@@ -31,11 +31,12 @@ public class Interpreter {
 		return help;
 	}
 	
+	
+	// Quizas hacerlo como java.util.Vector<Instruction> vInstructions = new java.util.Vector<Instruction>();
 	private static Instruction[] arrayInstructions = { new DropInstruction(),
 			new HelpInstruction(), new MoveInstruction(),
 			new OperateInstruction(), new PickInstruction(),
 			new QuitInstruction(), new RadarInstruction(),
 			new ScanInstruction(), new TurnInstruction() };
-
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
