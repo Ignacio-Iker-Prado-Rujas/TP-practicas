@@ -19,22 +19,25 @@ public class RobotEngine {
 		this.quit = false;
 	}
 	
-	public void communicateRobot(Instruction instruction){
+	public void communicateRobot(Instruction instruction) {
 		instruction.configureContext(this, this.navigation, this.itemContainer);
-		try{
+		try {
 			instruction.execute();
-		}catch (InstructionExecutionException exception ){
+		} catch (InstructionExecutionException exception) {
 			Escribe.mostrar(exception.getMessage());
 		}
 	}
-	public Street getHeadingStreet(){
+
+	public Street getHeadingStreet() {
 		return this.navigation.getHeadingStreet();
 	}
-	public void requestQuit(){
+
+	public void requestQuit() {
 		this.quit = true;
 	}
-	
-	// Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser negativo el fuel.
+
+	// Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser
+	// negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
 		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
@@ -65,7 +68,7 @@ public class RobotEngine {
 	public void printRobotState() {
 		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
-	
+
 	// Muestra los mendajes al iniciar el movimiento
 	private void mostrarInicio() {
 		Escribe.currentPlace(this.navigation.getCurrentPlace());

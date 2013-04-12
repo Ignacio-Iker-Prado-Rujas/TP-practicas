@@ -5,47 +5,57 @@ public class Escribe {
 	/*Clase que acumula el mostrar la información al usuario*/
 	
 	public static void lookingDirection(Direction direction) {
-		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
+		System.out
+				.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
-	public static void currentPlace(Place place){
+
+	public static void currentPlace(Place place) {
 		System.out.println(place.toString());
 	}
-	
+
 	public static void prompt() {
 		System.out.print(PROMPT);
 	}
-	public static void validInstructions(String validInstructions){
+
+	public static void validInstructions(String validInstructions) {
 		System.out.println(VALID_INSTRUCTIONS);
 		System.out.println(validInstructions);
 	}
+
 	public static String say(String message) {
 		System.out.println(SAY + message);
-		return SAY + message;	// Para utilizarlo en las excepciones.
+		return SAY + message; // Para utilizarlo en las excepciones.
 	}
-	
-	public static void actualizarEstado(int fuelActual, int recycledActual ){
-		if (fuelActual <= 0) System.out.println(POWER + "0");
-		else System.out.println(POWER + fuelActual );
+
+	public static void actualizarEstado(int fuelActual, int recycledActual) {
+		if (fuelActual <= 0)
+			System.out.println(POWER + "0");
+		else
+			System.out.println(POWER + fuelActual);
 		System.out.println(RECYCLED + recycledActual);
 	}
+
 	public static void llamadaIncorrecta() {
 		System.err.println("Bad params.");
 		System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
 		System.err.println("<mapfile> : file with the description of the city.");
 	}
-	public static void mapaIncorrecto(String message){
+
+	public static void mapaIncorrecto(String message) {
 		System.err.println(message);
 	}
 
-	private static final String NO_EXISTE_FICHERO = "Error reading the map file:" + 
-													" <fichero> (No existe el fichero o el directorio)";
-	
-	public static void noExisteFichero(String fichero){
+	private static final String NO_EXISTE_FICHERO = "Error reading the map file:"
+			+ " <fichero> (No existe el fichero o el directorio)";
+
+	public static void noExisteFichero(String fichero) {
 		System.err.println(NO_EXISTE_FICHERO.replace("<fichero>", fichero));
 	}
-	public static void mostrar(String message){
+
+	public static void mostrar(String message) {
 		System.out.println(message);
 	}
+
 	public static final String LOOK_DIRECTION = "WALL·E is looking at direction <DIR>";
 	public static final String PROMPT = "WALL·E> ";
 	public static final String SAY = "WALL·E says: ";
@@ -64,15 +74,15 @@ public class Escribe {
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
 	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
-	/*Streets*/
+	/* Streets */
 	public static final String THERE_IS_NO_STREET = " There is no street in direction <direction>";
 	public static final String STREET_CLOSED = "Arrggg, there is a street but it is closed!";
 	/*********/
-	/*Place*/
+	/* Place */
 	public static final String PLACE_EMPTY = "The place is empty. There are no objects to pick";
 	public static final String PLACE_CONTAINS = "The place contains these objects:";
 	/*********/
-	/*Final*/
+	/* Final */
 	public static final String OUT_OF_FUEL = "I run out of fuel. I cannot move. Shutting down...";
 	public static final String IN_SPACESHIP = "I am at my spaceship. Bye bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
