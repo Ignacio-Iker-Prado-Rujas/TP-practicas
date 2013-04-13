@@ -27,9 +27,10 @@ public class DropInstruction implements Instruction{
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
-		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(DROP) || arrayInstruction[0].equalsIgnoreCase(SOLTAR))){
+		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(DROP) || arrayInstruction[0].equalsIgnoreCase(SOLTAR)))
 			return new DropInstruction(arrayInstruction[1]);
-		}else throw new WrongInstructionFormatException();
+		else
+			throw new WrongInstructionFormatException();
 	}
 	
 	@Override
@@ -39,8 +40,7 @@ public class DropInstruction implements Instruction{
 	
 	/* Guarda como atributos lo que vaya a necesitar la instrucción para ejecutarse */
 	@Override
-	public void configureContext(RobotEngine engine,
-			NavigationModule navigation, ItemContainer robotContainer) {
+	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer) {
 		this.container = robotContainer;
 		this.navigation = navigation;	
 	}
@@ -52,11 +52,10 @@ public class DropInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.pickItem(id);
-		if(item == null) throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+		if (item == null)
+			throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
-			
 			throw new InstructionExecutionException(Escribe.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
-		
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
 			Escribe.mostrar(Escribe.OBJECT_DROPPED.replace("<id>", id));

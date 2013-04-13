@@ -19,9 +19,9 @@ public class MainWindow {
 		ventana.setLayout(new BorderLayout());
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		RobotPanel robotPanel = new RobotPanel();
-		Botonera botonera = new Botonera();
-		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, botonera, robotPanel);
-		ventana.add(splitPanel, BorderLayout.NORTH);
+		//Botonera botonera = new Botonera();
+		//JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, botonera, robotPanel);
+		//ventana.add(splitPanel, BorderLayout.NORTH);
 	
 		ventana.add(robotPanel, BorderLayout.NORTH);
 		this.ventana.setJMenuBar(new JMenuBar());

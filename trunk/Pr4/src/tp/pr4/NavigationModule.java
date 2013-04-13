@@ -32,8 +32,10 @@ public class NavigationModule {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
 			throw new InstructionExecutionException(Escribe.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
-		else if (!newStreet.isOpen()) throw new InstructionExecutionException(Escribe.STREET_CLOSED);
-		else this.currentPlace = newStreet.nextPlace(this.currentPlace);		
+		else if (!newStreet.isOpen())
+			throw new InstructionExecutionException(Escribe.STREET_CLOSED);
+		else
+			this.currentPlace = newStreet.nextPlace(this.currentPlace);	
 	}
 
 	/*
@@ -92,6 +94,9 @@ public class NavigationModule {
 	public Place getCurrentPlace() {
 		return this.currentPlace;
 	}
+	
+	//Sets a panel in order to show its information in a GUI
+	//TODO: public void setNavigationPanel(NavigationPanel navPanel) {}
 
 	private City city;
 	private Place currentPlace;

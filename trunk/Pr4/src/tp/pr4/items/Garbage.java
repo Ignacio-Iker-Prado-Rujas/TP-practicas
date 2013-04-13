@@ -20,12 +20,11 @@ public class Garbage extends Item {
 	//Recicla la basura, obteniendo material reciclado
 	//Devuelve true si se pudo reciclar
 	public boolean use(RobotEngine r, NavigationModule n) {
-		if(this.canBeUsed()){
+		if (this.canBeUsed()) {
 			r.addRecycledMaterial(this.recycledMaterial);
 			this.canBeUsed = false;
 			return true;
-		}
-		else 
+		} else
 			return false;
 	}
 	

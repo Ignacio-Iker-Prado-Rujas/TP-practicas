@@ -13,20 +13,22 @@ public class City {
 		this.numCalles = cityMap.length;
 	}
 	
-	//Busca una calle en la ciudad que empiece por el lugar dado y que tenga la direccion dada
+	// Busca una calle en la ciudad que empiece por el lugar dado y que tenga la direccion dada
 	public Street lookForStreet(Place currentPlace, Direction currentHeading) {
-		for(int i = 0; i < this.numCalles; i++){
-			if(this.cityMap[i].comeOutFrom(currentPlace, currentHeading)){
+		for (int i = 0; i < this.numCalles; i++) {
+			if (this.cityMap[i].comeOutFrom(currentPlace, currentHeading)) {
 				return cityMap[i];
 			}
 		}
+		// Si hemos recorrido todo el for y no hemos pasado por el return, no esta la buscada
 		return null;
 	}
-	private boolean arrayCityLleno(){
+
+	private boolean arrayCityLleno() {
 		return (this.cityMap.length == this.numCalles);
 	}
 	
-	//Crea un nuevo container copiando el anterior pero con el doble de tamaño
+	//Crea un nuevo container copiando el anterior pero con el doble de tamaño + 1
 	private Street[] newCity(){
 		Street[] newCity= new Street[2 * this.numCalles + 1];	//Se crea el nuevo container con el doble de capacidad
 		for (int i = 0; i < this.numCalles; i++ ) 				//Se copian todos los elementos al nuevo
@@ -35,12 +37,12 @@ public class City {
 	}
 	
 	public void addStreet(Street street){
-		if  (arrayCityLleno()){
+		if  (arrayCityLleno())
 			this.cityMap = newCity();
-		}
 		this.cityMap[this.numCalles] = street;
 		this.numCalles++;
 	}
+	
 	private Street[] cityMap;
 	private int numCalles;
 }

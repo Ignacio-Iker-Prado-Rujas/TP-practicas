@@ -32,7 +32,6 @@ public class Interpreter {
 	}
 	
 	
-	// Quizas hacerlo como java.util.Vector<Instruction> vInstructions = new java.util.Vector<Instruction>();
 	private static Instruction[] arrayInstructions = { new DropInstruction(),
 			new HelpInstruction(), new MoveInstruction(),
 			new OperateInstruction(), new PickInstruction(),
