@@ -36,8 +36,8 @@ public class RobotEngine {
 		this.quit = true;
 	}
 
-	// Incrementa o decrementa la cantidad de fuel que tiene wall e. Puede ser
-	// negativo el fuel.
+	// Incrementa o decrementa la cantidad de fuel que tiene WALL·E 
+	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
 		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
@@ -86,6 +86,14 @@ public class RobotEngine {
 		return this.navigation.atSpaceship();
 	}
 	
+	private void mostrarFinal() {
+		if (!haveFuel())
+			Escribe.say(Escribe.OUT_OF_FUEL);
+		else if (isSpaceship())							//Si se ha llegado a la nave, se muestra el mensaje correspondiente
+			Escribe.say(Escribe.IN_SPACESHIP);
+		else
+			Escribe.say(Escribe.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
+	}
 	
 	public void startEngine() {
 		MainWindow ventana = new MainWindow(this);
@@ -103,15 +111,15 @@ public class RobotEngine {
 		sc.close(); // Cierra el escaner
 		mostrarFinal();
 	}
+
+	//Sets a panel to the navigation module in order to show its information in a GUI
+	//TODO: public void setNavigationPanel(NavigationPanel navPanel) {}
 	
-	private void mostrarFinal() {
-		if (!haveFuel())
-			Escribe.say(Escribe.OUT_OF_FUEL);
-		else if (isSpaceship())							//Si se ha llegado a la nave, se muestra el mensaje correspondiente
-			Escribe.say(Escribe.IN_SPACESHIP);
-		else
-			Escribe.say(Escribe.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
-	}
+	//Sets a panel in order to show the robot information and the container in a GUI
+	//TODO: public void setRobotPanel(RobotPanel robotPanel) {}
+	
+	//Sets the main window of the GUI in order to inform about some robot events
+	//TODO: public void setGUIWindow(MainWindow mainWindow) {}
 	
 	private NavigationModule navigation;
 	private int fuel;

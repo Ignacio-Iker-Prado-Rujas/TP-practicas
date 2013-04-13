@@ -13,21 +13,20 @@ public class Fuel extends Item {
 
 	//True si aun puede usarse, false en caso contrario
 	public boolean canBeUsed() {
-		if(this.times != 0)
+		if (this.times != 0)
 			return true;
-		else 
+		else
 			return false;
 	}
 	
 	//Usa el combustible aportando energia al robot
 	//Devuelve true si se pudo usar
 	public boolean use(RobotEngine r, NavigationModule n) {
-		if (this.canBeUsed()){
+		if (this.canBeUsed()) {
 			r.addFuel(this.power);
 			this.times--;
 			return true;
-		}
-		else 
+		} else
 			return false;
 	}
 	

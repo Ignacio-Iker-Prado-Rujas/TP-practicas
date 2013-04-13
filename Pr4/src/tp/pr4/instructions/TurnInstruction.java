@@ -19,13 +19,16 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public Instruction parse(String cadena)  throws WrongInstructionFormatException{
 		String[] arrayInstruction = cadena.split(" ");
-		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(TURN)||arrayInstruction[0].equalsIgnoreCase(GIRAR))) {
-			if(arrayInstruction[1].equalsIgnoreCase(RIGHT))return new TurnInstruction(Rotation.RIGHT);
-			else if(arrayInstruction[1].equalsIgnoreCase(LEFT))return new TurnInstruction(Rotation.LEFT);
-			else throw new WrongInstructionFormatException();
-			/*Los switch de string no funcionan en infor, asik con if else*/
+		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(TURN) || arrayInstruction[0].equalsIgnoreCase(GIRAR))) {
+			if (arrayInstruction[1].equalsIgnoreCase(RIGHT))
+				return new TurnInstruction(Rotation.RIGHT);
+			else if (arrayInstruction[1].equalsIgnoreCase(LEFT))
+				return new TurnInstruction(Rotation.LEFT);
+			else
+				throw new WrongInstructionFormatException();
 		} 
-		else /* cadena que no tenía dos palabras */ throw new WrongInstructionFormatException();
+		else /* cadena que no tenía dos palabras */ 
+			throw new WrongInstructionFormatException();
 	}
 
 	@Override
@@ -34,8 +37,7 @@ public class TurnInstruction implements Instruction{
 	}
 
 	@Override
-	public void configureContext(RobotEngine engine,
-			NavigationModule navigation, ItemContainer robotContainer) {
+	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
 		this.robot = engine;
 	}
@@ -45,8 +47,8 @@ public class TurnInstruction implements Instruction{
 		this.navigation.rotate(rotation);
 		Escribe.lookingDirection(this.navigation.getCurrentHeading());
 		this.robot.addFuel(-5);
-	
 	}
+	
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";
 	private static final String TURN = "TURN";

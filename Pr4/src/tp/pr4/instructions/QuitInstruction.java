@@ -24,6 +24,7 @@ public class QuitInstruction implements Instruction{
 	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer) {
 		this.robot = engine;
 	}
+	
 	public void execute() {
 		this.robot.requestQuit();
 	}

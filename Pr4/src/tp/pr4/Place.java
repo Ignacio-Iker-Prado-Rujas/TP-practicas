@@ -16,6 +16,7 @@ public class Place {
 	public boolean dropItem(Item item){
 		return this.itemContainer.addItem(item);
 	}
+	
 	public boolean isSpaceship() {
 		return this.isSpaceShip;
 	}
@@ -35,6 +36,7 @@ public class Place {
 	public boolean existItem(String id){
 		return this.itemContainer.containsItem(id);
 	}
+	
 	//Elimina un objeto de un lugar.
 	public Item pickItem(String id){
 		return this.itemContainer.pickItem(id);
@@ -45,6 +47,11 @@ public class Place {
 		return this.itemContainer.addItem(item);
 	}
 
+	//Método que devuelve el nombre del lugar
+	public String getName() {
+		return this.name;
+	}
+	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	//Consta de un nombre, una descripcion y un booleano que indica si hay una nave en el

@@ -12,9 +12,9 @@ public class MoveInstruction implements Instruction{
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
-		if (arrayInstruction.length == 1 && (arrayInstruction[0].equalsIgnoreCase(MOVE) || arrayInstruction[0].equalsIgnoreCase(MOVER))){
+		if (arrayInstruction.length == 1 && (arrayInstruction[0].equalsIgnoreCase(MOVE) || arrayInstruction[0].equalsIgnoreCase(MOVER)))
 			return new MoveInstruction();
-		}else throw new WrongInstructionFormatException();
+		else throw new WrongInstructionFormatException();
 	}
 
 	@Override

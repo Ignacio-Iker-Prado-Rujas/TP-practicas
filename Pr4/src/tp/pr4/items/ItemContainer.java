@@ -25,10 +25,12 @@ public class ItemContainer {
 			newContainer[i] = this.arrayItem[i];
 		return newContainer;
 	}
+	
 	//True si está el item pedido
 	public boolean containsItem(String id){
 		return (estaElItem(id)>=0);
 	}
+	
 	//Devuelve true si está el id buscado, y la posición en la que está
 	//Si el id no está, devuelve false y la posición donde habría que insertarlo
 	private int estaElItem(String id) {
@@ -115,6 +117,9 @@ public class ItemContainer {
 			items += LINE_SEPARATOR + "   " + this.arrayItem[i].id;
 		return items;
 	}
+	
+	//Sets a panel in order to show the container information in a GUI
+	// TODO: public void setRobotPanel(RobotPanel robotPanel) {}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
