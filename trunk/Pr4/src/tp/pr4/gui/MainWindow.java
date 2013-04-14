@@ -1,13 +1,18 @@
 package tp.pr4.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 
 import tp.pr4.RobotEngine;
@@ -46,6 +51,30 @@ public class MainWindow {
 		this.navPanel = new NavigationPanel();
 		ventana.add(this.navPanel, BorderLayout.CENTER);
 		
+		this.menuBar = new JMenuBar();
+		//this.menuBar.setBorderPainted(true);
+		menuBar.setBackground(Color.GRAY);
+		JMenu file = new JMenu("File");
+		file.setBackground(Color.GRAY);
+		//file.setBorderPainted(false);
+		menuBar.add(file);
+		JMenuItem quit = new JMenuItem("Quit");
+		file.add(quit);
+		quit.addActionListener(new ActionListener () {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane salir = new JOptionPane();
+				String[] opciones = {"No way.", "Yes, please."};
+				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[1]);
+				if(n == 1) //Es un poco juno salir con el System.exit, a lo mejor mirar algo de ventana.close()
+					System.exit(0);
+			}
+		});
+		ventana.setJMenuBar(menuBar);
+		
+		
+		
 		//JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, navPanel, robotPanel);
 		//ventana.add(splitPanel, BorderLayout.NORTH);
 	
@@ -62,4 +91,5 @@ public class MainWindow {
 	private RobotEngine robot;
 	private RobotPanel robotPanel;
 	private NavigationPanel navPanel;
+	private JMenuBar menuBar;
 }
