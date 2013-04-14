@@ -93,3 +93,11 @@ public class MainWindow {
 	private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 }
+
+/* Dudas:
+ * 1) ¿Como va lo de la tabla?
+ * 2) ¿Como va la comunicacion con el robotEngine y que hacen los metodos esos?
+ * 3) ¿Tamaño del JTextArea, y está bien? Revisar JScrollPane
+ * 4) ¿Donde se selecciona el UNDO?
+ * 5) ¿Hay que meter un SplitPane en algun lado?
+ */
