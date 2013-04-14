@@ -5,6 +5,7 @@ import tp.pr4.gui.headingIcons.*;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +18,10 @@ public class NavigationPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
 		
-		//JLabel icono = new JLabel(walleNorth);
+		ImageIcon icon = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
+		JLabel walle = new JLabel(icon, JLabel.CENTER);
+		walle.setOpaque(true);
+		mapViewPanel.add(walle, BorderLayout.WEST);
 		
 		JPanel mapPanel = new JPanel(new GridLayout(11, 11));
 		TitledBorder mapa = new TitledBorder("City Map");
@@ -36,9 +40,10 @@ public class NavigationPanel extends JPanel {
 		}
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
-		this.textArea = new JTextArea();
+		this.textArea = new JTextArea("Hello", 5, 2);	//Cambiar
 		TitledBorder texto = new TitledBorder("Log");
 		this.textArea.setBorder(texto);
+		this.textArea.setEditable(false);
 		
 		this.add(mapViewPanel, BorderLayout.CENTER);
 		this.add(textArea, BorderLayout.SOUTH);
