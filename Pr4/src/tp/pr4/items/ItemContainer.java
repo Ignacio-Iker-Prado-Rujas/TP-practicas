@@ -1,5 +1,7 @@
 package tp.pr4.items;
 
+import tp.pr4.gui.RobotPanel;
+
 
 public class ItemContainer {
 	//Constructor del contenedor de items (vacio, sin items)
@@ -119,7 +121,8 @@ public class ItemContainer {
 	}
 	
 	//Sets a panel in order to show the container information in a GUI
-	// TODO: public void setRobotPanel(RobotPanel robotPanel) {}
+	// TODO: 
+	public void setRobotPanel(RobotPanel robotPanel) {}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	

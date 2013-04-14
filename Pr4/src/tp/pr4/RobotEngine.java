@@ -3,6 +3,8 @@ package tp.pr4;
 import java.util.Scanner;
 
 import tp.pr4.gui.MainWindow;
+import tp.pr4.gui.NavigationPanel;
+import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
@@ -96,7 +98,8 @@ public class RobotEngine {
 	}
 	
 	public void startEngine() {
-		MainWindow ventana = new MainWindow(this);
+		MainWindow window = new MainWindow(this);
+		window.setVisible(true);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {
@@ -113,13 +116,16 @@ public class RobotEngine {
 	}
 
 	//Sets a panel to the navigation module in order to show its information in a GUI
-	//TODO: public void setNavigationPanel(NavigationPanel navPanel) {}
+	//TODO: 
+	public void setNavigationPanel(NavigationPanel navPanel) {}
 	
 	//Sets a panel in order to show the robot information and the container in a GUI
-	//TODO: public void setRobotPanel(RobotPanel robotPanel) {}
+	//TODO: 
+	public void setRobotPanel(RobotPanel robotPanel) {}
 	
 	//Sets the main window of the GUI in order to inform about some robot events
-	//TODO: public void setGUIWindow(MainWindow mainWindow) {}
+	//TODO: 
+	public void setGUIWindow(MainWindow mainWindow) {}
 	
 	private NavigationModule navigation;
 	private int fuel;

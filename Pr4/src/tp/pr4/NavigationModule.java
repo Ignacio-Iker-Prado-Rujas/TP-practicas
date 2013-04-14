@@ -1,5 +1,6 @@
 package tp.pr4;
 
+import tp.pr4.gui.NavigationPanel;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;
 
@@ -96,7 +97,10 @@ public class NavigationModule {
 	}
 	
 	//Sets a panel in order to show its information in a GUI
-	//TODO: public void setNavigationPanel(NavigationPanel navPanel) {}
+	//TODO: 
+	public void setNavigationPanel(NavigationPanel navPanel) {
+		
+	}
 
 	private City city;
 	private Place currentPlace;
