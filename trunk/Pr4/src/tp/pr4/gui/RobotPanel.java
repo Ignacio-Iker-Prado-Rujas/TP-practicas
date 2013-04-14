@@ -93,6 +93,7 @@ public class RobotPanel extends JPanel{
 		//CAMPO DE TEXTO: ITEM A RECOGER
 		JTextField item = new JTextField();
 		this.instructionPanel.add(item);
+		//item.getSelectedText(); //Te da el texto del JtextField
 		//INSTRUCCION DROP
 		JButton drop = new JButton("DROP");
 		drop.addActionListener(new ActionListener() {
