@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
@@ -26,17 +27,9 @@ public class NavigationPanel extends JPanel {
 		JPanel mapPanel = new JPanel(new GridLayout(11, 11));
 		TitledBorder mapa = new TitledBorder("City Map");
 		mapPanel.setBorder(mapa);
-		for (int i = 1; i <= 121; i++) {
-			JButton button = new JButton(i+"");
-			/*button.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					campoDeTexto.setText(campoDeTexto.getText()+"i");
-				}
-			});*/
-			mapPanel.add(button);
+		for (int i = 1; i <= width * width; i++) {
+			PlaceCell lugar = new PlaceCell(null);
+			mapPanel.add(lugar);
 		}
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
@@ -45,10 +38,13 @@ public class NavigationPanel extends JPanel {
 		this.textArea.setBorder(texto);
 		this.textArea.setEditable(false);
 		
+		JScrollPane scrollPane = new JScrollPane(this.textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
 		this.add(mapViewPanel, BorderLayout.CENTER);
-		this.add(textArea, BorderLayout.SOUTH);
+		this.add(scrollPane, BorderLayout.SOUTH);
 	}
 
+	private static final int width = 11;
 	private JPanel mapViewPanel;
 	private JTextArea textArea;
 	private static final long serialVersionUID = 1L;	//Daba warning
