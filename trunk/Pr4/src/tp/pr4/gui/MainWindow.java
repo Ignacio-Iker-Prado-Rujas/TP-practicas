@@ -33,7 +33,6 @@ public class MainWindow {
 		this.robot = robot;
 		this.ventana = new JFrame("WALL·E The garbage collector");
 		this.ventana.setSize(1080, 720);
-		//this.ventana.setVisible(true);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		EventQueue.invokeLater(new Runnable() { 
 			public void run() { 
@@ -41,18 +40,15 @@ public class MainWindow {
 				} 
 			});
 		ventana.setLayout(new BorderLayout());
-		
-		
-		
-		
 		this.robotPanel = new RobotPanel();
-		ventana.add(this.robotPanel);
-		//ventana.add(new JButton("El primero")); //este funciona
-		//Botonera botonera = new Botonera();
-		//JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, botonera, robotPanel);
+		ventana.add(this.robotPanel, BorderLayout.NORTH);
+		
+		this.navPanel = new NavigationPanel();
+		ventana.add(this.navPanel, BorderLayout.CENTER);
+		
+		//JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, navPanel, robotPanel);
 		//ventana.add(splitPanel, BorderLayout.NORTH);
 	
-		//ventana.add(robotPanel, BorderLayout.NORTH);
 		//this.ventana.setJMenuBar(new JMenuBar());
 		//ventana.add(new JMenuItem("HOLA"), BorderLayout.NORTH);
 	}
