@@ -122,7 +122,9 @@ public class ItemContainer {
 	
 	//Sets a panel in order to show the container information in a GUI
 	// TODO: 
-	public void setRobotPanel(RobotPanel robotPanel) {}
+	public void setRobotPanel(RobotPanel robotPanel) {
+		
+	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	

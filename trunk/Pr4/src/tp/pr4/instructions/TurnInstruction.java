@@ -8,16 +8,16 @@ import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
 public class TurnInstruction implements Instruction{
-	public TurnInstruction(){
+	public TurnInstruction() {
 		this.rotation = Rotation.UNKNOWN;
 		this.navigation = null;
 	}
-	public TurnInstruction(Rotation rotation){
+	public TurnInstruction(Rotation rotation) {
 		this.rotation = rotation;
 		this.navigation = null;
 	}
 	@Override
-	public Instruction parse(String cadena)  throws WrongInstructionFormatException{
+	public Instruction parse(String cadena)  throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
 		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(TURN) || arrayInstruction[0].equalsIgnoreCase(GIRAR))) {
 			if (arrayInstruction[1].equalsIgnoreCase(RIGHT))
