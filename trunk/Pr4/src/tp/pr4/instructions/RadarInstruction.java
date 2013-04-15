@@ -4,6 +4,7 @@ import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.Place;
 import tp.pr4.RobotEngine;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
@@ -25,6 +26,7 @@ public class RadarInstruction implements Instruction{
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.engine = engine;
 		this.place = navigation.getCurrentPlace();
 		
 	}
@@ -33,6 +35,12 @@ public class RadarInstruction implements Instruction{
 	public void execute() {
 		EscribeConsola.currentPlace(this.place);
 	}
+	@Override
+	public void undo() throws InstructionExecutionException {
+		engine.lastInstruction().undo();
+	}
+	
+	private RobotEngine engine;
 	private Place place;
 	
 	private static final String RADAR = "RADAR";

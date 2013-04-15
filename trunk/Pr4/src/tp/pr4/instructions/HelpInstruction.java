@@ -2,6 +2,7 @@ package tp.pr4.instructions;
 
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
@@ -31,8 +32,14 @@ public class HelpInstruction implements Instruction{
 		robot.requestHelp();
 	}
 	
+	@Override
+	public void undo() throws InstructionExecutionException {
+		robot.lastInstruction().undo();
+	}
+	
 	private RobotEngine robot;
 	
 	private static final String HELP = "HELP";
 	private static final String AYUDA = "AYUDA";
+	
 }

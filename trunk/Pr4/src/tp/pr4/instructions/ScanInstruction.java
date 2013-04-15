@@ -34,6 +34,7 @@ public class ScanInstruction implements Instruction{
 
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.engine = engine;
 		this.robotContainer = robotContainer;
 	}
 
@@ -51,9 +52,16 @@ public class ScanInstruction implements Instruction{
 		}
 		
 	}
+	@Override
+	public void undo() throws InstructionExecutionException {
+		engine.lastInstruction().undo();
+	}
+	
+	private RobotEngine engine;
 	private String id;
 	private ItemContainer robotContainer;
 	
 	private static final String SCAN = "SCAN";
 	private static final String ESCANEAR = "ESCANEAR";
+	
 }

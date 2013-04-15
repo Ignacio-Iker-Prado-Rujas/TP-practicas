@@ -2,6 +2,7 @@ package tp.pr4.instructions;
 
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
@@ -28,6 +29,8 @@ public class QuitInstruction implements Instruction{
 	public void execute() {
 		this.robot.requestQuit();
 	}
+	@Override
+	public void undo() throws InstructionExecutionException {}
 	
 	private RobotEngine robot;
 	
