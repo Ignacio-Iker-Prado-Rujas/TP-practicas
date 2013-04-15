@@ -1,6 +1,7 @@
 package tp.pr4;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
@@ -13,6 +14,7 @@ import tp.pr4.items.ItemContainer;
 public class RobotEngine {
 	// Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
+		this.pilaInstruction = new Stack<Instruction>(); 
 		this.navigation = new NavigationModule(cityMap, initialPlace);
 		this.navigation.initHeading(direction);
 		this.fuel = 100;
@@ -25,6 +27,7 @@ public class RobotEngine {
 		instruction.configureContext(this, this.navigation, this.itemContainer);
 		try {
 			instruction.execute();
+			pilaInstruction.add(instruction);
 		} catch (InstructionExecutionException exception) {
 			EscribeConsola.mostrar(exception.getMessage());
 		}
@@ -136,6 +139,12 @@ public class RobotEngine {
 	//TODO: 
 	public void setGUIWindow(MainWindow mainWindow) {}
 	
+	public Instruction lastInstruction() throws InstructionExecutionException{
+		if (this.pilaInstruction.isEmpty()) throw new InstructionExecutionException();
+		else return this.pilaInstruction.pop();	// Devuelve la cima de la pila, eliminando la instrucción.
+	}
+	
+	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
 	private int fuel;
 	private ItemContainer itemContainer;

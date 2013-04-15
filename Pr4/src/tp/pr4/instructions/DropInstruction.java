@@ -41,6 +41,7 @@ public class DropInstruction implements Instruction{
 	/* Guarda como atributos lo que vaya a necesitar la instrucción para ejecutarse */
 	@Override
 	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer) {
+		this.engine = engine;
 		this.container = robotContainer;
 		this.navigation = navigation;	
 	}
@@ -51,7 +52,7 @@ public class DropInstruction implements Instruction{
 	 */
 	@Override
 	public void execute() throws InstructionExecutionException {
-		Item item = this.container.pickItem(id);
+		item = this.container.pickItem(id);
 		if (item == null)
 			throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
@@ -61,11 +62,21 @@ public class DropInstruction implements Instruction{
 			EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
 		}
 	}
-
+	
+	@Override
+	public void undo() throws InstructionExecutionException {
+		if (item == null) engine.lastInstruction().undo();
+		else 
+		
+	}
+	
+	private Item item; // Para el undo.
 	private String id;
+	private RobotEngine engine;
 	private ItemContainer container;
 	private NavigationModule navigation;
 
 	private static final String DROP = "DROP";
 	private static final String SOLTAR = "SOLTAR";
+	
 }
