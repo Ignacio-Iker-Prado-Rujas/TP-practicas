@@ -5,9 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,10 +12,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
@@ -29,7 +28,7 @@ public class RobotPanel extends JPanel{
 	// Convendria separar en un par de emtodos privados, que es un tocho
 	public RobotPanel (RobotEngine elRobot) {
 		this.setLayout(new BorderLayout());
-		this.instructionPanel = new JPanel(new GridLayout(4, 2));
+		this.instructionPanel = new JPanel(new GridLayout(5, 2));
 		TitledBorder instruct = new TitledBorder("Instructions");
 		this.instructionPanel.setBorder(instruct);
 		configureInstructionPanel();
@@ -39,24 +38,34 @@ public class RobotPanel extends JPanel{
 		TitledBorder info = new TitledBorder("Instructions");
 		info.setTitle("Robot info");
 		this.dataPanel.setBorder(info);
-		JLabel statusPanel = new JLabel("Aqui va el combustible y el material reciclado");
+		JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 5));
+		JLabel fuel = new JLabel("Aquí va el fuel.");
+		statusPanel.add(fuel);
+		JLabel recycled = new JLabel("Y aquí el material reciclado.");
+		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		
 		// Añadir JScrollPane
-		// heredar abstract TableModel
-		final DefaultTableModel tableModel = new DefaultTableModel(new String[] {"Id", "Description"}, 0);
-		final JTable table = new JTable(tableModel); 
-		table.addMouseListener(new MiceListener() {
+		TableModel tableModel = new TableModel(new String[] {"Id", "Description"});
+		JScrollPane infoScroll  = new JScrollPane();
+		//infoScroll.add(tableModel);
+		
+		//final DefaultTableModel tableModel = new DefaultTableModel(new String[] {"Id", "Description"}, 0);
+		//final JTable table = new JTable(tableModel); 
+		/*table.addMouseListener(new MiceListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = tableModel.getRowCount();
 				if (i >= 0)
 					itemId = tableModel.getValueAt(i, 0).toString();
 			}
-		});
+		})*/;
 		//table.setSize(2, 3);
-		this.dataPanel.add(table, BorderLayout.CENTER);
+		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
 		this.add(dataPanel, BorderLayout.CENTER); 
+		
+		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instructionPanel, dataPanel);
+		this.add(splitPanel);
 	}
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
@@ -131,6 +140,19 @@ public class RobotPanel extends JPanel{
 			}		
 		});
 		this.instructionPanel.add(operate);
+		//INSTRUCCION UNDO
+		JButton undo = new JButton("UNDO");
+		undo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}		
+		});
+		this.instructionPanel.add(undo);
+		/*
+		 * Estaria bien poner en el hueco la ultima instruccion 
+		 * realizada a la que se le pudiera hacer UNDO 
+		 */
 	}
 	
 	private JTextField item;

@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
+import javax.swing.KeyStroke;
 
 import tp.pr4.RobotEngine;
 
@@ -66,20 +67,13 @@ public class MainWindow {
 				JOptionPane salir = new JOptionPane();
 				String[] opciones = {"Yes, please.", "No way."};
 				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+						new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
 				if(n == 0)
 					System.exit(0);
 				}
 		});
 		ventana.setJMenuBar(menuBar);
-		
-		
-		
-		//JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, navPanel, robotPanel);
-		//ventana.add(splitPanel, BorderLayout.NORTH);
-	
-		//this.ventana.setJMenuBar(new JMenuBar());
-		//ventana.add(new JMenuItem("HOLA"), BorderLayout.NORTH);
 	}
 	
 	public void setVisible(boolean bool){
@@ -100,10 +94,9 @@ public class MainWindow {
  * 3) ¿Tamaño del JTextArea, y está bien? Revisar JScrollPane
  * 4) ¿Donde se selecciona el UNDO?
  * 5) ¿Hay que meter un SplitPane en algun lado?
+ * 6) Preguntar por KeyStroke
  * 
  * Cosas que hacer:
- * 1) Cabiar el modo de meter la imagen
- * 2) JSplitPane entre instructions y la informacion
- * 3) Crear el Boton del UNDO
+ * 1) NO FUNCIONA: Cabiar el modo de meter la imagen: new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))
  * 4) Hacer la tabla y meter dentro de un JScrollPane
  */
