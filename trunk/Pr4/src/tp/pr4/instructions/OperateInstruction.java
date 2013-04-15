@@ -41,7 +41,7 @@ public class OperateInstruction implements Instruction{
 
 	@Override
 	public void execute() throws InstructionExecutionException {
-		Item item = this.container.getItem(id);
+		item = this.container.getItem(id);
 		if (item == null) throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
 		else if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
@@ -52,6 +52,8 @@ public class OperateInstruction implements Instruction{
 		else throw new InstructionExecutionException(EscribeConsola.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}
 	
+	
+	private Item item;
 	private RobotEngine robot;
 	private NavigationModule navigation;
 	private ItemContainer container;
@@ -59,4 +61,5 @@ public class OperateInstruction implements Instruction{
 	
 	private static final String OPERATE = "OPERATE";
 	private static final String OPERAR = "OPERAR";
+	
 }

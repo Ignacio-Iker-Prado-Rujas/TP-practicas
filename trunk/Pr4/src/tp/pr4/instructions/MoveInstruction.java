@@ -37,10 +37,19 @@ public class MoveInstruction implements Instruction{
 		System.out.println();
 		this.robot.addFuel(-5); //Actualiza el fuel al moverse.		
 	}
+	
+	@Override
+	public void undo() throws InstructionExecutionException {
+		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
+		navigation.move();
+		this.robot.addFuel(5);
+		
+	}
 	private RobotEngine robot;
 	private NavigationModule navigation;
 	
 	
 	private static final String MOVE = "MOVE";
 	private static final String MOVER = "MOVER";
+	
 }

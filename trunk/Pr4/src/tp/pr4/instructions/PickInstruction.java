@@ -34,21 +34,32 @@ public class PickInstruction implements Instruction{
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.engine = engine;
 		this.navigation = navigation;
 		this.container = robotContainer;	
 	}
 
 	@Override
 	public void execute() throws InstructionExecutionException{
-		Item item = this.navigation.pickItemFromCurrentPlace(id);
+		item = this.navigation.pickItemFromCurrentPlace(id);
 		if(item == null) throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 		
 		else if(this.container.addItem(item)) EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
 			
 		else	throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
 	}
+	@Override
+	public void undo() throws InstructionExecutionException {
+		if (item == null) engine.lastInstruction().undo();
+		else{
+			this.container.pickItem(id);
+			this.navigation.dropItemAtCurrentPlace(item);
+		}
+	}
 	
+	private Item item;
 	private String id;
+	private RobotEngine engine;
 	private ItemContainer container;
 	private NavigationModule navigation;
 	
