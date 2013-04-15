@@ -14,5 +14,7 @@ public interface Instruction {
 	public void configureContext(RobotEngine engine, NavigationModule navigation, ItemContainer robotContainer);
 	
 	public void execute() throws InstructionExecutionException;
+	
+	public void undo() throws InstructionExecutionException;
            
 }
