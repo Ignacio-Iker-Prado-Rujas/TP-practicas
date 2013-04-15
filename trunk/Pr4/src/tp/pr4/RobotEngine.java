@@ -115,6 +115,15 @@ public class RobotEngine {
 		mostrarFinal();
 	}
 
+	/*
+	 * Contiene una referencia al RobotPanel que presentará la informa- ción del robot. 
+	 * Es necesario añadir llamadas a los métodos de RobotPanel cada vez que modifiquemos 
+	 * el nivel de combustible o de material reciclado del robot o cada vez que añadamos 
+	 * o eliminamos objetos del inventario. Así mismo guardará una referencia a la 
+	 * MainWindow para avisar sobre los eventos de 􏰃nalización de la simulación así como 
+	 * para presentar los posibles errores que pueden ocurrir al ejecutar las instrucciones.
+	 * */
+	
 	//Sets a panel to the navigation module in order to show its information in a GUI
 	//TODO: 
 	public void setNavigationPanel(NavigationPanel navPanel) {}

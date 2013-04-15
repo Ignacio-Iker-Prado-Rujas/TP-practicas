@@ -91,9 +91,9 @@ public class MainWindow {
 /* Dudas:
  * 1) Preguntar por KeyStroke
  * 2) ¿Como va la comunicacion con el robotEngine y que hacen los metodos esos?
- * 3) 
- * 4) 
- * 5) 
+ * 3) Iniciar en modo ventana vs. consola
+ * 4) Instruccion UNDO
+ * 5) Hacer JOptionPane para cuando no se puede hacer una accion
  * 6) 
  * 
  * Cosas que hacer:
