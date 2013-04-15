@@ -4,6 +4,7 @@ import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
@@ -49,6 +50,11 @@ public class TurnInstruction implements Instruction{
 		this.robot.addFuel(-5);
 	}
 	
+	@Override
+	public void undo() throws InstructionExecutionException {
+		navigation.rotate(rotation.oppositeRotation());
+	}
+	
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";
 	private static final String TURN = "TURN";
@@ -56,5 +62,6 @@ public class TurnInstruction implements Instruction{
 	private RobotEngine robot;
 	private NavigationModule navigation;
 	private Rotation rotation;
+	
 
 }
