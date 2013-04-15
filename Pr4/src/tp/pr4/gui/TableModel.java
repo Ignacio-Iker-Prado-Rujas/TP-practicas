@@ -8,6 +8,7 @@ public class TableModel extends AbstractTableModel {
 		this.columnNames = new String[colNames.length];
 		for(int i = 0; i < colNames.length; i++) 
 			this.columnNames[i] = colNames[i];
+		this.data = new String[0][colNames.length];
 	}
 	
 	public String getColumnName(int col) {
@@ -16,21 +17,21 @@ public class TableModel extends AbstractTableModel {
 	
 	@Override
 	public int getRowCount() {
-		return data.length;
+		return this.data.length;
 	}
 
 	@Override
 	public int getColumnCount() {
-		return columnNames.length;
+		return this.columnNames.length;
 	}
 
 	@Override
 	public String getValueAt(int row, int col) {
-		return data[row][col];
+		return this.data[row][col];
 	}
 	
 	public void setValueAt(String cad, int row, int col) {
-		data[row][col] = cad;
+		this.data[row][col] = cad;
 		fireTableCellUpdated(row, col);
 	}
 	
