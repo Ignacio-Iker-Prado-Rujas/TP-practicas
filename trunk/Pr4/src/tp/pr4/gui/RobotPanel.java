@@ -45,22 +45,10 @@ public class RobotPanel extends JPanel{
 		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		
-		// Añadir JScrollPane
 		TableModel tableModel = new TableModel(new String[] {"Id", "Description"});
-		JScrollPane infoScroll  = new JScrollPane();
-		//infoScroll.add(tableModel);
-		
-		//final DefaultTableModel tableModel = new DefaultTableModel(new String[] {"Id", "Description"}, 0);
-		//final JTable table = new JTable(tableModel); 
-		/*table.addMouseListener(new MiceListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int i = tableModel.getRowCount();
-				if (i >= 0)
-					itemId = tableModel.getValueAt(i, 0).toString();
-			}
-		})*/;
-		//table.setSize(2, 3);
+		JTable table = new JTable(tableModel);
+		table.setPreferredScrollableViewportSize(null);
+		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
 		this.add(dataPanel, BorderLayout.CENTER); 
 		
