@@ -35,7 +35,7 @@ public class MainWindow {
 			on it in order to display the place description (similar to the RADAR command).
 		*/
 	
-	public MainWindow(RobotEngine elRobot){
+	public MainWindow(RobotEngine elRobot) {
 		this.robot = elRobot;
 		this.ventana = new JFrame("WALL·E The garbage collector");
 		this.ventana.setSize(1080, 720);	
@@ -89,14 +89,13 @@ public class MainWindow {
 }
 
 /* Dudas:
- * 1) ¿Como va lo de la tabla?
+ * 1) Preguntar por KeyStroke
  * 2) ¿Como va la comunicacion con el robotEngine y que hacen los metodos esos?
- * 3) ¿Tamaño del JTextArea, y está bien? Revisar JScrollPane
- * 4) ¿Donde se selecciona el UNDO?
- * 5) ¿Hay que meter un SplitPane en algun lado?
- * 6) Preguntar por KeyStroke
+ * 3) 
+ * 4) 
+ * 5) 
+ * 6) 
  * 
  * Cosas que hacer:
- * 1) NO FUNCIONA: Cabiar el modo de meter la imagen: new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))
- * 4) Hacer la tabla y meter dentro de un JScrollPane
+ * 1) NO FUNCIONA: Cabiar el modo de meter la imagen: ¿new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))?
  */

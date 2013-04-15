@@ -17,7 +17,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.AbstractTableModel;
 
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
@@ -25,7 +24,7 @@ import tp.pr4.instructions.*;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
-	// Convendria separar en un par de emtodos privados, que es un tocho
+	// Convendria separar en un par de metodos privados, que es un tocho
 	public RobotPanel (RobotEngine elRobot) {
 		this.setLayout(new BorderLayout());
 		this.instructionPanel = new JPanel(new GridLayout(5, 2));
@@ -63,7 +62,7 @@ public class RobotPanel extends JPanel{
 		move.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				robot.communicateRobot(new MoveInstruction());
 			}		
 		});
 		this.instructionPanel.add(move);
@@ -86,13 +85,13 @@ public class RobotPanel extends JPanel{
 		turn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				robot.communicateRobot(new TurnInstruction((Rotation) directions.getSelectedItem())); //Este cast harbrá que cambiarlo
 			}		
 		});
 		this.instructionPanel.add(turn);
 		//DIRECION DE LA ROTACION
 		Rotation[] dir = {Rotation.LEFT, Rotation.RIGHT};
-		JComboBox<Rotation> directions = new JComboBox<Rotation>(dir);
+		directions = new JComboBox<Rotation>(dir);
 		this.instructionPanel.add(directions);
 		// System.out.println(directions.getSelectedItem()); //Este metodo nos da la rotacion seleccionada
 		// directions.setSelectedItem(Rotation.RIGHT); 		 //Y este lo modifica
@@ -115,7 +114,7 @@ public class RobotPanel extends JPanel{
 		drop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				robot.communicateRobot(new DropInstruction(/*y le pasas lo que haya en el id de la tabla*/));
 			}		
 		});
 		this.instructionPanel.add(drop);
@@ -124,7 +123,7 @@ public class RobotPanel extends JPanel{
 		operate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				robot.communicateRobot(new OperateInstruction(/*y le pasas lo que haya en el id de la tabla*/));
 			}		
 		});
 		this.instructionPanel.add(operate);
@@ -143,6 +142,11 @@ public class RobotPanel extends JPanel{
 		 */
 	}
 	
+	/*public void setModelTable() { // o algo asi
+		
+	}*/
+	
+	private JComboBox<Rotation> directions;
 	private JTextField item;
 	private RobotEngine robot;
 	private String itemId;
