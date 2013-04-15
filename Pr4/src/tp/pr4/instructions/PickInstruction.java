@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -41,11 +41,11 @@ public class PickInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException{
 		Item item = this.navigation.pickItemFromCurrentPlace(id);
-		if(item == null) throw new InstructionExecutionException(Escribe.PLACE_NOT_OBJECT.replace("<id>", id));
+		if(item == null) throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 		
-		else if(this.container.addItem(item)) Escribe.say(Escribe.NOW_HAVE.replace("<id>", id));
+		else if(this.container.addItem(item)) EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
 			
-		else	throw new InstructionExecutionException(Escribe.HAD_OBJECT.replace("<id>", id));		
+		else	throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
 	}
 	
 	private String id;

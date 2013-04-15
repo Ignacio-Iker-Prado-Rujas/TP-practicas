@@ -1,6 +1,6 @@
 package tp.pr4;
 
-public class Escribe {
+public class EscribeConsola {
 	
 	/*Clase que acumula el mostrar la información al usuario*/
 	

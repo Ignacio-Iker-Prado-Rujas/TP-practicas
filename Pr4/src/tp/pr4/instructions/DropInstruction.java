@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -53,12 +53,12 @@ public class DropInstruction implements Instruction{
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.pickItem(id);
 		if (item == null)
-			throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
-			throw new InstructionExecutionException(Escribe.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
-			Escribe.mostrar(Escribe.OBJECT_DROPPED.replace("<id>", id));
+			EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
 		}
 	}
 

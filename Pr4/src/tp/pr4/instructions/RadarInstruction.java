@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.Place;
 import tp.pr4.RobotEngine;
@@ -31,7 +31,7 @@ public class RadarInstruction implements Instruction{
 
 	@Override
 	public void execute() {
-		Escribe.currentPlace(this.place);
+		EscribeConsola.currentPlace(this.place);
 	}
 	private Place place;
 	

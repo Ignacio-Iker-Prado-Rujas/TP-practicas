@@ -34,10 +34,10 @@ public class MainWindow {
 			on it in order to display the place description (similar to the RADAR command).
 		*/
 	
-	public MainWindow(RobotEngine robot){
-		this.robot = robot;
+	public MainWindow(RobotEngine elRobot){
+		this.robot = elRobot;
 		this.ventana = new JFrame("WALL·E The garbage collector");
-		this.ventana.setSize(1080, 720);
+		this.ventana.setSize(1080, 720);	
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		EventQueue.invokeLater(new Runnable() { 
 			public void run() { 
@@ -45,7 +45,7 @@ public class MainWindow {
 				} 
 			});
 		ventana.setLayout(new BorderLayout());
-		this.robotPanel = new RobotPanel();
+		this.robotPanel = new RobotPanel(this.robot);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
 		
 		this.navPanel = new NavigationPanel();
@@ -64,12 +64,12 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane salir = new JOptionPane();
-				String[] opciones = {"No way.", "Yes, please."};
+				String[] opciones = {"Yes, please.", "No way."};
 				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[1]);
-				if(n == 1) //Es un poco juno salir con el System.exit, a lo mejor mirar algo de ventana.close()
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
+				if(n == 0)
 					System.exit(0);
-			}
+				}
 		});
 		ventana.setJMenuBar(menuBar);
 		
@@ -100,4 +100,10 @@ public class MainWindow {
  * 3) ¿Tamaño del JTextArea, y está bien? Revisar JScrollPane
  * 4) ¿Donde se selecciona el UNDO?
  * 5) ¿Hay que meter un SplitPane en algun lado?
+ * 
+ * Cosas que hacer:
+ * 1) Cabiar el modo de meter la imagen
+ * 2) JSplitPane entre instructions y la informacion
+ * 3) Crear el Boton del UNDO
+ * 4) Hacer la tabla y meter dentro de un JScrollPane
  */

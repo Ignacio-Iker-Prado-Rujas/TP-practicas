@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
@@ -45,7 +45,7 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public void execute() {
 		this.navigation.rotate(rotation);
-		Escribe.lookingDirection(this.navigation.getCurrentHeading());
+		EscribeConsola.lookingDirection(this.navigation.getCurrentHeading());
 		this.robot.addFuel(-5);
 	}
 	

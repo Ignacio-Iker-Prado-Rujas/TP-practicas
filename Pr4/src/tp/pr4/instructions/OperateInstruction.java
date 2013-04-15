@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -42,14 +42,14 @@ public class OperateInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		Item item = this.container.getItem(id);
-		if (item == null) throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
+		if (item == null) throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
 		else if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
-				Escribe.say(Escribe.NO_MORE_OBJECT.replace("<id>", this.id));
+				EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", this.id));
 				this.container.pickItem(this.id);
 			}
 		}
-		else throw new InstructionExecutionException(Escribe.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
+		else throw new InstructionExecutionException(EscribeConsola.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}
 	
 	private RobotEngine robot;

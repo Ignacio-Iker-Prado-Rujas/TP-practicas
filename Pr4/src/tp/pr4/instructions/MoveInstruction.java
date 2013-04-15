@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -32,8 +32,8 @@ public class MoveInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		this.navigation.move();
-		Escribe.say(Escribe.MOVING_DIRECTION + this.navigation.getCurrentHeading().toString());
-		Escribe.currentPlace(this.navigation.getCurrentPlace());
+		EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.navigation.getCurrentHeading().toString());
+		EscribeConsola.currentPlace(this.navigation.getCurrentPlace());
 		System.out.println();
 		this.robot.addFuel(-5); //Actualiza el fuel al moverse.		
 	}

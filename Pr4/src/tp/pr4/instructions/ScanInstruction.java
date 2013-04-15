@@ -1,6 +1,6 @@
 package tp.pr4.instructions;
 
-import tp.pr4.Escribe;
+import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
@@ -39,15 +39,15 @@ public class ScanInstruction implements Instruction{
 
 	public void execute() throws InstructionExecutionException{
 		if(this.robotContainer.numberOfItems() == 0) 
-			throw new InstructionExecutionException(Escribe.INV_EMPTY); //say("My inventory is empty");(necesaria excepcion para tests)
+			throw new InstructionExecutionException(EscribeConsola.INV_EMPTY); //say("My inventory is empty");(necesaria excepcion para tests)
 		else if (this.id == null) 
-			Escribe.say(Escribe.CARRYING_ITEMS + this.robotContainer.toString());
+			EscribeConsola.say(EscribeConsola.CARRYING_ITEMS + this.robotContainer.toString());
 		else{
 			Item item = this.robotContainer.getItem(id);
 			if (item == null)
-				throw new InstructionExecutionException(Escribe.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+				throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 			else 
-				Escribe.say(item.toString()); //say(item.toString());
+				EscribeConsola.say(item.toString()); //say(item.toString());
 		}
 		
 	}

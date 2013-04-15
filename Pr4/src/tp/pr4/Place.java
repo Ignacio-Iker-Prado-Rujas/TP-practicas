@@ -25,10 +25,10 @@ public class Place {
 	public String toString() {
 		if (this.itemContainer.numberOfItems() == 0) {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR + Escribe.PLACE_EMPTY;
+					+ LINE_SEPARATOR + EscribeConsola.PLACE_EMPTY;
 		} else {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR + Escribe.PLACE_CONTAINS
+					+ LINE_SEPARATOR + EscribeConsola.PLACE_CONTAINS
 					+ this.itemContainer.toString();
 		}
 	}
