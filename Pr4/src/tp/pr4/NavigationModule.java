@@ -96,6 +96,10 @@ public class NavigationModule {
 		return this.currentPlace;
 	}
 	
+	/*Necesita que algunos de sus métodos avisen 
+	 * a la interfaz de Swing sobre los cambios de orientación 
+	 * del robot así como de los cambios de lugar.*/
+	
 	//Sets a panel in order to show its information in a GUI
 	//TODO: 
 	public void setNavigationPanel(NavigationPanel navPanel) {
