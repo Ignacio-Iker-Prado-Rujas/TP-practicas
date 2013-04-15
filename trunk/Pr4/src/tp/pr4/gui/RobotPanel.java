@@ -5,22 +5,29 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
+import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
+import tp.pr4.instructions.*;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
 	// Convendria separar en un par de emtodos privados, que es un tocho
-	public RobotPanel () {
+	public RobotPanel (RobotEngine elRobot) {
 		this.setLayout(new BorderLayout());
 		this.instructionPanel = new JPanel(new GridLayout(4, 2));
 		TitledBorder instruct = new TitledBorder("Instructions");
@@ -34,12 +41,19 @@ public class RobotPanel extends JPanel{
 		this.dataPanel.setBorder(info);
 		JLabel statusPanel = new JLabel("Aqui va el combustible y el material reciclado");
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
-		/* Esto habra que ver como se hace
-		 * Vector<String> nombCol = new Vector<String>();
-		 * nombCol.add("Id"); 
-		 * nombCol.add("Description");
-		*/
-		JTable table = new JTable(7, 2); //Habra que cambiar el numero
+		
+		// Añadir JScrollPane
+		// heredar abstract TableModel
+		final DefaultTableModel tableModel = new DefaultTableModel(new String[] {"Id", "Description"}, 0);
+		final JTable table = new JTable(tableModel); 
+		table.addMouseListener(new MiceListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = tableModel.getRowCount();
+				if (i >= 0)
+					itemId = tableModel.getValueAt(i, 0).toString();
+			}
+		});
 		//table.setSize(2, 3);
 		this.dataPanel.add(table, BorderLayout.CENTER);
 		this.add(dataPanel, BorderLayout.CENTER); 
@@ -58,11 +72,16 @@ public class RobotPanel extends JPanel{
 		this.instructionPanel.add(move);
 		//INSTRUCCION QUIT
 		JButton quit = new JButton("QUIT");
-		quit.addActionListener(new ActionListener() {
+		quit.addActionListener(new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-			}		
+				JOptionPane salir = new JOptionPane();
+				String[] opciones = {"Yes, please.", "No way."};
+				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
+				if(n == 0)
+					System.exit(0);
+				}
 		});
 		this.instructionPanel.add(quit);
 		//INSTRUCCION TURN
@@ -86,14 +105,14 @@ public class RobotPanel extends JPanel{
 		pick.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-			}		
+				if (item.getText() != null)
+					robot.communicateRobot(new PickInstruction(item.getText()));
+			}
 		});
 		this.instructionPanel.add(pick);
 		//CAMPO DE TEXTO: ITEM A RECOGER
-		JTextField item = new JTextField();
+		item = new JTextField();
 		this.instructionPanel.add(item);
-		//item.getSelectedText(); //Te da el texto del JtextField
 		//INSTRUCCION DROP
 		JButton drop = new JButton("DROP");
 		drop.addActionListener(new ActionListener() {
@@ -114,6 +133,9 @@ public class RobotPanel extends JPanel{
 		this.instructionPanel.add(operate);
 	}
 	
+	private JTextField item;
+	private RobotEngine robot;
+	private String itemId;
 	private JPanel instructionPanel;
 	private JPanel dataPanel;
 	private static final long serialVersionUID = 1L;	//Daba warning

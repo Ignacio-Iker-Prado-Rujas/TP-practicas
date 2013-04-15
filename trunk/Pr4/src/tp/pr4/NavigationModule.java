@@ -32,9 +32,9 @@ public class NavigationModule {
 	public void move() throws InstructionExecutionException {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
-			throw new InstructionExecutionException(Escribe.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
+			throw new InstructionExecutionException(EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
 		else if (!newStreet.isOpen())
-			throw new InstructionExecutionException(Escribe.STREET_CLOSED);
+			throw new InstructionExecutionException(EscribeConsola.STREET_CLOSED);
 		else
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);	
 	}
@@ -72,7 +72,7 @@ public class NavigationModule {
 	/* Muestra la información del lugar donde está el robot */
 
 	public void scanCurrentPlace() {
-		Escribe.mostrar(this.currentPlace.toString());
+		EscribeConsola.mostrar(this.currentPlace.toString());
 	}
 
 	/*

@@ -26,7 +26,7 @@ public class RobotEngine {
 		try {
 			instruction.execute();
 		} catch (InstructionExecutionException exception) {
-			Escribe.mostrar(exception.getMessage());
+			EscribeConsola.mostrar(exception.getMessage());
 		}
 	}
 
@@ -42,13 +42,13 @@ public class RobotEngine {
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
-		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
+		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
-		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
+		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	// Para los tests
@@ -63,19 +63,19 @@ public class RobotEngine {
 
 	// Muestra las instrucciones que reconoce WALL·E
 	public void requestHelp() {
-		Escribe.validInstructions(Interpreter.interpreterHelp());
+		EscribeConsola.validInstructions(Interpreter.interpreterHelp());
 	}
 
 	// Escribe el estado de WALL·E
 	public void printRobotState() {
-		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
+		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	// Muestra los mendajes al iniciar el movimiento
 	private void mostrarInicio() {
-		Escribe.currentPlace(this.navigation.getCurrentPlace());
-		Escribe.lookingDirection(this.navigation.getCurrentHeading());
-		Escribe.actualizarEstado(this.fuel, this.recycledMaterial);
+		EscribeConsola.currentPlace(this.navigation.getCurrentPlace());
+		EscribeConsola.lookingDirection(this.navigation.getCurrentHeading());
+		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	// Devuelve true si WALL·E aun tiene combustible
@@ -90,11 +90,11 @@ public class RobotEngine {
 	
 	private void mostrarFinal() {
 		if (!haveFuel())
-			Escribe.say(Escribe.OUT_OF_FUEL);
+			EscribeConsola.say(EscribeConsola.OUT_OF_FUEL);
 		else if (isSpaceship())							//Si se ha llegado a la nave, se muestra el mensaje correspondiente
-			Escribe.say(Escribe.IN_SPACESHIP);
+			EscribeConsola.say(EscribeConsola.IN_SPACESHIP);
 		else
-			Escribe.say(Escribe.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
+			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
 	
 	public void startEngine() {
@@ -103,12 +103,12 @@ public class RobotEngine {
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {
-			Escribe.prompt(); // Muestra por consola: WALL·E>
+			EscribeConsola.prompt(); // Muestra por consola: WALL·E>
 			try {
 				// Genera una instrucion a partir de la cadena leída y se la envía al robot para que la ejecute
 				communicateRobot(Interpreter.generateInstruction(sc.nextLine()));	
 			} catch (WrongInstructionFormatException e) {
-				Escribe.say(Escribe.NOT_UNDERSTAND);
+				EscribeConsola.say(EscribeConsola.NOT_UNDERSTAND);
 			}
 		}
 		sc.close(); // Cierra el escaner

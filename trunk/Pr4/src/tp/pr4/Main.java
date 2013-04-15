@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Comprueba que se le haya pasado un argumento al main (si hay varios se carga el primero)
 		if (args.length == 0) {
-			Escribe.llamadaIncorrecta();
+			EscribeConsola.llamadaIncorrecta();
 			System.exit(1);
 		}
 		// Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
@@ -18,7 +18,7 @@ public class Main {
 		try {
 			input = new FileInputStream(args[0]);
 		} catch (FileNotFoundException e) {
-			Escribe.noExisteFichero(args[0]);
+			EscribeConsola.noExisteFichero(args[0]);
 			System.exit(2);
 		}
 		// Carga el mapa de archivo
@@ -27,7 +27,7 @@ public class Main {
 		try {
 			city = cityLoader.loadCity(input);
 		} catch (IOException e) {
-			Escribe.mapaIncorrecto(e.getMessage());
+			EscribeConsola.mapaIncorrecto(e.getMessage());
 			System.exit(2);
 		}
 		/**
