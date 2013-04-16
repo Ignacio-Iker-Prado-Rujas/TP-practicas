@@ -3,11 +3,14 @@ package tp.pr4;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.apache.commons.cli.*;
 
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
 
 public class Main {
 	public static void main(String[] args) {
+		
+		Options option = new Options();
 		// Comprueba que se le haya pasado un argumento al main (si hay varios se carga el primero)
 		if (args.length == 0) {
 			EscribeConsola.llamadaIncorrecta();
