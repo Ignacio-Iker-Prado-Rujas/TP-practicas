@@ -26,6 +26,7 @@ public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
 	// Convendria separar en un par de metodos privados, que es un tocho
 	public RobotPanel (RobotEngine elRobot) {
+		this.robot = elRobot;
 		this.setLayout(new BorderLayout());
 		this.instructionPanel = new JPanel(new GridLayout(5, 2));
 		TitledBorder instruct = new TitledBorder("Instructions");
