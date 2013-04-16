@@ -19,6 +19,8 @@ public abstract class Item {
 	//Al ser abstracto el metodo, estara implementado en la clase hija
 	public abstract boolean use(RobotEngine r, NavigationModule n);
 	
+	public abstract void desUse(RobotEngine r, NavigationModule n);
+	
 	public String toString(){
 		return this.id + ": " + this.description;
 	}

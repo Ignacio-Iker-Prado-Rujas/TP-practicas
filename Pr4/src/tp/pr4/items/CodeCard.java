@@ -31,6 +31,16 @@ public class CodeCard extends Item {
 		}
 	}
 	
+	public void desUse(RobotEngine r, NavigationModule n){
+		Street calle = n.getHeadingStreet();
+		if (calle != null){
+			if (calle.isOpen())
+				calle.close(this);
+			else
+				calle.open(this);
+		}
+	}
+	
 	//Devuelve el código de la tarjeta.
 	public String getCode(){
 		return this.code;
