@@ -52,7 +52,11 @@ public class OperateInstruction implements Instruction{
 		else throw new InstructionExecutionException(EscribeConsola.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}
 	
-	
+	@Override
+	public void undo() throws InstructionExecutionException {
+			if(item == null) robot.lastInstruction().undo();
+			else item.desUse(robot, navigation);
+	}
 	private Item item;
 	private RobotEngine robot;
 	private NavigationModule navigation;
@@ -61,5 +65,6 @@ public class OperateInstruction implements Instruction{
 	
 	private static final String OPERATE = "OPERATE";
 	private static final String OPERAR = "OPERAR";
+
 	
 }

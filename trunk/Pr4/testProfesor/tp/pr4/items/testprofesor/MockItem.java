@@ -34,4 +34,10 @@ public class MockItem extends Item {
 		return true;
 	}
 
+	@Override
+	public void desUse(RobotEngine r, NavigationModule n) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
