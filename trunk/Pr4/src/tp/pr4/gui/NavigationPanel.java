@@ -31,6 +31,7 @@ public class NavigationPanel extends JPanel {
 			PlaceCell lugar = new PlaceCell();
 			mapPanel.add(lugar);
 		}
+		// Alñadir atributo array de placecells con coordenadas x, y
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
 		this.textArea = new JTextArea("Hello", 5, 2);	//Cambiar
