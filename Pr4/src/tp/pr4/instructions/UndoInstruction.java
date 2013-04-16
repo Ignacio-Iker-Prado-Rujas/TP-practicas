@@ -6,9 +6,7 @@ import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr4.items.ItemContainer;
 
-public class UndoInstruction implements Instruction{ 
-
-
+public class UndoInstruction implements Instruction { 
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
