@@ -28,7 +28,7 @@ public class NavigationPanel extends JPanel {
 		TitledBorder mapa = new TitledBorder("City Map");
 		mapPanel.setBorder(mapa);
 		for (int i = 1; i <= width * width; i++) {
-			PlaceCell lugar = new PlaceCell(null);
+			PlaceCell lugar = new PlaceCell();
 			mapPanel.add(lugar);
 		}
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
