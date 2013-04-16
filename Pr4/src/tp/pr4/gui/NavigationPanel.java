@@ -18,7 +18,7 @@ public class NavigationPanel extends JPanel {
 	public NavigationPanel() {
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
-		
+		 
 		ImageIcon icon = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
 		JLabel walle = new JLabel(icon, JLabel.CENTER);
 		walle.setOpaque(true);
