@@ -133,7 +133,7 @@ public class RobotPanel extends JPanel{
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				robot.communicateRobot(new UndoInstruction());
 			}		
 		});
 		this.instructionPanel.add(undo);
