@@ -30,6 +30,10 @@ public class Fuel extends Item {
 			return false;
 	}
 	
+	public void desUse(RobotEngine r, NavigationModule n){
+		
+		
+	}
 	//Devuelve una cadena con la energia y el numero de veces que se puede usar un item en concreto
 	public String toString() {
 		return super.toString() + "// power = " + this.power + ", times = " + this.times;
