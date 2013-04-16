@@ -28,6 +28,11 @@ public class Garbage extends Item {
 			return false;
 	}
 	
+	public void desUse(RobotEngine r, NavigationModule n){
+		r.addRecycledMaterial(-this.recycledMaterial);
+		this.canBeUsed = true;
+	}
+	
 	public String toString(){
 		return super.toString() + "// recycled material = " + this.recycledMaterial;
 	}
