@@ -53,6 +53,7 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public void undo() throws InstructionExecutionException {
 		navigation.rotate(rotation.oppositeRotation());
+		this.robot.addFuel(5);
 	}
 	
 	private static final String RIGHT = "RIGHT";
