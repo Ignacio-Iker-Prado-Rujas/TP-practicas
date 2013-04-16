@@ -56,6 +56,7 @@ public class EscribeConsola {
 		System.out.println(message);
 	}
 
+	public static final String NOT_MORE_INSTRUCTIONS = "No hay instrucciones anteriores";
 	public static final String LOOK_DIRECTION = "WALL·E is looking at direction <DIR>";
 	public static final String PROMPT = "WALL·E> ";
 	public static final String SAY = "WALL·E says: ";

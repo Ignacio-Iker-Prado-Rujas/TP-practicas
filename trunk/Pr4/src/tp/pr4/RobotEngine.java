@@ -140,7 +140,7 @@ public class RobotEngine {
 	public void setGUIWindow(MainWindow mainWindow) {}
 	
 	public Instruction lastInstruction() throws InstructionExecutionException{
-		if (this.pilaInstruction.isEmpty()) throw new InstructionExecutionException();
+		if (this.pilaInstruction.isEmpty()) throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
 		else return this.pilaInstruction.pop();	// Devuelve la cima de la pila, eliminando la instrucción.
 	}
 	
