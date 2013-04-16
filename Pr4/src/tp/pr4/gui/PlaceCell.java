@@ -22,6 +22,8 @@ public class PlaceCell extends JButton {
 		});
 	}
 	
+	// ¿setPlace()?
+	
 	// Constructor de la celda-lugar
 	public PlaceCell(Place place) {
 		this.actual = false; 
