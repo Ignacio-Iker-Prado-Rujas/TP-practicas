@@ -36,6 +36,7 @@ public class Interpreter {
 			new HelpInstruction(), new MoveInstruction(),
 			new OperateInstruction(), new PickInstruction(),
 			new QuitInstruction(), new RadarInstruction(),
-			new ScanInstruction(), new TurnInstruction() };
+			new ScanInstruction(), new TurnInstruction(),
+			new UndoInstruction()	};
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
