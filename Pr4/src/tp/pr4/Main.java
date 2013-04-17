@@ -11,6 +11,32 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Options option = new Options();
+		 Option help = new Option("h", "help", false, "Shows this help message");
+	        option.addOption(help);
+	        Option interf = new Option("i", "interface", true, "Type of interface");
+	        interf.setArgName("type");
+	        Option map = new Option("m", "map", true, "File map name");
+	        option.addOption(interf);
+	        option.addOption(map);
+	        
+	        BasicParser parser = new BasicParser();
+	        try {
+	            CommandLine cmd = parser.parse(option, args);
+	            if(cmd.hasOption('h')){
+	                HelpFormatter h = new HelpFormatter();
+	                h.printHelp("Help", option);
+	            }
+	            
+	            //
+	            
+	            if(cmd.getOptionValue('i').equals("swing")){
+	                //getOptionValue devuelve el parámetro tras -i     
+	            }
+	            
+	        } catch (ParseException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
 		// Comprueba que se le haya pasado un argumento al main (si hay varios se carga el primero)
 		if (args.length == 0) {
 			EscribeConsola.llamadaIncorrecta();

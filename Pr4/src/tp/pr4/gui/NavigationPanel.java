@@ -1,5 +1,6 @@
 package tp.pr4.gui;
 
+import tp.pr4.Rotation;
 import tp.pr4.gui.headingIcons.*;
 
 import java.awt.BorderLayout;
@@ -43,6 +44,9 @@ public class NavigationPanel extends JPanel {
 		
 		this.add(mapViewPanel, BorderLayout.CENTER);
 		this.add(scrollPane, BorderLayout.SOUTH);
+	}
+	public void turnRobot(Rotation rotation){
+		
 	}
 
 	private static final int width = 11;
