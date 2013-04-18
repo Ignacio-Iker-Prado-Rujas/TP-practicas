@@ -46,7 +46,8 @@ public class NavigationPanel extends JPanel {
 		}
 		arrayLugares[5][5].visitPlace();
 		arrayLugares[5][5].setPlace(initialPlace);
-		x = 5; y = 5;
+		this.x = 5;
+		this.y = 5;
 		// Alñadir atributo array de placecells con coordenadas x, y
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		

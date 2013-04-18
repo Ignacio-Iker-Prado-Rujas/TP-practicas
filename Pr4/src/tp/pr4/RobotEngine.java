@@ -46,12 +46,14 @@ public class RobotEngine {
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
 		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		robotPanel.actualizarFuel(this.fuel);
 	}
 
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
 		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		robotPanel.actualizarRecycled(this.recycledMaterial);
 	}
 
 	// Para los tests

@@ -18,8 +18,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import tp.pr4.Direction;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
+import tp.pr4.cityLoader.cityLoaderExceptions.WrongCityFormatException;
 import tp.pr4.instructions.*;
 
 public class RobotPanel extends JPanel{
@@ -39,9 +41,12 @@ public class RobotPanel extends JPanel{
 		info.setTitle("Robot info");
 		this.dataPanel.setBorder(info);
 		JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 5));
-		JLabel fuel = new JLabel("Aquí va el fuel.");
-		statusPanel.add(fuel);
-		JLabel recycled = new JLabel("Y aquí el material reciclado.");
+		
+		
+		
+		this.fuel = new JLabel("Fuel: " + elRobot.getFuel());
+		statusPanel.add(fuel);		
+		this.recycled = new JLabel("Recycled: " + elRobot.getRecycledMaterial());
 		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		
@@ -54,6 +59,15 @@ public class RobotPanel extends JPanel{
 		
 		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instructionPanel, dataPanel);
 		this.add(splitPanel);
+	}
+	private JLabel fuel;
+	private JLabel recycled;
+	
+	public void actualizarFuel(int fuel){
+		this.fuel.setText("Fuel: " + fuel);
+	}
+	public void actualizarRecycled(int recicled){
+		this.recycled.setText("Recycled: " +  recycled);
 	}
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
@@ -86,14 +100,14 @@ public class RobotPanel extends JPanel{
 		turn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new TurnInstruction((Rotation) directions.getSelectedItem())); //Este cast harbrá que cambiarlo
+				robot.communicateRobot(new TurnInstruction(forceRotation(rotations.getSelectedItem().toString()))); //Este cast habrá que cambiarlo
 			}		
 		});
 		this.instructionPanel.add(turn);
 		//DIRECION DE LA ROTACION
-		Rotation[] dir = {Rotation.LEFT, Rotation.RIGHT};
-		directions = new JComboBox<Rotation>(dir);
-		this.instructionPanel.add(directions);
+		Rotation[] rot = {Rotation.LEFT, Rotation.RIGHT};
+		rotations= new JComboBox<Rotation>(rot);
+		this.instructionPanel.add(rotations);
 		// System.out.println(directions.getSelectedItem()); //Este metodo nos da la rotacion seleccionada
 		// directions.setSelectedItem(Rotation.RIGHT); 		 //Y este lo modifica
 		
@@ -143,14 +157,18 @@ public class RobotPanel extends JPanel{
 		 */
 	}
 	
+	private Rotation forceRotation(String nameRotation){
+		if(Rotation.LEFT.toString().equalsIgnoreCase(nameRotation))return Rotation.LEFT;
+		else if(Rotation.RIGHT.toString().equalsIgnoreCase(nameRotation))return Rotation.RIGHT;
+		else return Rotation.UNKNOWN;
+	}
 	/*public void setModelTable() { // o algo asi
 		
 	}*/
 	
-	private JComboBox<Rotation> directions;
+	private JComboBox<Rotation> rotations;
 	private JTextField item;
 	private RobotEngine robot;
-	private String itemId;
 	private JPanel instructionPanel;
 	private JPanel dataPanel;
 	private static final long serialVersionUID = 1L;	//Daba warning
