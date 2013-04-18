@@ -10,37 +10,37 @@ import tp.pr4.cityLoader.CityLoaderFromTxtFile;
 public class Main {
 	public static void main(String[] args) {
 		
-		Options option = new Options();
+		/*Options option = new Options();
 		Option help = new Option("h", "help", false, "Shows this help message");
         option.addOption(help);
         Option interf = new Option("i", "interface", true, "Type of interface");
         interf.setArgName("type");
+         option.addOption(interf);
         Option map = new Option("m", "map", true, "File map name");
-        option.addOption(interf);
         option.addOption(map);
         
-        BasicParser parser = new BasicParser();
+        BasicParser parseador = new BasicParser();
         try {
-            CommandLine cmd = parser.parse(option, args);
+            CommandLine cmd = parseador.parse(option, args);
             if(cmd.hasOption('h')){
                 HelpFormatter h = new HelpFormatter();
                 h.printHelp("Help", option);
             }
-            
-            //
-            
-            if(cmd.getOptionValue('i').equals("swing")){
+         
+            else if(cmd.getOptionValue('i').equals("swing")){
                 //getOptionValue devuelve el parámetro tras -i     
             }
             
+          
+            
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        	EscribeConsola.llamadaIncorrecta();
+			System.exit(1);
+        }*/
 		// Comprueba que se le haya pasado un argumento al main (si hay varios se carga el primero)
 		if (args.length == 0) {
-			EscribeConsola.llamadaIncorrecta();
-			System.exit(1);
+		   	EscribeConsola.llamadaIncorrecta();
+					System.exit(1);
 		}
 		// Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
 		FileInputStream input = null;
