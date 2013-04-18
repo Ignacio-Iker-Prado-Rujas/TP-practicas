@@ -16,6 +16,7 @@ import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 
+import tp.pr4.Place;
 import tp.pr4.RobotEngine;
 
 public class MainWindow {
@@ -35,7 +36,7 @@ public class MainWindow {
 			on it in order to display the place description (similar to the RADAR command).
 		*/
 	
-	public MainWindow(RobotEngine elRobot) {
+	public MainWindow(RobotEngine elRobot, Place initialPlace) {
 		this.robot = elRobot;
 		this.ventana = new JFrame("WALL·E The garbage collector");
 		this.ventana.setSize(1080, 720);	
@@ -49,9 +50,12 @@ public class MainWindow {
 		this.robotPanel = new RobotPanel(this.robot);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
 		
-		this.navPanel = new NavigationPanel();
+		this.navPanel = new NavigationPanel(initialPlace);
 		ventana.add(this.navPanel, BorderLayout.CENTER);
-		
+		buildMenuBar();
+	}
+	
+	private void buildMenuBar(){
 		this.menuBar = new JMenuBar();
 		//this.menuBar.setBorderPainted(true);
 		menuBar.setBackground(Color.GRAY);
@@ -75,7 +79,6 @@ public class MainWindow {
 		});
 		ventana.setJMenuBar(menuBar);
 	}
-	
 	public void setVisible(boolean bool){
 		this.ventana.setVisible(bool);
 	}

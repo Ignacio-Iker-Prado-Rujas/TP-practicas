@@ -101,7 +101,7 @@ public class RobotEngine {
 	}
 	
 	public void startEngine() {
-		MainWindow window = new MainWindow(this);
+		MainWindow window = new MainWindow(this, navigation.getCurrentPlace());
 		window.setVisible(true);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
@@ -129,11 +129,15 @@ public class RobotEngine {
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
 	//TODO: 
-	public void setNavigationPanel(NavigationPanel navPanel) {}
+	public void setNavigationPanel(NavigationPanel navPanel) {
+		navigation.setNavigationPanel(navPanel);
+	}
 	
 	//Sets a panel in order to show the robot information and the container in a GUI
 	//TODO: 
-	public void setRobotPanel(RobotPanel robotPanel) {}
+	public void setRobotPanel(RobotPanel robotPanel) {
+		this.robotPanel = robotPanel;
+	}
 	
 	//Sets the main window of the GUI in order to inform about some robot events
 	//TODO: 
@@ -144,6 +148,7 @@ public class RobotEngine {
 		else return this.pilaInstruction.pop();	// Devuelve la cima de la pila, eliminando la instrucción.
 	}
 	
+	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
 	private int fuel;
