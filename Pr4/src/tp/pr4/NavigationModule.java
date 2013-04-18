@@ -33,10 +33,14 @@ public class NavigationModule {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
 			throw new InstructionExecutionException(EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
-		else if (!newStreet.isOpen())
+		else if (!newStreet.isOpen()){
 			throw new InstructionExecutionException(EscribeConsola.STREET_CLOSED);
-		else
+			//TODO navpanel.decir("Calle cerrada");
+		}
+		else{
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);	
+			navPanel.move(this.currentPlace, this.currentHeading);
+		}
 	}
 
 	/*
@@ -103,9 +107,10 @@ public class NavigationModule {
 	//Sets a panel in order to show its information in a GUI
 	//TODO: 
 	public void setNavigationPanel(NavigationPanel navPanel) {
-		
+		this.navPanel = navPanel;
 	}
 
+	private NavigationPanel navPanel;
 	private City city;
 	private Place currentPlace;
 	private Direction currentHeading;
