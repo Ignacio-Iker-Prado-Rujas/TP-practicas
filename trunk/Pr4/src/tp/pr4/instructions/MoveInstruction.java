@@ -24,7 +24,7 @@ public class MoveInstruction implements Instruction{
 
 	@Override
 	public void configureContext(RobotEngine engine,
-			NavigationModule navigation, ItemContainer robotContainer) {
+		NavigationModule navigation, ItemContainer robotContainer) {
 		this.navigation = navigation;
 		this.robot = engine;
 	}
@@ -42,6 +42,7 @@ public class MoveInstruction implements Instruction{
 	public void undo() throws InstructionExecutionException {
 		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
 		navigation.move();
+		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
 		this.robot.addFuel(5);
 		
 	}
