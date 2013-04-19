@@ -60,14 +60,13 @@ public class RobotPanel extends JPanel{
 		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instructionPanel, dataPanel);
 		this.add(splitPanel);
 	}
-	private JLabel fuel;
-	private JLabel recycled;
-	
-	public void actualizarFuel(int fuel){
+
+	public void actualizarFuel(int fuel) {
 		this.fuel.setText("Fuel: " + fuel);
 	}
-	public void actualizarRecycled(int recicled){
-		this.recycled.setText("Recycled: " +  recycled);
+
+	public void actualizarRecycled(int recicled) {
+		this.recycled.setText("Recycled: " + recycled);
 	}
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
@@ -166,6 +165,8 @@ public class RobotPanel extends JPanel{
 		
 	}*/
 	
+	private JLabel fuel;
+	private JLabel recycled;
 	private JComboBox<Rotation> rotations;
 	private JTextField item;
 	private RobotEngine robot;

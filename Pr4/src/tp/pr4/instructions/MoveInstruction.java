@@ -45,10 +45,10 @@ public class MoveInstruction implements Instruction{
 		this.robot.addFuel(5);
 		
 	}
+	
+	
 	private RobotEngine robot;
 	private NavigationModule navigation;
-	
-	
 	private static final String MOVE = "MOVE";
 	private static final String MOVER = "MOVER";
 	

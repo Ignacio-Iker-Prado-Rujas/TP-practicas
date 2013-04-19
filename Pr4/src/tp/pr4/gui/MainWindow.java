@@ -20,22 +20,6 @@ import tp.pr4.Place;
 import tp.pr4.RobotEngine;
 
 public class MainWindow {
-	/*  This class creates the window for the Swing interface. 
-	 	The MainWindow contains the following components:
-	 	
-		· A menu with the QUIT action
-		· An Action panel with several buttons to perform MOVE, TURN, OPERATE, PICK, and DROP actions.
-			Additionally it has a combo box of turn rotations and a text field to write the name of the 
-			item that the robot wants to pick from the current place
-		· A RobotPanel that displays the robot information (fuel and recycled material) and the robot inventory, 
-			which shows a table with item names and descriptions that the robot carries. The user can select the items 
-			contained in the inventory in order to DROP or OPERATE an item
-		· A CityPanel that represents the city. It shows the places that the robot has visited and an 
-			icon that represents the robot heading. The robot heading is updated when the user performs a TURN action. 
-			The visible places are updated when the robot performs a MOVE action. Once a place is visited, the user can click 
-			on it in order to display the place description (similar to the RADAR command).
-		*/
-	
 	public MainWindow(RobotEngine elRobot, Place initialPlace) {
 		this.robot = elRobot;
 		this.ventana = new JFrame("WALL·E The garbage collector");
@@ -48,10 +32,12 @@ public class MainWindow {
 			});
 		ventana.setLayout(new BorderLayout());
 		this.robotPanel = new RobotPanel(this.robot);
+		this.robot.setRobotPanel(robotPanel);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
 		
 		this.navPanel = new NavigationPanel(initialPlace);
 		ventana.add(this.navPanel, BorderLayout.CENTER);
+		this.robot.setNavigationPanel(navPanel);
 		buildMenuBar();
 	}
 	

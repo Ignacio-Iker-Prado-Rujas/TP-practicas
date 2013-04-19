@@ -9,6 +9,7 @@ public class NavigationModule {
 		this.city = city;
 		this.currentPlace = initialPlace;
 		this.currentHeading = Direction.NORTH; // De forma predeterminada mira al norte
+		
 	}
 
 	public boolean atSpaceship() {
@@ -21,6 +22,7 @@ public class NavigationModule {
 			this.currentHeading = this.currentHeading.turnLeft();
 		else if (rotation == Rotation.RIGHT)
 			this.currentHeading = this.currentHeading.turnRight();
+		this.navPanel.actualizarDirection(this.currentHeading);
 	}
 
 	/*
@@ -32,13 +34,13 @@ public class NavigationModule {
 	public void move() throws InstructionExecutionException {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
-			throw new InstructionExecutionException(EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
-		else if (!newStreet.isOpen()){
+			throw new InstructionExecutionException(
+					EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
+		else if (!newStreet.isOpen()) {
 			throw new InstructionExecutionException(EscribeConsola.STREET_CLOSED);
-			//TODO navpanel.decir("Calle cerrada");
-		}
-		else{
-			this.currentPlace = newStreet.nextPlace(this.currentPlace);	
+			// TODO navpanel.decir("Calle cerrada");
+		} else {
+			this.currentPlace = newStreet.nextPlace(this.currentPlace);
 			navPanel.move(this.currentPlace, this.currentHeading);
 		}
 	}
@@ -105,7 +107,6 @@ public class NavigationModule {
 	 * del robot así como de los cambios de lugar.*/
 	
 	//Sets a panel in order to show its information in a GUI
-	//TODO: 
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		this.navPanel = navPanel;
 	}

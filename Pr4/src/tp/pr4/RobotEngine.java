@@ -130,19 +130,16 @@ public class RobotEngine {
 	 * */
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
-	//TODO: 
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		navigation.setNavigationPanel(navPanel);
 	}
 	
 	//Sets a panel in order to show the robot information and the container in a GUI
-	//TODO: 
 	public void setRobotPanel(RobotPanel robotPanel) {
 		this.robotPanel = robotPanel;
 	}
 	
 	//Sets the main window of the GUI in order to inform about some robot events
-	//TODO: 
 	public void setGUIWindow(MainWindow mainWindow) {}
 	
 	public Instruction lastInstruction() throws InstructionExecutionException{
