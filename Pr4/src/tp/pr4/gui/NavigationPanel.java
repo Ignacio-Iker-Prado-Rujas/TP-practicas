@@ -72,7 +72,7 @@ public class NavigationPanel extends JPanel {
 		cambiarPosicion(currentHeading);
 		arrayLugares[x][y].setPlace(currentPlace);
 		arrayLugares[x][y].visitPlace();
-	
+		this.textArea.setText(currentPlace.toString());
 	}
 	private void cambiarPosicion(Direction currentHeading){
 		switch (currentHeading){

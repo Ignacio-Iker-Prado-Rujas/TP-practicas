@@ -105,7 +105,7 @@ public class RobotPanel extends JPanel{
 		this.instructionPanel.add(turn);
 		//DIRECION DE LA ROTACION
 		Rotation[] rot = {Rotation.LEFT, Rotation.RIGHT};
-		rotations= new JComboBox<Rotation>(rot);
+		rotations = new JComboBox<Rotation>(rot);
 		this.instructionPanel.add(rotations);
 		// System.out.println(directions.getSelectedItem()); //Este metodo nos da la rotacion seleccionada
 		// directions.setSelectedItem(Rotation.RIGHT); 		 //Y este lo modifica
