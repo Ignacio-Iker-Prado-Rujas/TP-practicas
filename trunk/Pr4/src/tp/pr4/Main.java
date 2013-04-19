@@ -10,27 +10,26 @@ import tp.pr4.cityLoader.CityLoaderFromTxtFile;
 public class Main {
 	public static void main(String[] args) {
 		
-		/*Options option = new Options();
-		Option help = new Option("h", "help", false, "Shows this help message");
-        option.addOption(help);
-        Option interf = new Option("i", "interface", true, "Type of interface");
-        interf.setArgName("type");
-         option.addOption(interf);
-        Option map = new Option("m", "map", true, "File map name");
-        option.addOption(map);
+		/*Options options = new Options();
+        options.addOption("h", "help", false, "Shows this help message");
+        options.addOption("i", "interface", true, "Type of interface");
+        options.addOption("m", "map", true, "File map name");
         
         BasicParser parseador = new BasicParser();
+        
         try {
-            CommandLine cmd = parseador.parse(option, args);
+            CommandLine cmd = parseador.parse(options, args);
             if(cmd.hasOption('h')){
                 HelpFormatter h = new HelpFormatter();
-                h.printHelp("Help", option);
+                h.printHelp("Help", options); 	//imprime todas las opcines correctas
             }
          
-            else if(cmd.getOptionValue('i').equals("swing")){
-                //getOptionValue devuelve el parámetro tras -i     
+            else if(cmd.getOptionValue('i').equals("swing")){   
+            	
             }
-            
+            else if(cmd.getOptionValue('i').equals("console")){
+            	
+            }
           
             
         } catch (ParseException e) {
