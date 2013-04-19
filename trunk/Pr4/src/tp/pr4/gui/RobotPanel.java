@@ -23,6 +23,7 @@ import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import tp.pr4.cityLoader.cityLoaderExceptions.WrongCityFormatException;
 import tp.pr4.instructions.*;
+import tp.pr4.items.Item;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
@@ -164,9 +165,11 @@ public class RobotPanel extends JPanel{
 		else 
 			return Rotation.UNKNOWN;
 	}
-	/*public void setModelTable() { // o algo asi
-		
-	}*/
+	
+	public void añadeATabla(Item item) {
+		if (item != null)
+			this.tableModel.addData(item.getId(), item.getDescription());
+	}
 	
 	private JLabel fuel;
 	private JLabel recycled;

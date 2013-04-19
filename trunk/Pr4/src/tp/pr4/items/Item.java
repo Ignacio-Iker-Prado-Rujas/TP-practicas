@@ -30,6 +30,11 @@ public abstract class Item {
 		return this.id;
 	}
 	
+	//Metodo accedente para obtener la descripcion
+	public String getDescription() {
+		return this.description;
+	}
+	
 	//Atributos protected para que las clases hijas puedan acceder a ellos
 	protected String id;
 	protected String description;

@@ -52,7 +52,6 @@ public class NavigationModule {
 
 	public Item pickItemFromCurrentPlace(String id) {
 		Item item = this.currentPlace.pickItem(id);
-		//navPanel.
 		navPanel.actualizarLog(currentPlace);
 		return item;
 	}
