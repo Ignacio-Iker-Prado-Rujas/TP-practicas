@@ -47,14 +47,22 @@ public class NavigationPanel extends JPanel {
 				mapPanel.add(arrayLugares[i][j]);
 			}
 		}
-		arrayLugares[5][5].visitPlace();
-		arrayLugares[5][5].setPlace(initialPlace);
-		this.x = 5;
-		this.y = 5;
+		arrayLugares[width/2][width/2].visitPlace();
+		arrayLugares[width/2][width/2].setPlace(initialPlace);
+		this.x = width/2;
+		this.y = width/2;
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
 	
 		this.add(mapViewPanel, BorderLayout.CENTER);
+	}
+	
+	public void move(Place currentPlace, Direction currentHeading) {
+		arrayLugares[x][y].leavePlace();
+		cambiarPosicion(currentHeading);
+		arrayLugares[x][y].setPlace(currentPlace);
+		arrayLugares[x][y].visitPlace();
+		actualizarLog(currentPlace);
 	}
 	
 	public void actualizarDirection(Direction direction) {
@@ -67,13 +75,6 @@ public class NavigationPanel extends JPanel {
 		}
 	}
 	
-	public void move(Place currentPlace, Direction currentHeading) {
-		arrayLugares[x][y].leavePlace();
-		cambiarPosicion(currentHeading);
-		arrayLugares[x][y].setPlace(currentPlace);
-		arrayLugares[x][y].visitPlace();
-		this.textArea.setText(currentPlace.toString());
-	}
 	private void cambiarPosicion(Direction currentHeading){
 		switch (currentHeading) {
 		case EAST: 	y++; break;	//Ojo que va de arriba a abajo
@@ -84,6 +85,10 @@ public class NavigationPanel extends JPanel {
 		}
 	}
 
+	public void actualizarLog(Place currentPlace) {
+		this.textArea.setText(currentPlace.toString());
+	}
+	
 	private int x;
 	private int y;
 	private PlaceCell[][] arrayLugares = new PlaceCell[width][width];

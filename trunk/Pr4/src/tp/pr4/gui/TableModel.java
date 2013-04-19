@@ -35,6 +35,16 @@ public class TableModel extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 	}
 	
+	public void addData() {
+		
+		
+	}
+	
+	public void removeData() {
+		
+		
+	}
+	
 	private String[] columnNames;
 	private String[][] data;
 	private static final long serialVersionUID = 1L;	//Daba warning

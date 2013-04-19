@@ -44,7 +44,6 @@ public class MoveInstruction implements Instruction{
 		navigation.move();
 		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
 		this.robot.addFuel(5);
-		
 	}
 	
 	
