@@ -51,7 +51,10 @@ public class NavigationModule {
 	 */
 
 	public Item pickItemFromCurrentPlace(String id) {
-		return this.currentPlace.pickItem(id);
+		Item item = this.currentPlace.pickItem(id);
+		//navPanel.
+		navPanel.actualizarLog(currentPlace);
+		return item;
 	}
 
 	/*

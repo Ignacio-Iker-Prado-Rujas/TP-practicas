@@ -23,7 +23,7 @@ public class PickInstruction implements Instruction{
 		String[] arrayInstruction = cadena.split(" ");
 		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(PICK) || arrayInstruction[0].equalsIgnoreCase(COGER))){
 			return new PickInstruction(arrayInstruction[1]);
-		}else throw new WrongInstructionFormatException();
+		} else throw new WrongInstructionFormatException();
 	}
 
 	@Override
@@ -42,16 +42,20 @@ public class PickInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException{
 		item = this.navigation.pickItemFromCurrentPlace(id);
-		if(item == null) throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
+		if(item == null)
+			throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 		
-		else if(this.container.addItem(item)) EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
-			
-		else	throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
+		else if(this.container.addItem(item))
+			EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
+		else	
+			throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
 	}
+	
 	@Override
 	public void undo() throws InstructionExecutionException {
-		if (item == null) engine.lastInstruction().undo();
-		else{
+		if (item == null) 
+			engine.lastInstruction().undo();
+		else {
 			this.container.pickItem(id);
 			this.navigation.dropItemAtCurrentPlace(item);
 		}

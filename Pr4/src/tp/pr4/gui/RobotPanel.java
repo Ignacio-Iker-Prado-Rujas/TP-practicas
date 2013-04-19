@@ -50,7 +50,7 @@ public class RobotPanel extends JPanel{
 		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		
-		TableModel tableModel = new TableModel(new String[] {"Id", "Description"});
+		this.tableModel = new TableModel(new String[] {"Id", "Description"});
 		JTable table = new JTable(tableModel);
 		table.setPreferredScrollableViewportSize(null);
 		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -156,10 +156,13 @@ public class RobotPanel extends JPanel{
 		 */
 	}
 	
-	private Rotation forceRotation(String nameRotation){
-		if(Rotation.LEFT.toString().equalsIgnoreCase(nameRotation))return Rotation.LEFT;
-		else if(Rotation.RIGHT.toString().equalsIgnoreCase(nameRotation))return Rotation.RIGHT;
-		else return Rotation.UNKNOWN;
+	private Rotation forceRotation(String nameRotation) {
+		if(Rotation.LEFT.toString().equalsIgnoreCase(nameRotation))
+			return Rotation.LEFT;
+		else if(Rotation.RIGHT.toString().equalsIgnoreCase(nameRotation))
+			return Rotation.RIGHT;
+		else 
+			return Rotation.UNKNOWN;
 	}
 	/*public void setModelTable() { // o algo asi
 		
@@ -171,6 +174,7 @@ public class RobotPanel extends JPanel{
 	private JTextField item;
 	private RobotEngine robot;
 	private JPanel instructionPanel;
+	private TableModel tableModel;
 	private JPanel dataPanel;
 	private static final long serialVersionUID = 1L;	//Daba warning
 }
