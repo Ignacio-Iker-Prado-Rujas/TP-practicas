@@ -22,8 +22,11 @@ public class NavigationPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
 		 
-		ImageIcon icon = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
-		JLabel walle = new JLabel(icon, JLabel.CENTER);
+		ImageIcon iconN = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
+		ImageIcon iconE = new ImageIcon("src/tp/pr4/gui/headingIcons/walleEast.png");
+		ImageIcon iconS = new ImageIcon("src/tp/pr4/gui/headingIcons/walleSouth.png");
+		ImageIcon iconW = new ImageIcon("src/tp/pr4/gui/headingIcons/walleWest.png");
+		walle = new JLabel(iconN, JLabel.CENTER);
 		walle.setOpaque(true);
 		mapViewPanel.add(walle, BorderLayout.WEST);
 		
@@ -48,7 +51,6 @@ public class NavigationPanel extends JPanel {
 		arrayLugares[5][5].setPlace(initialPlace);
 		this.x = 5;
 		this.y = 5;
-		// Alñadir atributo array de placecells con coordenadas x, y
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
 	
@@ -56,8 +58,15 @@ public class NavigationPanel extends JPanel {
 		
 	}
 	
-	public void actualizarDirection(Direction direction){
+	public void actualizarDirection(Direction direction) {
+		switch(direction) {
+			case NORTH: walle.setIcon(iconN); break;
+			case EAST:	walle.setIcon(iconE); break;
+			case SOUTH: walle.setIcon(iconS); break;
+			case WEST:	walle.setIcon(iconW); break;
+		}
 	}
+	
 	public void move(Place currentPlace, Direction currentHeading) {
 		arrayLugares[x][y].leavePlace();
 		cambiarPosicion(currentHeading);
@@ -80,6 +89,10 @@ public class NavigationPanel extends JPanel {
 	private static final int width = 11;
 	private JPanel mapViewPanel;
 	private JTextArea textArea;
+	private JLabel walle;
+	private ImageIcon iconN;
+	private ImageIcon iconE;
+	private ImageIcon iconS;
+	private ImageIcon iconW;
 	private static final long serialVersionUID = 1L;	//Daba warning
-	
 }
