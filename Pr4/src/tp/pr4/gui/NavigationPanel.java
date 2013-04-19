@@ -22,10 +22,10 @@ public class NavigationPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
 		 
-		ImageIcon iconN = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
-		ImageIcon iconE = new ImageIcon("src/tp/pr4/gui/headingIcons/walleEast.png");
-		ImageIcon iconS = new ImageIcon("src/tp/pr4/gui/headingIcons/walleSouth.png");
-		ImageIcon iconW = new ImageIcon("src/tp/pr4/gui/headingIcons/walleWest.png");
+		iconN = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
+		iconE = new ImageIcon("src/tp/pr4/gui/headingIcons/walleEast.png");
+		iconS = new ImageIcon("src/tp/pr4/gui/headingIcons/walleSouth.png");
+		iconW = new ImageIcon("src/tp/pr4/gui/headingIcons/walleWest.png");
 		walle = new JLabel(iconN, JLabel.CENTER);
 		walle.setOpaque(true);
 		mapViewPanel.add(walle, BorderLayout.WEST);
@@ -42,7 +42,7 @@ public class NavigationPanel extends JPanel {
 		this.add(scrollPane, BorderLayout.SOUTH);
 		
 		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < width; j++){
+			for (int j = 0; j < width; j++) {
 				arrayLugares[i][j] = new PlaceCell(textArea);
 				mapPanel.add(arrayLugares[i][j]);
 			}
@@ -55,15 +55,15 @@ public class NavigationPanel extends JPanel {
 		
 	
 		this.add(mapViewPanel, BorderLayout.CENTER);
-		
 	}
 	
 	public void actualizarDirection(Direction direction) {
 		switch(direction) {
-			case NORTH: walle.setIcon(iconN); break;
-			case EAST:	walle.setIcon(iconE); break;
-			case SOUTH: walle.setIcon(iconS); break;
-			case WEST:	walle.setIcon(iconW); break;
+			case NORTH: walle.setIcon(this.iconN); break;
+			case EAST:	walle.setIcon(this.iconE); break;
+			case SOUTH: walle.setIcon(this.iconS); break;
+			case WEST:	walle.setIcon(this.iconW); break;
+			default: ; 
 		}
 	}
 	
@@ -75,11 +75,12 @@ public class NavigationPanel extends JPanel {
 		this.textArea.setText(currentPlace.toString());
 	}
 	private void cambiarPosicion(Direction currentHeading){
-		switch (currentHeading){
-		case EAST: y++ ;break;	//Ojo que va de arriba a abajo
-		case NORTH: x--;break;
-		case SOUTH: x++;break;
-		case WEST: y--; break;
+		switch (currentHeading) {
+		case EAST: 	y++; break;	//Ojo que va de arriba a abajo
+		case NORTH: x--; break;
+		case SOUTH: x++; break;
+		case WEST:	y--; break;
+		default: ;
 		}
 	}
 
