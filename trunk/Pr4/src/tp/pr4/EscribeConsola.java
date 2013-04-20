@@ -22,7 +22,7 @@ public class EscribeConsola {
 		System.out.println(validInstructions);
 	}
 
-	public static String say(String message, int a) {
+	public static String say(String message) {
 		System.out.println(SAY + message);
 		return SAY + message; // Para utilizarlo en las excepciones.
 	}

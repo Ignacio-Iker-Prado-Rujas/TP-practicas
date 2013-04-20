@@ -32,7 +32,8 @@ public class RobotEngine {
 			pilaInstruction.add(instruction);
 			window.ActualizaLastInstruction(instruction);
 		} catch (InstructionExecutionException exception) {
-			EscribeConsola.mostrar(exception.getMessage());
+			if (modoConsola())EscribeConsola.mostrar(exception.getMessage());
+			else{}//TODO Mostrar mensaje en ventana
 		}
 	}
 
@@ -48,15 +49,15 @@ public class RobotEngine {
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
-		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		robotPanel.actualizarFuel(this.fuel);
+		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		else robotPanel.actualizarFuel(this.fuel);
 	}
 
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
-		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		robotPanel.actualizarRecycled(this.recycledMaterial);
+		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		else robotPanel.actualizarRecycled(this.recycledMaterial);
 	}
 
 	// Para los tests
@@ -79,8 +80,8 @@ public class RobotEngine {
 	}
 
 	// Escribe el estado de WALL·E
-	public void printRobotState() {
-		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+	public void printRobotState(int a) {
+		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 	
 	public boolean modoConsola(){
