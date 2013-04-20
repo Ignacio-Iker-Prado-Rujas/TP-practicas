@@ -104,8 +104,6 @@ public class RobotEngine {
 	}
 	
 	public void startEngine() {
-		MainWindow window = new MainWindow(this, navigation.getCurrentPlace());
-		window.setVisible(true);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {
