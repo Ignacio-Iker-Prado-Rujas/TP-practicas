@@ -9,7 +9,7 @@ public class NavigationModule {
 		this.city = city;
 		this.currentPlace = initialPlace;
 		this.currentHeading = Direction.NORTH; // De forma predeterminada mira al norte
-		
+		this.navPanel = null;
 	}
 
 	public boolean atSpaceship() {

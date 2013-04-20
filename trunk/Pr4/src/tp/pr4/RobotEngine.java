@@ -21,6 +21,7 @@ public class RobotEngine {
 		this.itemContainer = new ItemContainer();
 		this.recycledMaterial = 0;
 		this.quit = false;
+		this.robotPanel = null;
 	}
 	
 	public void communicateRobot(Instruction instruction) {
