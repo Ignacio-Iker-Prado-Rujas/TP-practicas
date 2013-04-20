@@ -62,8 +62,21 @@ public class NavigationPanel extends JPanel {
 		arrayLugares[x][y].visitPlace();
 		actualizarLog(currentPlace);
 	}
-	public void undoMove(){
-		arrayLugares[x][y] = new PlaceCell(textArea);
+	public void undoMove(Place currentPlace, Direction currentHeading){
+		if(arrayLugares[x][y].getNumVisitas() <= 0){
+			arrayLugares[x][y] = new PlaceCell(textArea);
+			cambiarPosicion(currentHeading);
+			arrayLugares[x][y].setPlace(currentPlace);
+			arrayLugares[x][y].visitPlace();
+			actualizarLog(currentPlace);
+		}
+		else{
+			arrayLugares[x][y].leavePlace();
+			cambiarPosicion(currentHeading);
+			arrayLugares[x][y].setPlace(currentPlace);
+			arrayLugares[x][y].visitPlace();
+			actualizarLog(currentPlace);
+		}
 	}
 	
 	public void actualizarDirection(Direction direction) {
