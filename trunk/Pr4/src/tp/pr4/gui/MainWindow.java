@@ -79,12 +79,9 @@ public class MainWindow {
 
 /* Dudas:
  * 1) Preguntar por KeyStroke
- * 2) ¿Como va la comunicacion con el robotEngine y que hacen los metodos esos?
+ * 2) 
  * 3) Iniciar en modo ventana vs. consola
- * 4) Instruccion UNDO
+ * 4) 
  * 5) Hacer JOptionPane para cuando no se puede hacer una accion
- * 6) 
- * 
- * Cosas que hacer:
- * 1) NO FUNCIONA: Cabiar el modo de meter la imagen: ¿new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))?
+ * 6) NO FUNCIONA: Cabiar el modo de meter la imagen: ¿new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))?
  */
