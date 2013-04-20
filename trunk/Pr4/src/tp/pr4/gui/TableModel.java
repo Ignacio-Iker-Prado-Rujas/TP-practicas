@@ -57,14 +57,16 @@ public class TableModel extends AbstractTableModel {
 	}
 	
 	public void removeData(int row) { 
-		String nuevaTabla[][] = new String[numElems - 2][columnNames.length];
+		String nuevaTabla[][] = new String[numElems - 1][columnNames.length];
 		for(int i= 0; i < numElems; i++) {
 			if(i != row) {
 				nuevaTabla[i][0] = this.data[i][0];
 				nuevaTabla[i][1] = this.data[i][1];
 			}
 		}
-		this.data = nuevaTabla;		numElems--;
+		this.data = nuevaTabla;		
+		numElems--;
+		this.fireTableDataChanged();
 	}
 	
 	private String[] columnNames;
