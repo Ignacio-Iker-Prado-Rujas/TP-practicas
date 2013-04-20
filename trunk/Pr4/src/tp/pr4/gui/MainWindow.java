@@ -74,12 +74,3 @@ public class MainWindow {
 	private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 }
-
-/* Dudas:
- * 1) Preguntar por KeyStroke
- * 2) Tabla
- * 3)
- * 4) 
- * 5) 
- * 6) 
- */
