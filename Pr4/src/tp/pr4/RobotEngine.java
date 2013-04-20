@@ -73,7 +73,7 @@ public class RobotEngine {
         return itemContainer.getItem(id);
 }
 
-	// Muestra las instrucciones que reconoce WALL·E
+	// Muestra las instrucciones que reconoce WALL·E (Solo funciona en consola)
 	public void requestHelp() {
 		EscribeConsola.validInstructions(Interpreter.interpreterHelp());
 	}
@@ -81,6 +81,10 @@ public class RobotEngine {
 	// Escribe el estado de WALL·E
 	public void printRobotState() {
 		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+	}
+	
+	public boolean modoConsola(){
+		return (this.robotPanel == null);
 	}
 
 	// Muestra los mendajes al iniciar el movimiento

@@ -49,7 +49,8 @@ public class PickInstruction implements Instruction{
 			throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 		
 		else if(this.container.addItem(item))
-			EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
+			if (engine.modoConsola())EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
+			else {} //TODO Añadir item a la tabla de inventario
 		else	
 			throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
 	}
