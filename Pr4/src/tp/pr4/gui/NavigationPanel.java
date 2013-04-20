@@ -39,6 +39,7 @@ public class NavigationPanel extends JPanel {
 		TitledBorder texto = new TitledBorder("Log");
 		this.textArea.setBorder(texto);
 		this.textArea.setEditable(false);
+		this.textArea.setRows(6);
 		JScrollPane scrollPane = new JScrollPane(this.textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.add(scrollPane, BorderLayout.SOUTH);
 		
