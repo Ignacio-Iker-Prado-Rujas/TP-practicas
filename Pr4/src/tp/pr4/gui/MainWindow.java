@@ -38,11 +38,9 @@ public class MainWindow {
 	
 	private void buildMenuBar(){
 		this.menuBar = new JMenuBar();
-		//this.menuBar.setBorderPainted(true);
 		menuBar.setBackground(Color.GRAY);
 		JMenu file = new JMenu("File");
 		file.setBackground(Color.GRAY);
-		//file.setBorderPainted(false);
 		menuBar.add(file);
 		JMenuItem quit = new JMenuItem("Quit");
 		file.add(quit);
