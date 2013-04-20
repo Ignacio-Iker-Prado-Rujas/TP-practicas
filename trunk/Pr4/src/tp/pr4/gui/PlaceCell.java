@@ -12,18 +12,18 @@ import tp.pr4.Place;
 public class PlaceCell extends JButton {
 	// Constructor por defecto, no tiene nada
 	public PlaceCell( final JTextArea textArea) {
+		this.numVisitas = 0;
 		this.actual = false; 
 		this.visited = false;
 		this.place = null;
 		this.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(place == null) textArea.setText("Te estás colando mozo");
+				if(place == null) textArea.setText("Zona inexplorada");
 				else textArea.setText(place.toString());
 			}
 		});
 	}
-
 	
 	public void setPlace(Place place){
 		this.setText(place.getName());
@@ -32,6 +32,7 @@ public class PlaceCell extends JButton {
 	
 	// Al visitar un lugar, se cambia el botón
 	public void visitPlace() {
+		this.numVisitas++;
 		this.visited = true;
 		this.actual = true;
 		this.setBackground(Color.GREEN);
@@ -50,6 +51,7 @@ public class PlaceCell extends JButton {
 	 * si es el actual
 	 */
 	
+	private int numVisitas;
 	private boolean actual;
 	private boolean visited;
 	private Place place;

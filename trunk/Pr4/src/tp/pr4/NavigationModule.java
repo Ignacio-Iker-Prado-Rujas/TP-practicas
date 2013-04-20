@@ -49,6 +49,10 @@ public class NavigationModule {
 			else navPanel.move(this.currentPlace, this.currentHeading);
 		}
 	}
+	
+	public void undoMove(){
+		if(navPanel != null) navPanel.undoMove();
+	}
 
 	/*
 	 * Coge el objeto indicado con la id del lugar en el que está el robot.
