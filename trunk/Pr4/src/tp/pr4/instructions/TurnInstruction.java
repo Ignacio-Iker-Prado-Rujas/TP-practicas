@@ -54,6 +54,10 @@ public class TurnInstruction implements Instruction{
 		navigation.rotate(rotation.oppositeRotation());
 		this.robot.addFuel(5);
 	}
+	
+	public String toString() {
+		return "Turn";
+	}
 
 	private static final String RIGHT = "RIGHT";
 	private static final String LEFT = "LEFT";

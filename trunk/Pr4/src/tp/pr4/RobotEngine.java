@@ -9,6 +9,7 @@ import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr4.items.Item;
 import tp.pr4.items.ItemContainer;
 
 public class RobotEngine {
@@ -29,6 +30,7 @@ public class RobotEngine {
 		try {
 			instruction.execute();
 			pilaInstruction.add(instruction);
+			window.ActualizaLastInstruction(instruction);
 		} catch (InstructionExecutionException exception) {
 			EscribeConsola.mostrar(exception.getMessage());
 		}
@@ -66,6 +68,10 @@ public class RobotEngine {
 	public int getRecycledMaterial() {
 		return this.recycledMaterial;
 	}
+	
+	public Item getItem(String id){
+        return itemContainer.getItem(id);
+}
 
 	// Muestra las instrucciones que reconoce WALL·E
 	public void requestHelp() {
@@ -104,6 +110,8 @@ public class RobotEngine {
 	}
 	
 	public void startEngine() {
+		window = new MainWindow(this, navigation.getCurrentPlace());
+		window.setVisible(true);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {
@@ -118,15 +126,6 @@ public class RobotEngine {
 		sc.close(); // Cierra el escaner
 		mostrarFinal();
 	}
-
-	/*
-	 * Contiene una referencia al RobotPanel que presentará la informa- ción del robot. 
-	 * Es necesario añadir llamadas a los métodos de RobotPanel cada vez que modifiquemos 
-	 * el nivel de combustible o de material reciclado del robot o cada vez que añadamos 
-	 * o eliminamos objetos del inventario. Así mismo guardará una referencia a la 
-	 * MainWindow para avisar sobre los eventos de 􏰃nalización de la simulación así como 
-	 * para presentar los posibles errores que pueden ocurrir al ejecutar las instrucciones.
-	 * */
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
 	public void setNavigationPanel(NavigationPanel navPanel) {
@@ -142,10 +141,16 @@ public class RobotEngine {
 	public void setGUIWindow(MainWindow mainWindow) {}
 	
 	public Instruction lastInstruction() throws InstructionExecutionException{
-		if (this.pilaInstruction.isEmpty()) throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
-		else return this.pilaInstruction.pop();	// Devuelve la cima de la pila, eliminando la instrucción.
+		if (this.pilaInstruction.isEmpty()) 
+			throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
+		else {
+			Instruction instruction = this.pilaInstruction.pop();
+			window.ActualizaLastInstruction(instruction);
+			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
+		}
 	}
 	
+	private MainWindow window;	
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;

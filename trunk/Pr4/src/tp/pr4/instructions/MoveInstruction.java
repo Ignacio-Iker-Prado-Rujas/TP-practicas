@@ -43,6 +43,9 @@ public class MoveInstruction implements Instruction{
 		this.robot.addFuel(5);
 	}
 	
+	public String toString() {
+		return "Move";
+	}
 	
 	private RobotEngine robot;
 	private NavigationModule navigation;

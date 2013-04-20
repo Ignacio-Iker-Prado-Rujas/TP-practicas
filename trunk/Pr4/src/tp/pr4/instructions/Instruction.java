@@ -16,5 +16,7 @@ public interface Instruction {
 	public void execute() throws InstructionExecutionException;
 	
 	public void undo() throws InstructionExecutionException;
+	
+	public String toString();
            
 }
