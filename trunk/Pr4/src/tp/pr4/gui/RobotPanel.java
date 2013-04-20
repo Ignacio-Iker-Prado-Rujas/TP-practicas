@@ -53,6 +53,7 @@ public class RobotPanel extends JPanel{
 		
 		this.tableModel = new TableModel(new String[] {"Id", "Description"});
 		JTable table = new JTable(tableModel);
+		this.tableModel.setValueAt("hola", tableModel.getRowCount(), tableModel.getColumnCount());
 		table.setPreferredScrollableViewportSize(null);
 		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
