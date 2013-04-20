@@ -30,7 +30,7 @@ public class ItemContainer {
 	
 	//True si está el item pedido
 	public boolean containsItem(String id){
-		return (estaElItem(id)>=0);
+		return (estaElItem(id) >= 0);
 	}
 	
 	//Devuelve true si está el id buscado, y la posición en la que está
