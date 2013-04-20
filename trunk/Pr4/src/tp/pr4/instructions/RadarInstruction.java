@@ -26,22 +26,22 @@ public class RadarInstruction implements Instruction{
 	@Override
 	public void configureContext(RobotEngine engine,
 			NavigationModule navigation, ItemContainer robotContainer) {
+		this.navigation = navigation;
 		this.engine = engine;
-		this.place = navigation.getCurrentPlace();
 		
 	}
 
 	@Override
 	public void execute() {
-		EscribeConsola.currentPlace(this.place);
+		navigation.radarCurrentPlace();
 	}
 	@Override
 	public void undo() throws InstructionExecutionException {
 		engine.lastInstruction().undo();
 	}
 	
+	private NavigationModule navigation;
 	private RobotEngine engine;
-	private Place place;
 	
 	private static final String RADAR = "RADAR";
 

@@ -46,7 +46,6 @@ public class TurnInstruction implements Instruction{
 	@Override
 	public void execute() {
 		this.navigation.rotate(rotation);
-		EscribeConsola.lookingDirection(this.navigation.getCurrentHeading());
 		this.robot.addFuel(-5);
 	}
 	

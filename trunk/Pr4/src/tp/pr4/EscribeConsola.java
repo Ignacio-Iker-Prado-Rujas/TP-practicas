@@ -89,4 +89,5 @@ public class EscribeConsola {
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	/*********/
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
 }

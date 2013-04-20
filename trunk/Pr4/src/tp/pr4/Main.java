@@ -59,7 +59,6 @@ public class Main {
 							cityLoader.getInitialPlace(), Direction.NORTH);
 					MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
 					window.setVisible(true);
-					engine.startEngine();
             	}
             	else if(cmd.getOptionValue('i').equals("console")){
 	            	/**
