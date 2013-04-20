@@ -3,6 +3,9 @@ package tp.pr4;
 import java.util.Scanner;
 import java.util.Stack;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
@@ -30,10 +33,14 @@ public class RobotEngine {
 		try {
 			instruction.execute();
 			pilaInstruction.add(instruction);
-			window.ActualizaLastInstruction(instruction);
+			//window.ActualizaLastInstruction(instruction);
 		} catch (InstructionExecutionException exception) {
-			if (modoConsola())EscribeConsola.mostrar(exception.getMessage());
-			else{}//TODO Mostrar mensaje en ventana
+			if (modoConsola())
+				EscribeConsola.mostrar(exception.getMessage());
+			else {
+				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+				JOptionPane.showMessageDialog(robotPanel, exception.getMessage(), "Error", JOptionPane.OK_OPTION, icon);
+			}
 		}
 	}
 
@@ -150,7 +157,7 @@ public class RobotEngine {
 			throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
 		else {
 			Instruction instruction = this.pilaInstruction.pop();
-			window.ActualizaLastInstruction(instruction);
+			//window.ActualizaLastInstruction(instruction);
 			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
 		}
 	}

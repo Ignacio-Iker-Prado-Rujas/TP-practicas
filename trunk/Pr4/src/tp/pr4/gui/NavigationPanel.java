@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -21,11 +22,11 @@ public class NavigationPanel extends JPanel {
 	public NavigationPanel(Place initialPlace) {
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
-		 
-		iconN = new ImageIcon("src/tp/pr4/gui/headingIcons/walleNorth.png");
-		iconE = new ImageIcon("src/tp/pr4/gui/headingIcons/walleEast.png");
-		iconS = new ImageIcon("src/tp/pr4/gui/headingIcons/walleSouth.png");
-		iconW = new ImageIcon("src/tp/pr4/gui/headingIcons/walleWest.png");
+		
+		iconN = new ImageIcon(this.getClass().getResource("headingIcons/walleNorth.png"));
+		iconE = new ImageIcon(this.getClass().getResource("headingIcons/walleEast.png"));
+		iconS = new ImageIcon(this.getClass().getResource("headingIcons/walleSouth.png"));
+		iconW = new ImageIcon(this.getClass().getResource("headingIcons/walleWest.png"));
 		walle = new JLabel(iconN, JLabel.CENTER);
 		walle.setOpaque(true);
 		mapViewPanel.add(walle, BorderLayout.WEST);
