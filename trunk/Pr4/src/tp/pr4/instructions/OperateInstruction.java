@@ -46,7 +46,6 @@ public class OperateInstruction implements Instruction{
 		else if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
 				if(robot.modoConsola()) EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", this.id));
-				else {} //TODO Actualizar en la tabla
 				this.container.pickItem(this.id);
 			}
 		}
