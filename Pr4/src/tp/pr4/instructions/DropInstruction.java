@@ -69,6 +69,10 @@ public class DropInstruction implements Instruction{
 		else	container.addItem(navigation.pickItemFromCurrentPlace(id));
 	}
 	
+	public String toString() {
+		return "Drop";
+	}
+	
 	private Item item; // Para el undo.
 	private String id;
 	private RobotEngine engine;

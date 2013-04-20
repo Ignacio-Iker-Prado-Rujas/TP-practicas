@@ -23,6 +23,7 @@ import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import tp.pr4.cityLoader.cityLoaderExceptions.WrongCityFormatException;
 import tp.pr4.instructions.*;
+import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;
 
 public class RobotPanel extends JPanel{
@@ -68,6 +69,10 @@ public class RobotPanel extends JPanel{
 
 	public void actualizarRecycled(int recicled) {
 		this.recycled.setText("Recycled: " + recycled);
+	}
+	
+	public void actualizarLastInstruction(Instruction instruction) {
+		this.lastInstruction.setText(instruction.toString());
 	}
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
@@ -116,8 +121,12 @@ public class RobotPanel extends JPanel{
 		pick.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (item.getText() != null)
-					robot.communicateRobot(new PickInstruction(item.getText()));
+				if (item.getText() != null) {
+					PickInstruction pickInstruction = new PickInstruction(item.getText());
+					robot.communicateRobot(pickInstruction);
+					Item it = robot.getItem(item.getText());
+					tableModel.addData(it.getId(), it.getDescription());
+				}
 			}
 		});
 		this.instructionPanel.add(pick);
@@ -129,7 +138,7 @@ public class RobotPanel extends JPanel{
 		drop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new DropInstruction(/*y le pasas lo que haya en el id de la tabla*/));
+				robot.communicateRobot(new DropInstruction());
 			}		
 		});
 		this.instructionPanel.add(drop);
@@ -151,6 +160,13 @@ public class RobotPanel extends JPanel{
 			}		
 		});
 		this.instructionPanel.add(undo);
+		try {
+			lastInstruction = new JLabel(robot.lastInstruction().toString());
+			this.instructionPanel.add(lastInstruction);
+		} catch (InstructionExecutionException e1) {
+			lastInstruction = new JLabel("Nothing to undo");
+			this.instructionPanel.add(lastInstruction);
+		}
 		/*
 		 * Estaria bien poner en el hueco la ultima instruccion 
 		 * realizada a la que se le pudiera hacer UNDO 
@@ -173,6 +189,7 @@ public class RobotPanel extends JPanel{
 	
 	private JLabel fuel;
 	private JLabel recycled;
+	private JLabel lastInstruction;
 	private JComboBox<Rotation> rotations;
 	private JTextField item;
 	private RobotEngine robot;

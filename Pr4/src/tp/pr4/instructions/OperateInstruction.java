@@ -57,6 +57,11 @@ public class OperateInstruction implements Instruction{
 			if(item == null) robot.lastInstruction().undo();
 			else item.desUse(robot, navigation);
 	}
+	
+	public String toString() {
+		return "Operate";
+	}
+	
 	private Item item;
 	private RobotEngine robot;
 	private NavigationModule navigation;

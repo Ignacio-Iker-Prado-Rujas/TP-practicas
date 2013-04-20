@@ -13,17 +13,20 @@ public class PickInstruction implements Instruction{
 	public PickInstruction(){
 		
 	}
+	
 	public PickInstruction(String id){
 		this.id = id;
 		this.container = null;
 		this.navigation = null;
 	}
+	
 	@Override
 	public Instruction parse(String cadena) throws WrongInstructionFormatException {
 		String[] arrayInstruction = cadena.split(" ");
-		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(PICK) || arrayInstruction[0].equalsIgnoreCase(COGER))){
+		if (arrayInstruction.length == 2 && (arrayInstruction[0].equalsIgnoreCase(PICK) || arrayInstruction[0].equalsIgnoreCase(COGER))) {
 			return new PickInstruction(arrayInstruction[1]);
-		} else throw new WrongInstructionFormatException();
+		} else 
+			throw new WrongInstructionFormatException();
 	}
 
 	@Override
@@ -40,7 +43,7 @@ public class PickInstruction implements Instruction{
 	}
 
 	@Override
-	public void execute() throws InstructionExecutionException{
+	public void execute() throws InstructionExecutionException {
 		item = this.navigation.pickItemFromCurrentPlace(id);
 		if(item == null)
 			throw new InstructionExecutionException(EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
@@ -59,6 +62,10 @@ public class PickInstruction implements Instruction{
 			this.container.pickItem(id);
 			this.navigation.dropItemAtCurrentPlace(item);
 		}
+	}
+	
+	public String toString() {
+		return "Pick";
 	}
 	
 	private Item item;

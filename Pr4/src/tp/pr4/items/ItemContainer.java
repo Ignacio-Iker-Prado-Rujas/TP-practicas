@@ -16,12 +16,12 @@ public class ItemContainer {
 	}
 	
 	//Devuelve true si el container está lleno
-	private boolean itemContainerLleno(){
+	private boolean itemContainerLleno() {
 		return (this.arrayItem.length == this.numItems);
 	}
 	
 	//Crea un nuevo container copiando el anterior pero con el doble de tamaño
-	private Item[] newItemContainer(){
+	private Item[] newItemContainer() {
 		Item newContainer[] = new Item[2 * this.numItems + 1];	//Se crea el nuevo container con el doble de capacidad
 		for (int i = 0; i < this.numItems; i++ ) 				//Se copian todos los elementos al nuevo
 			newContainer[i] = this.arrayItem[i];
