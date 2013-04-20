@@ -22,7 +22,9 @@ public class NavigationModule {
 			this.currentHeading = this.currentHeading.turnLeft();
 		else if (rotation == Rotation.RIGHT)
 			this.currentHeading = this.currentHeading.turnRight();
-		this.navPanel.actualizarDirection(this.currentHeading);
+		if (navPanel == null) 	EscribeConsola.lookingDirection(this.getCurrentHeading());
+		else this.navPanel.actualizarDirection(this.currentHeading);
+		
 	}
 
 	/*
@@ -41,7 +43,12 @@ public class NavigationModule {
 			// TODO navpanel.decir("Calle cerrada");
 		} else {
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);
-			navPanel.move(this.currentPlace, this.currentHeading);
+			if (navPanel == null){
+				EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.getCurrentHeading().toString());
+				EscribeConsola.currentPlace(this.getCurrentPlace());
+				System.out.println();
+			}
+			else navPanel.move(this.currentPlace, this.currentHeading);
 		}
 	}
 
@@ -103,7 +110,9 @@ public class NavigationModule {
 	public Place getCurrentPlace() {
 		return this.currentPlace;
 	}
-	
+	public void radarCurrentPlace(){
+		if (navPanel ==  null) EscribeConsola.currentPlace(currentPlace);
+	}
 	/*Necesita que algunos de sus métodos avisen 
 	 * a la interfaz de Swing sobre los cambios de orientación 
 	 * del robot así como de los cambios de lugar.*/

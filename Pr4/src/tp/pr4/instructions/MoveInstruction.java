@@ -32,9 +32,6 @@ public class MoveInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		this.navigation.move();
-		EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.navigation.getCurrentHeading().toString());
-		EscribeConsola.currentPlace(this.navigation.getCurrentPlace());
-		System.out.println();
 		this.robot.addFuel(-5); //Actualiza el fuel al moverse.		
 	}
 	
