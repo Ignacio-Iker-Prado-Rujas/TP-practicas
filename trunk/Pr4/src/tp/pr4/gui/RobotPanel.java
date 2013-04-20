@@ -148,6 +148,8 @@ public class RobotPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				int fila = table.getSelectedRow();
 				robot.communicateRobot(new OperateInstruction(tableModel.getValueAt(fila, 0)));
+				if (robot.itemGastado(tableModel.getValueAt(fila, 0)))
+					tableModel.removeData(fila);
 			}		
 		});
 		this.instructionPanel.add(operate);

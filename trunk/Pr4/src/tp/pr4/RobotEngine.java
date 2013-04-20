@@ -98,6 +98,13 @@ public class RobotEngine {
 	public boolean modoConsola(){
 		return (this.robotPanel == null);
 	}
+	
+	public boolean itemGastado(String id) {
+		if(itemContainer.containsItem(id))
+			return false;
+		else
+			return true;
+	}
 
 	// Muestra los mendajes al iniciar el movimiento
 	private void mostrarInicio() {
