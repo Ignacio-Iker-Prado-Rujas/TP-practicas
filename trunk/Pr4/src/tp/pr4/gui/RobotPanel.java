@@ -18,10 +18,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import tp.pr4.Direction;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
-import tp.pr4.cityLoader.cityLoaderExceptions.WrongCityFormatException;
 import tp.pr4.instructions.*;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;

@@ -2,16 +2,11 @@ package tp.pr4.gui;
 
 import tp.pr4.Direction;
 import tp.pr4.Place;
-import tp.pr4.Rotation;
-import tp.pr4.gui.headingIcons.*;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;

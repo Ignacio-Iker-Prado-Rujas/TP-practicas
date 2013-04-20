@@ -1,6 +1,5 @@
 package tp.pr4.instructions;
 
-import tp.pr4.EscribeConsola;
 import tp.pr4.NavigationModule;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;

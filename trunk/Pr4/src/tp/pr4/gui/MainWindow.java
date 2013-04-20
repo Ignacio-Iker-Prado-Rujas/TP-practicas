@@ -4,20 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.*;
-import java.net.URL;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
-import javax.swing.JSplitPane;
-import javax.swing.KeyStroke;
-
 import tp.pr4.Place;
 import tp.pr4.RobotEngine;
 import tp.pr4.instructions.Instruction;
