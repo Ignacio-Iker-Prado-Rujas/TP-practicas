@@ -70,6 +70,7 @@ public class NavigationModule {
 
 	public void dropItemAtCurrentPlace(Item it) {
 		this.currentPlace.dropItem(it);
+		navPanel.actualizarLog(currentPlace);
 	}
 
 	/* True si el item buscado esta en el lugar. False si no */
