@@ -37,7 +37,7 @@ public class UndoInstruction implements Instruction {
 	public void undo() throws InstructionExecutionException {
 		engine.lastInstruction().undo();
 	}
-	private RobotEngine engine;
 	
+	private RobotEngine engine;
 	private static final String UNDO = "UNDO";
 }

@@ -30,9 +30,10 @@ public class NavigationPanel extends JPanel {
 		walle.setOpaque(true);
 		mapViewPanel.add(walle, BorderLayout.WEST);
 		
-		JPanel mapPanel = new JPanel(new GridLayout(11, 11));
+		JPanel mapPanel = new JPanel(new GridLayout(width, width));
 		TitledBorder mapa = new TitledBorder("City Map");
 		mapPanel.setBorder(mapa);
+		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		
 		this.textArea = new JTextArea(initialPlace.toString());
 		TitledBorder texto = new TitledBorder("Log");
@@ -89,16 +90,16 @@ public class NavigationPanel extends JPanel {
 		this.textArea.setText(currentPlace.toString());
 	}
 	
-	private int x;
-	private int y;
-	private PlaceCell[][] arrayLugares = new PlaceCell[width][width];
-	private static final int width = 11;
-	private JPanel mapViewPanel;
-	private JTextArea textArea;
-	private JLabel walle;
-	private ImageIcon iconN;
-	private ImageIcon iconE;
-	private ImageIcon iconS;
-	private ImageIcon iconW;
-	private static final long serialVersionUID = 1L;	//Daba warning
+    private int x;
+    private int y;
+    private PlaceCell[][] arrayLugares = new PlaceCell[width][width];
+    private static final int width = 11;
+    private JPanel mapViewPanel;
+    private JTextArea textArea;
+    private JLabel walle;
+    private ImageIcon iconN;
+    private ImageIcon iconE;
+    private ImageIcon iconS;
+    private ImageIcon iconW;
+    private static final long serialVersionUID = 1L;        //Daba warning
 }
