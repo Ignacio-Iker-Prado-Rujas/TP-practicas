@@ -36,6 +36,9 @@ public class MoveInstruction implements Instruction{
 	
 	@Override
 	public void undo() throws InstructionExecutionException {
+		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
+		navigation.move();
+		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
 		navigation.undoMove();
 		this.robot.addFuel(5);
 	}

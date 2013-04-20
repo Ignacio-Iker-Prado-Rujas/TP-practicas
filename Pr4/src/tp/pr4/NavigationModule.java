@@ -51,6 +51,8 @@ public class NavigationModule {
 	}
 	
 	public void undoMove(){
+		if(navPanel != null) 
+			navPanel.undoMove();
 		initHeading(getCurrentHeading().oppositeDirection());
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null){} //No debería darse porque la instrucción no se habría apilado

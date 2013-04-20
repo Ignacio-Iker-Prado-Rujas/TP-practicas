@@ -10,8 +10,7 @@ import javax.swing.JTextArea;
 import tp.pr4.Place;
 
 public class PlaceCell extends JButton {
-	// Constructor por defecto, no tiene nada
-	public PlaceCell( final JTextArea textArea) {
+	public PlaceCell(final JTextArea textArea) {
 		this.numVisitas = 0;
 		this.actual = false; 
 		this.visited = false;
