@@ -65,8 +65,8 @@ public class RobotPanel extends JPanel{
 		this.fuel.setText("Fuel: " + fuel);
 	}
 
-	public void actualizarRecycled(int recicled) {
-		this.recycled.setText("Recycled: " + recycled);
+	public void actualizarRecycled(int totRec) {
+		this.recycled.setText("Recycled: " + totRec);
 	}
 	
 	public void actualizarLastInstruction(Instruction instruction) {

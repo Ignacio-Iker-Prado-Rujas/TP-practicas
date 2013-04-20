@@ -39,7 +39,7 @@ public class RobotEngine {
 				EscribeConsola.mostrar(exception.getMessage());
 			else {
 				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
-				JOptionPane.showMessageDialog(robotPanel, exception.getMessage(), "Error", JOptionPane.OK_OPTION, icon);
+				JOptionPane.showMessageDialog(robotPanel, exception.getMessage(), "¡Cuidado!", JOptionPane.OK_OPTION, icon);
 			}
 		}
 	}
@@ -56,15 +56,19 @@ public class RobotEngine {
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
-		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		else robotPanel.actualizarFuel(this.fuel);
+		if (modoConsola())
+			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		else 
+			robotPanel.actualizarFuel(this.fuel);
 	}
 
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
-		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		else robotPanel.actualizarRecycled(this.recycledMaterial);
+		if (modoConsola())
+			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
+		else 
+			robotPanel.actualizarRecycled(this.recycledMaterial);
 	}
 
 	// Para los tests
