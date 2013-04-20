@@ -72,3 +72,27 @@ public class MainWindow {
 	private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 }
+
+/* Cosas por hacer:
+ * 
+ * 1) Apañarlo para que saque una ventana cuando llegue al 
+ * 	spaceship o se le acabe el fuel, el método está hecho en 
+ * 	robotEngine ->  mostrarFinalVentana();
+ * 
+ * 2) Comprobar que pasa al hacer operate o drop sin seleccionar nada
+ * 	(sale NullPointerException)
+ * 
+ * 3) Al hacer undo del move deberia ponerse la celda opaca y quitar el titulo
+ * 
+ * 4) Al hacer Undo de pick no desaparece de la tabla, 
+ * 	y al hacer undo de operate si se gasta el item no funciona,
+ * 	y al hacer undo de drop no se recupera en la tabla
+ * 
+ * 5) Lo de apache esta ya hecho?
+ * 
+ * 6) El campo de al lado del undo que pone la ultima instruccion hecha
+ * 	Si no funciona, se quita
+ * 
+ * 7) Borrar comentarios que sobran como este y añadir alguno util, REORGANIZAR CODIGO
+ * 
+ */
