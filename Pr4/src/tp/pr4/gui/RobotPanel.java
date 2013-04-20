@@ -146,7 +146,8 @@ public class RobotPanel extends JPanel{
 		operate.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new OperateInstruction(/*y le pasas lo que haya en el id de la tabla*/));
+				int fila = table.getSelectedRow();
+				robot.communicateRobot(new OperateInstruction(tableModel.getValueAt(fila, 0)));
 			}		
 		});
 		this.instructionPanel.add(operate);
@@ -166,10 +167,6 @@ public class RobotPanel extends JPanel{
 			lastInstruction = new JLabel("Nothing to undo");
 			this.instructionPanel.add(lastInstruction);
 		}
-		/*
-		 * Estaria bien poner en el hueco la ultima instruccion 
-		 * realizada a la que se le pudiera hacer UNDO 
-		 */
 	}
 	
 	private Rotation forceRotation(String nameRotation) {
@@ -179,11 +176,6 @@ public class RobotPanel extends JPanel{
 			return Rotation.RIGHT;
 		else 
 			return Rotation.UNKNOWN;
-	}
-	
-	public void añadeATabla(Item item) {
-		if (item != null)
-			this.tableModel.addData(item.getId(), item.getDescription());
 	}
 	
 	private JLabel fuel;
