@@ -132,6 +132,18 @@ public class RobotEngine {
 			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
 	
+	public void mostrarFinalVentana( ) {
+		if (!haveFuel()) {
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			JOptionPane.showMessageDialog(robotPanel, "I run out of fuel. I cannot move. Shutting down...", 
+					"Bye, bye!", JOptionPane.OK_OPTION, icon);
+		} else if (isSpaceship()) {
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			JOptionPane.showMessageDialog(robotPanel, "I am at my spaceship. Bye bye", 
+					"Bye, bye!", JOptionPane.OK_OPTION, icon);
+		}
+	}
+	
 	public void startEngine() {
 		window = new MainWindow(this, navigation.getCurrentPlace());
 		window.setVisible(true);
@@ -147,7 +159,10 @@ public class RobotEngine {
 			}
 		}
 		sc.close(); // Cierra el escaner
-		mostrarFinal();
+		if(modoConsola())
+			mostrarFinal();
+		else
+			mostrarFinalVentana();
 	}
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI

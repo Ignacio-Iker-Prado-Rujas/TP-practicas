@@ -3,6 +3,7 @@ package tp.pr4.gui;
 import tp.pr4.Direction;
 import tp.pr4.Place;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -62,6 +63,9 @@ public class NavigationPanel extends JPanel {
 		arrayLugares[x][y].visitPlace();
 		actualizarLog(currentPlace);
 	}
+	public void undoMove() {
+		arrayLugares[x][y] = new PlaceCell(textArea);	
+	}
 	public void undoMove(Place currentPlace, Direction currentHeading){
 		if(arrayLugares[x][y].getNumVisitas() <= 0){
 			arrayLugares[x][y] = new PlaceCell(textArea);
@@ -77,6 +81,7 @@ public class NavigationPanel extends JPanel {
 			arrayLugares[x][y].visitPlace();
 			actualizarLog(currentPlace);
 		}
+		arrayLugares[x][y].setBackground(Color.blue);
 	}
 	
 	public void actualizarDirection(Direction direction) {
