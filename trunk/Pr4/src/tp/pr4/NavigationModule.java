@@ -36,11 +36,9 @@ public class NavigationModule {
 	public void move() throws InstructionExecutionException {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
-			throw new InstructionExecutionException(
-					EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
+			throw new InstructionExecutionException(EscribeConsola.THERE_IS_NO_STREET.replace("<direction>", currentHeading.toString()));
 		else if (!newStreet.isOpen()) {
 			throw new InstructionExecutionException(EscribeConsola.STREET_CLOSED);
-			// TODO navpanel.decir("Calle cerrada");
 		} else {
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);
 			if (navPanel == null){
