@@ -35,6 +35,7 @@ public class TableModel extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 	}
 	
+
 	public void addData(String id, String description) {
 		this.data = new String[1][this.columnNames.length];
 		this.data[this.columnNames.length - 1][0] = id;
