@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.*;
+import java.net.URL;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -57,9 +59,9 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane salir = new JOptionPane();
 				String[] opciones = {"Yes, please.", "No way."};
+				ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
 				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-						new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, opciones, opciones[0]);
 				if(n == 0)
 					System.exit(0);
 				}
@@ -83,9 +85,9 @@ public class MainWindow {
 
 /* Dudas:
  * 1) Preguntar por KeyStroke
- * 2) 
- * 3) Iniciar en modo ventana vs. consola
+ * 2) Tabla
+ * 3)
  * 4) 
- * 5) Hacer JOptionPane para cuando no se puede hacer una accion
- * 6) NO FUNCIONA: Cabiar el modo de meter la imagen: ¿new ImageIcon(new URL(navPanel.class.getResource("headingIcons/walleQuit.png")))?
+ * 5) 
+ * 6) 
  */

@@ -3,6 +3,10 @@ package tp.pr4;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import org.apache.commons.cli.*;
 
 import tp.pr4.cityLoader.CityLoaderFromTxtFile;
@@ -10,6 +14,19 @@ import tp.pr4.gui.MainWindow;
 
 public class Main {
 	public static void main(String[] args) {
+		//OJO: Este try-catch es para que salga la ventana como en windows en el mac
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
+		
 		// Comprueba que se le hayan pasado un argumentos al main 
 		if (args.length == 0) {
 		   	EscribeConsola.llamadaIncorrecta();

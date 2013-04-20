@@ -16,17 +16,6 @@ public class TableModel extends AbstractTableModel {
 		for(int i = 0; i < colNames.length; i++) 
 			this.columnNames[i] = colNames[i];
 		this.data = new String[0][colNames.length];
-		this.addTableModelListener(new TableModelListener() {
-			@Override
-			public void tableChanged(TableModelEvent e) {
-				
-			}
-			
-			public void actionPerformed(ActionEvent e) {
-				//getSelectedRow();
-			}		
-			
-		});
 	}
 	
 	public String getColumnName(int col) {

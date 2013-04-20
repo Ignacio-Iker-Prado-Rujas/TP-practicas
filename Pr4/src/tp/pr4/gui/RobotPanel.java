@@ -93,8 +93,9 @@ public class RobotPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane salir = new JOptionPane();
 				String[] opciones = {"Yes, please.", "No way."};
+				ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
 				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("src/tp/pr4/gui/headingIcons/walleQuit.png"), opciones, opciones[0]);
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, opciones, opciones[0]);
 				if(n == 0)
 					System.exit(0);
 				}
