@@ -36,10 +36,7 @@ public class MoveInstruction implements Instruction{
 	
 	@Override
 	public void undo() throws InstructionExecutionException {
-		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
-		navigation.undoMove();	//	Configura los place cell. En la p5 hará todo
-		navigation.move();
-		this.navigation.initHeading(navigation.getCurrentHeading().oppositeDirection());
+		navigation.undoMove();
 		this.robot.addFuel(5);
 	}
 	

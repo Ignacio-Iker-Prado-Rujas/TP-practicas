@@ -51,7 +51,19 @@ public class NavigationModule {
 	}
 	
 	public void undoMove(){
-		if(navPanel != null) navPanel.undoMove();
+		initHeading(getCurrentHeading().oppositeDirection());
+		Street newStreet = getHeadingStreet();
+		if (newStreet == null){} //No debería darse porque la instrucción no se habría apilado
+		else if (!newStreet.isOpen()) {} // Tampoco debería darse
+		else {
+			this.currentPlace = newStreet.nextPlace(this.currentPlace);
+			if (navPanel == null){
+				EscribeConsola.currentPlace(this.getCurrentPlace());
+				System.out.println();
+			}
+			else navPanel.undoMove(this.currentPlace, this.currentHeading);
+		}
+		initHeading(getCurrentHeading().oppositeDirection());
 	}
 
 	/*

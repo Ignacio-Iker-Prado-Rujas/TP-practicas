@@ -44,7 +44,9 @@ public class PlaceCell extends JButton {
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
-	
+	public int getNumVisitas(){
+		return numVisitas;
+	}
 	/* 
 	 * Tenemos dos booleanos, uno para saber si 
 	 * se ha visitado el lugar y otro para saber 
