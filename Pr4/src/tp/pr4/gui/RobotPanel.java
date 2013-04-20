@@ -51,7 +51,7 @@ public class RobotPanel extends JPanel{
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		
 		this.tableModel = new TableModel(new String[] {"Id", "Description"});
-		JTable table = new JTable(tableModel);
+		table = new JTable(tableModel);
 		table.setPreferredScrollableViewportSize(null);
 		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
@@ -112,8 +112,6 @@ public class RobotPanel extends JPanel{
 		Rotation[] rot = {Rotation.LEFT, Rotation.RIGHT};
 		rotations = new JComboBox<Rotation>(rot);
 		this.instructionPanel.add(rotations);
-		// System.out.println(directions.getSelectedItem()); //Este metodo nos da la rotacion seleccionada
-		// directions.setSelectedItem(Rotation.RIGHT); 		 //Y este lo modifica
 		
 		//INSTRUCCION PICK
 		JButton pick = new JButton("PICK");
@@ -137,7 +135,9 @@ public class RobotPanel extends JPanel{
 		drop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new DropInstruction());
+				int fila = table.getSelectedRow();
+				robot.communicateRobot(new DropInstruction(tableModel.getValueAt(fila, 0)));
+				tableModel.removeData(fila);
 			}		
 		});
 		this.instructionPanel.add(drop);
@@ -193,6 +193,7 @@ public class RobotPanel extends JPanel{
 	private JTextField item;
 	private RobotEngine robot;
 	private JPanel instructionPanel;
+	private JTable table;
 	private TableModel tableModel;
 	private JPanel dataPanel;
 	private static final long serialVersionUID = 1L;	//Daba warning

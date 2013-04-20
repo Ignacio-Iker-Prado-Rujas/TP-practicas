@@ -9,6 +9,7 @@ public class TableModel extends AbstractTableModel {
 		for(int i = 0; i < colNames.length; i++) 
 			this.columnNames[i] = colNames[i];
 		this.data = new String[0][colNames.length];
+		this.numElems = 0;
 	}
 	
 	public String getColumnName(int col) {
@@ -38,23 +39,36 @@ public class TableModel extends AbstractTableModel {
 		  que la tabla ha cambiado y la redibuja */
 	}
 	
+	private void duplicaTabla() {
+		// Por si es cero, le sumo 1
+		String nuevaTabla[][] = new String[numElems * 2 + 1][columnNames.length];
+		for(int i= 0; i < numElems; i++) {
+			nuevaTabla[i][0] = this.data[i][0];
+			nuevaTabla[i][1] = this.data[i][1];
+		}
+		this.data = nuevaTabla;
+	}
 
 	public void addData(String id, String description) {
-		this.data = new String[1][this.columnNames.length];
-		setValueAt(id, this.getRowCount() - 1, 0);
-		setValueAt(description, this.getRowCount() - 1, 1);
+		if(getRowCount() == numElems)
+			duplicaTabla();
+		setValueAt(id, numElems, 0);
+		setValueAt(description, numElems, 1);
+		numElems++;
 	}
 	
 	public void removeData(int row) { 
-		for(int i = row; i < getRowCount(); i++) {
+		for(int i = row; i < numElems - 1; i++) {
 			setValueAt(getValueAt(i + 1, 0), i, 0);
 			setValueAt(getValueAt(i + 1, 1), i, 1);
 		}
-		setValueAt(null, getRowCount(), 0);
-		setValueAt(null, getRowCount(), 1);
+		setValueAt(" ", numElems - 1, 0);
+		setValueAt(" ", numElems - 1, 1);
+		numElems--;
 	}
 	
 	private String[] columnNames;
 	private String[][] data;
+	private int numElems;
 	private static final long serialVersionUID = 1L;	//Daba warning
 }
