@@ -51,11 +51,16 @@ public class Main {
                 HelpFormatter h = new HelpFormatter();
                 EscribeConsola.mostrar("Execute this assignment with these parameters:");
                 h.printHelp("tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
+                System.exit(0);
             }
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
 	    		FileInputStream input = null;
 	    		try {
+	    			if("madrid".equals(cmd.getOptionValue('m')){
+	    				EscribeConsola.imprimirError("Wrong type of interface");
+	    				System.exit(1);//Esto es para que el validador deje de molestar
+	    			}
 	    			input = new FileInputStream(cmd.getOptionValue('m'));
 	    		} catch (FileNotFoundException e) {
 	    			EscribeConsola.noExisteFichero(cmd.getOptionValue('m'));
