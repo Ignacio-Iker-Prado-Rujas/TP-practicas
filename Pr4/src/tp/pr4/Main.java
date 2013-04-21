@@ -75,15 +75,16 @@ public class Main {
 	    			EscribeConsola.imprimirError(e.getMessage());
 	    			System.exit(2);
 	    		}
-            }else{
-            	EscribeConsola.imprimirError("Map file not specified");
-            	System.exit(1);
-            }
-            if (cmd.hasOption('i')){
+			} else {
+				EscribeConsola.imprimirError("Map file not specified");
+				System.exit(1);
+			}
+            if (cmd.hasOption('i')) {
             	if(cmd.getOptionValue('i').equals("swing")){
 			         /** Carga la información el robot y le indica que comience a moverse.
 			          * Crea la ventana para que funcione el entorno gráfico
-					 * Empieza el juego si no ha habido problemas	*/
+			          * Empieza el juego si no ha habido problemas	
+			          */
 					 
 					RobotEngine engine = new RobotEngine(city,
 							cityLoader.getInitialPlace(), Direction.NORTH);

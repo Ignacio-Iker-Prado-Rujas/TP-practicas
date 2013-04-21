@@ -32,7 +32,6 @@ public class RobotEngine {
 		try {
 			instruction.execute();
 			pilaInstruction.add(instruction);
-			//window.ActualizaLastInstruction(instruction);
 		} catch (InstructionExecutionException exception) {
 			if (modoConsola())
 				EscribeConsola.mostrar(exception.getMessage());
@@ -172,22 +171,22 @@ public class RobotEngine {
 			throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
 		else {
 			Instruction instruction = this.pilaInstruction.pop();
-			//window.ActualizaLastInstruction(instruction);
 			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
 		}
 	}
+	
 	public void darAvisoVentana(String mensaje){
 		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
-	/****************Operacines de la tabla de ventana *************/
-	
-	
+
+	/****************Operaciones de la tabla de ventana*************/
+
 	public void	addItem(String id, String description) {
 		robotPanel.addItem(id, description);
 	}
 	
-	public void deleteItem(String id){
+	public void deleteItem(String id) {
 		robotPanel.deleteItem(id);
 	}
 	

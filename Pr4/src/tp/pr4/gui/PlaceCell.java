@@ -24,11 +24,11 @@ public class PlaceCell extends JButton {
 		});
 	}
 	
-	public void desVisitar(){
+	public void desVisitar() {
 		numVisitas--;
 	}
 	
-	public void setPlace(Place place){
+	public void setPlace(Place place) {
 		this.setText(place.getName());
 		this.place = place;
 	}
