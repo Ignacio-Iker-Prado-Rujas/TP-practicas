@@ -68,6 +68,7 @@ public class NavigationPanel extends JPanel {
 		arrayLugares[x][y].desVisitar();
 		if(arrayLugares[x][y].getNumVisitas() <= 0){
 			//TODO Aqui tiene que dejar la celda [x][y] vacia y opaca
+			arrayLugares[x][y].ocultar();
 			cambiarPosicion(currentHeading);
 			arrayLugares[x][y].visitPlace();
 			arrayLugares[x][y].desVisitar();//Para que no le sume la visita

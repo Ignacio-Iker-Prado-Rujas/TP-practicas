@@ -187,6 +187,9 @@ public class RobotPanel extends JPanel{
 		tableModel.addData(id, description);
 	}
 	
+	public void deleteItem(String id){
+		tableModel.deleteItem(id);
+	}
 	public void deleteSelectedItem() { 
 		int row = table.getSelectedRow();
 		tableModel.removeData(row);

@@ -180,8 +180,15 @@ public class RobotEngine {
 		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
+	/****************Operacines de la tabla de ventana *************/
+	
+	
 	public void	addItem(String id, String description) {
 		robotPanel.addItem(id, description);
+	}
+	
+	public void deleteItem(String id){
+		robotPanel.deleteItem(id);
 	}
 	
 	public void deleteSelectedItem() { 

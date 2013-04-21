@@ -56,6 +56,16 @@ public class TableModel extends AbstractTableModel {
 		numElems++;
 	}
 	
+	private int findData(String id){
+		for (int i = 0; i < numElems; i++){
+			if (id.equalsIgnoreCase(data[i][0])) return i;
+		}
+		return -1;
+	}
+	public void deleteItem(String id){
+		int row = findData(id);
+		if(row >= 0) removeData(row);
+	}
 	public void removeData(int row) { 
 		String nuevaTabla[][] = new String[numElems - 1][columnNames.length];
 		for (int i = 0; i < row; i++){

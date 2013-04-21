@@ -51,7 +51,10 @@ public class PlaceCell extends JButton {
 		return numVisitas;
 	}
 	public void ocultar(){
-		this.setOpaque(true);
+		this.setText(null);
+		this.place = null;
+		this.actual = false;
+		this.visited = false;
 	}
 	/* 
 	 * Tenemos dos booleanos, uno para saber si 
