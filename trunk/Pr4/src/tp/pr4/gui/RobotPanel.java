@@ -180,6 +180,33 @@ public class RobotPanel extends JPanel{
 			return Rotation.UNKNOWN;
 	}
 	
+	/***********operacinoes de la tabla **********************************/
+	
+	public String getColumnName(int col) {
+		return tableModel.getColumnName(col);
+	}
+	
+	public int getRowCount() {
+		return tableModel.getRowCount();
+	}
+
+	public int getColumnCount() {
+		return tableModel.getColumnCount();
+	}
+
+	public String getValueAt(int row, int col) {
+		return tableModel.getValueAt(row, col);
+	}
+	
+	public void pickItem(String id, String description) {
+		tableModel.addData(id, description);
+	}
+	
+	public void dropItem(int row) { 
+		tableModel.removeData(row);
+	}
+	/*************************** fin metodos tabla *****************/
+	
 	private JLabel fuel;
 	private JLabel recycled;
 	private JLabel lastInstruction;
