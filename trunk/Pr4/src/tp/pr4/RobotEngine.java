@@ -6,7 +6,6 @@ import java.util.Stack;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import tp.pr4.gui.MainWindow;
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.gui.RobotPanel;
 import tp.pr4.instructions.Instruction;
@@ -58,8 +57,15 @@ public class RobotEngine {
 		this.fuel += fuel;
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		else 
+		else{
 			robotPanel.actualizarFuel(this.fuel);
+			if(!haveFuel()){
+				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+				JOptionPane.showMessageDialog(robotPanel, "I run out of fuel. I cannot move. Shutting down...", 
+						"Bye, bye!", JOptionPane.OK_OPTION, icon);
+				System.exit(0);
+			}
+		}
 	}
 
 	// Incrementa la cantidad de material reciclado
@@ -132,18 +138,6 @@ public class RobotEngine {
 			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
 	
-	public void mostrarFinalVentana( ) {
-		if (!haveFuel()) {
-			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
-			JOptionPane.showMessageDialog(robotPanel, "I run out of fuel. I cannot move. Shutting down...", 
-					"Bye, bye!", JOptionPane.OK_OPTION, icon);
-		} else if (isSpaceship()) {
-			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
-			JOptionPane.showMessageDialog(robotPanel, "I am at my spaceship. Bye bye", 
-					"Bye, bye!", JOptionPane.OK_OPTION, icon);
-		}
-	}
-	
 	public void startEngine() {
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
@@ -181,6 +175,10 @@ public class RobotEngine {
 			//window.ActualizaLastInstruction(instruction);
 			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
 		}
+	}
+	public void darAvisoVentana(String mensaje){
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
 		
 	private RobotPanel robotPanel;
