@@ -57,7 +57,7 @@ public class Main {
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
 	    		FileInputStream input = null;
 	    		try {
-	    			if("madrid".equals(cmd.getOptionValue('m')){
+	    			if("madrid".equals(cmd.getOptionValue('m'))){
 	    				EscribeConsola.imprimirError("Wrong type of interface");
 	    				System.exit(1);//Esto es para que el validador deje de molestar
 	    			}
