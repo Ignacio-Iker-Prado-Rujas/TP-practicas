@@ -44,7 +44,7 @@ public class EscribeConsola {
 		System.err.println("<mapfile> : file with the description of the city.");
 	}
 
-	public static void mapaIncorrecto(String message) {
+	public static void imprimirError(String message) {
 		System.err.println(message);
 	}
 
