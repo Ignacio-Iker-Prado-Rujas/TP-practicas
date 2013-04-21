@@ -50,7 +50,7 @@ public class PickInstruction implements Instruction{
 		
 		else if(this.container.addItem(item))
 			if (engine.modoConsola())EscribeConsola.say(EscribeConsola.NOW_HAVE.replace("<id>", id));
-			else {} //TODO Añadir item a la tabla de inventario
+			else engine.addItem(id, item.getDescription());
 		else	
 			throw new InstructionExecutionException(EscribeConsola.HAD_OBJECT.replace("<id>", id));		
 	}

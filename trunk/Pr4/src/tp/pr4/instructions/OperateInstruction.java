@@ -46,6 +46,7 @@ public class OperateInstruction implements Instruction{
 		else if (item.use(this.robot, this.navigation)){
 			if (!item.canBeUsed()){
 				if(robot.modoConsola()) EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", this.id));
+				else robot.deleteSelectedItem();
 				this.container.pickItem(this.id);
 			}
 		}
@@ -55,7 +56,11 @@ public class OperateInstruction implements Instruction{
 	@Override
 	public void undo() throws InstructionExecutionException {
 			if(item == null) robot.lastInstruction().undo();
-			else item.desUse(robot, navigation);
+			else{
+				item.desUse(robot, navigation);
+				if(this.container.addItem(item)) robot.addItem(id, item.getDescription()); //Si ya estaba no se añade
+				
+			}
 	}
 	
 	public String toString() {

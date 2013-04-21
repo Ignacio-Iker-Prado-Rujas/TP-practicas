@@ -60,7 +60,7 @@ public class DropInstruction implements Instruction{
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
 			if(engine.modoConsola()) EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
-			else {} //TODO Actualizartabla y lugar
+			else engine.deleteSelectedItem(); 
 		}
 	}
 	

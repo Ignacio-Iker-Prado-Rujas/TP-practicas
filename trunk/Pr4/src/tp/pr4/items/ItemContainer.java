@@ -72,6 +72,7 @@ public class ItemContainer {
 		
 	//Añade un item al container, ordenado por id, siempre que no haya otro con el mismo nombre
 	//Se devuelve true sii se pudo añadir
+	
 	public boolean addItem(Item item) {
 		if (itemContainerLleno()) 	//Si está lleno, crea uno nuevo más grande
 			this.arrayItem = newItemContainer();
@@ -98,6 +99,7 @@ public class ItemContainer {
 	}
 
 	//Devuelve un item del contenedor si esta, borrandolo de este
+	
 	public Item pickItem(String id) {
 		int pos = estaElItem(id);
 		if (pos < 0)

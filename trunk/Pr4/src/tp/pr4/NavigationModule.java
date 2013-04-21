@@ -84,7 +84,7 @@ public class NavigationModule {
 
 	public Item pickItemFromCurrentPlace(String id) {
 		Item item = this.currentPlace.pickItem(id);
-		navPanel.actualizarLog(currentPlace);
+		if(navPanel != null)navPanel.actualizarLog(currentPlace);
 		return item;
 	}
 
@@ -95,7 +95,7 @@ public class NavigationModule {
 
 	public void dropItemAtCurrentPlace(Item it) {
 		this.currentPlace.dropItem(it);
-		navPanel.actualizarLog(currentPlace);
+		if(navPanel != null) navPanel.actualizarLog(currentPlace);
 	}
 
 	/* True si el item buscado esta en el lugar. False si no */
