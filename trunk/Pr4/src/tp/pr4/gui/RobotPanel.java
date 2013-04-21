@@ -21,7 +21,6 @@ import javax.swing.border.TitledBorder;
 import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import tp.pr4.instructions.*;
-import tp.pr4.instructions.exceptions.InstructionExecutionException;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
@@ -66,10 +65,6 @@ public class RobotPanel extends JPanel{
 
 	public void actualizarRecycled(int totRec) {
 		this.recycled.setText("Recycled: " + totRec);
-	}
-	
-	public void actualizarLastInstruction(Instruction instruction) {
-		this.lastInstruction.setText(instruction.toString());
 	}
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
@@ -162,13 +157,6 @@ public class RobotPanel extends JPanel{
 			}		
 		});
 		this.instructionPanel.add(undo);
-		try {
-			lastInstruction = new JLabel(robot.lastInstruction().toString());
-			this.instructionPanel.add(lastInstruction);
-		} catch (InstructionExecutionException e1) {
-			lastInstruction = new JLabel("Nothing to undo");
-			this.instructionPanel.add(lastInstruction);
-		}
 	}
 	
 	private Rotation forceRotation(String nameRotation) {
@@ -180,7 +168,7 @@ public class RobotPanel extends JPanel{
 			return Rotation.UNKNOWN;
 	}
 	
-	/***********operacinoes de la tabla **********************************/
+	/***********Operacinoes de la tabla **********************************/
 	
 
 	public void	addItem(String id, String description) {
@@ -194,11 +182,10 @@ public class RobotPanel extends JPanel{
 		int row = table.getSelectedRow();
 		tableModel.removeData(row);
 	}
-	/*************************** fin metodos tabla *****************/
+	/***************************Fin metodos tabla *****************/
 	
 	private JLabel fuel;
 	private JLabel recycled;
-	private JLabel lastInstruction;
 	private JComboBox<Rotation> rotations;
 	private JTextField item;
 	private RobotEngine robot;

@@ -12,7 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import tp.pr4.Place;
 import tp.pr4.RobotEngine;
-import tp.pr4.instructions.Instruction;
 
 public class MainWindow {
 	public MainWindow(RobotEngine elRobot, Place initialPlace) {
@@ -58,12 +57,9 @@ public class MainWindow {
 		});
 		ventana.setJMenuBar(menuBar);
 	}
+	
 	public void setVisible(boolean bool){
 		this.ventana.setVisible(bool);
-	}
-	
-	public void ActualizaLastInstruction(Instruction instruction) {
-		robotPanel.actualizarLastInstruction(instruction);
 	}
 	
 	private final JFrame ventana;
