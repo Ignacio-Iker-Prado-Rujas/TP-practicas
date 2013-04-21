@@ -62,6 +62,7 @@ public class PickInstruction implements Instruction{
 		else {
 			this.container.pickItem(id);
 			this.navigation.dropItemAtCurrentPlace(item);
+			engine.deleteItem(id);
 		}
 	}
 	

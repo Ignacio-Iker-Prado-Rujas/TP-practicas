@@ -67,7 +67,10 @@ public class DropInstruction implements Instruction{
 	@Override
 	public void undo() throws InstructionExecutionException {
 		if (item == null) engine.lastInstruction().undo();
-		else	container.addItem(navigation.pickItemFromCurrentPlace(id));
+		else{
+			container.addItem(navigation.pickItemFromCurrentPlace(id));
+			engine.addItem(id, item.getDescription());
+		}
 	}
 	
 	public String toString() {
