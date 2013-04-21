@@ -145,8 +145,6 @@ public class RobotEngine {
 	}
 	
 	public void startEngine() {
-		window = new MainWindow(this, navigation.getCurrentPlace());
-		window.setVisible(true);
 		mostrarInicio();
 		Scanner sc = new Scanner(System.in);
 		while (haveFuel() && !isSpaceship() && !quit) {
@@ -159,10 +157,7 @@ public class RobotEngine {
 			}
 		}
 		sc.close(); // Cierra el escaner
-		if(modoConsola())
-			mostrarFinal();
-		else
-			mostrarFinalVentana();
+		mostrarFinal();
 	}
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
@@ -176,7 +171,7 @@ public class RobotEngine {
 	}
 	
 	//Sets the main window of the GUI in order to inform about some robot events
-	public void setGUIWindow(MainWindow mainWindow) {}
+	//public void setGUIWindow(MainWindow mainWindow) {} por ahora no se usa
 	
 	public Instruction lastInstruction() throws InstructionExecutionException{
 		if (this.pilaInstruction.isEmpty()) 
@@ -187,8 +182,7 @@ public class RobotEngine {
 			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
 		}
 	}
-	
-	private MainWindow window;	
+		
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
