@@ -67,11 +67,10 @@ public class NavigationPanel extends JPanel {
 	public void undoMove(Place currentPlace, Direction currentHeading){
 		arrayLugares[x][y].desVisitar();
 		if(arrayLugares[x][y].getNumVisitas() <= 0){
-
+			//TODO Aqui tiene que dejar la celda [x][y] vacia y opaca
 			cambiarPosicion(currentHeading);
-			arrayLugares[x][y].setPlace(currentPlace);
 			arrayLugares[x][y].visitPlace();
-			arrayLugares[x][y].desVisitar();
+			arrayLugares[x][y].desVisitar();//Para que no le sume la visita
 			actualizarLog(currentPlace);
 		}
 		else{
