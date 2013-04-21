@@ -27,7 +27,7 @@ public class NavigationPanel extends JPanel {
 		walle.setOpaque(true);
 		mapViewPanel.add(walle, BorderLayout.WEST);
 		
-		JPanel mapPanel = new JPanel(new GridLayout(width, width));
+		mapPanel = new JPanel(new GridLayout(width, width));
 		TitledBorder mapa = new TitledBorder("City Map");
 		mapPanel.setBorder(mapa);
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
@@ -63,15 +63,15 @@ public class NavigationPanel extends JPanel {
 		arrayLugares[x][y].visitPlace();
 		actualizarLog(currentPlace);
 	}
-	public void undoMove() {
-		arrayLugares[x][y] = new PlaceCell(textArea);	
-	}
+
 	public void undoMove(Place currentPlace, Direction currentHeading){
+		arrayLugares[x][y].desVisitar();
 		if(arrayLugares[x][y].getNumVisitas() <= 0){
-			arrayLugares[x][y] = new PlaceCell(textArea);
+
 			cambiarPosicion(currentHeading);
 			arrayLugares[x][y].setPlace(currentPlace);
 			arrayLugares[x][y].visitPlace();
+			arrayLugares[x][y].desVisitar();
 			actualizarLog(currentPlace);
 		}
 		else{
@@ -113,6 +113,7 @@ public class NavigationPanel extends JPanel {
     private PlaceCell[][] arrayLugares = new PlaceCell[width][width];
     private static final int width = 11;
     private JPanel mapViewPanel;
+    private JPanel mapPanel;
     private JTextArea textArea;
     private JLabel walle;
     private ImageIcon iconN;

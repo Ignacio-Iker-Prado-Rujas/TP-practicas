@@ -24,6 +24,10 @@ public class PlaceCell extends JButton {
 		});
 	}
 	
+	public void desVisitar(){
+		numVisitas--;
+	}
+	
 	public void setPlace(Place place){
 		this.setText(place.getName());
 		this.place = place;
@@ -45,6 +49,9 @@ public class PlaceCell extends JButton {
 	
 	public int getNumVisitas(){
 		return numVisitas;
+	}
+	public void ocultar(){
+		this.setOpaque(true);
 	}
 	/* 
 	 * Tenemos dos booleanos, uno para saber si 

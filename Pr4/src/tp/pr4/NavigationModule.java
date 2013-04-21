@@ -1,5 +1,8 @@
 package tp.pr4;
 
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 import tp.pr4.gui.NavigationPanel;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
 import tp.pr4.items.Item;
@@ -46,13 +49,19 @@ public class NavigationModule {
 				EscribeConsola.currentPlace(this.getCurrentPlace());
 				System.out.println();
 			}
-			else navPanel.move(this.currentPlace, this.currentHeading);
+			else{
+				navPanel.move(this.currentPlace, this.currentHeading);
+				if(currentPlace.isSpaceship()){
+					ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+					JOptionPane.showMessageDialog(navPanel, "I am at my spaceship. Bye bye", 
+							"Bye, bye!", JOptionPane.OK_OPTION, icon);
+					System.exit(0);
+				}
+			}
 		}
 	}
 	
 	public void undoMove(){
-		if(navPanel != null) 
-			navPanel.undoMove();
 		initHeading(getCurrentHeading().oppositeDirection());
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null){} //No debería darse porque la instrucción no se habría apilado
