@@ -29,13 +29,17 @@ public class Main {
 		
 		// Comprueba que se le hayan pasado un argumentos al main 
 		if (args.length == 0) {
-		   	EscribeConsola.llamadaIncorrecta();
-					System.exit(1);
+		   	EscribeConsola.llamadaVacia();
+			System.exit(1);
 		}
 		Options options = new Options();
         options.addOption("h", "help", false, "Shows this help message");
-        options.addOption("i", "interface", true, "Type of interface ( 'console' or 'swing' ) ");
-        options.addOption("m", "map", true, "File map name (.txt)");
+        Option inter = new Option("i", "interface", true, "The type of interface: console or swing");
+        inter.setArgName("type");
+        options.addOption(inter);
+        Option mapa = new Option("m", "map", true, "File with the description of the city");
+        mapa.setArgName("mapfile");
+        options.addOption(mapa);
         
         BasicParser parseador = new BasicParser();
         
@@ -45,7 +49,8 @@ public class Main {
             CommandLine cmd = parseador.parse(options, args);
             if(cmd.hasOption('h')){
                 HelpFormatter h = new HelpFormatter();
-                h.printHelp("Help", options); 	//imprime todas las opcines correctas
+                EscribeConsola.mostrar("Execute this assignment with these parameters:");
+                h.printHelp("tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
             }
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
@@ -92,5 +97,6 @@ public class Main {
 			System.exit(1);
         }
 	}
+	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
 	

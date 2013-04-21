@@ -4,6 +4,9 @@ public class EscribeConsola {
 	
 	/*Clase que acumula el mostrar la información al usuario*/
 	
+	public static void llamadaVacia(){
+		System.err.println("Map file not specified");
+	}
 	public static void lookingDirection(Direction direction) {
 		System.out
 				.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
@@ -55,7 +58,9 @@ public class EscribeConsola {
 	public static void mostrar(String message) {
 		System.out.println(message);
 	}
-
+	
+	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
 	public static final String NOT_MORE_INSTRUCTIONS = "No hay instrucciones anteriores";
 	public static final String LOOK_DIRECTION = "WALL·E is looking at direction <DIR>";
 	public static final String PROMPT = "WALL·E> ";
@@ -88,6 +93,6 @@ public class EscribeConsola {
 	public static final String IN_SPACESHIP = "I am at my spaceship. Bye bye";
 	public static final String COMUNICATION_PROBLEMS = "I have communication problems. Bye Bye";
 	/*********/
-	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	
 	
 }
