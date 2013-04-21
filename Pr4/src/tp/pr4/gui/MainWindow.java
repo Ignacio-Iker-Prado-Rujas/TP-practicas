@@ -85,13 +85,13 @@ public class MainWindow {
  * 3.este le haces tú, no consigoque se vuelva opaca la celda)
  *  Al hacer undo del move deberia ponerse la celda opaca y quitar el titulo
  * 
- * 4) Al hacer Undo de pick no desaparece de la tabla, 
- * 	y al hacer undo de operate si se gasta el item no funciona,
+ * 4 hecho) Al hacer Undo de pick no desaparece de la tabla, 
+ * 	y al hacer undo de operate si se gasta el item no funciona, falta hacer que lo vuelva a añadir a la tabla
  * 	y al hacer undo de drop no se recupera en la tabla
  * 
  * 5 Hecho) Lo de apache esta ya hecho?
  * 
- * 6 Mejor quitarlo) El campo de al lado del undo que pone la ultima instruccion hecha
+ * 6 Mejor quitarlo, por razones logísticas) El campo de al lado del undo que pone la ultima instruccion hecha
  * 	Si no funciona, se quita
  * 
  * 7) Borrar comentarios que sobran como este y añadir alguno util, REORGANIZAR CODIGO

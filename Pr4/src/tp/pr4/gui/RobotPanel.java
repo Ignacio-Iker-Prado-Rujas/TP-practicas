@@ -22,7 +22,6 @@ import tp.pr4.RobotEngine;
 import tp.pr4.Rotation;
 import tp.pr4.instructions.*;
 import tp.pr4.instructions.exceptions.InstructionExecutionException;
-import tp.pr4.items.Item;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
@@ -118,12 +117,10 @@ public class RobotPanel extends JPanel{
 		pick.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (item.getText() != null) {
-					PickInstruction pickInstruction = new PickInstruction(item.getText());
-					robot.communicateRobot(pickInstruction);
-					Item it = robot.getItem(item.getText());
-					tableModel.addData(it.getId(), it.getDescription());
-				}
+				if (item.getText() != null) 
+					robot.communicateRobot( new PickInstruction(item.getText()));
+				else 
+					robot.darAvisoVentana("Escriba el nombre de algun item");
 			}
 		});
 		this.instructionPanel.add(pick);
@@ -138,10 +135,8 @@ public class RobotPanel extends JPanel{
 				int fila = table.getSelectedRow();
 				if (fila < 0)
 					robot.darAvisoVentana("Seleccione algún item de la tabla");
-				else{
+				else
 					robot.communicateRobot(new DropInstruction(tableModel.getValueAt(fila, 0)));
-					tableModel.removeData(fila);
-				}
 			}		
 		});
 		this.instructionPanel.add(drop);
@@ -153,11 +148,8 @@ public class RobotPanel extends JPanel{
 				int fila = table.getSelectedRow();
 				if (fila < 0)
 					robot.darAvisoVentana("Seleccione algún item de la tabla");
-				else{
+				else
 					robot.communicateRobot(new OperateInstruction(tableModel.getValueAt(fila, 0)));
-					if (robot.itemGastado(tableModel.getValueAt(fila, 0)))
-					tableModel.removeData(fila);
-				}
 			}		
 		});
 		this.instructionPanel.add(operate);
@@ -190,27 +182,13 @@ public class RobotPanel extends JPanel{
 	
 	/***********operacinoes de la tabla **********************************/
 	
-	public String getColumnName(int col) {
-		return tableModel.getColumnName(col);
-	}
-	
-	public int getRowCount() {
-		return tableModel.getRowCount();
-	}
 
-	public int getColumnCount() {
-		return tableModel.getColumnCount();
-	}
-
-	public String getValueAt(int row, int col) {
-		return tableModel.getValueAt(row, col);
-	}
-	
-	public void pickItem(String id, String description) {
+	public void	addItem(String id, String description) {
 		tableModel.addData(id, description);
 	}
 	
-	public void dropItem(int row) { 
+	public void deleteSelectedItem() { 
+		int row = table.getSelectedRow();
 		tableModel.removeData(row);
 	}
 	/*************************** fin metodos tabla *****************/

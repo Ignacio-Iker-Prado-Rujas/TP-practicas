@@ -89,7 +89,7 @@ public class RobotEngine {
 	
 	public Item getItem(String id){
         return itemContainer.getItem(id);
-}
+	}
 
 	// Muestra las instrucciones que reconoce WALL·E (Solo funciona en consola)
 	public void requestHelp() {
@@ -179,6 +179,13 @@ public class RobotEngine {
 	public void darAvisoVentana(String mensaje){
 		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
+	}
+	public void	addItem(String id, String description) {
+		robotPanel.addItem(id, description);
+	}
+	
+	public void deleteSelectedItem() { 
+		robotPanel.deleteSelectedItem();
 	}
 		
 	private RobotPanel robotPanel;
