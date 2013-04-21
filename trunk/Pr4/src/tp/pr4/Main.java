@@ -67,9 +67,12 @@ public class Main {
 	    		try {
 	    			city = cityLoader.loadCity(input);
 	    		} catch (IOException e) {
-	    			EscribeConsola.mapaIncorrecto(e.getMessage());
+	    			EscribeConsola.imprimirError(e.getMessage());
 	    			System.exit(2);
 	    		}
+            }else{
+            	EscribeConsola.imprimirError("Map file not specified");
+            	System.exit(1);
             }
             if (cmd.hasOption('i')){
             	if(cmd.getOptionValue('i').equals("swing")){
@@ -91,12 +94,19 @@ public class Main {
 	        				cityLoader.getInitialPlace(), Direction.NORTH);
 	        		engine.startEngine();
                 }
+            	else{
+            		EscribeConsola.imprimirError("Wrong type of interface");
+            		System.exit(1);
+            	}
+            }else{
+            	EscribeConsola.imprimirError("Interface not specified");
+            	System.exit(1);
             }
+    
         }catch (ParseException e) {
         	EscribeConsola.llamadaIncorrecta();
 			System.exit(1);
         }
 	}
-	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 }
 	
