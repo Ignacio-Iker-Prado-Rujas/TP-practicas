@@ -6,8 +6,8 @@ place 2 Colon "People concentrates here to watch football" noSpaceShip
 place 3 Exit "Ok, finally you have found your spaceship..." spaceShip
 place 4 Calderon "The best estadio of the world" noSpaceShip
 place 5 LaHiguera "The most famous village in Spain" noSpaceShip
-place 6 Noja "The best beach in Spain, whith many surfers and party" noSpaceShip
-place 7 Chaminade "Donde se hospeda Perelman" spaceShip
+place 6 Noja "The best beach in Spain, with many surfers and party" noSpaceShip
+place 7 Chaminade "Where Perelman hosts" spaceShip
 EndPlaces
 BeginStreets
 street 0 place 0 south place 1 open
