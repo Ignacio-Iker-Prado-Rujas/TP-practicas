@@ -24,37 +24,38 @@ import tp.pr4.instructions.*;
 
 public class RobotPanel extends JPanel{
 	// Constructor: Se añade el intructionPanel y el dataPanel 
-	// Convendria separar en un par de metodos privados, que es un tocho
 	public RobotPanel (RobotEngine elRobot) {
+		//Fijamos el robotEngine
 		this.robot = elRobot;
 		this.setLayout(new BorderLayout());
+		//Creamos el panel con los botones 
 		this.instructionPanel = new JPanel(new GridLayout(5, 2));
 		TitledBorder instruct = new TitledBorder("Instructions");
 		this.instructionPanel.setBorder(instruct);
+		//Llamamos al método que crea los botones y sus listeners
 		configureInstructionPanel();
 		this.add(instructionPanel, BorderLayout.WEST);
-		
+		//Creamos el panel de datos del robot
 		this.dataPanel = new JPanel(new BorderLayout());
-		TitledBorder info = new TitledBorder("Instructions");
-		info.setTitle("Robot info");
+		TitledBorder info = new TitledBorder("Robot info");
 		this.dataPanel.setBorder(info);
 		JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 5));
-		
-		
-		
+		//Añadimos los Label con el Fuel y el RecycledMaterial
 		this.fuel = new JLabel("Fuel: " + elRobot.getFuel());
 		statusPanel.add(fuel);		
 		this.recycled = new JLabel("Recycled: " + elRobot.getRecycledMaterial());
 		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
-		
+		//Creamos la TableModel (que hereda de AbstractTableModel)
 		this.tableModel = new TableModel(new String[] {"Id", "Description"});
+		//Creamos la JTable y le pasamos la TableModel en el constructor
 		table = new JTable(tableModel);
 		table.setPreferredScrollableViewportSize(null);
+		//Permitimos que se pueda hacer Scroll por si se cogen muchos Items
 		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
 		this.add(dataPanel, BorderLayout.CENTER); 
-		
+		//Ponemos un SplitPane para cambiar las dimensiones del RobotPanel
 		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instructionPanel, dataPanel);
 		this.add(splitPanel);
 	}
@@ -106,7 +107,6 @@ public class RobotPanel extends JPanel{
 		Rotation[] rot = {Rotation.LEFT, Rotation.RIGHT};
 		rotations = new JComboBox<Rotation>(rot);
 		this.instructionPanel.add(rotations);
-		
 		//INSTRUCCION PICK
 		JButton pick = new JButton("PICK");
 		pick.addActionListener(new ActionListener() {

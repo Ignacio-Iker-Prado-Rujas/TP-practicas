@@ -15,7 +15,9 @@ import tp.pr4.RobotEngine;
 
 public class MainWindow {
 	public MainWindow(RobotEngine elRobot, Place initialPlace) {
+		//Inicializamos el robotEngine
 		this.robot = elRobot;
+		//Creamos la ventana principal
 		this.ventana = new JFrame("WALL·E The garbage collector");
 		this.ventana.setSize(1080, 720);	
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -24,23 +26,29 @@ public class MainWindow {
 				ventana.setVisible(true); 
 				} 
 			});
+		//Y la ponemos un BorderLayout
 		ventana.setLayout(new BorderLayout());
+		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
 		this.robotPanel = new RobotPanel(this.robot);
 		this.robot.setRobotPanel(robotPanel);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
-		
+		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
 		this.navPanel = new NavigationPanel(initialPlace);
 		ventana.add(this.navPanel, BorderLayout.CENTER);
 		this.robot.setNavigationPanel(navPanel);
+		//Llamamos al método que construye el menú
 		buildMenuBar();
 	}
 	
 	private void buildMenuBar(){
+		//Creamos el menu
 		this.menuBar = new JMenuBar();
 		menuBar.setBackground(Color.GRAY);
+		//Creamos la opcion File en el menu
 		JMenu file = new JMenu("File");
 		file.setBackground(Color.GRAY);
 		menuBar.add(file);
+		//Y dentro de la opcion File creamos la opcion Quit
 		JMenuItem quit = new JMenuItem("Quit");
 		file.add(quit);
 		quit.addActionListener(new ActionListener () {
@@ -55,6 +63,7 @@ public class MainWindow {
 					System.exit(0);
 				}
 		});
+		//Una ventana solo puede tener un menu
 		ventana.setJMenuBar(menuBar);
 	}
 	
@@ -68,28 +77,3 @@ public class MainWindow {
 	private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 }
-
-/* Cosas por hacer:
- * 
- * 1.hecho) Apañarlo para que saque una ventana cuando llegue al 
- * 	spaceship o se le acabe el fuel, el método está hecho en 
- * 	robotEngine ->  mostrarFinalVentana();
- * 
- * 2. hecho) Comprobar que pasa al hacer operate o drop sin seleccionar nada
- * 	(sale NullPointerException)
- * 
- * 3.este le haces tú, no consigoque se vuelva opaca la celda)
- *  Al hacer undo del move deberia ponerse la celda opaca y quitar el titulo
- * 
- * 4 hecho) Al hacer Undo de pick no desaparece de la tabla, 
- * 	y al hacer undo de operate si se gasta el item no funciona, falta hacer que lo vuelva a añadir a la tabla
- * 	y al hacer undo de drop no se recupera en la tabla
- * 
- * 5 Hecho) Lo de apache esta ya hecho?
- * 
- * 6 Mejor quitarlo, por razones logísticas) El campo de al lado del undo que pone la ultima instruccion hecha
- * 	Si no funciona, se quita
- * 
- * 7) Borrar comentarios que sobran como este y añadir alguno util, REORGANIZAR CODIGO
- * 
- */
