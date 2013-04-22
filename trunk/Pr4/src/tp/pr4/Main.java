@@ -32,6 +32,8 @@ public class Main {
 		   	EscribeConsola.llamadaVacia();
 			System.exit(1);
 		}
+		
+		/* Crea las opciones */
 		Options options = new Options();
         options.addOption("h", "help", false, "Shows this help message");
         Option inter = new Option("i", "interface", true, "The type of interface: console or swing");
@@ -53,14 +55,25 @@ public class Main {
                 h.printHelp("tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
                 System.exit(0);
             }
+            boolean consola = false;
+            if(cmd.hasOption('i')){
+            	if(cmd.getOptionValue('i').equals("console"))
+            		consola = true;
+            	else if (cmd.getOptionValue('i').equals("swing"))
+            		consola = false;
+            	else{
+        		EscribeConsola.imprimirError("Wrong type of interface");
+        		System.exit(1);
+            	}
+            }
+            else{
+            	EscribeConsola.imprimirError("Interface not specified");
+            	System.exit(1);
+            }
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
 	    		FileInputStream input = null;
 	    		try {
-	    			if("madrid".equals(cmd.getOptionValue('m'))){
-	    				EscribeConsola.imprimirError("Wrong type of interface");
-	    				System.exit(1);//Esto es para que el validador deje de molestar
-	    			}
 	    			input = new FileInputStream(cmd.getOptionValue('m'));
 	    		} catch (FileNotFoundException e) {
 	    			EscribeConsola.noExisteFichero(cmd.getOptionValue('m'));
@@ -75,40 +88,29 @@ public class Main {
 	    			EscribeConsola.imprimirError(e.getMessage());
 	    			System.exit(2);
 	    		}
-			} else {
+			}else{
 				EscribeConsola.imprimirError("Map file not specified");
 				System.exit(1);
 			}
-            if (cmd.hasOption('i')) {
-            	if(cmd.getOptionValue('i').equals("swing")){
-			         /** Carga la información el robot y le indica que comience a moverse.
-			          * Crea la ventana para que funcione el entorno gráfico
-			          * Empieza el juego si no ha habido problemas	
-			          */
-					 
-					RobotEngine engine = new RobotEngine(city,
-							cityLoader.getInitialPlace(), Direction.NORTH);
-					MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
-					window.setVisible(true);
-            	}
-            	else if(cmd.getOptionValue('i').equals("console")){
-	            	/**
-	        		 * Carga la información el robot y le indica que comience a moverse.
-	        		 * Empieza el juego si no ha habido problemas, funcionando en consola
-	        		 */
-	        		RobotEngine engine = new RobotEngine(city,
-	        				cityLoader.getInitialPlace(), Direction.NORTH);
-	        		engine.startEngine();
-                }
-            	else{
-            		EscribeConsola.imprimirError("Wrong type of interface");
-            		System.exit(1);
-            	}
-            }else{
-            	EscribeConsola.imprimirError("Interface not specified");
-            	System.exit(1);
+            if (consola){/**
+        		 * Carga la información el robot y le indica que comience a moverse.
+        		 * Empieza el juego si no ha habido problemas, funcionando en consola
+        		 */
+        		RobotEngine engine = new RobotEngine(city,
+        				cityLoader.getInitialPlace(), Direction.NORTH);
+        		engine.startEngine();
             }
-    
+    		else{
+		         /** Carga la información el robot y le indica que comience a moverse.
+		          * Crea la ventana para que funcione el entorno gráfico
+		          * Empieza el juego si no ha habido problemas	
+		          */
+				 
+				RobotEngine engine = new RobotEngine(city,
+						cityLoader.getInitialPlace(), Direction.NORTH);
+				MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
+				window.setVisible(true);
+    		}
         }catch (ParseException e) {
         	EscribeConsola.llamadaIncorrecta();
 			System.exit(1);
