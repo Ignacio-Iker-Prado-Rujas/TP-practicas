@@ -80,6 +80,8 @@ public class NavigationPanel extends JPanel {
 			cambiarPosicion(currentHeading);
 			arrayLugares[x][y].setPlace(currentPlace);
 			arrayLugares[x][y].visitPlace();
+			arrayLugares[x][y].desVisitar(); //Para que no le sume la visita
+			
 			actualizarLog(currentPlace);
 		}
 	}
