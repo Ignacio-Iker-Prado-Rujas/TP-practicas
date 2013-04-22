@@ -174,13 +174,14 @@ public class RobotEngine {
 	//Sets the main window of the GUI in order to inform about some robot events
 	//public void setGUIWindow(MainWindow mainWindow) {} por ahora no se usa
 	
+	/** Devuelve la ultima instrucción apilada **/
+	
 	public Instruction lastInstruction() throws InstructionExecutionException{
 		if (this.pilaInstruction.isEmpty()) 
 			throw new InstructionExecutionException(EscribeConsola.NOT_MORE_INSTRUCTIONS);
-		else {
-			Instruction instruction = this.pilaInstruction.pop();
-			return instruction;	// Devuelve la cima de la pila, eliminando la instrucción.
-		}
+		else 
+			return  this.pilaInstruction.pop();
+			// Devuelve la cima de la pila, eliminando la instrucción.
 	}
 	
 	/* La ventana muestra el mensaje que se le pasa */
@@ -192,15 +193,15 @@ public class RobotEngine {
 	/****************Operaciones de la tabla de ventana*************/
 	
 	public void	addItem(String id, String description) {
-		robotPanel.addItem(id, description);
+		if (!modoConsola())robotPanel.addItem(id, description);
 	}
 	
 	public void deleteItem(String id) {
-		robotPanel.deleteItem(id);
+		if (!modoConsola())robotPanel.deleteItem(id);
 	}
 	
 	public void deleteSelectedItem() { 
-		robotPanel.deleteSelectedItem();
+		if (!modoConsola())robotPanel.deleteSelectedItem();
 	}
 		
 	private RobotPanel robotPanel;
