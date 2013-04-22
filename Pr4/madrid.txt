@@ -28,5 +28,6 @@ fuel 5 Vino "Bebida de dioses" 100 2 place 5
 fuel 6 Cola "Para mezclar con el  vino" 50 3 place 6
 garbage 7 Latas "Restos de la fiesta de ayer" 50 place 6
 codecard 8 PulseraVerde "Pulsera para la fiesta de Chami" chamientrada place 6
+garbage 9 Bandera "Banderica rojiblanca, nada de reciclarla" 0 place 4
 EndItems
 EndCity
