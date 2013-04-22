@@ -86,6 +86,7 @@ public class RobotEngine {
 		return this.recycledMaterial;
 	}
 	
+	/* Devuelve el item indicado */
 	public Item getItem(String id){
         return itemContainer.getItem(id);
 	}
@@ -100,9 +101,12 @@ public class RobotEngine {
 		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 	
+	/* Indica si el programa se está ejecutando en modo consola */
 	public boolean modoConsola(){
 		return (this.robotPanel == null);
 	}
+	
+	/* Indica si un item se ha gastado */
 	
 	public boolean itemGastado(String id) {
 		if(itemContainer.containsItem(id))
@@ -128,6 +132,8 @@ public class RobotEngine {
 		return this.navigation.atSpaceship();
 	}
 	
+	/* Muestra el final por consola */
+	
 	private void mostrarFinal() {
 		if (!haveFuel())
 			EscribeConsola.say(EscribeConsola.OUT_OF_FUEL);
@@ -136,6 +142,8 @@ public class RobotEngine {
 		else
 			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
 	}
+	
+	/* Solo se llama desde la consola */
 	
 	public void startEngine() {
 		mostrarInicio();
@@ -175,13 +183,14 @@ public class RobotEngine {
 		}
 	}
 	
+	/* La ventana muestra el mensaje que se le pasa */
 	public void darAvisoVentana(String mensaje){
 		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
 
 	/****************Operaciones de la tabla de ventana*************/
-
+	
 	public void	addItem(String id, String description) {
 		robotPanel.addItem(id, description);
 	}

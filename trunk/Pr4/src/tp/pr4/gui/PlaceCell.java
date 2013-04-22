@@ -22,10 +22,12 @@ public class PlaceCell extends JButton {
 		});
 	}
 	
+	/* Al hacer undo del move, se desvisita un lugar */
 	public void desVisitar() {
 		numVisitas--;
 	}
 	
+	/* Actualiza el lugar que representa un PlaceCell */
 	public void setPlace(Place place) {
 		this.setText(place.getName());
 		this.place = place;
