@@ -12,8 +12,6 @@ import tp.pr4.Place;
 public class PlaceCell extends JButton {
 	public PlaceCell(final JTextArea textArea) {
 		this.numVisitas = 0;
-		this.actual = false; 
-		this.visited = false;
 		this.place = null;
 		this.addActionListener(new ActionListener() {
 			@Override
@@ -36,35 +34,26 @@ public class PlaceCell extends JButton {
 	// Al visitar un lugar, se cambia el botón
 	public void visitPlace() {
 		this.numVisitas++;
-		this.visited = true;
-		this.actual = true;
 		this.setBackground(Color.GREEN);
 	}
 	
 	// Al visitar un lugar, se cambia el botón
 	public void leavePlace() {
-		this.actual = false;
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
-	public int getNumVisitas(){
+	//Develve el numero de visitas, para el Undo
+	public int getNumVisitas() {
 		return numVisitas;
 	}
-	public void ocultar(){
+	
+	// Para el Undo, oculta un lugar
+	public void ocultar() {
 		this.setText(null);
 		this.place = null;
-		this.actual = false;
-		this.visited = false;
 	}
-	/* 
-	 * Tenemos dos booleanos, uno para saber si 
-	 * se ha visitado el lugar y otro para saber 
-	 * si es el actual
-	 */
 	
 	private int numVisitas;
-	private boolean actual;
-	private boolean visited;
 	private Place place;
 	private static final long serialVersionUID = 1L;	//Daba warning
 }
