@@ -72,6 +72,7 @@ public class Main {
             	EscribeConsola.imprimirError("Interface not specified");
             	System.exit(1);
             }
+            /* Carga el mapa del archivo que se haya puesto */
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
 	    		FileInputStream input = null;
@@ -94,6 +95,7 @@ public class Main {
 				EscribeConsola.imprimirError("Map file not specified");
 				System.exit(1);
 			}
+            /* Inicializa con la consola o con la interfaz de swing */
             if (consola){/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
