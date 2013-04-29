@@ -1,0 +1,33 @@
+BeginCity
+BeginPlaces
+place 0 Sol "You are at the center of Madrid" noSpaceShip
+place 1 Callao "In this square you can find a code card" noSpaceShip
+place 2 Colon "People concentrates here to watch football" noSpaceShip
+place 3 Exit "Ok, finally you have found your spaceship..." spaceShip
+place 4 Calderon "The best estadio of the world" noSpaceShip
+place 5 LaHiguera "The most famous village in Spain" noSpaceShip
+place 6 Noja "The best beach in Spain, with many surfers and party" noSpaceShip
+place 7 Chaminade "Where Perelman hosts" spaceShip
+EndPlaces
+BeginStreets
+street 0 place 0 south place 1 open
+street 1 place 1 east place 2 open
+street 2 place 2 north place 3 closed onetwothreefourfive
+street 3 place 0 north place 4 closed entrada
+street 4 place 0 west place 5 open
+street 5 place 5 north place 6 open
+street 6 place 6 west place 7 closed chamientrada
+EndStreets
+BeginItems
+fuel 0 Petrol "from olds heatings" 10 3 place 0
+fuel 1 Battery "to get cracking" -50 1 place 0
+codecard 2 Card "The key is too easy" onetwothreefourfive place 1
+garbage 3 Newspapers "News on sport" 30 place 2
+codecard 4 Entrada "Para ver al mejor" entrada place 0
+fuel 5 Vino "Bebida de dioses" 100 2 place 5
+fuel 6 Cola "Para mezclar con el  vino" 50 3 place 6
+garbage 7 Latas "Restos de la fiesta de ayer" 50 place 6
+codecard 8 PulseraVerde "Pulsera para la fiesta de Chami" chamientrada place 6
+garbage 9 Bandera "Banderica rojiblanca, nada de reciclarla" 0 place 4
+EndItems
+EndCity
