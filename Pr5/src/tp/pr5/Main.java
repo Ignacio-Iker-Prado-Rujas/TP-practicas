@@ -113,6 +113,7 @@ public class Main {
 				RobotEngine engine = new RobotEngine(city,
 						cityLoader.getInitialPlace(), Direction.NORTH);
 				MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
+				engine.autoEngine();
 				window.setVisible(true);
     		}
         }catch (ParseException e) {
