@@ -4,7 +4,6 @@ import tp.pr5.Direction;
 import tp.pr5.Place;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -70,8 +69,6 @@ public class NavigationPanel extends JPanel {
 	public void undoMove(Place currentPlace, Direction currentHeading){
 		arrayLugares[x][y].desVisitar();
 		if(arrayLugares[x][y].getNumVisitas() <= 0) {
-			arrayLugares[x][y].setBackground(null);
-			arrayLugares[x][y].setText(null);
 			arrayLugares[x][y].ocultar();
 			cambiarPosicion(currentHeading);
 			arrayLugares[x][y].visitPlace();
@@ -100,11 +97,11 @@ public class NavigationPanel extends JPanel {
 		}
 	}
 	
-	//Cambia la posicion (x, y) en funcion de a direccion
+	//Cambia la posicion (x, y) en funcion de la direccion
 	private void cambiarPosicion(Direction currentHeading){
 		switch (currentHeading) {
 		case EAST: 	y++; break;	//Ojo que va de arriba a abajo
-		case NORTH: x--; break;
+		case NORTH: x--; break; //Y de izquierda a derecha
 		case SOUTH: x++; break;
 		case WEST:	y--; break;
 		default: ;

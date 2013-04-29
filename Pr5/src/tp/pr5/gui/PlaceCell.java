@@ -53,6 +53,7 @@ public class PlaceCell extends JButton {
 	public void ocultar() {
 		this.setText(null);
 		this.place = null;
+		this.setBackground(null);
 	}
 	
 	private int numVisitas;
