@@ -203,7 +203,29 @@ public class RobotEngine {
 	public void deleteSelectedItem() { 
 		if (!modoConsola())robotPanel.deleteSelectedItem();
 	}
-		
+	
+		/************ pruebas autoengine *****************************************/
+	
+	public void autoEngine(){
+		ArrayList<String> arraySolucion = new ArrayList<String>();
+		autoEngine(arraySolucion);
+	}
+	private static Instruction[] arrayInstructions = { 
+		new MoveInstruction(), new PickInstruction(),
+		new OperateInstruction(), new TurnInstruction() };
+	
+	private ArrayList<String> autoEngine(ArrayList<String> arraySolucion){
+		for(Instruction i : arrayInstructions){
+			communicateRobot(i);
+			arraySolucion.add(i.toString());
+			if(!isSpaceship()){
+				autoEngine(arraySolucion);
+				
+			}else return arraySolucion;		
+		}
+		return arraySolucion;
+	}
+	
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
