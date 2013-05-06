@@ -4,7 +4,7 @@ import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
 
-public class Place {
+public class Place implements PlaceInfo{
 	//Constructor que inicializa nobre, si esta nave, descripcion y el contenedor de items
 	public Place(String name, boolean isSpaceShip, String description) {
 		this.name = name;
@@ -51,6 +51,15 @@ public class Place {
 	public String getName() {
 		return this.name;
 	}
+	@Override
+	public String getDescription() {
+		if (this.itemContainer.numberOfItems() == 0) {
+			return this.description	+ LINE_SEPARATOR + EscribeConsola.PLACE_EMPTY;
+		} else {
+			return this.description	+ LINE_SEPARATOR + EscribeConsola.PLACE_CONTAINS
+					+ this.itemContainer.toString();
+		}
+	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -59,4 +68,5 @@ public class Place {
 	private boolean isSpaceShip;
 	private String description;
 	private ItemContainer itemContainer;
+	
 }
