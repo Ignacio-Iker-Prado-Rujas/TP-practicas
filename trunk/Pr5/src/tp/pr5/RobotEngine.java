@@ -206,7 +206,7 @@ public class RobotEngine {
 	
 		/************ pruebas autoengine *****************************************/
 	
-	public void autoEngine(){
+	/*public void autoEngine(){
 		ArrayList<String> arraySolucion = new ArrayList<String>();
 		autoEngine(arraySolucion);
 	}
@@ -224,7 +224,7 @@ public class RobotEngine {
 			}else return arraySolucion;		
 		}
 		return arraySolucion;
-	}
+	}*/
 	
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
