@@ -1,5 +1,7 @@
 package tp.pr5;
 
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -11,10 +13,11 @@ import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
+import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
-public class RobotEngine {
+public class RobotEngine extends Observable{
 	// Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
 		this.pilaInstruction = new Stack<Instruction>(); 
@@ -23,7 +26,6 @@ public class RobotEngine {
 		this.fuel = 100;
 		this.itemContainer = new ItemContainer();
 		this.recycledMaterial = 0;
-		this.quit = false;
 		this.robotPanel = null;
 	}
 	
@@ -47,13 +49,19 @@ public class RobotEngine {
 	}
 
 	public void requestQuit() {
-		this.quit = true;
+		for( RobotEngineObserver o : arrayEngineObservers){
+			o.communicationCompleted();
+		}
 	}
 
 	// Incrementa o decrementa la cantidad de fuel que tiene WALL·E 
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
+		for( RobotEngineObserver o : arrayEngineObservers){
+			o.robotUpdate(this.fuel, recycledMaterial);
+		}
+		/*
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 		else{
@@ -64,16 +72,20 @@ public class RobotEngine {
 						"Bye, bye!", JOptionPane.OK_OPTION, icon);
 				System.exit(0);
 			}
-		}
+		}*/
 	}
 
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
+		for( RobotEngineObserver o : arrayEngineObservers){
+			o.robotUpdate(fuel, this.recycledMaterial);
+		}
+		/*
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 		else 
-			robotPanel.actualizarRecycled(this.recycledMaterial);
+			robotPanel.actualizarRecycled(this.recycledMaterial);*/
 	}
 
 	// Para los tests
@@ -93,7 +105,9 @@ public class RobotEngine {
 
 	// Muestra las instrucciones que reconoce WALL·E (Solo funciona en consola)
 	public void requestHelp() {
-		EscribeConsola.validInstructions(Interpreter.interpreterHelp());
+		for( RobotEngineObserver o : arrayEngineObservers){
+			o.communicationHelp(Interpreter.interpreterHelp());
+		}
 	}
 
 	// Escribe el estado de WALL·E
@@ -141,24 +155,6 @@ public class RobotEngine {
 			EscribeConsola.say(EscribeConsola.IN_SPACESHIP);
 		else
 			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
-	}
-	
-	/* Solo se llama desde la consola */
-	
-	public void startEngine() {
-		mostrarInicio();
-		Scanner sc = new Scanner(System.in);
-		while (haveFuel() && !isSpaceship() && !quit) {
-			EscribeConsola.prompt(); // Muestra por consola: WALL·E>
-			try {
-				// Genera una instrucion a partir de la cadena leída y se la envía al robot para que la ejecute
-				communicateRobot(Interpreter.generateInstruction(sc.nextLine()));	
-			} catch (WrongInstructionFormatException e) {
-				EscribeConsola.say(EscribeConsola.NOT_UNDERSTAND);
-			}
-		}
-		sc.close(); // Cierra el escaner
-		mostrarFinal();
 	}
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
@@ -226,11 +222,56 @@ public class RobotEngine {
 		return arraySolucion;
 	}*/
 	
+	// Registers an EngineObserver to the model
+	public void addEngineObserver(RobotEngineObserver observer) {
+		arrayEngineObservers.add(observer);
+	}
+
+	// Registers an ItemContainerObserver to the model
+	public void addItemContainerObserver(InventoryObserver observer) {
+		arrayInventoryObservers.add(observer);
+	}
+
+	// Register a NavigationObserver to the model
+	public void addNavigationObserver(NavigationObserver robotObserver) {
+		arrayNavigationObservers.add(robotObserver);
+	}
+
+	// Checks if the simulation is finished
+	public boolean isOver() {
+		return (!haveFuel() || isSpaceship());
+	}
+	
+	// Requests the engine to inform that an error has been raised
+	public void requestError(String msg) {
+		for (RobotEngineObserver o : arrayEngineObservers) {
+			o.raiseError(msg);
+		}
+	}
+	
+	// Requests the engine to inform the observers that the simulation starts
+	public void requestStart() {
+		for (NavigationObserver o : arrayNavigationObservers) {
+			o.initNavigationModule(navigation.getCurrentPlace(),
+					navigation.getCurrentHeading());
+		}
+	}
+
+	// Request the engine to say something
+	public void saySomething(String message) {
+		for (RobotEngineObserver o : arrayEngineObservers) {
+			o.robotSays(message);
+		}
+	}
+
+	private ArrayList<RobotEngineObserver> arrayEngineObservers;
+	private ArrayList<InventoryObserver> arrayInventoryObservers;
+	private ArrayList<NavigationObserver> arrayNavigationObservers;
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
 	private int fuel;
 	private ItemContainer itemContainer;
 	private int recycledMaterial;
-	private boolean quit;
+
 }
