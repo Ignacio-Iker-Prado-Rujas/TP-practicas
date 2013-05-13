@@ -10,6 +10,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.commons.cli.*;
 
 import tp.pr5.cityLoader.CityLoaderFromTxtFile;
+import tp.pr5.console.Console;
+import tp.pr5.console.ConsoleController;
 import tp.pr5.gui.MainWindow;
 
 public class Main {
@@ -102,7 +104,12 @@ public class Main {
         		 */
         		RobotEngine engine = new RobotEngine(city,
         				cityLoader.getInitialPlace(), Direction.NORTH);
-        		engine.startEngine();
+        		ConsoleController consoleController = new ConsoleController(engine);
+        		Console console = new Console();
+        		consoleController.registerEngineObserver(console);
+        		consoleController.registerItemContainerObserver(console);
+        		consoleController.registerRobotObserver(console);
+        		consoleController.startController();
             }
     		else{
 		         /** Carga la información el robot y le indica que comience a moverse.
