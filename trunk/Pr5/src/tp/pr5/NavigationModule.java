@@ -7,6 +7,7 @@ import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.Item;
 
+//TODO: HABRA QUE QUITAR LOS SYSTEM.OUT DE ESTA CLASE SUPONGO
 public class NavigationModule {
 	public NavigationModule(City city, Place initialPlace) {
 		this.city = city;
@@ -139,9 +140,9 @@ public class NavigationModule {
 	public void radarCurrentPlace(){
 		if (navPanel ==  null) EscribeConsola.currentPlace(currentPlace);
 	}
-	/*Necesita que algunos de sus me�?todos avisen 
-	 * a la interfaz de Swing sobre los cambios de orientacio�?n 
-	 * del robot asi�? como de los cambios de lugar.*/
+	/*Necesita que algunos de sus metodos avisen 
+	 * a la interfaz de Swing sobre los cambios de orientacion 
+	 * del robot asi como de los cambios de lugar.*/
 	
 	//Sets a panel in order to show its information in a GUI
 	public void setNavigationPanel(NavigationPanel navPanel) {

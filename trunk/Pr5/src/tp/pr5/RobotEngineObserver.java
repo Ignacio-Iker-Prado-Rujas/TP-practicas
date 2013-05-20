@@ -6,7 +6,7 @@ public interface RobotEngineObserver {
 	void communicationCompleted();
 
 	// El RobotEngine informa de que se ha pedido la ayuda
-	void communicationHelp(java.lang.String help);
+	void communicationHelp(String help);
 
 	/*
 	 * El RobotEngine informa de que el robot se ha apagado
