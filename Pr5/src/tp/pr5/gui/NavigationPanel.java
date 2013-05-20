@@ -1,7 +1,9 @@
 package tp.pr5.gui;
 
 import tp.pr5.Direction;
+import tp.pr5.NavigationObserver;
 import tp.pr5.Place;
+import tp.pr5.PlaceInfo;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -13,7 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
-public class NavigationPanel extends JPanel {
+public class NavigationPanel extends JPanel implements NavigationObserver {
 	// Constructor: Se añade un MapViewPanel y el Area de Texto
 	public NavigationPanel(Place initialPlace) {
 		//Ponemos el NavigationPanel como BorderLayout
@@ -110,6 +112,36 @@ public class NavigationPanel extends JPanel {
 
 	public void actualizarLog(Place currentPlace) {
 		this.textArea.setText(currentPlace.toString());
+	}
+	
+	@Override
+	public void headingChanged(Direction newHeading) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void placeHasChanged(PlaceInfo placeDescription) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void placeScanned(PlaceInfo placeDescription) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
+		// TODO Auto-generated method stub
+		
 	}
 	
     private int x;

@@ -1,7 +1,5 @@
 package tp.pr5.items;
 
-import tp.pr5.gui.RobotPanel;
-
 
 public class ItemContainer {
 	//Constructor del contenedor de items (vacio, sin items)
@@ -122,12 +120,11 @@ public class ItemContainer {
 		return items;
 	}
 	
-	//Sets a panel in order to show the container information in a GUI
-	// TODO: 
-	public void setRobotPanel(RobotPanel robotPanel) {
-		
-	}
-	
+	/*
+	 * TODO: A lo mejor no hace falta pero vine  en la documentacion:
+	 * public void requestScanItem(String id)
+	 */
+	 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
 	//El itemContainer lleva un array de items y un entero que indica cuantos hay

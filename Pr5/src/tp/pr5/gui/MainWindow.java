@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
 
 import tp.pr5.Place;
 import tp.pr5.RobotEngine;
+import tp.pr5.RobotEngineObserver;
 
-public class MainWindow {
+public class MainWindow implements RobotEngineObserver {
 	public MainWindow(RobotEngine elRobot, Place initialPlace) {
 		//Inicializamos el robotEngine
 		this.robot = elRobot;
@@ -72,9 +73,47 @@ public class MainWindow {
 		this.ventana.setVisible(bool);
 	}
 	
+
+	@Override
+	public void communicationCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void communicationHelp(String help) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void engineOff(boolean atShip) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void raiseError(String msg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotSays(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void robotUpdate(int fuel, int recycledMaterial) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	private final JFrame ventana;
 	private RobotEngine robot;
 	private RobotPanel robotPanel;
 	private NavigationPanel navPanel;
 	private JMenuBar menuBar;
-}
+	}
