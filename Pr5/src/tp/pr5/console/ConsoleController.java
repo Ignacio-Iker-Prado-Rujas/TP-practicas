@@ -14,7 +14,7 @@ public class ConsoleController extends Controller {
 		super(game);
 	}
 
-	// TODO: Quitar las cosas comentadas
+	// TODO: Poner bien las cosas comentadas
 	@Override
 	public void startController() {
 		//this.engine.mostrarInicio();

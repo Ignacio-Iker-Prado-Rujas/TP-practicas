@@ -47,33 +47,32 @@ public class Main {
         
         BasicParser parseador = new BasicParser();
         
-        try {
-        	City city = null;
-        	CityLoaderFromTxtFile cityLoader = new CityLoaderFromTxtFile();
-            CommandLine cmd = parseador.parse(options, args);
-            /* Si de solicita ayuda, se muestra*/
-            if(cmd.hasOption('h')){
+		try {
+			City city = null;
+			CityLoaderFromTxtFile cityLoader = new CityLoaderFromTxtFile();
+			CommandLine cmd = parseador.parse(options, args);
+			/* Si de solicita ayuda, se muestra */
+			if (cmd.hasOption('h')) {
                 HelpFormatter h = new HelpFormatter();
                 EscribeConsola.mostrar("Execute this assignment with these parameters:");
                 h.printHelp("tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
                 System.exit(0);
             }
             /* Comprueba que los parametros sean correctos */
-            boolean consola = false;
-            if(cmd.hasOption('i')){
-            	if(cmd.getOptionValue('i').equals("console"))
-            		consola = true;
-            	else if (cmd.getOptionValue('i').equals("swing"))
-            		consola = false;
-            	else{
-        		EscribeConsola.imprimirError("Wrong type of interface");
-        		System.exit(1);
-            	}
-            }
-            else{
-            	EscribeConsola.imprimirError("Interface not specified");
-            	System.exit(1);
-            }
+			boolean consola = false;
+			if (cmd.hasOption('i')) {
+				if (cmd.getOptionValue('i').equals("console"))
+					consola = true;
+				else if (cmd.getOptionValue('i').equals("swing"))
+					consola = false;
+				else {
+					EscribeConsola.imprimirError("Wrong type of interface");
+					System.exit(1);
+				}
+			} else {
+				EscribeConsola.imprimirError("Interface not specified");
+				System.exit(1);
+			}
             /* Carga el mapa del archivo que se haya puesto */
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
@@ -86,18 +85,17 @@ public class Main {
 	    		}
 	    		// Carga el mapa de archivo
 	    		
-	    		
-	    		try {
-	    			city = cityLoader.loadCity(input);
-	    		} catch (IOException e) {
-	    			EscribeConsola.imprimirError(e.getMessage());
-	    			System.exit(2);
-	    		}
-			}else{
+				try {
+					city = cityLoader.loadCity(input);
+				} catch (IOException e) {
+					EscribeConsola.imprimirError(e.getMessage());
+					System.exit(2);
+				}
+			} else {
 				EscribeConsola.imprimirError("Map file not specified");
 				System.exit(1);
 			}
-            /* Inicializa con la consola o con la interfaz de swing */
+			/* Inicializa con la consola o con la interfaz de swing */
             if (consola){/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
@@ -111,7 +109,7 @@ public class Main {
         		consoleController.registerRobotObserver(console);
         		consoleController.startController();
             }
-    		else{
+    		else {
 		         /** Carga la información el robot y le indica que comience a moverse.
 		          * Crea la ventana para que funcione el entorno gráfico
 		          * Empieza el juego si no ha habido problemas	
