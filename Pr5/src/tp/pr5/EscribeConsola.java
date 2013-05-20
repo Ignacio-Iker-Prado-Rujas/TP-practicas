@@ -12,7 +12,7 @@ public class EscribeConsola {
 		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
 
-	public static void currentPlace(Place place) {
+	public static void currentPlace(PlaceInfo place) {
 		System.out.println(place.toString());
 	}
 
@@ -38,6 +38,13 @@ public class EscribeConsola {
 		System.out.println(RECYCLED + recycledActual);
 	}
 
+	public static void endGame(boolean atShip) {
+		if (!atShip)
+			say(EscribeConsola.OUT_OF_FUEL);
+		else					
+			say(EscribeConsola.IN_SPACESHIP);
+	}
+	
 	public static void llamadaIncorrecta() {
 		System.err.println("Bad params.");
 		System.err.println("Usage: java tp.pr3.Main <mapfile>" + LINE_SEPARATOR);
