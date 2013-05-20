@@ -1,28 +1,23 @@
 package tp.pr5;
 
 public interface NavigationObserver {
+	
+	// Notifica que la direccion del robot ha cambiado
+	void headingChanged(Direction newHeading);
 
-void	headingChanged(Direction newHeading);
-//Notifies that the robot heading has changed
- 
+	// Notifica que el NavigationModule ha sido inicializado
+	void initNavigationModule(PlaceInfo initialPlace, Direction heading);
 
+	/*
+	 * Notifica que el lugar donde esta el robot ha cambiado, 
+	 * porque el robot ha cogido o soltado un item
+	 */
+	void placeHasChanged(PlaceInfo placeDescription);
 
-void	initNavigationModule(PlaceInfo initialPlace, Direction heading);
-//Notifies that the navigation module has been initialized
- 
+	// Notifica que se ha solicitado una instruccion RADAR
+	void placeScanned(PlaceInfo placeDescription);
 
-
-void	placeHasChanged(PlaceInfo placeDescription);
-//Notifies that the place where the robot stays has changed (because the robot picked or dropped an item)
- 
-
-
-void	placeScanned(PlaceInfo placeDescription);
-//Notifies that the user requested a RADAR instruction
- 
-
-
-void	robotArrivesAtPlace(Direction heading, PlaceInfo place);
-//Notifies that the robot has arrived at a place 
+	// Notifica que el robot ha llegado a un lugar
+	void robotArrivesAtPlace(Direction heading, PlaceInfo place);
 
 }
