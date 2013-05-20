@@ -23,7 +23,7 @@ public abstract class Controller {
 	public void registerRobotObserver(NavigationObserver playerObserver) {
 		this.engine.addNavigationObserver(playerObserver);
 	}
-
+	
 	// Método abstracto que corre el juego
 	public abstract void startController();
 
