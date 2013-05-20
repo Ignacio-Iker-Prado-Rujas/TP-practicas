@@ -146,17 +146,6 @@ public class RobotEngine extends Observable{
 		return this.navigation.atSpaceship();
 	}
 	
-	/* Muestra el final por consola */
-	
-	private void mostrarFinal() {
-		if (!haveFuel())
-			EscribeConsola.say(EscribeConsola.OUT_OF_FUEL);
-		else if (isSpaceship())							//Si se ha llegado a la nave, se muestra el mensaje correspondiente
-			EscribeConsola.say(EscribeConsola.IN_SPACESHIP);
-		else
-			EscribeConsola.say(EscribeConsola.COMUNICATION_PROBLEMS);	// Se ha elegido la opción quit, luego se muestra el mensaje de despedida
-	}
-	
 	//Sets a panel to the navigation module in order to show its information in a GUI
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		navigation.setNavigationPanel(navPanel);
