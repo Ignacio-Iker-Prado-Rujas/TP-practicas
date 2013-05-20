@@ -7,9 +7,9 @@ public class EscribeConsola {
 	public static void llamadaVacia(){
 		System.err.println("Map file not specified");
 	}
+	
 	public static void lookingDirection(Direction direction) {
-		System.out
-				.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
+		System.out.println(LOOK_DIRECTION.replace("<DIR>", direction.toString()));
 	}
 
 	public static void currentPlace(Place place) {
