@@ -1,14 +1,14 @@
 package tp.pr5;
 
 public interface PlaceInfo {
-	
-	//Return the place description
-	String	getDescription(); 
-	
-	//Return the place name
-	String	getName();
-	
-	//Is this place the space ship? 
-	boolean	isSpaceship();
-	
+
+	// Devuelve la descripcion de un lugar
+	String getDescription();
+
+	// Devuelve el nombre de un lugar
+	String getName();
+
+	// Devuelve true si es nave
+	boolean isSpaceship();
+
 }

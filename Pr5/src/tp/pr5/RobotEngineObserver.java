@@ -1,25 +1,29 @@
 package tp.pr5;
 
 public interface RobotEngineObserver {
-	
-	//The robot engine informs that the communication is over. 
-	void communicationCompleted();
-	
-	//The robot engine informs that the help has been requested 
-	void communicationHelp(java.lang.String help);
-	
-	/*	The robot engine informs that the robot has shut down 
-	(because it has arrived at the spaceship or it has run out of fuel);*/
-	void engineOff(boolean atShip); 
-	
-	//The robot engine informs that it has raised an error 
-	void raiseError(String msg); 
-	
-	//The robot engine informs that the robot wants to say something 
-	void robotSays(String message); 
-	
-		//The robot engine informs that the fuel and/or the amount of recycled material has changed 
-	void robotUpdate(int fuel, int recycledMaterial); 
 
+	// El RobotEngine informa de que la comunicacion ha terminado
+	void communicationCompleted();
+
+	// El RobotEngine informa de que se ha pedido la ayuda
+	void communicationHelp(java.lang.String help);
+
+	/*
+	 * El RobotEngine informa de que el robot se ha apagado
+	 * (ya sea porque ha llegado al spaceship o porque no tiene fuel)
+	 */
+	void engineOff(boolean atShip);
+
+	// El RobotEngine informa de que ha habido un error
+	void raiseError(String msg);
+
+	// El RobotEngine informa de que el robot quiere decir algo
+	void robotSays(String message);
+
+	/*
+	 * El RobotEngine informa de que el fuel o la cantidad de 
+	 * material reciclado ha cambiado
+	 */
+	void robotUpdate(int fuel, int recycledMaterial);
 
 }
