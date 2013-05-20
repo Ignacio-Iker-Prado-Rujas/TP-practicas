@@ -30,6 +30,10 @@ public class EscribeConsola {
 		return SAY + message; // Para utilizarlo en las excepciones.
 	}
 
+	public static void mostrar(String message) {
+		System.out.println(message);
+	}
+
 	public static void actualizarEstado(int fuelActual, int recycledActual) {
 		if (fuelActual <= 0)
 			System.out.println(POWER + "0");
@@ -38,6 +42,10 @@ public class EscribeConsola {
 		System.out.println(RECYCLED + recycledActual);
 	}
 
+	public static void moving(Direction direction) {
+		EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + direction.toString());
+	}
+	
 	public static void endGame(boolean atShip) {
 		if (!atShip)
 			say(EscribeConsola.OUT_OF_FUEL);
@@ -60,10 +68,6 @@ public class EscribeConsola {
 
 	public static void noExisteFichero(String fichero) {
 		System.err.println(NO_EXISTE_FICHERO.replace("<fichero>", fichero));
-	}
-
-	public static void mostrar(String message) {
-		System.out.println(message);
 	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");

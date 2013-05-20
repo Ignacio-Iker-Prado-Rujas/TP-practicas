@@ -2,7 +2,6 @@ package tp.pr5;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Scanner;
 import java.util.Stack;
 
 import javax.swing.ImageIcon;
@@ -12,7 +11,6 @@ import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
-import tp.pr5.instructions.exceptions.WrongInstructionFormatException;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
