@@ -107,13 +107,13 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 	// Notifica que un item esta vacio (gastado) y que se borrará del container
 	@Override
 	public void itemEmpty(String itemName) {
-		
+		EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", itemName));
 	}
 
 	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio
 	@Override
 	public void itemScanned(String description) {
-		
+		EscribeConsola.say(description);
 	}
 
 }
