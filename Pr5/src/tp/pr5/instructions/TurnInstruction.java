@@ -55,7 +55,11 @@ public class TurnInstruction implements Instruction{
 	}
 	
 	public String toString() {
-		return "Turn";
+		switch(rotation){
+			case LEFT: return "Turn left";
+			case RIGHT: return "Turn right";
+			default: return "Turn";
+		}
 	}
 
 	private static final String RIGHT = "RIGHT";
