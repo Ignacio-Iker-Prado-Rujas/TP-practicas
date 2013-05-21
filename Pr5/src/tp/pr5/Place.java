@@ -39,7 +39,7 @@ public class Place implements PlaceInfo{
 	
 	//Elimina un objeto de un lugar.
 	public Item pickItem(String id){
-		return this.itemContainer.pickItem(id);
+		return itemContainer.pickItem(id);
 	} 
 	
 	// Añade un objeto a un lugar.

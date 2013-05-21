@@ -8,7 +8,7 @@ import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.Item;
 
 //TODO: HABRA QUE QUITAR LOS SYSTEM.OUT DE ESTA CLASE SUPONGO
-public class NavigationModule {
+public class NavigationModule extends Observable<NavigationObserver>{
 	public NavigationModule(City city, Place initialPlace) {
 		this.city = city;
 		this.currentPlace = initialPlace;
@@ -26,8 +26,12 @@ public class NavigationModule {
 			this.currentHeading = this.currentHeading.turnLeft();
 		else if (rotation == Rotation.RIGHT)
 			this.currentHeading = this.currentHeading.turnRight();
-		if (navPanel == null) 	EscribeConsola.lookingDirection(this.getCurrentHeading());
-		else this.navPanel.actualizarDirection(this.currentHeading);
+		/* Notifica a los observadores la nueva dirección */
+		for (NavigationObserver o : arrayObservers) {
+			o.headingChanged(currentHeading);
+		}
+		/*TODO if (navPanel == null) 	EscribeConsola.lookingDirection(this.getCurrentHeading());
+		else this.navPanel.actualizarDirection(this.currentHeading);	Delete*/
 		
 	}
 
@@ -45,7 +49,10 @@ public class NavigationModule {
 			throw new InstructionExecutionException(EscribeConsola.STREET_CLOSED);
 		} else {
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);
-			if (navPanel == null){
+			for (NavigationObserver o : arrayObservers) {
+				o.robotArrivesAtPlace(currentHeading, currentPlace);
+			}
+			/*TODO if (navPanel == null){
 				EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.getCurrentHeading().toString());
 				EscribeConsola.currentPlace(this.getCurrentPlace());
 				System.out.println();
@@ -58,7 +65,7 @@ public class NavigationModule {
 							"Bye, bye!", JOptionPane.OK_OPTION, icon);
 					System.exit(0);
 				}
-			}
+			}*/
 		}
 	}
 	
@@ -69,11 +76,14 @@ public class NavigationModule {
 		else if (!newStreet.isOpen()) {} // Tampoco debería darse
 		else {
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);
-			if (navPanel == null){
+			for (NavigationObserver o : arrayObservers) {
+				o.robotArrivesAtPlace(currentHeading, currentPlace);
+			}
+			/*TODO if (navPanel == null){
 				EscribeConsola.currentPlace(this.getCurrentPlace());
 				System.out.println();
 			}
-			else navPanel.undoMove(this.currentPlace, this.currentHeading);
+			else navPanel.undoMove(this.currentPlace, this.currentHeading);*/
 		}
 		initHeading(getCurrentHeading().oppositeDirection());
 	}
@@ -84,8 +94,12 @@ public class NavigationModule {
 	 */
 
 	public Item pickItemFromCurrentPlace(String id) {
-		Item item = this.currentPlace.pickItem(id);
-		if(navPanel != null)navPanel.actualizarLog(currentPlace);
+		Item item = currentPlace.pickItem(id);
+		// Notifica a los observers que el lugar ha sufrido un cambio
+		for (NavigationObserver o : arrayObservers) {
+			o.placeHasChanged(currentPlace);
+		}
+		// TODO if(navPanel != null)navPanel.actualizarLog(currentPlace);
 		return item;
 	}
 
@@ -111,10 +125,15 @@ public class NavigationModule {
 		this.currentHeading = heading;
 	}
 
-	/* Muestra la información del lugar donde está el robot */
+	/*
+	 * Le da a los observers la informacion del lugar donde esta wall e, y la
+	 * lista de los items
+	 */
 
 	public void scanCurrentPlace() {
-		EscribeConsola.mostrar(this.currentPlace.toString());
+		for (NavigationObserver o : this.arrayObservers) {
+			o.placeScanned(currentPlace);
+		}
 	}
 
 	/*
