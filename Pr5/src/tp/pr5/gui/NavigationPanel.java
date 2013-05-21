@@ -110,37 +110,32 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		}
 	}
 
-	public void actualizarLog(Place currentPlace) {
+	public void actualizarLog(PlaceInfo currentPlace) {
 		this.textArea.setText(currentPlace.toString());
 	}
 	
 	@Override
 	public void headingChanged(Direction newHeading) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
-		
+		this.actualizarLog(placeDescription);
 	}
 
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		// TODO Auto-generated method stub
 		
 	}
 	

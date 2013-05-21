@@ -11,8 +11,7 @@ public class GUIController extends Controller {
 
 	@Override
 	public void startController() {
-		// TODO Auto-generated method stub
-		
+		this.engine.requestStart();
 	}
 
 }

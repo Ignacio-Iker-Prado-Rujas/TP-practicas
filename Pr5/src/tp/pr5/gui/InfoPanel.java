@@ -1,5 +1,8 @@
 package tp.pr5.gui;
 
+import java.util.List;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import tp.pr5.Direction;
 import tp.pr5.NavigationObserver;
@@ -9,98 +12,115 @@ import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 
 public class InfoPanel extends JPanel implements RobotEngineObserver, NavigationObserver, InventoryObserver {
+	
+	// Constructor, no se muestra nada en la etiqueta
+	public InfoPanel() {
+		this.displayInfo = new JLabel();
+		this.add(displayInfo);
+	}
 
+	// Notifica que el container de items ha cambiado
 	@Override
-	public void inventoryChange(Item[] inventory) {
-		// TODO Auto-generated method stub
+	public void inventoryChange(List<Item> inventory) {
 		
 	}
 
+	// Notifica que se ha solcitado una instruccion SCAN del inventario
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// Notifica que un item esta vacio (gastado) y que se borrará del container
 	@Override
 	public void itemEmpty(String itemName) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio
 	@Override
 	public void itemScanned(String description) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// Notifica que la direccion del robot ha cambiado
 	@Override
 	public void headingChanged(Direction newHeading) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// Notifica que el NavigationModule ha sido inicializado
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/*
+	 * Notifica que el lugar donde esta el robot ha cambiado, 
+	 * porque el robot ha cogido o soltado un item
+	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
-		
+		//this.displayInfo.setText();
 	}
 
+	// Notifica que se ha solicitado una instruccion RADAR
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// Notifica que el robot ha llegado a un lugar
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// El RobotEngine informa de que la comunicacion ha terminado
 	@Override
 	public void communicationCompleted() {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// El RobotEngine informa de que se ha pedido la ayuda
 	@Override
 	public void communicationHelp(String help) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/*
+	 * El RobotEngine informa de que el robot se ha apagado
+	 * (ya sea porque ha llegado al spaceship o porque no tiene fuel)
+	 */
 	@Override
 	public void engineOff(boolean atShip) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// El RobotEngine informa de que ha habido un error
 	@Override
 	public void raiseError(String msg) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	// El RobotEngine informa de que el robot quiere decir algo
 	@Override
 	public void robotSays(String message) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/*
+	 * El RobotEngine informa de que el fuel o la cantidad de 
+	 * material reciclado ha cambiado
+	 */
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		// TODO Auto-generated method stub
-		
+		this.displayInfo.setText("Robot attributes has been updated: (" + fuel
+				+ ", " + recycledMaterial + ")");
 	}
 
 	
+	private JLabel displayInfo;
 	private static final long serialVersionUID = 1L;  //Daba warning
 
 }
