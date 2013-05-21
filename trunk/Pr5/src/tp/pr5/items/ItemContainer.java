@@ -1,7 +1,9 @@
 package tp.pr5.items;
 
+import tp.pr5.Observable;
 
-public class ItemContainer {
+
+public class ItemContainer extends Observable<InventoryObserver>{
 	//Constructor del contenedor de items (vacio, sin items)
 	public ItemContainer() {
 		this.arrayItem = new Item[10];

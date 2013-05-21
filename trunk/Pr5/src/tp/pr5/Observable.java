@@ -14,5 +14,5 @@ public class Observable<T> {
 		arrayObservers.remove(observer);
 	}
 
-	ArrayList<T> arrayObservers;
+	ArrayList<T> arrayObservers = new ArrayList<T>();
 }

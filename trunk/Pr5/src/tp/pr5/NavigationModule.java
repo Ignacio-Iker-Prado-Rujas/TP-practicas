@@ -128,9 +128,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 
 	public void initHeading(Direction heading) {
 		currentHeading = heading;
-		for (NavigationObserver o : arrayObservers) {
-			o.initNavigationModule(currentPlace, currentHeading);
-		}
 	}
 
 	/*
