@@ -15,7 +15,7 @@ import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
-public class RobotEngine extends Observable{
+public class RobotEngine extends Observable<RobotEngineObserver>{
 	// Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
 		this.pilaInstruction = new Stack<Instruction>(); 
