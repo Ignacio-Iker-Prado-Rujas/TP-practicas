@@ -7,7 +7,6 @@ import java.util.Stack;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import tp.pr5.gui.NavigationPanel;
 import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.MoveInstruction;
@@ -20,7 +19,7 @@ import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
-public class RobotEngine extends Observable<RobotEngineObserver>{
+public class RobotEngine extends Observable<RobotEngineObserver> {
 	// Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
 		this.pilaInstruction = new Stack<Instruction>(); 
