@@ -121,7 +121,14 @@ public class ItemContainer extends Observable<InventoryObserver>{
 			items += LINE_SEPARATOR + "   " + this.arrayItem[i].id;
 		return items;
 	}
-	
+	// Devuelve un array con los nombres de los items en el container;
+	public String[] listaItems(){
+		String[] arrayItems = new String[numItems];
+		for ( int i = 0; i < numItems; i ++){
+			arrayItems[i] = arrayItem[i].id;
+		}
+		return arrayItems;
+	}
 	/*
 	 * TODO: A lo mejor no hace falta pero vine  en la documentacion:
 	 * public void requestScanItem(String id)
