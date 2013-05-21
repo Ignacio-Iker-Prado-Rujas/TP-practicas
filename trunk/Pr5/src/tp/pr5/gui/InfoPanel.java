@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import tp.pr5.Direction;
+import tp.pr5.EscribeConsola;
 import tp.pr5.NavigationObserver;
 import tp.pr5.PlaceInfo;
 import tp.pr5.RobotEngineObserver;
@@ -34,25 +35,27 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	// Notifica que un item esta vacio (gastado) y que se borrará del container
 	@Override
 	public void itemEmpty(String itemName) {
-		
+		this.displayInfo.setText(EscribeConsola.NO_MORE_OBJECT.replace("<id>",
+				itemName));
 	}
 
 	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio
 	@Override
 	public void itemScanned(String description) {
-		
+
 	}
 
 	// Notifica que la direccion del robot ha cambiado
 	@Override
 	public void headingChanged(Direction newHeading) {
-		
+		this.displayInfo.setText(EscribeConsola.LOOK_DIRECTION.replace("<DIR>",
+				newHeading.toString()));
 	}
 
 	// Notifica que el NavigationModule ha sido inicializado
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		
+		// ?? robotUpdate(, );
 	}
 
 	/*
@@ -61,7 +64,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	 */
 	@Override
 	public void placeHasChanged(PlaceInfo placeDescription) {
-		//this.displayInfo.setText();
+		
 	}
 
 	// Notifica que se ha solicitado una instruccion RADAR
@@ -100,13 +103,13 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	// El RobotEngine informa de que ha habido un error
 	@Override
 	public void raiseError(String msg) {
-		
+		this.displayInfo.setText(msg);
 	}
 
 	// El RobotEngine informa de que el robot quiere decir algo
 	@Override
 	public void robotSays(String message) {
-		
+		this.displayInfo.setText(EscribeConsola.SAY + message);
 	}
 
 	/*
