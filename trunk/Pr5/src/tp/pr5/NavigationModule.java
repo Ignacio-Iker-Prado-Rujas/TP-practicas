@@ -13,7 +13,7 @@ public class NavigationModule extends Observable<NavigationObserver>{
 		this.city = city;
 		this.currentPlace = initialPlace;
 		this.currentHeading = Direction.NORTH; // De forma predeterminada mira al norte
-		this.navPanel = null;
+		//this.navPanel = null;
 	}
 
 	public boolean atSpaceship() {
@@ -95,10 +95,11 @@ public class NavigationModule extends Observable<NavigationObserver>{
 
 	public Item pickItemFromCurrentPlace(String id) {
 		Item item = currentPlace.pickItem(id);
-		// Notifica a los observers que el lugar ha sufrido un cambio
-		for (NavigationObserver o : arrayObservers) {
-			o.placeHasChanged(currentPlace);
-		}
+		if (item != null)
+			// Notifica a los observers que el lugar ha sufrido un cambio
+			for (NavigationObserver o : arrayObservers) {
+				o.placeHasChanged(currentPlace);
+			}
 		// TODO if(navPanel != null)navPanel.actualizarLog(currentPlace);
 		return item;
 	}
@@ -109,20 +110,27 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	 */
 
 	public void dropItemAtCurrentPlace(Item it) {
-		this.currentPlace.dropItem(it);
-		if(navPanel != null) navPanel.actualizarLog(currentPlace);
+		if (currentPlace.dropItem(it)) {
+			for (NavigationObserver o : arrayObservers) {
+				o.placeHasChanged(currentPlace);
+			}
+		}
+		/* TODO if(navPanel != null) navPanel.actualizarLog(currentPlace); */
 	}
 
 	/* True si el item buscado esta en el lugar. False si no */
 
 	public boolean findItemAtCurrentPlace(String id) {
-		return this.currentPlace.existItem(id);
+		return currentPlace.existItem(id);
 	}
 
 	/* Inicializa la dirección del robot */
 
 	public void initHeading(Direction heading) {
-		this.currentHeading = heading;
+		currentHeading = heading;
+		for (NavigationObserver o : arrayObservers) {
+			o.initNavigationModule(currentPlace, currentHeading);
+		}
 	}
 
 	/*
@@ -156,19 +164,19 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	public Place getCurrentPlace() {
 		return this.currentPlace;
 	}
-	public void radarCurrentPlace(){
-		if (navPanel ==  null) EscribeConsola.currentPlace(currentPlace);
-	}
+
+	
+	
 	/*Necesita que algunos de sus metodos avisen 
 	 * a la interfaz de Swing sobre los cambios de orientacion 
-	 * del robot asi como de los cambios de lugar.*/
+	 * del robot asi como de los cambios de lugar.
 	
 	//Sets a panel in order to show its information in a GUI
 	public void setNavigationPanel(NavigationPanel navPanel) {
 		this.navPanel = navPanel;
-	}
+	//	}*/
 
-	private NavigationPanel navPanel;
+	//private NavigationPanel navPanel;
 	private City city;
 	private Place currentPlace;
 	private Direction currentHeading;

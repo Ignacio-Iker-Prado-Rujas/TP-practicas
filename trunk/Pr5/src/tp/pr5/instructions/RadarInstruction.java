@@ -31,7 +31,7 @@ public class RadarInstruction implements Instruction{
 
 	@Override
 	public void execute() {
-		navigation.radarCurrentPlace();
+		navigation.scanCurrentPlace();
 	}
 	@Override
 	public void undo() throws InstructionExecutionException {
