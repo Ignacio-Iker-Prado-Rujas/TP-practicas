@@ -1,5 +1,7 @@
 package tp.pr5.console;
 
+import java.util.List;
+
 import tp.pr5.Direction;
 import tp.pr5.EscribeConsola;
 import tp.pr5.NavigationObserver;
@@ -94,7 +96,7 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 
 	// Notifica que el container de items ha cambiado (no se usa en modo consola)
 	@Override
-	public void inventoryChange(Item[] inventory) {
+	public void inventoryChange(List<Item> inventory) {
 		
 	}
 
