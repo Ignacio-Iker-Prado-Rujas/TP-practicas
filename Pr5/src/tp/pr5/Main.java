@@ -16,18 +16,6 @@ import tp.pr5.gui.MainWindow;
 
 public class Main {
 	public static void main(String[] args) {
-		//OJO: Este try-catch es para que salga la ventana como en windows en el mac
-		try {
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (InstantiationException e1) {
-			e1.printStackTrace();
-		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
-		} catch (UnsupportedLookAndFeelException e1) {
-			e1.printStackTrace();
-		}
 		
 		// Comprueba que se le hayan pasado un argumentos al main 
 		if (args.length == 0) {
@@ -110,6 +98,18 @@ public class Main {
         		consoleController.startController();
             }
     		else {
+    			//OJO: Este try-catch es para que salga la ventana como en windows en el mac
+    			try {
+    				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+    			} catch (ClassNotFoundException e1) {
+    				e1.printStackTrace();
+    			} catch (InstantiationException e1) {
+    				e1.printStackTrace();
+    			} catch (IllegalAccessException e1) {
+    				e1.printStackTrace();
+    			} catch (UnsupportedLookAndFeelException e1) {
+    				e1.printStackTrace();
+    			}
 		         /** Carga la información el robot y le indica que comience a moverse.
 		          * Crea la ventana para que funcione el entorno gráfico
 		          * Empieza el juego si no ha habido problemas	

@@ -32,12 +32,12 @@ public class MainWindow implements RobotEngineObserver {
 		ventana.setLayout(new BorderLayout());
 		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
 		this.robotPanel = new RobotPanel(this.robot);
-		this.robot.setRobotPanel(robotPanel);
+		//TODO this.robot.setRobotPanel(robotPanel);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
 		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
 		this.navPanel = new NavigationPanel(initialPlace);
 		ventana.add(this.navPanel, BorderLayout.CENTER);
-		this.robot.setNavigationPanel(navPanel);
+		// TODO this.robot.setNavigationPanel(navPanel);
 		//Llamamos al método que construye el menú
 		buildMenuBar();
 	}

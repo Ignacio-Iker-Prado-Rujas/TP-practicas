@@ -32,12 +32,15 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 			instruction.execute();
 			pilaInstruction.add(instruction);
 		} catch (InstructionExecutionException exception) {
-			if (modoConsola())
+			for( RobotEngineObserver o : this.arrayObservers){
+				o.raiseError(exception.getMessage());
+			}
+			/*if (modoConsola())
 				EscribeConsola.mostrar(exception.getMessage());
 			else {
 				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
 				JOptionPane.showMessageDialog(robotPanel, exception.getMessage(), "¡Cuidado!", JOptionPane.OK_OPTION, icon);
-			}
+			}*/
 		}
 	}
 
@@ -46,7 +49,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	}
 
 	public void requestQuit() {
-		for( RobotEngineObserver o : arrayEngineObservers){
+		for( RobotEngineObserver o : this.arrayObservers){
 			o.communicationCompleted();
 		}
 	}
@@ -55,7 +58,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
-		for( RobotEngineObserver o : arrayEngineObservers){
+		for( RobotEngineObserver o : this.arrayObservers){
 			o.robotUpdate(this.fuel, recycledMaterial);
 		}
 		/*
@@ -75,7 +78,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
-		for( RobotEngineObserver o : arrayEngineObservers){
+		for( RobotEngineObserver o : this.arrayObservers){
 			o.robotUpdate(fuel, this.recycledMaterial);
 		}
 		/*
@@ -102,7 +105,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 
 	// Muestra las instrucciones que reconoce WALL·E (Solo funciona en consola)
 	public void requestHelp() {
-		for( RobotEngineObserver o : arrayEngineObservers){
+		for( RobotEngineObserver o : this.arrayObservers){
 			o.communicationHelp(Interpreter.interpreterHelp());
 		}
 	}
@@ -210,17 +213,17 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	
 	// Registers an EngineObserver to the model
 	public void addEngineObserver(RobotEngineObserver observer) {
-		arrayEngineObservers.add(observer);
+		this.arrayObservers.add(observer);
 	}
 
 	// Registers an ItemContainerObserver to the model
 	public void addItemContainerObserver(InventoryObserver observer) {
-		arrayInventoryObservers.add(observer);
+		this.itemContainer.addObserver(observer);
 	}
 
 	// Register a NavigationObserver to the model
 	public void addNavigationObserver(NavigationObserver robotObserver) {
-		arrayNavigationObservers.add(robotObserver);
+		navigation.addObserver(robotObserver);
 	}
 
 	// Checks if the simulation is finished
@@ -230,14 +233,15 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	
 	// Requests the engine to inform that an error has been raised
 	public void requestError(String msg) {
-		for (RobotEngineObserver o : arrayEngineObservers) {
+		for (RobotEngineObserver o : this.arrayObservers) {
 			o.raiseError(msg);
 		}
 	}
 	
 	// Requests the engine to inform the observers that the simulation starts
 	public void requestStart() {
-		for (NavigationObserver o : arrayNavigationObservers) {
+		navigation.initHeading(navigation.getCurrentHeading());
+		for (NavigationObserver o : navigation.arrayObservers) {
 			o.initNavigationModule(navigation.getCurrentPlace(),
 					navigation.getCurrentHeading());
 		}
@@ -245,14 +249,11 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 
 	// Request the engine to say something
 	public void saySomething(String message) {
-		for (RobotEngineObserver o : arrayEngineObservers) {
+		for (RobotEngineObserver o : this.arrayObservers) {
 			o.robotSays(message);
 		}
 	}
 
-	private ArrayList<RobotEngineObserver> arrayEngineObservers;
-	private ArrayList<InventoryObserver> arrayInventoryObservers;
-	private ArrayList<NavigationObserver> arrayNavigationObservers;
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
