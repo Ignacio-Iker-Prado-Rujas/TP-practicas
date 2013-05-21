@@ -1,7 +1,6 @@
 package tp.pr5;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Stack;
 
 import javax.swing.ImageIcon;
@@ -145,7 +144,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	}
 	
 	//Sets a panel to the navigation module in order to show its information in a GUI
-	public void setNavigationPanel(NavigationPanel navPanel) {
+	/*public void setNavigationPanel(NavigationPanel navPanel) {
 		navigation.setNavigationPanel(navPanel);
 	}
 	
@@ -155,7 +154,7 @@ public class RobotEngine extends Observable<RobotEngineObserver>{
 	}
 	
 	//Sets the main window of the GUI in order to inform about some robot events
-	//public void setGUIWindow(MainWindow mainWindow) {} por ahora no se usa
+	//public void setGUIWindow(MainWindow mainWindow) {} por ahora no se usa*/
 	
 	/** Devuelve la ultima instrucción apilada **/
 	
