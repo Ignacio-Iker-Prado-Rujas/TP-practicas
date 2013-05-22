@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class NavigationPanel extends JPanel implements NavigationObserver {
+	
 	// Constructor: Se añade un MapViewPanel y el Area de Texto
 	public NavigationPanel(Place initialPlace) {
 		//Ponemos el NavigationPanel como BorderLayout
@@ -49,23 +50,18 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 				mapPanel.add(arrayLugares[i][j]);
 			}
 		}
-		//Y situamos a WALL·E en el medio
-		arrayLugares[width/2][width/2].visitPlace();
-		arrayLugares[width/2][width/2].setPlace(initialPlace);
-		this.x = width/2;
-		this.y = width/2;
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		this.add(mapViewPanel, BorderLayout.CENTER);
 	}
 	
 	//Mueve a WALL·E desde currentPlace en direccion currentHeading
-	public void move(Place currentPlace, Direction currentHeading) {
+	/*public void move(Place currentPlace, Direction currentHeading) {
 		arrayLugares[x][y].leavePlace();
 		cambiarPosicion(currentHeading);
 		arrayLugares[x][y].setPlace(currentPlace);
 		arrayLugares[x][y].visitPlace();
 		actualizarLog(currentPlace);
-	}
+	}*/
 
 	//Para el Undo, depende del numero de visitas de cada lugar
 	public void undoMove(Place currentPlace, Direction currentHeading){
@@ -110,18 +106,25 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		}
 	}
 
-	public void actualizarLog(PlaceInfo currentPlace) {
+	private void actualizarLog(PlaceInfo currentPlace) {
 		this.textArea.setText(currentPlace.toString());
 	}
 	
+	
 	@Override
 	public void headingChanged(Direction newHeading) {
-		
+		actualizarDirection(newHeading);
 	}
 
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		
+		actualizarDirection(heading);
+		this.textArea.setText(initialPlace.toString());
+		//Y situamos a WALL·E en el medio
+		arrayLugares[width/2][width/2].visitPlace();
+		arrayLugares[width/2][width/2].setPlace(initialPlace);
+		this.x = width/2;
+		this.y = width/2;
 	}
 
 	@Override
@@ -129,14 +132,20 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		this.actualizarLog(placeDescription);
 	}
 
+	// No es necesario, tenemos el campo de texto con la informacion del lugar
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
 		
 	}
 
+	
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		
+		arrayLugares[x][y].leavePlace();
+		cambiarPosicion(heading);
+		arrayLugares[x][y].setPlace(place);
+		arrayLugares[x][y].visitPlace();
+		actualizarLog(place);
 	}
 	
     private int x;
