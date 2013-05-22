@@ -1,7 +1,5 @@
 package tp.pr5;
 
-import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Stack;
 
 import javax.swing.ImageIcon;
@@ -13,21 +11,22 @@ import tp.pr5.instructions.MoveInstruction;
 import tp.pr5.instructions.OperateInstruction;
 import tp.pr5.instructions.PickInstruction;
 import tp.pr5.instructions.TurnInstruction;
-import tp.pr5.instructions.UndoInstruction;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.InventoryObserver;
 import tp.pr5.items.Item;
 import tp.pr5.items.ItemContainer;
 
 public class RobotEngine extends Observable<RobotEngineObserver> {
+	
 	// Constructor a partir del mapa de la ciudad, el lugar inicial y la direccion la que mira el robot
 	public RobotEngine(City cityMap, Place initialPlace, Direction direction) {
 		this.pilaInstruction = new Stack<Instruction>(); 
 		this.navigation = new NavigationModule(cityMap, initialPlace);
 		this.navigation.initHeading(direction);
+		this.quit = false;
 		this.fuel = 100;
-		this.itemContainer = new ItemContainer();
 		this.recycledMaterial = 0;
+		this.itemContainer = new ItemContainer();
 		this.robotPanel = null;
 	}
 	
@@ -54,7 +53,8 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	}
 
 	public void requestQuit() {
-		for( RobotEngineObserver o : this.arrayObservers){
+		this.quit = true;
+		for (RobotEngineObserver o : this.arrayObservers) {
 			o.communicationCompleted();
 		}
 	}
@@ -63,10 +63,10 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	//Puede ser negativo el fuel.
 	public void addFuel(int fuel) {
 		this.fuel += fuel;
-		for( RobotEngineObserver o : this.arrayObservers){
+		for (RobotEngineObserver o : this.arrayObservers) {
 			o.robotUpdate(this.fuel, recycledMaterial);
 		}
-		/*
+		/* TODO:
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 		else{
@@ -83,10 +83,10 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	// Incrementa la cantidad de material reciclado
 	public void addRecycledMaterial(int weight) {
 		this.recycledMaterial += weight;
-		for( RobotEngineObserver o : this.arrayObservers){
+		for (RobotEngineObserver o : this.arrayObservers) {
 			o.robotUpdate(fuel, this.recycledMaterial);
 		}
-		/*
+		/*TODO:
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 		else 
@@ -103,7 +103,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		return this.recycledMaterial;
 	}
 	
-	/* Devuelve el item indicado */
+	// Devuelve el item indicado
 	public Item getItem(String id){
         return itemContainer.getItem(id);
 	}
@@ -120,25 +120,17 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 	
-	/* Indica si el programa se está ejecutando en modo consola */
+	// Indica si el programa se está ejecutando en modo consola
 	public boolean modoConsola(){
 		return (this.robotPanel == null);
 	}
 	
-	/* Indica si un item se ha gastado */
-	
+	// Indica si un item se ha gastado
 	public boolean itemGastado(String id) {
 		if(itemContainer.containsItem(id))
 			return false;
 		else
 			return true;
-	}
-
-	// Muestra los mendajes al iniciar el movimiento
-	private void mostrarInicio() {
-		EscribeConsola.currentPlace(this.navigation.getCurrentPlace());
-		EscribeConsola.lookingDirection(this.navigation.getCurrentHeading());
-		EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
 	}
 
 	// Devuelve true si WALL·E aun tiene combustible
@@ -197,12 +189,12 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		/************ pruebas autoengine *****************************************/
 	
 	
-	public void autoEngine(){
+	public void autoEngine() {
 		Stack<String> arraySolucion = new Stack<String>();
-		for(int i = 1; arraySolucion.isEmpty(); i++){
+		for(int i = 1; arraySolucion.isEmpty(); i++) {
 			arraySolucion = autoEngine(arraySolucion, 1,  i);
 		}
-		for (String s : arraySolucion){
+		for (String s : arraySolucion) {
 			saySomething(s+" ");
 		}
 	}
@@ -294,7 +286,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 	// Checks if the simulation is finished
 	public boolean isOver() {
-		return (!haveFuel() || isSpaceship());
+		return (!haveFuel() || isSpaceship() || quit);
 	}
 	
 	// Requests the engine to inform that an error has been raised
@@ -319,12 +311,20 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 			o.robotSays(message);
 		}
 	}
+	
+	// 
+	public void endOfGame() {
+		if (!quit)
+			for (RobotEngineObserver o : this.arrayObservers)
+				o.engineOff(navigation.atSpaceship());
+	}
 
 	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
+	private boolean quit;
 	private int fuel;
-	private ItemContainer itemContainer;
 	private int recycledMaterial;
+	private ItemContainer itemContainer;
 
 }
