@@ -1,5 +1,9 @@
 package tp.pr5.items;
 
+
+import java.util.Arrays;
+import java.util.List;
+
 import tp.pr5.Observable;
 
 
@@ -85,6 +89,10 @@ public class ItemContainer extends Observable<InventoryObserver>{
 				this.arrayItem[i]=this.arrayItem[i - 1];
 			this.arrayItem[pos] = item;
 			this.numItems++;
+			List<Item> listaItems = Arrays.asList(arrayItem);
+			for(InventoryObserver invOb : arrayObservers){
+				invOb.inventoryChange(listaItems);
+			}
 			return true;			//Desplaza, inserta y actualiza el número de items.
 		}
 	}
@@ -109,6 +117,10 @@ public class ItemContainer extends Observable<InventoryObserver>{
 			for (int i = pos; i < this.numItems - 1; i++)
 				this.arrayItem[i] = this.arrayItem[i + 1];
 			this.numItems--;
+			List<Item> listaItems = Arrays.asList(arrayItem); //asi convertimos una sola vez
+			for(InventoryObserver invOb : arrayObservers){
+				invOb.inventoryChange(listaItems);
+			}
 			return eliminado;
 		}
 	}
@@ -129,6 +141,18 @@ public class ItemContainer extends Observable<InventoryObserver>{
 		}
 		return arrayItems;
 	}
+	public void useItem(Item item){
+		if (!item.canBeUsed()){
+			for( InventoryObserver invOb: arrayObservers) // notificamos que se ha gastado el item
+				invOb.itemEmpty(item.id);
+			pickItem(item.id);	
+		}
+	}
+
+void requestScanCollection(){}
+ 
+void requestScanItem(String id){}
+
 	/*
 	 * TODO: A lo mejor no hace falta pero vine  en la documentacion:
 	 * public void requestScanItem(String id)

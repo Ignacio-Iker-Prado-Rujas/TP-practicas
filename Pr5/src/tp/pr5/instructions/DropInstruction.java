@@ -52,15 +52,15 @@ public class DropInstruction implements Instruction{
 	 */
 	@Override
 	public void execute() throws InstructionExecutionException {
-		item = this.container.pickItem(id);
+		item = container.pickItem(id);
 		if (item == null)
 			throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
 			throw new InstructionExecutionException(EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
-			if(engine.modoConsola()) EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
-			else engine.deleteSelectedItem(); 
+			/* TODO if(engine.modoConsola()) EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
+			else engine.deleteSelectedItem(); */
 		}
 	}
 	
