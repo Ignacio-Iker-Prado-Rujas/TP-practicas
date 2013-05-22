@@ -84,7 +84,8 @@ public class Main {
 				System.exit(1);
 			}
 			/* Inicializa con la consola o con la interfaz de swing */
-            if (consola){/**
+            if (consola){
+            	/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
         		 */

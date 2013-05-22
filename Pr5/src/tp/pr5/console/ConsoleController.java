@@ -15,12 +15,11 @@ public class ConsoleController extends Controller {
 		super(game);
 	}
 
-	// TODO: Poner bien las cosas comentadas
 	@Override
 	public void startController() {
-		//this.engine.mostrarInicio();
+		this.engine.requestStart();
 		Scanner sc = new Scanner(System.in);
-		while (!this.engine.isOver() /*&& !quit*/) {
+		while (!this.engine.isOver()) {
 			EscribeConsola.prompt(); // Muestra por consola: WALL·E>
 			try {
 				// Genera una instrucion a partir de la cadena leída y se la envía al robot para que la ejecute
@@ -29,8 +28,8 @@ public class ConsoleController extends Controller {
 				engine.saySomething(EscribeConsola.NOT_UNDERSTAND);
 			}
 		}
+		this.engine.endOfGame();
 		sc.close(); // Cierra el escaner
-		//mostrarFinal();
 	}
 
 }
