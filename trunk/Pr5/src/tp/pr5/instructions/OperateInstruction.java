@@ -44,11 +44,12 @@ public class OperateInstruction implements Instruction{
 		item = this.container.getItem(id);
 		if (item == null) throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
 		else if (item.use(this.robot, this.navigation)){
-			if (!item.canBeUsed()){
+			container.useItem(item);
+			/*if (!item.canBeUsed()){
 				if(robot.modoConsola()) EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", this.id));
 				else robot.deleteSelectedItem();
 				this.container.pickItem(this.id);
-			}
+			}*/
 		}
 		else throw new InstructionExecutionException(EscribeConsola.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}
