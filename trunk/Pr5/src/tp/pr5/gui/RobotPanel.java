@@ -64,13 +64,13 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		this.add(splitPanel);
 	}
 
-	public void actualizarFuel(int fuel) {
+	/*public void actualizarFuel(int fuel) {
 		this.fuel.setText("Fuel: " + fuel);
 	}
 
 	public void actualizarRecycled(int totRec) {
 		this.recycled.setText("Recycled: " + totRec);
-	}
+	}*/
 
 	//Método que crea los botones con las instrucciones que acepta WALL·E
 	private void configureInstructionPanel() {
@@ -182,6 +182,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	public void deleteItem(String id){
 		tableModel.deleteItem(id);
 	}
+	
 	public void deleteSelectedItem() { 
 		int row = table.getSelectedRow();
 		tableModel.removeData(row);
@@ -193,6 +194,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		
 	}
 
+	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
 		
@@ -200,7 +202,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	@Override
 	public void itemEmpty(String itemName) {
-		
+		tableModel.deleteItem(itemName);
 	}
 
 	@Override
@@ -208,6 +210,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		
 	}
 
+	// Este metodo es para el QUIT, pero se llama desde su actionListener
 	@Override
 	public void communicationCompleted() {
 		
@@ -220,14 +223,26 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	@Override
 	public void engineOff(boolean atShip) {
-		
+		if (!atShip) {
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			JOptionPane.showMessageDialog(this, "I run out of fuel. I cannot move. Shutting down...", 
+					"Bye, bye!", JOptionPane.OK_OPTION, icon);
+			System.exit(0);
+		} else {
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			JOptionPane.showMessageDialog(/*TODO aqui ponia navPanel en vez de this*/this, "I am at my spaceship. Bye bye", 
+					"Bye, bye!", JOptionPane.OK_OPTION, icon);
+			System.exit(0);
+		}
 	}
 
 	@Override
 	public void raiseError(String msg) {
-		
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+		JOptionPane.showMessageDialog(this, msg, "¡Cuidado!", JOptionPane.OK_OPTION, icon);
 	}
 
+	// No usa en el RobotPanel
 	@Override
 	public void robotSays(String message) {
 		
@@ -235,7 +250,8 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {
-		
+		this.fuel.setText("Fuel: " + fuel);
+		this.recycled.setText("Recycled: " + recycledMaterial);
 	}
 	
 	private JLabel fuel;
