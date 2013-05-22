@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-import tp.pr5.Place;
+import tp.pr5.PlaceInfo;
 
 public class PlaceCell extends JButton {
 	public PlaceCell(final JTextArea textArea) {
@@ -28,7 +28,7 @@ public class PlaceCell extends JButton {
 	}
 	
 	/* Actualiza el lugar que representa un PlaceCell */
-	public void setPlace(Place place) {
+	public void setPlace(PlaceInfo place) {
 		this.setText(place.getName());
 		this.place = place;
 	}
@@ -57,6 +57,6 @@ public class PlaceCell extends JButton {
 	}
 	
 	private int numVisitas;
-	private Place place;
+	private PlaceInfo place;
 	private static final long serialVersionUID = 1L;	//Daba warning
 }

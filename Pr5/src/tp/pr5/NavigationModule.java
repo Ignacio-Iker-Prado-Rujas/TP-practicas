@@ -1,9 +1,5 @@
 package tp.pr5;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
-import tp.pr5.gui.NavigationPanel;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.Item;
 

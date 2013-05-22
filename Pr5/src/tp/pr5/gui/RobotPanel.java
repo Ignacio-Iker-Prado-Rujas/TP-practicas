@@ -217,6 +217,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		
 	}
 
+	// TODO: Mostrar la ayuda?
 	@Override
 	public void communicationHelp(String help) {
 		
