@@ -194,7 +194,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		
 	}
 
-	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...
+	// No se necesita, ya tenemos la tabla con los items
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
 		
@@ -205,6 +205,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		tableModel.deleteItem(itemName);
 	}
 
+	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...
 	@Override
 	public void itemScanned(String description) {
 		
