@@ -39,7 +39,6 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 	 */
 	@Override
 	public void raiseError(String msg) {
-		// TODO: A lo mejor es EscribeConsola.say(msg) en vez de mostrar 
 		EscribeConsola.mostrar(msg);
 	}
 
