@@ -30,7 +30,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	// Constructor: Se añade el intructionPanel y el dataPanel 
 	public RobotPanel (RobotEngine elRobot) {
 		//Fijamos el robotEngine
-		this.robot = elRobot;
+		this.controlador = new GUIController(elRobot);
 		this.setLayout(new BorderLayout());
 		//Creamos el panel con los botones 
 		this.instructionPanel = new JPanel(new GridLayout(5, 2));
@@ -64,14 +64,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		this.add(splitPanel);
 	}
 
-	/*public void actualizarFuel(int fuel) {
-		this.fuel.setText("Fuel: " + fuel);
-	}
-
-	public void actualizarRecycled(int totRec) {
-		this.recycled.setText("Recycled: " + totRec);
-	}*/
-
 	//Método que crea los botones con las instrucciones que acepta WALL·E
 	private void configureInstructionPanel() {
 		//INSTRUCCION MOVE
@@ -79,7 +71,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		move.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new MoveInstruction());
+				controlador.communicateRobot(new MoveInstruction());
 			}		
 		});
 		this.instructionPanel.add(move);
@@ -88,13 +80,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		quit.addActionListener(new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane salir = new JOptionPane();
-				String[] opciones = {"Yes, please.", "No way."};
-				ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
-				int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, opciones, opciones[0]);
-				if(n == 0)
-					System.exit(0);
+				communicationCompleted();
 				}
 		});
 		this.instructionPanel.add(quit);
@@ -103,7 +89,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		turn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new TurnInstruction(forceRotation(rotations.getSelectedItem().toString()))); //Este cast habrá que cambiarlo
+				controlador.communicateRobot(new TurnInstruction(forceRotation(rotations.getSelectedItem().toString()))); //Este cast habrá que cambiarlo
 			}		
 		});
 		this.instructionPanel.add(turn);
@@ -117,9 +103,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (item.getText() != null) 
-					robot.communicateRobot( new PickInstruction(item.getText()));
+					controlador.communicateRobot( new PickInstruction(item.getText()));
 				else 
-					robot.darAvisoVentana("Escriba el nombre de algun item");
+					raiseError("Escriba el nombre de algun item");
 			}
 		});
 		this.instructionPanel.add(pick);
@@ -133,9 +119,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 			public void actionPerformed(ActionEvent e) {
 				int fila = table.getSelectedRow();
 				if (fila < 0)
-					robot.darAvisoVentana("Seleccione algún item de la tabla");
+					raiseError("Seleccione algún item de la tabla");
 				else
-					robot.communicateRobot(new DropInstruction(tableModel.getValueAt(fila, 0)));
+					controlador.communicateRobot(new DropInstruction(tableModel.getValueAt(fila, 0)));
 			}		
 		});
 		this.instructionPanel.add(drop);
@@ -146,9 +132,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 			public void actionPerformed(ActionEvent e) {
 				int fila = table.getSelectedRow();
 				if (fila < 0)
-					robot.darAvisoVentana("Seleccione algún item de la tabla");
+					raiseError("Seleccione algún item de la tabla");
 				else
-					robot.communicateRobot(new OperateInstruction(tableModel.getValueAt(fila, 0)));
+					controlador.communicateRobot(new OperateInstruction(tableModel.getValueAt(fila, 0)));
 			}		
 		});
 		this.instructionPanel.add(operate);
@@ -157,7 +143,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robot.communicateRobot(new UndoInstruction());
+				controlador.communicateRobot(new UndoInstruction());
 			}		
 		});
 		this.instructionPanel.add(undo);
@@ -214,10 +200,15 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	// Este metodo es para el QUIT, pero se llama desde su actionListener
 	@Override
 	public void communicationCompleted() {
-		
+		JOptionPane salir = new JOptionPane();
+		String[] opciones = {"Yes, please.", "No way."};
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
+		int n = JOptionPane.showOptionDialog(salir, "Are you sure you want to quit?", "QUIT", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon, opciones, opciones[0]);
+		if(n == 0)
+			System.exit(0);
 	}
 
-	// TODO: Mostrar la ayuda?
 	@Override
 	public void communicationHelp(String help) {
 		
@@ -260,7 +251,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	private JLabel recycled;
 	private JComboBox<Rotation> rotations;
 	private JTextField item;
-	private RobotEngine robot;
+	private GUIController controlador;
 	private JPanel instructionPanel;
 	private JTable table;
 	private TableModel tableModel;
