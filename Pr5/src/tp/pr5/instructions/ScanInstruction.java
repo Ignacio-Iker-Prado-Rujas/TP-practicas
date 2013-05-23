@@ -29,7 +29,7 @@ public class ScanInstruction implements Instruction{
 	}
 
 	public String getHelp() {
-		return " SCAN|ESCANEAR [id]";
+		return " SCAN | ESCANEAR [id]";
 	}
 
 	public void configureContext(RobotEngine engine,
@@ -40,18 +40,19 @@ public class ScanInstruction implements Instruction{
 
 	public void execute() throws InstructionExecutionException{
 		if(this.robotContainer.numberOfItems() == 0) 
-			throw new InstructionExecutionException(EscribeConsola.INV_EMPTY); //say("My inventory is empty");(necesaria excepcion para tests)
+			throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.INV_EMPTY); //say("My inventory is empty");(necesaria excepcion para tests)
 		else if (this.id == null) 
-			EscribeConsola.say(EscribeConsola.CARRYING_ITEMS + this.robotContainer.toString());
-		else{
+			this.robotContainer.requestScanCollection();
+		else {
 			Item item = this.robotContainer.getItem(id);
 			if (item == null)
-				throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+				throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 			else 
-				EscribeConsola.say(item.toString()); //say(item.toString());
+				this.robotContainer.requestScanItem(id);
 		}
 		
 	}
+	
 	@Override
 	public void undo() throws InstructionExecutionException {
 		engine.lastInstruction().undo();

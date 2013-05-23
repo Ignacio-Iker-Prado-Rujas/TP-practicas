@@ -29,7 +29,7 @@ public class HelpInstruction implements Instruction{
 
 	@Override
 	public void execute() {
-		robot.requestHelp();
+		this.robot.requestHelp();
 	}
 	
 	@Override

@@ -36,5 +36,5 @@ public class QuitInstruction implements Instruction{
 	
 	private static final String QUIT = "QUIT";
 	private static final String SALIR = "SALIR";
-	private static final String HELP = " QUIT|SALIR";
+	private static final String HELP = " QUIT | SALIR";
 }
