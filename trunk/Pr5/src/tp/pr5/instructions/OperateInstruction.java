@@ -45,11 +45,6 @@ public class OperateInstruction implements Instruction{
 		if (item == null) throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", this.id));
 		else if (item.use(this.robot, this.navigation)){
 			container.useItem(item);
-			/*if (!item.canBeUsed()){
-				if(robot.modoConsola()) EscribeConsola.say(EscribeConsola.NO_MORE_OBJECT.replace("<id>", this.id));
-				else robot.deleteSelectedItem();
-				this.container.pickItem(this.id);
-			}*/
 		}
 		else throw new InstructionExecutionException(EscribeConsola.PROBLEMS_USING_OBJECT.replace("<id>", this.id));		
 	}

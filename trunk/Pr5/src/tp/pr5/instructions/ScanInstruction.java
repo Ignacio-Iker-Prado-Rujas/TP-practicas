@@ -29,7 +29,7 @@ public class ScanInstruction implements Instruction{
 	}
 
 	public String getHelp() {
-		return " SCAN | ESCANEAR [id]";
+		return " SCAN | ESCANEAR <id>";
 	}
 
 	public void configureContext(RobotEngine engine,

@@ -33,7 +33,7 @@ public class TurnInstruction implements Instruction{
 
 	@Override
 	public String getHelp() {
-		return " TURN | GIRAR < LEFT|RIGHT >";
+		return " TURN | GIRAR <LEFT | RIGHT>";
 	}
 
 	@Override
