@@ -50,6 +50,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 				mapPanel.add(arrayLugares[i][j]);
 			}
 		}
+		initNavigationModule(initialPlace, Direction.NORTH);
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		this.add(mapViewPanel, BorderLayout.CENTER);
 	}

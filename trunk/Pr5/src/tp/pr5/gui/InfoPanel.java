@@ -14,9 +14,10 @@ import tp.pr5.items.Item;
 
 public class InfoPanel extends JPanel implements RobotEngineObserver, NavigationObserver, InventoryObserver {
 	
-	// Constructor, no se muestra nada en la etiqueta
+	// Constructor, se muestra el fuel y el material reciclado en la etiqueta
 	public InfoPanel() {
-		this.displayInfo = new JLabel();
+		this.displayInfo = new JLabel("Robot attributes has been updated: (" + 100
+				+ ", " + 0 + ")");
 		this.add(displayInfo);
 	}
 
@@ -26,7 +27,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 		
 	}
 
-	// Notifica que se ha solcitado una instruccion SCAN del inventario
+	// Notifica que se ha solcitado una instruccion SCAN del inventario (no se usa en GUI)
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
 		
@@ -35,11 +36,10 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	// Notifica que un item esta vacio (gastado) y que se borrará del container
 	@Override
 	public void itemEmpty(String itemName) {
-		this.displayInfo.setText(EscribeConsola.NO_MORE_OBJECT.replace("<id>",
-				itemName));
+		this.displayInfo.setText(EscribeConsola.SAY + EscribeConsola.NO_MORE_OBJECT.replace("<id>", itemName));
 	}
 
-	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio
+	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio (no se usa en GUI)
 	@Override
 	public void itemScanned(String description) {
 
@@ -52,10 +52,10 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 				newHeading.toString()));
 	}
 
-	// Notifica que el NavigationModule ha sido inicializado
+	// Notifica que el NavigationModule ha sido inicializado (no se usa en GUI)
 	@Override
 	public void initNavigationModule(PlaceInfo initialPlace, Direction heading) {
-		// ?? robotUpdate(, );
+
 	}
 
 	/*
@@ -67,7 +67,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 		
 	}
 
-	// Notifica que se ha solicitado una instruccion RADAR
+	// Notifica que se ha solicitado una instruccion RADAR (no se usa en GUI)
 	@Override
 	public void placeScanned(PlaceInfo placeDescription) {
 		

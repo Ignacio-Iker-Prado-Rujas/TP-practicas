@@ -12,6 +12,7 @@ import org.apache.commons.cli.*;
 import tp.pr5.cityLoader.CityLoaderFromTxtFile;
 import tp.pr5.console.Console;
 import tp.pr5.console.ConsoleController;
+import tp.pr5.gui.GUIController;
 import tp.pr5.gui.MainWindow;
 
 public class Main {
@@ -84,13 +85,12 @@ public class Main {
 				System.exit(1);
 			}
 			/* Inicializa con la consola o con la interfaz de swing */
+            RobotEngine engine = new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
             if (consola){
             	/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
         		 */
-        		RobotEngine engine = new RobotEngine(city,
-        				cityLoader.getInitialPlace(), Direction.NORTH);
         		ConsoleController consoleController = new ConsoleController(engine);
         		Console console = new Console();
         		consoleController.registerEngineObserver(console);
@@ -115,10 +115,12 @@ public class Main {
 		          * Crea la ventana para que funcione el entorno gráfico
 		          * Empieza el juego si no ha habido problemas	
 		          */
-				 
-				RobotEngine engine = new RobotEngine(city,
-						cityLoader.getInitialPlace(), Direction.NORTH);
+				GUIController guiController = new GUIController(engine);
 				MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
+				GUIController.registerEngineObserver(window);
+				//GUIController.registerItemContainerObserver(window);
+				//GUIController.registerRobotObserver(window);
+				//GUIController.startController();
 				//engine.autoEngine();
 				window.setVisible(true);
     		}
