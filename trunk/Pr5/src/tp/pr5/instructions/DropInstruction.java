@@ -59,6 +59,7 @@ public class DropInstruction implements Instruction{
 			throw new InstructionExecutionException(EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
+			engine.saySomething(EscribeConsola.OBJECT_DROPPED.replace("<id>", item.getId()));
 			/* TODO if(engine.modoConsola()) EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
 			else engine.deleteSelectedItem(); */
 		}
