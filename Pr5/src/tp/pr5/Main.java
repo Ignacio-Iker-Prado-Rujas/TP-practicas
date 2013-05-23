@@ -116,7 +116,7 @@ public class Main {
 		          * Empieza el juego si no ha habido problemas	
 		          */
 				GUIController guiController = new GUIController(engine);
-				MainWindow window = new MainWindow(engine, cityLoader.getInitialPlace());
+				MainWindow window = new MainWindow(guiController);
 				GUIController.registerEngineObserver(window);
 				//GUIController.registerItemContainerObserver(window);
 				//GUIController.registerRobotObserver(window);

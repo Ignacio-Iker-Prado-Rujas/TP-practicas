@@ -12,8 +12,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import tp.pr5.EscribeConsola;
-import tp.pr5.Place;
-import tp.pr5.RobotEngine;
 import tp.pr5.RobotEngineObserver;
 
 public class MainWindow implements RobotEngineObserver {
@@ -56,9 +54,8 @@ public class MainWindow implements RobotEngineObserver {
 		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
 		this.robotPanel = new RobotPanel(guiController);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
-		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
-		this.navPanel = new NavigationPanel(guiController);
-		ventana.add(this.navPanel, BorderLayout.CENTER);
+		/*//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
+		ventana.add(this.navPanel, BorderLayout.CENTER);*/
 		//Llamamos al método que construye el menú
 		buildMenuBar();
 	}
@@ -150,6 +147,6 @@ public class MainWindow implements RobotEngineObserver {
 	private final JFrame ventana;
 	//private RobotEngine robot;
 	private RobotPanel robotPanel;
-	private NavigationPanel navPanel;
+	//private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 	}
