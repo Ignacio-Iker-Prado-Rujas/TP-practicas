@@ -50,7 +50,7 @@ public class PickInstruction implements Instruction{
 					EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 
 		else if (container.addItem(item))
-			engine.saySomething(EscribeConsola.NOW_HAVE.replace("<id>", id));
+			engine.saySomething(EscribeConsola.NOW_HAVE.replace("<id>", item.getId()));
 		/*
 		 * if
 		 * (engine.modoConsola())EscribeConsola.say(EscribeConsola.NOW_HAVE.replace

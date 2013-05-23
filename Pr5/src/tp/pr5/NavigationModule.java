@@ -28,7 +28,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 		}
 		/*TODO if (navPanel == null) 	EscribeConsola.lookingDirection(this.getCurrentHeading());
 		else this.navPanel.actualizarDirection(this.currentHeading);	Delete*/
-		
 	}
 
 	/*
@@ -36,7 +35,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	 * abierta. Si está abierta y existe mueve al robot, si no, lanza la
 	 * excepción correspondiente
 	 */
-
 	public void move() throws InstructionExecutionException {
 		Street newStreet = getHeadingStreet();
 		if (newStreet == null)
@@ -88,7 +86,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	 * Coge el objeto indicado con la id del lugar en el que está el robot.
 	 * Devuelve null si no hay un objeto con esa id
 	 */
-
 	public Item pickItemFromCurrentPlace(String id) {
 		Item item = currentPlace.pickItem(id);
 		if (item != null)
@@ -104,7 +101,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	 * Tira el item en el lugar en que está. Supone que ya se ha comprobado que
 	 * en el lugar no hay otro objeto con el midmo id
 	 */
-
 	public void dropItemAtCurrentPlace(Item it) {
 		if (currentPlace.dropItem(it)) {
 			for (NavigationObserver o : arrayObservers) {
@@ -115,22 +111,19 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	}
 
 	/* True si el item buscado esta en el lugar. False si no */
-
 	public boolean findItemAtCurrentPlace(String id) {
 		return currentPlace.existItem(id);
 	}
 
 	/* Inicializa la dirección del robot */
-
 	public void initHeading(Direction heading) {
 		currentHeading = heading;
 	}
 
 	/*
-	 * Le da a los observers la informacion del lugar donde esta wall e, y la
+	 * Le da a los observers la informacion del lugar donde esta WALL·E, y la
 	 * lista de los items
 	 */
-
 	public void scanCurrentPlace() {
 		for (NavigationObserver o : this.arrayObservers) {
 			o.placeScanned(currentPlace);
@@ -141,19 +134,16 @@ public class NavigationModule extends Observable<NavigationObserver>{
 	 * Duevuelve la calle hacia la que está mirando el robot. 
 	 * Null si no hay calle
 	 */
-
 	public Street getHeadingStreet() {
 		return this.city.lookForStreet(this.currentPlace, this.currentHeading);
 	}
 
 	/* Devuelve el lugar donde está el robot */
-
 	public Direction getCurrentHeading() {
 		return this.currentHeading;
 	}
 
 	/* Para los tests, no usar */
-
 	public Place getCurrentPlace() {
 		return this.currentPlace;
 	}
