@@ -31,7 +31,7 @@ public class PickInstruction implements Instruction{
 
 	@Override
 	public String getHelp() {
-		return " PICK|COGER <id>";
+		return " PICK | COGER <id>";
 	}
 
 	@Override
@@ -47,18 +47,13 @@ public class PickInstruction implements Instruction{
 		item = this.navigation.pickItemFromCurrentPlace(id);
 		if (item == null)
 			throw new InstructionExecutionException(
-					EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
+					EscribeConsola.SAY + EscribeConsola.PLACE_NOT_OBJECT.replace("<id>", id));
 
 		else if (container.addItem(item))
-			engine.saySomething(EscribeConsola.NOW_HAVE.replace("<id>", item.getId()));
-		/*
-		 * if
-		 * (engine.modoConsola())EscribeConsola.say(EscribeConsola.NOW_HAVE.replace
-		 * ("<id>", id)); else engine.addItem(id, item.getDescription());
-		 */
+			this.engine.saySomething(EscribeConsola.NOW_HAVE.replace("<id>", item.getId()));
 		else
 			throw new InstructionExecutionException(
-					EscribeConsola.HAD_OBJECT.replace("<id>", id));
+					EscribeConsola.SAY + EscribeConsola.HAD_OBJECT.replace("<id>", id));
 	}
 
 	@Override

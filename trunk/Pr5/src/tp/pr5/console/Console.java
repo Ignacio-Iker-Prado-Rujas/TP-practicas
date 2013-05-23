@@ -39,7 +39,7 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 	 */
 	@Override
 	public void raiseError(String msg) {
-		// TODO: A lo mejor es EscribeConsola.say(msg) en vez de say 
+		// TODO: A lo mejor es EscribeConsola.say(msg) en vez de mostrar 
 		EscribeConsola.mostrar(msg);
 	}
 
@@ -103,7 +103,7 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 	// Notifica que se ha solcitado una instruccion SCAN del inventario
 	@Override
 	public void inventoryScanned(String inventoryDescription) {
-		EscribeConsola.mostrar(inventoryDescription);
+		EscribeConsola.say(EscribeConsola.CARRYING_ITEMS + inventoryDescription);
 	}
 	
 	// Notifica que un item esta vacio (gastado) y que se borrará del container

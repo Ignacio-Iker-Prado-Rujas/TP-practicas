@@ -28,7 +28,7 @@ public class OperateInstruction implements Instruction{
 
 	@Override
 	public String getHelp() {
-		return " OPERATE|OPERAR <id>";
+		return " OPERATE | OPERAR <id>";
 	}
 
 	@Override

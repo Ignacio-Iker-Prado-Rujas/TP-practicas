@@ -143,21 +143,24 @@ public class ItemContainer extends Observable<InventoryObserver>{
 	}
 	public void useItem(Item item){
 		if (!item.canBeUsed()){
-			for( InventoryObserver invOb: arrayObservers) // notificamos que se ha gastado el item
+			for (InventoryObserver invOb: arrayObservers) // notificamos que se ha gastado el item
 				invOb.itemEmpty(item.id);
 			pickItem(item.id);	
 		}
 	}
 
-void requestScanCollection(){}
+	// Para hacer SCAN del itemContainer
+	public void requestScanCollection() { 
+		for (InventoryObserver invOb: arrayObservers) 
+			invOb.inventoryScanned(this.toString());
+	}
  
-void requestScanItem(String id){}
+	// Para hacer SCAN de un item
+	public void requestScanItem(String id) {
+		for (InventoryObserver invOb: arrayObservers) 
+			invOb.itemScanned(getItem(id).toString());
+	}
 
-	/*
-	 * TODO: A lo mejor no hace falta pero vine  en la documentacion:
-	 * public void requestScanItem(String id)
-	 */
-	 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	
 	//El itemContainer lleva un array de items y un entero que indica cuantos hay

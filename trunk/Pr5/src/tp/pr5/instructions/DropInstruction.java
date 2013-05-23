@@ -35,7 +35,7 @@ public class DropInstruction implements Instruction{
 	
 	@Override
 	public String getHelp() {
-		return " DROP|SOLTAR <id>";
+		return " DROP | SOLTAR <id>";
 	}
 	
 	/* Guarda como atributos lo que vaya a necesitar la instrucción para ejecutarse */
@@ -54,14 +54,12 @@ public class DropInstruction implements Instruction{
 	public void execute() throws InstructionExecutionException {
 		item = container.pickItem(id);
 		if (item == null)
-			throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
-			throw new InstructionExecutionException(EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
-			engine.saySomething(EscribeConsola.OBJECT_DROPPED.replace("<id>", item.getId()));
-			/* TODO if(engine.modoConsola()) EscribeConsola.mostrar(EscribeConsola.OBJECT_DROPPED.replace("<id>", id));
-			else engine.deleteSelectedItem(); */
+			this.engine.saySomething(EscribeConsola.OBJECT_DROPPED.replace("<id>", item.getId()));
 		}
 	}
 	

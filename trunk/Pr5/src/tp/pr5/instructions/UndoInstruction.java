@@ -18,7 +18,7 @@ public class UndoInstruction implements Instruction {
 	
 	@Override
 	public String getHelp() {
-		return "	UNDO";
+		return " UNDO";
 	}
 	
 	@Override

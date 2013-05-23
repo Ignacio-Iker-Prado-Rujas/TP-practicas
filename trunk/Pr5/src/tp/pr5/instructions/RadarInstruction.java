@@ -31,11 +31,12 @@ public class RadarInstruction implements Instruction{
 
 	@Override
 	public void execute() {
-		navigation.scanCurrentPlace();
+		this.navigation.scanCurrentPlace();
 	}
+	
 	@Override
 	public void undo() throws InstructionExecutionException {
-		engine.lastInstruction().undo();
+		this.engine.lastInstruction().undo();
 	}
 	
 	private NavigationModule navigation;
