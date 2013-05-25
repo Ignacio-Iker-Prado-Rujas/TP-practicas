@@ -131,7 +131,8 @@ public class MainWindow implements RobotEngineObserver {
 		else 
 			mensaje = EscribeConsola.OUT_OF_FUEL;
 		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
-		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);		
+		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
+		System.exit(0);
 	}
 
 	// No se usa aqui
