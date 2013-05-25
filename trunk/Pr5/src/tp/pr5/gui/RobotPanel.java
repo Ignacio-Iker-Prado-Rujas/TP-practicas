@@ -64,10 +64,13 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	}*/
 
 	public RobotPanel (GUIController guiController) {
-		//Fijamos el robotEngine
+		//Fijamos el controlador
 		this.controlador = guiController;
 		this.setLayout(new BorderLayout());
-		//Creamos el panel con los botones 
+		//Registramos observadores
+		this.controlador.registerEngineObserver(this);
+		this.controlador.registerItemContainerObserver(this);
+		//Creamos el panel de los botones 
 		this.instructionPanel = new JPanel(new GridLayout(5, 2));
 		TitledBorder instruct = new TitledBorder("Instructions");
 		this.instructionPanel.setBorder(instruct);
@@ -253,7 +256,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	}
 
 	@Override
-	public void communicationHelp(String help) {}
+	public void communicationHelp(String help) { 
+		
+	}
 
 	@Override
 	public void engineOff(boolean atShip) {
@@ -278,7 +283,9 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	// No usa en el RobotPanel
 	@Override
-	public void robotSays(String message) {}
+	public void robotSays(String message) {
+		
+	}
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {

@@ -15,9 +15,12 @@ import tp.pr5.items.Item;
 public class InfoPanel extends JPanel implements RobotEngineObserver, NavigationObserver, InventoryObserver {
 	
 	// Constructor, se muestra el fuel y el material reciclado en la etiqueta
-	public InfoPanel() {
+	public InfoPanel(GUIController guiController) {
 		this.displayInfo = new JLabel(" ");
 		this.add(displayInfo);
+		guiController.registerEngineObserver(this);
+		guiController.registerItemContainerObserver(this);
+		guiController.registerItemContainerObserver(this);
 	}
 
 	// Notifica que el container de items ha cambiado

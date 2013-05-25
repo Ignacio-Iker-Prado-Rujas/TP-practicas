@@ -112,15 +112,15 @@ public class Main {
     				e1.printStackTrace();
     			} catch (UnsupportedLookAndFeelException e1) {
     				e1.printStackTrace();
-    			}
-    			if(interfaz == 1){
-			         /** Carga la información el robot y le indica que comience a moverse.
-			          * Crea la ventana para que funcione el entorno gráfico
-			          * Empieza el juego si no ha habido problemas	
-			          */
+				}
+				if (interfaz == 1) {
+					/**
+					 * Carga la información el robot y le indica que comience a
+					 * moverse. Crea la ventana para que funcione el entorno
+					 * gráfico Empieza el juego si no ha habido problemas
+					 */
 					GUIController guiController = new GUIController(engine);
-					MainWindow window = new MainWindow(guiController);
-					guiController.registerEngineObserver(window);				
+					MainWindow window = new MainWindow(guiController);			
 					//engine.autoEngine();
 					window.setVisible(true);
 					guiController.startController();
