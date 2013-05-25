@@ -114,8 +114,10 @@ public class ItemContainer extends Observable<InventoryObserver>{
 			return null;
 		else {
 			Item eliminado = this.arrayItem[pos];
+			arrayItem[pos] = null;	//Eliminamos el item del array
 			for (int i = pos; i < this.numItems - 1; i++)
 				this.arrayItem[i] = this.arrayItem[i + 1];
+			arrayItem[numItems-1] = null; //Borramos el último
 			this.numItems--;
 			List<Item> listaItems = Arrays.asList(arrayItem); 
 			for(InventoryObserver invOb : arrayObservers){

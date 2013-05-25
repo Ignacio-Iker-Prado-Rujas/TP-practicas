@@ -31,6 +31,7 @@ public class MoveInstruction implements Instruction{
 	@Override
 	public void execute() throws InstructionExecutionException {
 		this.navigation.move();
+		if(navigation.atSpaceship()) robot.endOfGame();
 		this.robot.addFuel(-5); //Actualiza el fuel al moverse.		
 	}
 	

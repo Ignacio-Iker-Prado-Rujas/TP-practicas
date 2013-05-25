@@ -46,21 +46,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 			for (NavigationObserver o : arrayObservers) {
 				o.robotArrivesAtPlace(currentHeading, currentPlace);
 			}
-		
-			/*TODO if (navPanel == null){
-				EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.getCurrentHeading().toString());
-				EscribeConsola.currentPlace(this.getCurrentPlace());
-				System.out.println();
-			}
-			else{
-				navPanel.move(this.currentPlace, this.currentHeading);
-				if(currentPlace.isSpaceship()){
-					ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
-					JOptionPane.showMessageDialog(navPanel, "I am at my spaceship. Bye bye", 
-							"Bye, bye!", JOptionPane.OK_OPTION, icon);
-					System.exit(0);
-				}
-			}*/
 		}
 	}
 	
@@ -94,7 +79,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 			for (NavigationObserver o : arrayObservers) {
 				o.placeHasChanged(currentPlace);
 			}
-		// TODO if(navPanel != null)navPanel.actualizarLog(currentPlace);
 		return item;
 	}
 
@@ -108,7 +92,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 				o.placeHasChanged(currentPlace);
 			}
 		}
-		/* TODO if(navPanel != null) navPanel.actualizarLog(currentPlace); */
 	}
 
 	/* True si el item buscado esta en el lugar. False si no */
@@ -149,18 +132,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 		return this.currentPlace;
 	}
 
-	
-	
-	/*Necesita que algunos de sus metodos avisen 
-	 * a la interfaz de Swing sobre los cambios de orientacion 
-	 * del robot asi como de los cambios de lugar.
-	
-	//Sets a panel in order to show its information in a GUI
-	public void setNavigationPanel(NavigationPanel navPanel) {
-		this.navPanel = navPanel;
-	//	}*/
-
-	//private NavigationPanel navPanel;
 	private City city;
 	private Place currentPlace;
 	private Direction currentHeading;
