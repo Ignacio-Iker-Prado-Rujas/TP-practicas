@@ -133,6 +133,7 @@ public class ItemContainer extends Observable<InventoryObserver>{
 		String items = "";
 		for(int i = 0; i < numItems; i++)
 			items += LINE_SEPARATOR + "   " + this.arrayItem[i].id;
+		items += LINE_SEPARATOR;
 		return items;
 	}
 	// Devuelve un array con los nombres de los items en el container;
