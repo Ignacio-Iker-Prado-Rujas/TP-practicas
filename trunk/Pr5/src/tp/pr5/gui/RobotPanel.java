@@ -258,12 +258,12 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	@Override
 	public void engineOff(boolean atShip) {
 		if (!atShip) {
-			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
 			JOptionPane.showMessageDialog(this, "I run out of fuel. I cannot move. Shutting down...", 
 					"Bye, bye!", JOptionPane.OK_OPTION, icon);
 			System.exit(0);
 		} else {
-			ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
 			JOptionPane.showMessageDialog(/*TODO aqui ponia navPanel en vez de this*/this, "I am at my spaceship. Bye bye", 
 					"Bye, bye!", JOptionPane.OK_OPTION, icon);
 			System.exit(0);
@@ -272,7 +272,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	@Override
 	public void raiseError(String msg) {
-		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(this, msg, "¡Cuidado!", JOptionPane.OK_OPTION, icon);
 	}
 

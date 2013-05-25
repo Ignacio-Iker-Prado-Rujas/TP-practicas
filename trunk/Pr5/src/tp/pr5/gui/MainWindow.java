@@ -118,19 +118,23 @@ public class MainWindow implements RobotEngineObserver {
 	@Override
 	public void communicationHelp(String help) {
 		// TODO: Revisar, da NullPointerException
-		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, help, "", JOptionPane.OK_OPTION, icon);		
 	}
 
 	@Override
 	public void engineOff(boolean atShip) {
-		// TODO: Revisar, da NullPointerException
 		String mensaje;
-		if (atShip)
+		if (atShip){
 			mensaje = EscribeConsola.IN_SPACESHIP;
+			ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
+			JOptionPane.showMessageDialog(robotPanel, mensaje, 
+					"Bye, bye!", JOptionPane.OK_OPTION, icon);
+			System.exit(0);
+		}
 		else 
 			mensaje = EscribeConsola.OUT_OF_FUEL;
-		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleError.png"));
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 		System.exit(0);
 	}
