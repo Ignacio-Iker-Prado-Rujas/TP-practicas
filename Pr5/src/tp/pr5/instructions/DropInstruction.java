@@ -54,9 +54,9 @@ public class DropInstruction implements Instruction{
 	public void execute() throws InstructionExecutionException {
 		item = container.pickItem(id);
 		if (item == null)
-			throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.NOT_HAVE_THE_OBJECT.replace("<id>", id));
 		if (navigation.findItemAtCurrentPlace(id))
-			throw new InstructionExecutionException(EscribeConsola.SAY + EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
+			throw new InstructionExecutionException(EscribeConsola.THE_OBJECT_WAS_IN_PLACE.replace("<id>", id));
 		else {
 			this.navigation.dropItemAtCurrentPlace(item);
 			this.engine.saySomething(EscribeConsola.OBJECT_DROPPED.replace("<id>", item.getId()));

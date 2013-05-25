@@ -77,7 +77,7 @@ public class EscribeConsola {
 	public static final String PROMPT = "WALL·E> ";
 	public static final String SAY = "WALL·E says: ";
 	public static final String POWER = "      * My power is ";
-	public static final String RECYCLED = "      * My reclycled material is ";
+	public static final String RECYCLED = "      * My recycled material is ";
 	public static final String NOT_UNDERSTAND = "I do not understand. Please repeat";
 	public static final String PLACE_NOT_OBJECT = "Ooops, this place has not the object <id>";
 	public static final String HAD_OBJECT = "I am stupid! I had already the object <id>";

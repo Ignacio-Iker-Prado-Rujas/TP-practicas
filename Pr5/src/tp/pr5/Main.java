@@ -44,7 +44,7 @@ public class Main {
 			if (cmd.hasOption('h')) {
                 HelpFormatter h = new HelpFormatter();
                 EscribeConsola.mostrar("Execute this assignment with these parameters:");
-                h.printHelp("tp.pr4.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
+                h.printHelp("tp.pr5.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
                 System.exit(0);
             }
             /* Comprueba que los parametros sean correctos */
@@ -58,7 +58,7 @@ public class Main {
 					interfaz = 2;
 				else {
 					EscribeConsola.imprimirError("Wrong type of interface");
-					System.exit(1);
+					System.exit(3);
 				}
 			} else {
 				EscribeConsola.imprimirError("Interface not specified");
