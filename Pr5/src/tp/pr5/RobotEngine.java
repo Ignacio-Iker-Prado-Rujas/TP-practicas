@@ -2,10 +2,6 @@ package tp.pr5;
 
 import java.util.Stack;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
-import tp.pr5.gui.RobotPanel;
 import tp.pr5.instructions.Instruction;
 import tp.pr5.instructions.MoveInstruction;
 import tp.pr5.instructions.OperateInstruction;
@@ -27,7 +23,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		this.fuel = 100;
 		this.recycledMaterial = 0;
 		this.itemContainer = new ItemContainer();
-		this.robotPanel = null;
 	}
 	
 	public void communicateRobot(Instruction instruction) {
@@ -39,12 +34,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 			for( RobotEngineObserver o : this.arrayObservers){
 				o.raiseError(exception.getMessage());
 			}
-			/*if (modoConsola())
-				EscribeConsola.mostrar(exception.getMessage());
-			else {
-				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
-				JOptionPane.showMessageDialog(robotPanel, exception.getMessage(), "¡Cuidado!", JOptionPane.OK_OPTION, icon);
-			}*/
 		}
 	}
 
@@ -71,18 +60,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 				o.engineOff(false);
 			}
 		}
-		/* TODO:
-		if (modoConsola())
-			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		else{
-			robotPanel.actualizarFuel(this.fuel);
-			if(!haveFuel()){
-				ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleQuit.png"));
-				JOptionPane.showMessageDialog(robotPanel, "I run out of fuel. I cannot move. Shutting down...", 
-						"Bye, bye!", JOptionPane.OK_OPTION, icon);
-				System.exit(0);
-			}
-		}*/
 	}
 
 	// Incrementa la cantidad de material reciclado
@@ -91,11 +68,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		for (RobotEngineObserver o : this.arrayObservers) {
 			o.robotUpdate(fuel, this.recycledMaterial);
 		}
-		/*TODO:
-		if (modoConsola())
-			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-		else 
-			robotPanel.actualizarRecycled(this.recycledMaterial);*/
 	}
 
 	// Para los tests
@@ -159,12 +131,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		else 
 			return  this.pilaInstruction.pop();
 			// Devuelve la cima de la pila, eliminando la instrucción.
-	}
-	
-	/* La ventana muestra el mensaje que se le pasa */
-	public void darAvisoVentana(String mensaje){
-		ImageIcon icon = new ImageIcon(this.getClass().getResource("gui/headingIcons/walleError.png"));
-		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
 
 	
@@ -285,6 +251,9 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 			o.initNavigationModule(navigation.getCurrentPlace(),
 					navigation.getCurrentHeading());
 		}
+		for (RobotEngineObserver o : this.arrayObservers) {
+			o.robotUpdate(fuel, recycledMaterial);
+		}
 	}
 
 	// Request the engine to say something
@@ -301,7 +270,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 				o.engineOff(navigation.atSpaceship());
 	}
 
-	private RobotPanel robotPanel;
 	private Stack<Instruction> pilaInstruction;
 	private NavigationModule navigation;
 	private boolean quit;
