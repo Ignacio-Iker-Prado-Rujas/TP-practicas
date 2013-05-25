@@ -54,8 +54,7 @@ public class OperateInstruction implements Instruction{
 			if(item == null) robot.lastInstruction().undo();
 			else{
 				item.desUse(robot, navigation);
-				// TODO: if(this.container.addItem(item)) robot.addItem(id, item.getDescription()); //Si ya estaba no se añade
-				
+				this.container.addItem(item); //Si ya estaba no se añade
 			}
 	}
 	
