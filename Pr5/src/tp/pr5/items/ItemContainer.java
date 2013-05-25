@@ -117,7 +117,7 @@ public class ItemContainer extends Observable<InventoryObserver>{
 			for (int i = pos; i < this.numItems - 1; i++)
 				this.arrayItem[i] = this.arrayItem[i + 1];
 			this.numItems--;
-			List<Item> listaItems = Arrays.asList(arrayItem); //asi convertimos una sola vez
+			List<Item> listaItems = Arrays.asList(arrayItem); 
 			for(InventoryObserver invOb : arrayObservers){
 				invOb.inventoryChange(listaItems);
 			}

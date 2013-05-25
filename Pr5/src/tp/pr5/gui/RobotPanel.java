@@ -79,11 +79,11 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		TitledBorder info = new TitledBorder("Robot info");
 		this.dataPanel.setBorder(info);
 		JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 5));
-		/*//Añadimos los Label con el Fuel y el RecycledMaterial
-		this.fuel = new JLabel("Fuel: " + elRobot.getFuel());
+		//Añadimos los Label con el Fuel y el RecycledMaterial
+		this.fuel = new JLabel("Fuel: 0");
 		statusPanel.add(fuel);		
-		this.recycled = new JLabel("Recycled: " + elRobot.getRecycledMaterial());
-		statusPanel.add(recycled);*/
+		this.recycled = new JLabel("Recycled: 0");
+		statusPanel.add(recycled);
 		this.dataPanel.add(statusPanel, BorderLayout.NORTH);
 		//Creamos la TableModel (que hereda de AbstractTableModel)
 		this.tableModel = new TableModel(new String[] {"Id", "Description"});
@@ -212,25 +212,33 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	
 	@Override
 	public void inventoryChange(List<Item> inventory) {
-		
+		int numElems = 0;
+		for(Item item: inventory)
+			if(item!=null) numElems++;
+		String[][] nuevoInventory = new String[numElems][2];
+		int i = 0;
+		for(Item item: inventory){
+			if(item!=null){
+				nuevoInventory[i][0] = item.getId();
+				nuevoInventory[i][1] = item.getDescription();
+				i++;
+			}
+		}
+		tableModel.actualizarTabla(nuevoInventory, numElems);
 	}
 
 	// No se necesita, ya tenemos la tabla con los items
 	@Override
-	public void inventoryScanned(String inventoryDescription) {
-		
-	}
+	public void inventoryScanned(String inventoryDescription) {}
 
 	@Override
 	public void itemEmpty(String itemName) {
 		tableModel.deleteItem(itemName);
 	}
 
-	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...
+	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...igualmente no iria aqui
 	@Override
-	public void itemScanned(String description) {
-		
-	}
+	public void itemScanned(String description) {}
 
 	// Este metodo es para el QUIT, pero se llama desde su actionListener
 	@Override
@@ -245,9 +253,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 	}
 
 	@Override
-	public void communicationHelp(String help) {
-		
-	}
+	public void communicationHelp(String help) {}
 
 	@Override
 	public void engineOff(boolean atShip) {
@@ -272,9 +278,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 
 	// No usa en el RobotPanel
 	@Override
-	public void robotSays(String message) {
-		
-	}
+	public void robotSays(String message) {}
 
 	@Override
 	public void robotUpdate(int fuel, int recycledMaterial) {

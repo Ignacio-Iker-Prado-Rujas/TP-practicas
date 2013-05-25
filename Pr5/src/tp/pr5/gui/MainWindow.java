@@ -54,10 +54,19 @@ public class MainWindow implements RobotEngineObserver {
 		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
 		this.robotPanel = new RobotPanel(guiController);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
-		/*//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
-		ventana.add(this.navPanel, BorderLayout.CENTER);*/
+		guiController.registerEngineObserver(robotPanel);
+		guiController.registerItemContainerObserver(robotPanel);
+		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
+		navPanel = new NavigationPanel();
+		ventana.add(this.navPanel, BorderLayout.CENTER);
+		guiController.registerRobotObserver(navPanel);
 		//Llamamos al método que construye el menú
 		buildMenuBar();
+		infoPanel = new InfoPanel();
+		ventana.add(infoPanel, BorderLayout.SOUTH);
+		guiController.registerEngineObserver(infoPanel);
+		guiController.registerItemContainerObserver(infoPanel);
+		guiController.registerItemContainerObserver(infoPanel);
 	}
 	
 	private void buildMenuBar(){
@@ -127,23 +136,18 @@ public class MainWindow implements RobotEngineObserver {
 
 	// No se usa aqui
 	@Override
-	public void raiseError(String msg) {
-		
-	}
+	public void raiseError(String msg) {}
 
 	// No se usa aqui
 	@Override
-	public void robotSays(String message) {
-		
-	}
+	public void robotSays(String message) {}
 	
 	// No se usa aqui
 	@Override
-	public void robotUpdate(int fuel, int recycledMaterial) {
-		
-	}
+	public void robotUpdate(int fuel, int recycledMaterial) {}
 
-	
+	private InfoPanel infoPanel;
+	private NavigationPanel navPanel;
 	private final JFrame ventana;
 	//private RobotEngine robot;
 	private RobotPanel robotPanel;
