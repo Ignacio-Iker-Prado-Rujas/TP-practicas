@@ -27,7 +27,7 @@ public class Main {
 		/* Crea las opciones */
 		Options options = new Options();
         options.addOption("h", "help", false, "Shows this help message");
-        Option inter = new Option("i", "interface", true, "The type of interface: console or swing");
+        Option inter = new Option("i", "interface", true, "The type of interface: console, swing or both");
         inter.setArgName("type");
         options.addOption(inter);
         Option mapa = new Option("m", "map", true, "File with the description of the city");
@@ -48,12 +48,14 @@ public class Main {
                 System.exit(0);
             }
             /* Comprueba que los parametros sean correctos */
-			boolean consola = false;
+			int interfaz = -1;
 			if (cmd.hasOption('i')) {
 				if (cmd.getOptionValue('i').equals("console"))
-					consola = true;
+					interfaz = 0;
 				else if (cmd.getOptionValue('i').equals("swing"))
-					consola = false;
+					interfaz = 1;
+				else if (cmd.getOptionValue('i').equals("both"))
+					interfaz = 2;
 				else {
 					EscribeConsola.imprimirError("Wrong type of interface");
 					System.exit(1);
@@ -86,7 +88,7 @@ public class Main {
 			}
 			/* Inicializa con la consola o con la interfaz de swing */
             RobotEngine engine = new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
-            if (consola){
+            if (interfaz == 0){
             	/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
@@ -98,7 +100,7 @@ public class Main {
         		consoleController.registerRobotObserver(console);
         		consoleController.startController();
             }
-    		else {
+    		else{
     			//OJO: Este try-catch es para que salga la ventana como en windows en el mac
     			try {
     				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -111,18 +113,20 @@ public class Main {
     			} catch (UnsupportedLookAndFeelException e1) {
     				e1.printStackTrace();
     			}
-		         /** Carga la información el robot y le indica que comience a moverse.
-		          * Crea la ventana para que funcione el entorno gráfico
-		          * Empieza el juego si no ha habido problemas	
-		          */
-				GUIController guiController = new GUIController(engine);
-				MainWindow window = new MainWindow(guiController);
-				GUIController.registerEngineObserver(window);
-				//GUIController.registerItemContainerObserver(window);
-				//GUIController.registerRobotObserver(window);
-				//GUIController.startController();
-				//engine.autoEngine();
-				window.setVisible(true);
+    			if(interfaz == 1){
+			         /** Carga la información el robot y le indica que comience a moverse.
+			          * Crea la ventana para que funcione el entorno gráfico
+			          * Empieza el juego si no ha habido problemas	
+			          */
+					GUIController guiController = new GUIController(engine);
+					MainWindow window = new MainWindow(guiController);
+					guiController.registerEngineObserver(window);				
+					//engine.autoEngine();
+					window.setVisible(true);
+					guiController.startController();
+    			}
+				else{ //TODO /* Estamos en la opción both */
+				}
     		}
         }catch (ParseException e) {
         	EscribeConsola.llamadaIncorrecta();

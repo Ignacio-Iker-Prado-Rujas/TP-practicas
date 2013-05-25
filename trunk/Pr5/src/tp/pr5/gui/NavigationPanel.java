@@ -18,7 +18,7 @@ import javax.swing.border.TitledBorder;
 public class NavigationPanel extends JPanel implements NavigationObserver {
 	
 	// Constructor: Se añade un MapViewPanel y el Area de Texto
-	public NavigationPanel(Place initialPlace) {
+	public NavigationPanel() {
 		//Ponemos el NavigationPanel como BorderLayout
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
@@ -36,7 +36,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		mapPanel.setBorder(mapa);
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		//Creamos el area de texto que muestra la información de los lugares
-		this.textArea = new JTextArea(initialPlace.toString());
+		this.textArea = new JTextArea();
 		TitledBorder texto = new TitledBorder("Log");
 		this.textArea.setBorder(texto);
 		this.textArea.setEditable(false);
@@ -50,7 +50,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 				mapPanel.add(arrayLugares[i][j]);
 			}
 		}
-		initNavigationModule(initialPlace, Direction.NORTH);
+		/*initNavigationModule(initialPlace, Direction.NORTH);*/
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		this.add(mapViewPanel, BorderLayout.CENTER);
 	}
@@ -135,9 +135,7 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 
 	// No es necesario, tenemos el campo de texto con la informacion del lugar
 	@Override
-	public void placeScanned(PlaceInfo placeDescription) {
-		
-	}
+	public void placeScanned(PlaceInfo placeDescription) {}
 
 	
 	@Override

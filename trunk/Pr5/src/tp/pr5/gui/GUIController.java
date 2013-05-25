@@ -12,7 +12,6 @@ public class GUIController extends Controller {
 
 	@Override
 	public void startController() {
-		// TODO: Aqui creo que deberia inicializar el fuel y el recycled material, pero no estoy seguro
 		this.engine.requestStart();
 	}
 	

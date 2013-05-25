@@ -16,8 +16,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	
 	// Constructor, se muestra el fuel y el material reciclado en la etiqueta
 	public InfoPanel() {
-		this.displayInfo = new JLabel("Robot attributes has been updated: (" + 100
-				+ ", " + 0 + ")");
+		this.displayInfo = new JLabel(" ");
 		this.add(displayInfo);
 	}
 
@@ -96,9 +95,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	 * (ya sea porque ha llegado al spaceship o porque no tiene fuel)
 	 */
 	@Override
-	public void engineOff(boolean atShip) {
-		
-	}
+	public void engineOff(boolean atShip) {}
 
 	// El RobotEngine informa de que ha habido un error
 	@Override

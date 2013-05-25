@@ -89,6 +89,11 @@ public class TableModel extends AbstractTableModel {
 		numElems--;
 		this.fireTableDataChanged();
 	}
+	public void actualizarTabla(String[][] nuevosDatos, int numDatos ){
+		data = nuevosDatos;
+		numElems = numDatos;
+		this.fireTableDataChanged();
+	}
 	
 	private String[] columnNames;
 	private String[][] data;
