@@ -119,16 +119,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 			o.communicationHelp(Interpreter.interpreterHelp());
 		}
 	}
-
-	// Escribe el estado de WALL·E
-	public void printRobotState(int a) {
-		if (modoConsola())EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
-	}
-	
-	// Indica si el programa se está ejecutando en modo consola
-	public boolean modoConsola(){
-		return (this.robotPanel == null);
-	}
 	
 	// Indica si un item se ha gastado
 	public boolean itemGastado(String id) {
@@ -177,19 +167,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		JOptionPane.showMessageDialog(robotPanel, mensaje, "", JOptionPane.OK_OPTION, icon);
 	}
 
-	/****************Operaciones de la tabla de ventana*************/
-	
-	public void	addItem(String id, String description) {
-		if (!modoConsola())robotPanel.addItem(id, description);
-	}
-	
-	public void deleteItem(String id) {
-		if (!modoConsola())robotPanel.deleteItem(id);
-	}
-	
-	public void deleteSelectedItem() { 
-		if (!modoConsola())robotPanel.deleteSelectedItem();
-	}
 	
 		/************ pruebas autoengine *****************************************/
 	

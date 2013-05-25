@@ -46,6 +46,7 @@ public class NavigationModule extends Observable<NavigationObserver>{
 			for (NavigationObserver o : arrayObservers) {
 				o.robotArrivesAtPlace(currentHeading, currentPlace);
 			}
+		
 			/*TODO if (navPanel == null){
 				EscribeConsola.say(EscribeConsola.MOVING_DIRECTION + this.getCurrentHeading().toString());
 				EscribeConsola.currentPlace(this.getCurrentPlace());
