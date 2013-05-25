@@ -15,31 +15,10 @@ import tp.pr5.EscribeConsola;
 import tp.pr5.RobotEngineObserver;
 
 public class MainWindow implements RobotEngineObserver {
-	/*public MainWindow(RobotEngine elRobot, Place initialPlace) {
-		//Inicializamos el robotEngine
-		this.robot = elRobot;
-		//Creamos la ventana principal
-		this.ventana = new JFrame("WALL·E The garbage collector");
-		this.ventana.setSize(1080, 720);	
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		EventQueue.invokeLater(new Runnable() { 
-			public void run() { 
-				ventana.setVisible(true); 
-				} 
-			});
-		//Y la ponemos un BorderLayout
-		ventana.setLayout(new BorderLayout());
-		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
-		this.robotPanel = new RobotPanel(this.robot);
-		ventana.add(this.robotPanel, BorderLayout.NORTH);
-		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
-		this.navPanel = new NavigationPanel(initialPlace);
-		ventana.add(this.navPanel, BorderLayout.CENTER);
-		//Llamamos al método que construye el menú
-		buildMenuBar();
-	}*/
 	
 	public MainWindow(GUIController guiController) {
+		//Registramos observador
+		guiController.registerEngineObserver(this);	
 		//Creamos la ventana principal
 		this.ventana = new JFrame("WALL·E The garbage collector");
 		this.ventana.setSize(1080, 720);	
@@ -54,19 +33,14 @@ public class MainWindow implements RobotEngineObserver {
 		//Creamos el RobotPanel (la parte que va al norte con cosas del robot)
 		this.robotPanel = new RobotPanel(guiController);
 		ventana.add(this.robotPanel, BorderLayout.NORTH);
-		guiController.registerEngineObserver(robotPanel);
-		guiController.registerItemContainerObserver(robotPanel);
 		//Creamos el NavigationPanel (la parte que va al centro-sur con cosas de la ciudad)
-		navPanel = new NavigationPanel();
+		navPanel = new NavigationPanel(guiController);
 		ventana.add(this.navPanel, BorderLayout.CENTER);
-		guiController.registerRobotObserver(navPanel);
 		//Llamamos al método que construye el menú
 		buildMenuBar();
-		infoPanel = new InfoPanel();
-		ventana.add(infoPanel, BorderLayout.SOUTH);
-		guiController.registerEngineObserver(infoPanel);
-		guiController.registerItemContainerObserver(infoPanel);
-		guiController.registerItemContainerObserver(infoPanel);
+		//Construimos el infoPanel que va abajo
+		infoPanel = new InfoPanel(guiController);
+		ventana.add(infoPanel, BorderLayout.AFTER_LAST_LINE);
 	}
 	
 	private void buildMenuBar(){
@@ -77,15 +51,6 @@ public class MainWindow implements RobotEngineObserver {
 		JMenu file = new JMenu("File");
 		file.setBackground(Color.GRAY);
 		menuBar.add(file);
-		// Ponemos la opcion con al ayuda
-		JMenuItem help = new JMenuItem("Help");
-		file.add(help);
-		help.addActionListener(new ActionListener () {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				communicationHelp(EscribeConsola.VALID_INSTRUCTIONS);
-			}
-		});
 		//Y dentro de la opcion File creamos la opcion Quit
 		JMenuItem quit = new JMenuItem("Quit");
 		file.add(quit);
@@ -141,21 +106,25 @@ public class MainWindow implements RobotEngineObserver {
 
 	// No se usa aqui
 	@Override
-	public void raiseError(String msg) {}
+	public void raiseError(String msg) {
+		
+	}
 
 	// No se usa aqui
 	@Override
-	public void robotSays(String message) {}
+	public void robotSays(String message) {
+		
+	}
 	
 	// No se usa aqui
 	@Override
-	public void robotUpdate(int fuel, int recycledMaterial) {}
+	public void robotUpdate(int fuel, int recycledMaterial) {
+		
+	}
 
 	private InfoPanel infoPanel;
 	private NavigationPanel navPanel;
 	private final JFrame ventana;
-	//private RobotEngine robot;
 	private RobotPanel robotPanel;
-	//private NavigationPanel navPanel;
 	private JMenuBar menuBar;
 	}

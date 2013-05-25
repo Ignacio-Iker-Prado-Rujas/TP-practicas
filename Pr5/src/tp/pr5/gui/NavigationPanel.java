@@ -18,7 +18,9 @@ import javax.swing.border.TitledBorder;
 public class NavigationPanel extends JPanel implements NavigationObserver {
 	
 	// Constructor: Se añade un MapViewPanel y el Area de Texto
-	public NavigationPanel() {
+	public NavigationPanel(GUIController guiController) {
+		//Registramos observador
+		guiController.registerRobotObserver(this);
 		//Ponemos el NavigationPanel como BorderLayout
 		this.setLayout(new BorderLayout());
 		this.mapViewPanel = new JPanel(new BorderLayout());
@@ -135,7 +137,9 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 
 	// No es necesario, tenemos el campo de texto con la informacion del lugar
 	@Override
-	public void placeScanned(PlaceInfo placeDescription) {}
+	public void placeScanned(PlaceInfo placeDescription) {
+		
+	}
 
 	
 	@Override
