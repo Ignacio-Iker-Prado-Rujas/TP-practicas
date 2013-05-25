@@ -136,10 +136,4 @@ public class Main {
         }
 	}
 }
-	/*	1.- (HECHO) Modo consola. Observador consola.
-	 *  2.- (HECHO creo) Robot engine. Combiar los System.out por emite
-	 *  3.- (HECHO creo) Observador del itemContainer. La vista consola lo implementa, lo 
-	 *  registramos, y ver si funciona
-	 *  4.- (HECHO) Bucle principal al controller
-	 *  5.- updateTable -> en el observador registrado	*/
 	
