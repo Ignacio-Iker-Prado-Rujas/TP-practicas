@@ -66,6 +66,11 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		for (RobotEngineObserver o : this.arrayObservers) {
 			o.robotUpdate(this.fuel, recycledMaterial);
 		}
+		if(!haveFuel()){
+			for (RobotEngineObserver o : this.arrayObservers) {
+				o.engineOff(false);
+			}
+		}
 		/* TODO:
 		if (modoConsola())
 			EscribeConsola.actualizarEstado(this.fuel, this.recycledMaterial);
