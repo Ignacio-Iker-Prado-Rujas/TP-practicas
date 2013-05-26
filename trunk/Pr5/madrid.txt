@@ -7,7 +7,7 @@ place 3 Exit "Ok, finally you have found your spaceship..." spaceShip
 place 4 Calderon "The best estadio of the world" noSpaceShip
 place 5 LaHiguera "The most famous village in Spain" noSpaceShip
 place 6 Noja "The best beach in Spain, with many surfers and party" noSpaceShip
-place 7 Chaminade "Where Perelman hosts" spaceShip
+place 7 Chaminade "Where Perelman hosts" noSpaceShip
 place 8 Villalba "Looking for Ana" noSpaceShip
 EndPlaces
 BeginStreets
