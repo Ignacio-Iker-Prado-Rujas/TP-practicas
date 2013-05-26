@@ -3,6 +3,7 @@ package tp.pr5.gui;
 import javax.swing.table.AbstractTableModel;
 
 public class TableModel extends AbstractTableModel {
+	
 	//Constructor que crea las columnas con sus nombres, que se pasan en un array
 	public TableModel(String[] colNames) {
 		this.columnNames = new String[colNames.length];
