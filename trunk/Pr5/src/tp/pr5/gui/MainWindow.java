@@ -82,9 +82,7 @@ public class MainWindow implements RobotEngineObserver {
 
 	@Override
 	public void communicationHelp(String help) {
-		// TODO: Revisar, da NullPointerException
-		ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleError.png"));
-		JOptionPane.showMessageDialog(robotPanel, help, "", JOptionPane.OK_OPTION, icon);		
+		
 	}
 
 	@Override
