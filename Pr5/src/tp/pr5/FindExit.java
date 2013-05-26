@@ -47,7 +47,7 @@ public class FindExit {
 			if (cmd.hasOption('h')) {
                 HelpFormatter h = new HelpFormatter();
                 EscribeConsola.mostrar("Execute this assignment with these parameters:");
-                h.printHelp("tp.pr5.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
+                h.printHelp("tp.pr5.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opciones correctas
                 System.exit(0);
             }
             /* Comprueba si quiere ejecutarse en consola */

@@ -119,13 +119,13 @@ public class Main {
 		          * Empieza el juego si no ha habido problemas	
 		          */
 				GUIController guiController = new GUIController(engine);
-				if(interfaz==2){	/* Estamos en la opción both */
+				if (interfaz == 2) { /* Estamos en la opción both */
 					Console console = new Console();
-	        		guiController.registerEngineObserver(console);
-	        		guiController.registerItemContainerObserver(console);
-	        		guiController.registerRobotObserver(console);
+					guiController.registerEngineObserver(console);
+					guiController.registerItemContainerObserver(console);
+					guiController.registerRobotObserver(console);
 				}/* El resto es común a interfaz y both */
-				
+
 				MainWindow window = new MainWindow(guiController);
 				guiController.registerEngineObserver(window);				
 				window.setVisible(true);
