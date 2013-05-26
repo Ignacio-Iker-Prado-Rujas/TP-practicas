@@ -199,20 +199,18 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	public Stack<String> autoEngine(int limiteProfundidad) {
 		Stack<String> arraySolucion = new Stack<String>();
 		boolean encontrada = false;
-		for(int i = 1; !encontrada && i <= limiteProfundidad ; i++) {
-			encontrada = autoEngine(arraySolucion, 1,  i);
+		for (int i = 1; !encontrada && i <= limiteProfundidad; i++) {
+			encontrada = autoEngine(arraySolucion, 1, i);
 		}
 		return arraySolucion;
 	}
-	private static Instruction[] arrayInstructions = { 
-		new MoveInstruction(), new TurnInstruction(Rotation.LEFT),
-		new TurnInstruction(Rotation.RIGHT), new PickInstruction(),
-		new OperateInstruction()};
+
+	private static Instruction[] arrayInstructions = { new MoveInstruction(),
+			new TurnInstruction(Rotation.LEFT),
+			new TurnInstruction(Rotation.RIGHT), new PickInstruction(),
+			new OperateInstruction() };
 	
-	//Falta hacer que cuando encuentre la solucion salga correctamente
-	
-	private boolean autoEngine(Stack<String> arraySolucion, int profunActual,
-			int profMaxima) {
+	private boolean autoEngine(Stack<String> arraySolucion, int profunActual, int profMaxima) {
 		if (profunActual > profMaxima) {
 			return false;
 		} else {
