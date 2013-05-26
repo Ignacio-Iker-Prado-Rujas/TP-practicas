@@ -209,19 +209,13 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	/*********************** autoengine *****************************************/
 
 
-	public void autoEngine(int limiteProfundidad) {
+	public Stack<String> autoEngine(int limiteProfundidad) {
 		Stack<String> arraySolucion = new Stack<String>();
 		boolean encontrada = false;
 		for(int i = 1; !encontrada && i <= limiteProfundidad ; i++) {
 			encontrada = autoEngine(arraySolucion, 1,  i);
 		}
-		if(!encontrada) this.saySomething(EscribeConsola.EXIT_NOT_FOUND);
-		else{
-			this.saySomething(EscribeConsola.THE_BEST_EXIT);
-			for (String s : arraySolucion) {
-				this.saySomething(s);
-			}		
-		}
+		return arraySolucion;
 	}
 	private static Instruction[] arrayInstructions = { 
 		new MoveInstruction(), new TurnInstruction(Rotation.LEFT),

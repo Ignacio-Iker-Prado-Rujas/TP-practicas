@@ -3,9 +3,7 @@ package tp.pr5;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.util.Stack;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -17,8 +15,6 @@ import org.apache.commons.cli.ParseException;
 import tp.pr5.cityLoader.CityLoaderFromTxtFile;
 import tp.pr5.console.Console;
 import tp.pr5.console.ConsoleController;
-import tp.pr5.gui.GUIController;
-import tp.pr5.gui.MainWindow;
 
 public class FindExit {
 	public static void main(String[] args) {
@@ -31,7 +27,7 @@ public class FindExit {
 		/* Crea las opciones */
 		Options options = new Options();
         options.addOption("h", "help", false, "Shows this help message");
-        Option inter = new Option("i", "interface", true, "The type of interface: console, swing or both");
+        Option inter = new Option("i", "interface", true, "The type of interface: only console");
         inter.setArgName("type");
         options.addOption(inter);
         Option mapa = new Option("m", "map", true, "File with the description of the city");
@@ -54,23 +50,25 @@ public class FindExit {
                 h.printHelp("tp.pr5.Main [-h] [-i <type>] [-m <mapfile>]", options); 	//imprime todas las opcines correctas
                 System.exit(0);
             }
-            /* Comprueba que los parametros sean correctos */
-			int interfaz = -1;
+            /* Comprueba si quiere ejecutarse en consola */
+			boolean interfaz = false;
 			if (cmd.hasOption('i')) {
 				if (cmd.getOptionValue('i').equals("console"))
-					interfaz = 0;
-				else if (cmd.getOptionValue('i').equals("swing"))
-					interfaz = 1;
-				else if (cmd.getOptionValue('i').equals("both"))
-					interfaz = 2;
+					interfaz = true;
 				else {
 					EscribeConsola.imprimirError("Wrong type of interface");
 					System.exit(3);
 				}
-			} else {
-				EscribeConsola.imprimirError("Interface not specified");
-				System.exit(1);
 			}
+			int maxProfundidad = 0;
+			if(cmd.hasOption('d')){
+    			try{
+    			maxProfundidad = Integer.parseInt(cmd.getOptionValue('d'));
+    			}catch(NumberFormatException e){
+    				EscribeConsola.imprimirError("Profundidad maxima no indicada");
+    				System.exit(1);
+    			}
+    		}
             /* Carga el mapa del archivo que se haya puesto */
             if (cmd.hasOption('m')){
 	            // Comprueba que exista el fichero cuyo nombre se ha pasado como argumento
@@ -95,7 +93,7 @@ public class FindExit {
 			}
 			/* Inicializa con la consola o con la interfaz de swing */
             RobotEngine engine = new RobotEngine(city, cityLoader.getInitialPlace(), Direction.NORTH);
-            if (interfaz == 0){
+            if(interfaz){
             	/**
         		 * Carga la información el robot y le indica que comience a moverse.
         		 * Empieza el juego si no ha habido problemas, funcionando en consola
@@ -105,56 +103,14 @@ public class FindExit {
         		consoleController.registerEngineObserver(console);
         		consoleController.registerItemContainerObserver(console);
         		consoleController.registerRobotObserver(console);
-        		if(cmd.hasOption('d')){
-        			try{
-        			int maxProfundidad = Integer.parseInt(cmd.getOptionValue('d'));
-        			engine.autoEngine(maxProfundidad);
-        			}catch(NumberFormatException e){
-        				EscribeConsola.imprimirError("Profundidad maxima no indicada");
-        				System.exit(1);
-        			}
-        		}
-        		else
-        			consoleController.startController();
-            }
+        	}
+            Stack<String> arraySolucion = engine.autoEngine(maxProfundidad);
+        	if(arraySolucion.isEmpty()) EscribeConsola.say(EscribeConsola.EXIT_NOT_FOUND);
     		else{
-    			//OJO: Este try-catch es para que salga la ventana como en windows en el mac    			
-    			try {
-    				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-    			} catch (ClassNotFoundException e1) {
-    				e1.printStackTrace();
-    			} catch (InstantiationException e1) {
-    				e1.printStackTrace();
-    			} catch (IllegalAccessException e1) {
-    				e1.printStackTrace();
-    			} catch (UnsupportedLookAndFeelException e1) {
-    				e1.printStackTrace();
-    			}
-		         /** Carga la información el robot y le indica que comience a moverse.
-		          * Crea la ventana para que funcione el entorno gráfico
-		          * Empieza el juego si no ha habido problemas	
-		          */
-				GUIController guiController = new GUIController(engine);
-				if(interfaz==2){	/* Estamos en la opción both */
-					Console console = new Console();
-	        		guiController.registerEngineObserver(console);
-	        		guiController.registerItemContainerObserver(console);
-	        		guiController.registerRobotObserver(console);
-				}/* El resto es común a interfaz y both */
-				
-				MainWindow window = new MainWindow(guiController);
-				guiController.registerEngineObserver(window);				
-				window.setVisible(true);
-				guiController.startController();
-				if(cmd.hasOption('d')){
-        			try{
-        			int maxProfundidad = Integer.parseInt(cmd.getOptionValue('d'));
-        			engine.autoEngine(maxProfundidad);
-        			}catch(NumberFormatException e){
-        				EscribeConsola.imprimirError("Profundidad maxima no indicada");
-        				System.exit(1);
-        			}
-        		}
+    			EscribeConsola.say(EscribeConsola.THE_BEST_EXIT);
+    			for (String s : arraySolucion) {
+    				EscribeConsola.mostrar("		" + s);
+    			}		
     		}
         }catch (ParseException e) {
         	EscribeConsola.llamadaIncorrecta();
