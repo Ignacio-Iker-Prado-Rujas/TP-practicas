@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +19,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.Rotation;
@@ -61,6 +65,26 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		JScrollPane infoScroll  = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		this.dataPanel.add(infoScroll, BorderLayout.CENTER);
 		this.add(dataPanel, BorderLayout.CENTER); 
+		//Este es el unico MouseListener usado, y es para que al pulsar un item de la tabla muestre su informacion completa en el infoPanel
+		table.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int fila = table.getSelectedRow();
+				controlador.communicateRobot(new ScanInstruction(tableModel.getValueAt(fila, 0)));				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
 		//Ponemos un SplitPane para cambiar las dimensiones del RobotPanel
 		JSplitPane splitPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instructionPanel, dataPanel);
 		this.add(splitPanel);

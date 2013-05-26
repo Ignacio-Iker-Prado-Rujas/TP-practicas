@@ -41,10 +41,10 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 		this.displayInfo.setText(EscribeConsola.SAY + EscribeConsola.NO_MORE_OBJECT.replace("<id>", itemName));
 	}
 
-	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio (no se usa en GUI)
+	// Notifica que el usuario quiere hacer SCAN sobre un item del inventorio
 	@Override
 	public void itemScanned(String description) {
-
+		this.displayInfo.setText(description);
 	}
 
 	// Notifica que la direccion del robot ha cambiado
