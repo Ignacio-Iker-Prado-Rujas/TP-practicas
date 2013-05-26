@@ -212,7 +212,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	public void autoEngine() {
 		Stack<String> arraySolucion = new Stack<String>();
 		boolean encontrada = false;
-		for(int i = 1; !encontrada && i < 5; i++) {
+		for(int i = 1; !encontrada ; i++) {
 			encontrada = autoEngine(arraySolucion, 1,  i);
 		}
 		for (String s : arraySolucion) {
@@ -226,9 +226,10 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	
 	//Falta hacer que cuando encuentre la solucion salga correctamente
 	
-	private boolean autoEngine(Stack<String> arraySolucion,
-			int profunActual, int profMaxima) {
-		if (profunActual > profMaxima) { return false;
+	private boolean autoEngine(Stack<String> arraySolucion, int profunActual,
+			int profMaxima) {
+		if (profunActual > profMaxima) {
+			return false;
 		} else {
 			for (int i = 0; i < 5; i++) {
 				if (haveFuel()) {
@@ -236,47 +237,89 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 						return true;
 					} else {
 						if (i == 3) {
+							String[] arrayItems = this.navigation
+									.getCurrentPlace().getArrayItems();
+							for (int it = 0; it < arrayItems.length; it++) {
+								try {
+									Instruction instruction = new PickInstruction(
+											arrayItems[it]);
+									instruction
+											.configureContext(this,
+													this.navigation,
+													this.itemContainer);
+									instruction.execute();
+									this.pilaInstruction.add(instruction);
+									arraySolucion.add(arrayInstructions[i]
+											.toString() + " " + arrayItems[it]);
+									if (autoEngine(arraySolucion,
+											profunActual + 1, profMaxima))
+										return true;
+									else {
+										try {
+											lastInstruction().undo();
+										} catch (InstructionExecutionException e) {
+										}
+										arraySolucion.pop();
+									}
+								} catch (InstructionExecutionException e1) {
+								}
+							}
+
+						} else if (i == 4) {
 							String[] arrayItems = itemContainer.listaItems();
 							for (int it = 0; it < arrayItems.length; it++) {
-								communicateRobot(new OperateInstruction(arrayItems[it]));
-								arraySolucion.add(arrayInstructions[i].toString()+arrayItems[it]);
-								if(autoEngine(arraySolucion, profunActual + 1, profMaxima))return true;
-								else{ 
+								try {
+									Instruction instruction = new OperateInstruction(
+											arrayItems[it]);
+									instruction
+											.configureContext(this,
+													this.navigation,
+													this.itemContainer);
+									instruction.execute();
+									this.pilaInstruction.add(instruction);
+									arraySolucion.add(arrayInstructions[i]
+											.toString() + " " + arrayItems[it]);
+									if (autoEngine(arraySolucion,
+											profunActual + 1, profMaxima))
+										return true;
+									else {
+										try {
+											lastInstruction().undo();
+										} catch (InstructionExecutionException e) {
+										}
+										arraySolucion.pop();
+									}
+								} catch (InstructionExecutionException e1) {
+								}
+							}
+						}
+
+						else {
+							try {
+								arrayInstructions[i].configureContext(this,
+										this.navigation, this.itemContainer);
+								arrayInstructions[i].execute();
+								this.pilaInstruction.add(arrayInstructions[i]);
+								arraySolucion.add(arrayInstructions[i]
+										.toString());
+								if (autoEngine(arraySolucion, profunActual + 1,
+										profMaxima))
+									return true;
+								else {
 									try {
 										lastInstruction().undo();
-									} catch (InstructionExecutionException e) {}								
+									} catch (InstructionExecutionException e) {
+									}
 									arraySolucion.pop();
 								}
-							}
-						} else if (i == 4) {
-							String[] arrayItems = this.navigation.getCurrentPlace().getArrayItems();
-							for (int it = 0; it < arrayItems.length; it++) {
-								communicateRobot(new PickInstruction(arrayItems[it]));
-								arraySolucion.add(arrayInstructions[i].toString()+arrayItems[it]);
-								if(autoEngine(arraySolucion, profunActual + 1,profMaxima))return true;
-								else {
-									try {								
-									lastInstruction().undo();
-									} catch (InstructionExecutionException e) {}
-									arraySolucion.pop();
-								}
-							}
-	
-						} else {
-							communicateRobot(arrayInstructions[i]);
-							arraySolucion.add(arrayInstructions[i].toString());
-							if(autoEngine(arraySolucion, profunActual + 1, profMaxima)) return true;
-							else{
-								try {
-								lastInstruction().undo();
-								} catch (InstructionExecutionException e) {}						
-								arraySolucion.pop();
+							} catch (InstructionExecutionException e1) {
 							}
 						}
 					}
 				}
 			}
-		}return false;
+		}
+		return false;
 	}
 /*******************************************************************************************/
 
