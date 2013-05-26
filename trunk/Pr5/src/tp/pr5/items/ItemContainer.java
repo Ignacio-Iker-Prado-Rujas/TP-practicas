@@ -136,6 +136,7 @@ public class ItemContainer extends Observable<InventoryObserver>{
 		items += LINE_SEPARATOR;
 		return items;
 	}
+	
 	// Devuelve un array con los nombres de los items en el container;
 	public String[] listaItems(){
 		String[] arrayItems = new String[numItems];
