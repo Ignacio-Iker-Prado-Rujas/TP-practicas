@@ -203,7 +203,6 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 		tableModel.deleteItem(itemName);
 	}
 
-	// TODO: Desde GUI no se sabe cuanto fuel te da ni cuantas veces se usa...igualmente no iria aqui
 	@Override
 	public void itemScanned(String description) {}
 
@@ -233,7 +232,7 @@ public class RobotPanel extends JPanel implements RobotEngineObserver, Inventory
 			System.exit(0);
 		} else {
 			ImageIcon icon = new ImageIcon(this.getClass().getResource("headingIcons/walleQuit.png"));
-			JOptionPane.showMessageDialog(/*TODO aqui ponia navPanel en vez de this*/this, "I am at my spaceship. Bye bye", 
+			JOptionPane.showMessageDialog(this, "I am at my spaceship. Bye bye", 
 					"Bye, bye!", JOptionPane.OK_OPTION, icon);
 			System.exit(0);
 		}
