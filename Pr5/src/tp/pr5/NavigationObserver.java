@@ -19,5 +19,7 @@ public interface NavigationObserver {
 
 	// Notifica que el robot ha llegado a un lugar
 	void robotArrivesAtPlace(Direction heading, PlaceInfo place);
+	
+	void undoMove(Direction heading, PlaceInfo place);
 
 }

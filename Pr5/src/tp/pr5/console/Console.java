@@ -117,4 +117,7 @@ public class Console implements NavigationObserver, RobotEngineObserver, Invento
 		EscribeConsola.say(description);
 	}
 
+	@Override
+	public void undoMove(Direction heading, PlaceInfo place) {}
+
 }
