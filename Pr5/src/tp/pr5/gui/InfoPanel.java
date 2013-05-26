@@ -98,7 +98,9 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	 * (ya sea porque ha llegado al spaceship o porque no tiene fuel)
 	 */
 	@Override
-	public void engineOff(boolean atShip) {}
+	public void engineOff(boolean atShip) {
+		
+	}
 
 	// El RobotEngine informa de que ha habido un error
 	@Override
