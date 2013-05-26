@@ -19,9 +19,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-
 import tp.pr5.RobotEngineObserver;
 import tp.pr5.Rotation;
 import java.util.List;
