@@ -206,7 +206,7 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 
 
 	
-	/************ pruebas autoengine *****************************************/
+	/*********************** autoengine *****************************************/
 
 
 	public void autoEngine(int limiteProfundidad) {

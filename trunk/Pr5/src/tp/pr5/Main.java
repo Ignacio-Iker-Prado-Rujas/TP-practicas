@@ -33,7 +33,6 @@ public class Main {
         Option mapa = new Option("m", "map", true, "File with the description of the city");
         mapa.setArgName("mapfile");
         options.addOption(mapa);
-        options.addOption(new Option("d", "findExit", true, "Profundidad maxima a explorar"));
         
         BasicParser parseador = new BasicParser();
         
@@ -99,17 +98,7 @@ public class Main {
         		consoleController.registerEngineObserver(console);
         		consoleController.registerItemContainerObserver(console);
         		consoleController.registerRobotObserver(console);
-        		if(cmd.hasOption('d')){
-        			try{
-        			int maxProfundidad = Integer.parseInt(cmd.getOptionValue('d'));
-        			engine.autoEngine(maxProfundidad);
-        			}catch(NumberFormatException e){
-        				EscribeConsola.imprimirError("Profundidad maxima no indicada");
-        				System.exit(1);
-        			}
-        		}
-        		else
-        			consoleController.startController();
+        		consoleController.startController();
         		
             }
     		else{
