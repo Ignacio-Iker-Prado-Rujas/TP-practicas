@@ -3,13 +3,11 @@ package tp.pr5;
 import tp.pr5.instructions.exceptions.InstructionExecutionException;
 import tp.pr5.items.Item;
 
-//TODO: HABRA QUE QUITAR LOS SYSTEM.OUT DE ESTA CLASE SUPONGO
 public class NavigationModule extends Observable<NavigationObserver>{
 	public NavigationModule(City city, Place initialPlace) {
 		this.city = city;
 		this.currentPlace = initialPlace;
 		this.currentHeading = Direction.NORTH; // De forma predeterminada mira al norte
-		//this.navPanel = null;
 	}
 
 	public boolean atSpaceship() {

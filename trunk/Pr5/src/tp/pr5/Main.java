@@ -99,9 +99,10 @@ public class Main {
         		consoleController.registerItemContainerObserver(console);
         		consoleController.registerRobotObserver(console);
         		consoleController.startController();
+        		engine.autoEngine();
             }
     		else{
-    			//OJO: Este try-catch es para que salga la ventana como en windows en el mac
+    			//OJO: Este try-catch es para que salga la ventana como en windows en el mac    			
     			try {
     				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
     			} catch (ClassNotFoundException e1) {

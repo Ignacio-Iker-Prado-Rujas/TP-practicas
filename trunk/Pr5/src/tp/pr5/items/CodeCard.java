@@ -25,13 +25,13 @@ public class CodeCard extends Item {
 			return false;
 		else {
 			if (calle.isOpen()){
-				if ( calle.close(this) ){
-					r.calleCerrada();
+				if (calle.close(this)){
+					r.calleCerrada();	//Indica que la calle ha sido cerrada
 					return true;
 				}else return false;
 			}else{
 				if(calle.open(this)){
-					r.calleAbierta();
+					r.calleAbierta();	//Indica que la calle ha sido abierta
 					return true;
 				}else return false;
 			}

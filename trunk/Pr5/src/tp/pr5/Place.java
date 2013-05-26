@@ -60,6 +60,10 @@ public class Place implements PlaceInfo{
 					+ this.itemContainer.toString();
 		}
 	}
+	/* Devuelve un array con los nombres de los items que contiene */
+	public String[] getArrayItems(){
+		return itemContainer.listaItems();
+	}
 	
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 

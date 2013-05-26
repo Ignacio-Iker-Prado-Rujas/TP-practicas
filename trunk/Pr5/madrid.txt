@@ -18,7 +18,7 @@ street 3 place 0 north place 4 closed entrada
 street 4 place 0 west place 5 open
 street 5 place 5 north place 6 open
 street 6 place 6 west place 7 closed chamientrada
-street 7 place 0 east place 8 open
+street 7 place 4 east place 8 open
 EndStreets
 BeginItems
 fuel 0 Petrol "from olds heatings" 10 3 place 0

@@ -132,90 +132,6 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 			return  this.pilaInstruction.pop();
 			// Devuelve la cima de la pila, eliminando la instrucción.
 	}
-
-	
-		/************ pruebas autoengine *****************************************/
-	
-	
-	public void autoEngine() {
-		Stack<String> arraySolucion = new Stack<String>();
-		for(int i = 1; arraySolucion.isEmpty(); i++) {
-			arraySolucion = autoEngine(arraySolucion, 1,  i);
-		}
-		for (String s : arraySolucion) {
-			saySomething(s+" ");
-		}
-	}
-	private static Instruction[] arrayInstructions = { 
-		new MoveInstruction(), new TurnInstruction(Rotation.LEFT),
-		new TurnInstruction(Rotation.RIGHT), new PickInstruction(),
-		new OperateInstruction()};
-	
-	//Falta hacer que cuando encuentre la solucion salga correctamente
-	
-	private Stack<String> autoEngine(Stack<String> arraySolucion,
-			int profunActual, int profMaxima) {
-		if (profunActual > profMaxima) {
-		} else {
-			for (int i = 0; i < 4; i++) {
-				if (haveFuel()) {
-					if (isSpaceship()) {
-						return arraySolucion;
-					} else {
-						if (i == 3) {
-							String[] arrayItems = itemContainer.listaItems();
-							for (int it = 0; it < arrayItems.length; it++) {
-								communicateRobot(new OperateInstruction(
-										arrayItems[i]));
-								arraySolucion.add(arrayInstructions[i]
-										.toString());
-								autoEngine(arraySolucion, profunActual + 1,
-										profMaxima);
-								try {
-									lastInstruction().undo();
-								} catch (InstructionExecutionException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								arraySolucion.pop();
-							}
-						} else if (i == 4) {
-							String[] arrayItems = itemContainer.listaItems();
-							for (int it = 0; it < arrayItems.length; it++) {
-								communicateRobot(new PickInstruction(
-										arrayItems[i]));
-								arraySolucion.add(arrayInstructions[i]
-										.toString());
-								autoEngine(arraySolucion, profunActual + 1,
-										profMaxima);
-								try {
-									lastInstruction().undo();
-								} catch (InstructionExecutionException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								arraySolucion.pop();
-							}
-
-						} else {
-							communicateRobot(arrayInstructions[i]);
-							arraySolucion.add(arrayInstructions[i].toString());
-							autoEngine(arraySolucion, profunActual + 1,
-									profMaxima);
-							try {
-								lastInstruction().undo();
-							} catch (InstructionExecutionException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							arraySolucion.pop();
-						}
-					}
-				}
-			}
-		}
-		return arraySolucion;
-	}
 	
 	// Registers an EngineObserver to the model
 	public void addEngineObserver(RobotEngineObserver observer) {
@@ -287,5 +203,81 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	private int fuel;
 	private int recycledMaterial;
 	private ItemContainer itemContainer;
+
+
+	
+	/************ pruebas autoengine *****************************************/
+
+
+	public void autoEngine() {
+		Stack<String> arraySolucion = new Stack<String>();
+		boolean encontrada = false;
+		for(int i = 1; !encontrada && i < 5; i++) {
+			encontrada = autoEngine(arraySolucion, 1,  i);
+		}
+		for (String s : arraySolucion) {
+			saySomething(s+" ");
+		}
+	}
+	private static Instruction[] arrayInstructions = { 
+		new MoveInstruction(), new TurnInstruction(Rotation.LEFT),
+		new TurnInstruction(Rotation.RIGHT), new PickInstruction(),
+		new OperateInstruction()};
+	
+	//Falta hacer que cuando encuentre la solucion salga correctamente
+	
+	private boolean autoEngine(Stack<String> arraySolucion,
+			int profunActual, int profMaxima) {
+		if (profunActual > profMaxima) { return false;
+		} else {
+			for (int i = 0; i < 5; i++) {
+				if (haveFuel()) {
+					if (isSpaceship()) {
+						return true;
+					} else {
+						if (i == 3) {
+							String[] arrayItems = itemContainer.listaItems();
+							for (int it = 0; it < arrayItems.length; it++) {
+								communicateRobot(new OperateInstruction(arrayItems[it]));
+								arraySolucion.add(arrayInstructions[i].toString()+arrayItems[it]);
+								if(autoEngine(arraySolucion, profunActual + 1, profMaxima))return true;
+								else{ 
+									try {
+										lastInstruction().undo();
+									} catch (InstructionExecutionException e) {}								
+									arraySolucion.pop();
+								}
+							}
+						} else if (i == 4) {
+							String[] arrayItems = this.navigation.getCurrentPlace().getArrayItems();
+							for (int it = 0; it < arrayItems.length; it++) {
+								communicateRobot(new PickInstruction(arrayItems[it]));
+								arraySolucion.add(arrayInstructions[i].toString()+arrayItems[it]);
+								if(autoEngine(arraySolucion, profunActual + 1,profMaxima))return true;
+								else {
+									try {								
+									lastInstruction().undo();
+									} catch (InstructionExecutionException e) {}
+									arraySolucion.pop();
+								}
+							}
+	
+						} else {
+							communicateRobot(arrayInstructions[i]);
+							arraySolucion.add(arrayInstructions[i].toString());
+							if(autoEngine(arraySolucion, profunActual + 1, profMaxima)) return true;
+							else{
+								try {
+								lastInstruction().undo();
+								} catch (InstructionExecutionException e) {}						
+								arraySolucion.pop();
+							}
+						}
+					}
+				}
+			}
+		}return false;
+	}
+/*******************************************************************************************/
 
 }
