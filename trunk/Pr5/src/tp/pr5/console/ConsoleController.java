@@ -28,7 +28,6 @@ public class ConsoleController extends Controller {
 				engine.saySomething(EscribeConsola.NOT_UNDERSTAND);
 			}
 		}
-		this.engine.endOfGame();
 		sc.close(); // Cierra el escaner
 	}
 
