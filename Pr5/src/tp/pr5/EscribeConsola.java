@@ -91,6 +91,10 @@ public class EscribeConsola {
 	public static final String VALID_INSTRUCTIONS = "The valid instructions for WALL-E are:";
 	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
+	/*AutoEngine*/
+	public static final String EXIT_NOT_FOUND = " Exit not found";
+	public static final String THE_BEST_EXIT = " The best instructions to exit are: ";
+	/*********/
 	/* Streets */
 	public static final String STREET_HAVE_OPENED = " Now the street is open";
 	public static final String STREET_HAVE_CLOSED = " Now the street is close";

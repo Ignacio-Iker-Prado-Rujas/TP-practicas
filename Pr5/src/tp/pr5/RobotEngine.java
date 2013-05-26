@@ -209,14 +209,18 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 	/************ pruebas autoengine *****************************************/
 
 
-	public void autoEngine() {
+	public void autoEngine(int limiteProfundidad) {
 		Stack<String> arraySolucion = new Stack<String>();
 		boolean encontrada = false;
-		for(int i = 1; !encontrada ; i++) {
+		for(int i = 1; !encontrada && i <= limiteProfundidad ; i++) {
 			encontrada = autoEngine(arraySolucion, 1,  i);
 		}
-		for (String s : arraySolucion) {
-			saySomething(s+" ");
+		if(!encontrada) this.saySomething(EscribeConsola.EXIT_NOT_FOUND);
+		else{
+			this.saySomething(EscribeConsola.THE_BEST_EXIT);
+			for (String s : arraySolucion) {
+				this.saySomething(s);
+			}		
 		}
 	}
 	private static Instruction[] arrayInstructions = { 
