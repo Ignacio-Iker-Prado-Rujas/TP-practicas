@@ -26,8 +26,6 @@ public class NavigationModule extends Observable<NavigationObserver>{
 		for (NavigationObserver o : arrayObservers) {
 			o.headingChanged(currentHeading);
 		}
-		/*TODO if (navPanel == null) 	EscribeConsola.lookingDirection(this.getCurrentHeading());
-		else this.navPanel.actualizarDirection(this.currentHeading);	Delete*/
 	}
 
 	/*

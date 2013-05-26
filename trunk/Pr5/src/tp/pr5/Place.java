@@ -25,7 +25,7 @@ public class Place implements PlaceInfo{
 	public String toString() {
 		if (this.itemContainer.numberOfItems() == 0) {
 			return this.name + LINE_SEPARATOR + this.description
-					+ LINE_SEPARATOR + EscribeConsola.PLACE_EMPTY;
+					+ LINE_SEPARATOR + EscribeConsola.PLACE_EMPTY + LINE_SEPARATOR;
 		} else {
 			return this.name + LINE_SEPARATOR + this.description
 					+ LINE_SEPARATOR + EscribeConsola.PLACE_CONTAINS
