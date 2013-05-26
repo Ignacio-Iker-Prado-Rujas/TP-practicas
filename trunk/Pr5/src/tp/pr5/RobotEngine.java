@@ -263,11 +263,22 @@ public class RobotEngine extends Observable<RobotEngineObserver> {
 		}
 	}
 	
-	// 
+	// Indica a los observadores que la partida ha terminado y por qué ha sido
 	public void endOfGame() {
 		if (!quit)
 			for (RobotEngineObserver o : this.arrayObservers)
 				o.engineOff(navigation.atSpaceship());
+	}
+	
+	//Notifica que una calle ha sido abierta
+	public void calleAbierta(){
+		for (RobotEngineObserver o : this.arrayObservers)
+			o.robotSays(EscribeConsola.STREET_HAVE_OPENED);
+	}
+	//Notifica que una calle ha sido cerrada
+	public void calleCerrada(){
+		for (RobotEngineObserver o : this.arrayObservers)
+			o.robotSays(EscribeConsola.STREET_HAVE_CLOSED);
 	}
 
 	private Stack<Instruction> pilaInstruction;

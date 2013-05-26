@@ -55,15 +55,6 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 		this.mapViewPanel.add(mapPanel, BorderLayout.CENTER);
 		this.add(mapViewPanel, BorderLayout.CENTER);
 	}
-	
-	//Mueve a WALL·E desde currentPlace en direccion currentHeading
-	/*public void move(Place currentPlace, Direction currentHeading) {
-		arrayLugares[x][y].leavePlace();
-		cambiarPosicion(currentHeading);
-		arrayLugares[x][y].setPlace(currentPlace);
-		arrayLugares[x][y].visitPlace();
-		actualizarLog(currentPlace);
-	}*/
 
 	//Para el Undo, depende del numero de visitas de cada lugar
 	//Cuentas con que estas posicionado en el lugar correcto, 
@@ -129,17 +120,15 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 
 	// No es necesario, tenemos el campo de texto con la informacion del lugar
 	@Override
-	public void placeScanned(PlaceInfo placeDescription) {
-		
-	}
+	public void placeScanned(PlaceInfo placeDescription) {}
 
 	
 	@Override
 	public void robotArrivesAtPlace(Direction heading, PlaceInfo place) {
-		arrayLugares[x][y].leavePlace();
-		cambiarPosicion(heading);
-		arrayLugares[x][y].setPlace(place);
-		arrayLugares[x][y].visitPlace();
+		arrayLugares[x][y].leavePlace(); //Avandona la posicion actual
+		cambiarPosicion(heading);		 //Cambia la posición en las coordenadas
+		arrayLugares[x][y].setPlace(place);	//Define la posicion actual como el lugar recibido
+		arrayLugares[x][y].visitPlace();	//Marca la posicion como actual
 		actualizarLog(place);
 	}
 	

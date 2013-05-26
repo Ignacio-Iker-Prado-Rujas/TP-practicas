@@ -92,6 +92,8 @@ public class EscribeConsola {
 	public static final String OBJECT_DROPPED = "Great! I have dropped <id>";
 	public static final String THE_OBJECT_WAS_IN_PLACE = "I am stupid! The object <id> was in current place";
 	/* Streets */
+	public static final String STREET_HAVE_OPENED = " Now the street is open";
+	public static final String STREET_HAVE_CLOSED = " Now the street is close";
 	public static final String THERE_IS_NO_STREET = " There is no street in direction <direction>";
 	public static final String STREET_CLOSED = "Arrggg, there is a street but it is closed!";
 	/*********/
