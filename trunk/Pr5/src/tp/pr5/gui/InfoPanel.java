@@ -125,5 +125,7 @@ public class InfoPanel extends JPanel implements RobotEngineObserver, Navigation
 	
 	private JLabel displayInfo;
 	private static final long serialVersionUID = 1L;  //Daba warning
+	@Override
+	public void undoMove(Direction heading, PlaceInfo place) {}
 
 }

@@ -56,12 +56,8 @@ public class NavigationModule extends Observable<NavigationObserver>{
 			this.currentPlace = newStreet.nextPlace(this.currentPlace);
 			for (NavigationObserver o : arrayObservers) {
 				o.robotArrivesAtPlace(currentHeading, currentPlace);
+				o.undoMove(currentHeading, currentPlace);
 			}
-			/*TODO if (navPanel == null){
-				EscribeConsola.currentPlace(this.getCurrentPlace());
-				System.out.println();
-			}
-			else navPanel.undoMove(this.currentPlace, this.currentHeading);*/
 		}
 		initHeading(getCurrentHeading().oppositeDirection());
 	}

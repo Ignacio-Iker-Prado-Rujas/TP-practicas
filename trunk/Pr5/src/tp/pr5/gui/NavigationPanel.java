@@ -2,7 +2,6 @@ package tp.pr5.gui;
 
 import tp.pr5.Direction;
 import tp.pr5.NavigationObserver;
-import tp.pr5.Place;
 import tp.pr5.PlaceInfo;
 
 import java.awt.BorderLayout;
@@ -67,24 +66,17 @@ public class NavigationPanel extends JPanel implements NavigationObserver {
 	}*/
 
 	//Para el Undo, depende del numero de visitas de cada lugar
-	public void undoMove(Place currentPlace, Direction currentHeading){
+	//Cuentas con que estas posicionado en el lugar correcto, 
+	// vuelves hacia atrás, actualizas y regresas.
+	public void undoMove(Direction currentHeading, PlaceInfo currentPlace){
+		/* Actualizas los valores del lugar anterior	*/
+		cambiarPosicion(currentHeading.oppositeDirection());
 		arrayLugares[x][y].desVisitar();
-		if(arrayLugares[x][y].getNumVisitas() <= 0) {
+		if(arrayLugares[x][y].getNumVisitas() <= 0)
 			arrayLugares[x][y].ocultar();
-			cambiarPosicion(currentHeading);
-			arrayLugares[x][y].visitPlace();
-			arrayLugares[x][y].desVisitar(); //Para que no le sume la visita
-			actualizarLog(currentPlace);
-		}
-		else {
-			arrayLugares[x][y].leavePlace();
-			cambiarPosicion(currentHeading);
-			arrayLugares[x][y].setPlace(currentPlace);
-			arrayLugares[x][y].visitPlace();
-			arrayLugares[x][y].desVisitar(); //Para que no le sume la visita
-			
-			actualizarLog(currentPlace);
-		}
+		/*	Actualizas los valores del lugar actual */
+		cambiarPosicion(currentHeading);
+		arrayLugares[x][y].desVisitar(); //Para que no le sume la visita
 	}
 	
 	//Modifica la imagen
