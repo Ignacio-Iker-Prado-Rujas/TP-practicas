@@ -4,7 +4,7 @@ public class EscribeConsola {
 	
 	/*Clase que acumula el mostrar la información al usuario*/
 	
-	public static void llamadaVacia(){
+	public static void llamadaVacia() {
 		System.err.println("Map file not specified");
 	}
 	

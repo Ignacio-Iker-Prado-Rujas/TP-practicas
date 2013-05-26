@@ -131,7 +131,7 @@ public class Main {
 				window.setVisible(true);
 				guiController.startController();
     		}
-        }catch (ParseException e) {
+        } catch (ParseException e) {
         	EscribeConsola.llamadaIncorrecta();
 			System.exit(1);
         }

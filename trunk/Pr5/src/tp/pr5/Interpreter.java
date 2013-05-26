@@ -13,11 +13,13 @@ public class Interpreter {
 	 * excepción es que es una instrucción correcta de ese tipo y se devuelve
 	 * correctamente inicializada
 	 */
-	public static Instruction generateInstruction(String line) throws WrongInstructionFormatException{
-		for( Instruction  i : arrayInstructions ){
-			try{ 
+	public static Instruction generateInstruction(String line)
+			throws WrongInstructionFormatException {
+		for (Instruction i : arrayInstructions) {
+			try {
 				return i.parse(line);
-			} catch (WrongInstructionFormatException w) {}
+			} catch (WrongInstructionFormatException w) {
+			}
 		}
 		throw new WrongInstructionFormatException(); //Si no ha devuelto ninguna instrucción es que no era válida.
 	}
@@ -25,7 +27,7 @@ public class Interpreter {
 	//Devuelve un string con las instrucciones válidas del robot
 	public static String interpreterHelp() {
 		String help = "";
-		for( Instruction  i : arrayInstructions ){
+		for (Instruction i : arrayInstructions) {
 			help += (i.getHelp() + LINE_SEPARATOR);
 		}
 		return help;
